@@ -18,12 +18,7 @@ User.sync({force: true}).then(() => {
 
 User.register = async function(username, password){
     const salt = bcrypt.genSaltSync(Math.random(10));
-    console.log(salt);
-    console.log(password);
-    
     const cryptoPassword = bcrypt.hashSync(password, salt);
-    console.log(cryptoPassword);
-    
     try {
         return await this.create({
             username,
@@ -47,6 +42,9 @@ User.checkUsernameExist = async function(username){
 User.auth = async function(username, password){
     try {
         const user = await this.findOne({where: {username}});
+        if(!user){
+            return false
+        }
         if(user.password){
             return bcrypt.compareSync(password, user.password);
         }

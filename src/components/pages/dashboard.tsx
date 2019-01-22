@@ -7,8 +7,6 @@ import { IPageProps } from '../../interfaces/components';
 @observer
 class Dashboard extends Component<IPageProps> {
     componentDidMount(){
-        const { currentUser } = this.props;
-        console.log(currentUser.token);
         
     }
     render(){

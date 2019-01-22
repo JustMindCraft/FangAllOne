@@ -1,6 +1,7 @@
 import { REGISTER, SHOW_UNIQUE } from './../../constants/API';
 import { observable, computed, action } from "mobx";
 import { api, auth } from "../../api";
+import currentUser from '../global/UserSession';
 
 export class RegisterFormStore {
     @observable loading= false;
@@ -79,6 +80,7 @@ export class RegisterFormStore {
         this.checkingUsernameExist = true;
         api('users', SHOW_UNIQUE, {key: this.username})
         .then((rlt:any)=>{
+            console.log(rlt.data.token);
             if(rlt.status===204){
                 this.usernameExist = false;
                 this.checkingUsernameExist = false;
@@ -89,7 +91,6 @@ export class RegisterFormStore {
                 this.checkingUsernameExist = false;
                 return false;
             }
-            console.log(rlt);
             
         })
     }
@@ -116,13 +117,30 @@ export class RegisterFormStore {
             username: this.username,
             password: this.password
         }).then((rlt:any)=>{
+            console.log(rlt);
+            
+            
             if(rlt.data.username === this.username){
+                currentUser.username = rlt.data.username;
+                window.localStorage.setItem('fang_token', rlt.data.token)
                 this.isSuccess = true;
             }else{
                 this.isSuccess = false;
             }
             
         })
+    }
+    @action reset(){
+        this.loading= false;
+        this.username = '';
+        this.password = '';
+        this.passwordRepeat = '';
+        this.startInput = false;
+        this.isSuccess = false;
+        this.registering = false;
+        this.checkingUsernameExist = false;
+        this.usernameExist = false;
+        this.submitBtnHidden = false;
     }
 }
 

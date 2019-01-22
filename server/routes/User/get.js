@@ -37,6 +37,25 @@ export default [
     },
     {
         method: 'GET',
+        path: '/auth',
+        handler: (request, h) => {
+            return 'Hello, world!';
+        },
+        options: {
+            auth: 'jwt',
+            description: '认证一个用户的token',
+            notes: 'condition参数包含用户的查询条件， optional包含分页page,pagesize，筛选字段filter,以及排序sort信息',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                query: {
+                    token: Joi.required()
+                },  
+            }
+            
+        },
+    },
+    {
+        method: 'GET',
         path: '/users/{id}',
         handler: (request, h) => {
             return 'Hello, world!';
@@ -46,6 +65,7 @@ export default [
     {
         method: 'GET',
         path: '/user/{username}',
+        config: {auth: false},
         handler: async (request, h) => {
             const { username } = request.params;
             console.log(username);

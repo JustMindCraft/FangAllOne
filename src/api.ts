@@ -7,11 +7,9 @@ import axios from 'axios';
 export  function auth(method:string, condition:any){
     switch(method){
         case AUTH:
-            return axios.post(`${config.basicUri}/auth`, {
-                params: {
+            return axios.post(`${config.basicUri}/auth`, 
                     condition,
-                }
-            });
+            );
         case REGISTER:
             return axios.post(`${config.basicUri}/register`, 
                     condition,

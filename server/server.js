@@ -1,5 +1,8 @@
 import routes from './routes';
 import connectDB from './db';
+import config from '../server/config';
+import User from './models/User';
+import bcrypt from 'bcrypt';
 const Hapi = require('hapi');
 const Inert = require('inert');
 const Vision = require('vision');
@@ -12,10 +15,36 @@ const server = Hapi.server({
 });
 
 const init = async () => {
+    await server.register(require('hapi-auth-jwt2'));
+    // bring your own validation function
+    const validate = async function (decoded, request) {
+        // do your checks to see if the person is valid
+        if (!decoded.id) {
+            return { isValid: false };
+        }
+        if(!decoded.password){
+            return { isValid: false };
+        }
+        const user  = await User.findByPk(decoded.id);
+
+        if(bcrypt.compareSync(decoded.password, user.password)){
+            return {isValid: true};
+        }else{
+            return { isValid: false };
+
+        }
+    };
+    server.auth.strategy('jwt', 'jwt',
+    { key: config.privateKey,          // Never Share your secret key
+        validate: validate,            // validate function defined above
+        verifyOptions: { algorithms: [ 'HS256' ] } // pick a strong algorithm
+    });
+
+    server.auth.default('jwt');
 
     const swaggerOptions = {
         info: {
-                title: 'Test API Documentation',
+                title: 'API文档',
                 version: Pack.version,
             },
         };

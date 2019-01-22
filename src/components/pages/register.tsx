@@ -3,12 +3,9 @@ import { Container, Header } from 'semantic-ui-react';
 import RegisterFormWithMobx from '../withMobx/RegisterFormWithMobx';
 import registerFormStore from '../../mobx/components/RegisterFormStore';
 import { withRouter } from 'react-router';
+import { IPageProps } from '../../interfaces/components';
 
-interface IRegisterProps {
-    history: any
-}
-
-class Register extends React.Component<IRegisterProps> {
+class Register extends React.Component<IPageProps> {
     redirectSuccess = (isSuccess:any) => {
         const { history } = this.props;
         if(isSuccess){
@@ -16,6 +13,7 @@ class Register extends React.Component<IRegisterProps> {
         }
         
     }
+    
     render(){
         return (
             <Container fluid={true} className="App-page">

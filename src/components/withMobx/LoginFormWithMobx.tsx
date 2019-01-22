@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import RegisterForm from '../stateless/RegisterForm';
+import { observer, inject } from 'mobx-react';
+import LoginForm from '../stateless/LoginForm';
 
-interface IRegisterFormWithMobx {
+interface ILoginFormWithMobx {
     store: any,
     redirectSuccess: Function
 }
+@inject("currentUser")
 @observer
-class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
+class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
+    componentDidMount(){
+        console.log(this.props);
+        
+        this.props.store.reset();
+    }
     componentWillReact(){
         const { store } = this.props;
         this.props.redirectSuccess(store.isSuccess);
-    }
-    componentDidMount(){
-        const { store } = this.props;
-        store.reset();
-        
     }
     
     onSubmit = (e:any) => {
@@ -24,7 +25,7 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
         if(!store.isPassed){
             return false;
         }
-        store.register()
+        store.login()
         
     }
 
@@ -37,9 +38,6 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
                 break;
             case "password":
                 store.changePassword(value);
-                break;
-            case "passwordRepeat":
-                store.changePasswordRepeat(value);
                 break;
             default:
                 break;
@@ -54,15 +52,16 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
         const {store} = this.props;
         return (
           
-            <RegisterForm 
+            <LoginForm 
                 onSubmit={this.onSubmit} 
                 handleInputChange={this.handleInputChange}
                 msg={store.msg}
                 msgType={store.msgType}
                 startInput={store.startInput}
                 isPassed={store.isPassed}
+                isSubmit={store.isSubmit}
                 submitBtnHidden={store.submitBtnHidden}
-                registering={store.registering}
+                logining={store.logining}
                 isSuccess={store.isSuccess}
             />
                 
@@ -71,4 +70,4 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
     
 }
 
-export default RegisterFormWithMobx
+export default LoginFormWithMobx

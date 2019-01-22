@@ -7,7 +7,8 @@ import Home from './components/pages/home';
 import NotFound from './components/pages/notFound';
 import Dashboard from './components/pages/dashboard';
 import Register from './components/pages/register';
-import user from './mobx/api/models/User';
+import login from './components/pages/login';
+import currentUser from './mobx/global/UserSession';
 
 @observer
 class App extends Component<IAppProps> {
@@ -15,12 +16,13 @@ class App extends Component<IAppProps> {
   render() {
     return (
       <div className="App">
-      <Provider currentUser={user}>
+      <Provider currentUser={currentUser}>
         <Router>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={login} />
               <Route  component={NotFound} />
             </Switch>
         </Router>
