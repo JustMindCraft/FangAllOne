@@ -20,11 +20,11 @@ const RegisterForm = (props:any) => {
                 </Form.Field>
                 <Form.Field>
                     <label>密码</label>
-                    <Input onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码' />
+                    <Input  type='password' onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码' />
                 </Form.Field>
                 <Form.Field>
                     <label>重复密码</label>
-                    <Input onChange={(event:any)=>props.handleInputChange(event, "passwordRepeat")} placeholder='重复密码' />
+                    <Input  type='password' onChange={(event:any)=>props.handleInputChange(event, "passwordRepeat")} placeholder='重复密码' />
                 </Form.Field>
                 <Form.Field>
                     <Checkbox label='同意' checked={true} />

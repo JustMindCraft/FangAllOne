@@ -27,9 +27,30 @@ export default [
         path: '/auth',
         handler: async (request, h) => {
                  const { username, password} = request.payload;
-                return await User.auth(
-                    username, password
-                );
+                 try {
+                    const user =  await User.auth(
+                        username, password
+                    );
+                    if(!user){
+                        return h.response(false).code(203)
+                    }
+                    const token = JWT.sign({
+                        id: user.id,
+                        password: password,
+                    }, config.privateKey, {
+                        expiresIn: 604800 // 1 week
+                      });
+                    return h.response({
+                        id: user.id,
+                        username,
+                        token
+                    }).code(200);
+                 } catch (error) {
+                    console.log(error);
+                
+                    return error.errors;
+                 }
+                
         },
         options: {
             auth: false,

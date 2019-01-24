@@ -24,6 +24,7 @@ export class LoginFormStore{
         this.password = "";
         this.logining = false;
         this.isSuccess = false;
+        this.isSubmit = false;
     }
     
     @action changeUsername(value:any){
@@ -39,16 +40,19 @@ export class LoginFormStore{
             username: this.username,
             password: this.password
         }).then((rlt:any)=>{
-            this.logining = true;
-            console.log(rlt.data);
-            
-            if(rlt.data){
-                this.isSuccess = true;
-            }else{
-                this.isSuccess = false;
+           
+            if(!rlt.data){
                 this.logining = false;
+                return this.isSuccess = false;
             }
-            console.log(rlt);
+            
+            if(rlt.data.username === this.username){
+                window.localStorage.setItem('fang_token', rlt.data.token);
+                window.localStorage.setItem('fang_userId', rlt.data.id);
+                return this.isSuccess = true;
+            }
+            this.logining = false;
+            return this.isSuccess = false;
             
         })
     }

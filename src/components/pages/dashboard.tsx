@@ -1,19 +1,33 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router';
-import { observer, inject } from 'mobx-react';
 import { IPageProps } from '../../interfaces/components';
-
-@inject('currentUser')
-@observer
+import PcFooter from '../stateless/PcFooter';
+import PcTopWithMobx from '../withMobx/PcTopWithMobx';
+import BackendLayout from '../withMobx/BackendLayout';
+import { Header } from 'semantic-ui-react';
 class Dashboard extends Component<IPageProps> {
+    state = { visible: false }
+
+    handleHideClick = () => this.setState({ visible: false })
+    handleShowClick = () => this.setState({ visible: true })
+    handleSidebarHide = () => this.setState({ visible: false })
+
     componentDidMount(){
         
     }
     render(){
-        console.log(this.props);
-        
+        const { visible } = this.state
         return (
-            <h1>面板</h1>
+            <div  className="App-page">
+                <PcTopWithMobx />
+                <BackendLayout title="控制面板">
+                    <Header as="h2">控制面板</Header>
+                    
+                </BackendLayout>
+                
+                    
+                <PcFooter/>
+            </div>
 
         )
     }

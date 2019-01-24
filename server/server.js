@@ -3,6 +3,9 @@ import connectDB from './db';
 import config from '../server/config';
 import User from './models/User';
 import bcrypt from 'bcrypt';
+import assert from 'assert';
+import initSuperAdmin from './startup/fixture';
+
 const Hapi = require('hapi');
 const Inert = require('inert');
 const Vision = require('vision');
@@ -18,6 +21,7 @@ const init = async () => {
     await server.register(require('hapi-auth-jwt2'));
     // bring your own validation function
     const validate = async function (decoded, request) {
+        
         // do your checks to see if the person is valid
         if (!decoded.id) {
             return { isValid: false };
@@ -25,14 +29,27 @@ const init = async () => {
         if(!decoded.password){
             return { isValid: false };
         }
-        const user  = await User.findByPk(decoded.id);
-
-        if(bcrypt.compareSync(decoded.password, user.password)){
-            return {isValid: true};
-        }else{
+        try {
+            const user  = await User.findByPk(decoded.id);
+            if(!user){
+                return { isValid: false };
+            }
+            
+            if(bcrypt.compareSync(decoded.password, user.password)){
+                return {isValid: true};
+            }else{
+                return { isValid: false };
+    
+            }
+            
+        } catch (error) {
+            console.error(error);
+            assert.fail(error);
             return { isValid: false };
 
         }
+
+       
     };
     server.auth.strategy('jwt', 'jwt',
     { key: config.privateKey,          // Never Share your secret key
@@ -58,9 +75,10 @@ const init = async () => {
         }
     ]);
     server.route(routes);
+    await connectDB();
     await server.start();
-
     console.log(`Server running at: ${server.info.uri}`);
+    await initSuperAdmin(User);
 };
 
 process.on('unhandledRejection', (err) => {
@@ -68,5 +86,6 @@ process.on('unhandledRejection', (err) => {
     console.log(err);
     process.exit(1);
 });
-connectDB();
+
 init();
+

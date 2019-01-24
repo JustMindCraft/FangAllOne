@@ -19,6 +19,7 @@ export const UNKNOWN_METHOD = "UNKNOWN_METHOD"
 
 export const AUTH = "AUTH";
 export const REGISTER = "REGISTER";
+export const CHECK_AUTH = "CHECK_AUTH";
 
 
 

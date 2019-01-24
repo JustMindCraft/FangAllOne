@@ -39,7 +39,8 @@ export default [
         method: 'GET',
         path: '/auth',
         handler: (request, h) => {
-            return 'Hello, world!';
+            
+            return h.response(request.auth.credentials.id).code(200)
         },
         options: {
             auth: 'jwt',
@@ -57,8 +58,22 @@ export default [
     {
         method: 'GET',
         path: '/users/{id}',
-        handler: (request, h) => {
-            return 'Hello, world!';
+        handler: async (request, h) => {
+            const { id } = request.params;
+            const { fields } = JSON.parse(request.query.optional);
+            
+            try {
+                const user = await User.findByPk(
+                    id,
+                    {attributes: fields}
+                    );
+                return h.response(user).code(200);
+            } catch (error) {
+                console.error(error);
+                
+                return h.response(error).code(203);
+            }
+            
         }
     },
     
@@ -68,7 +83,6 @@ export default [
         config: {auth: false},
         handler: async (request, h) => {
             const { username } = request.params;
-            console.log(username);
             
             try {
                const user =   await User.findOne({where: {username}, attributes: ['username']});

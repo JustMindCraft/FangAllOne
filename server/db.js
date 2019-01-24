@@ -1,10 +1,14 @@
 import Sequelize from 'sequelize';
+import config from './config';
 
-export const sequelize = new Sequelize('database', 'username', 'password', {
-    dialect: 'sqlite',
-    storage: './database.sqlite'
+
+const dbConfig = config[config.mode].db;
+
+export const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+    dialect: dbConfig.dialect,
+    storage: dbConfig.storage
 })
-export default function connectDB(){
+export default async function connectDB(){
     
     sequelize
       .authenticate()

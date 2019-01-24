@@ -11,8 +11,7 @@ const User = sequelize.define('user', {
       type: Sequelize.STRING
     }
 });
-User.sync({force: true}).then(() => {
-    console.log('User model create');
+User.sync({force: true}).then(async () => {
     
 });
 
@@ -46,7 +45,9 @@ User.auth = async function(username, password){
             return false
         }
         if(user.password){
-            return bcrypt.compareSync(password, user.password);
+            if(bcrypt.compareSync(password, user.password)){
+                return user;
+            }
         }
         else{
             return false

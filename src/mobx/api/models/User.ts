@@ -2,7 +2,11 @@ import { IUser } from './../../../interfaces/model';
 import {observable, action, computed} from "mobx";
 import Show from '../show';
 
-export class User extends Show{
+export default class User extends Show{
+    constructor(sourceName:string){
+        super();
+        this.source = sourceName;
+    }
     @observable public dataShow:IUser = {
         username: '',
         email: '',
@@ -16,5 +20,4 @@ export class User extends Show{
    
 }
 
-const user = new User();
-export default user;
+export const user = new User('users');

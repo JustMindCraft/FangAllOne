@@ -1,8 +1,15 @@
 import React from 'react';
+import PcFooter from '../stateless/PcFooter';
+import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 
 const Home = () => {
     return (
-        <h1>首页</h1>
+        <div className="App-page">
+            <PcTopWithMobx />
+            <h1>首页</h1>
+            <PcFooter/>
+
+        </div>
     )
 }
 

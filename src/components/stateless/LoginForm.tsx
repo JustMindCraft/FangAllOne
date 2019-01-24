@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Checkbox, Button, Input, Message, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { Form, Button, Input, Message, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const LoginForm = (props:any) => {
@@ -20,7 +20,7 @@ const LoginForm = (props:any) => {
                 </Form.Field>
                 <Form.Field>
                     <label>密码</label>
-                    <Input onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码' />
+                    <Input type='password' onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码' />
                 </Form.Field>
                 
                 <Form.Field>

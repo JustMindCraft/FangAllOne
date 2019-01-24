@@ -4,13 +4,14 @@ import LoginForm from '../stateless/LoginForm';
 
 interface ILoginFormWithMobx {
     store: any,
-    redirectSuccess: Function
+    redirectSuccess: Function,
+    msg: any
 }
 @inject("currentUser")
+@inject('msg')
 @observer
 class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
     componentDidMount(){
-        console.log(this.props);
         
         this.props.store.reset();
     }
@@ -70,4 +71,4 @@ class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
     
 }
 
-export default LoginFormWithMobx
+export default LoginFormWithMobx as any;

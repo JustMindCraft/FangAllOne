@@ -80,7 +80,6 @@ export class RegisterFormStore {
         this.checkingUsernameExist = true;
         api('users', SHOW_UNIQUE, {key: this.username})
         .then((rlt:any)=>{
-            console.log(rlt.data.token);
             if(rlt.status===204){
                 this.usernameExist = false;
                 this.checkingUsernameExist = false;
@@ -117,12 +116,10 @@ export class RegisterFormStore {
             username: this.username,
             password: this.password
         }).then((rlt:any)=>{
-            console.log(rlt);
-            
-            
             if(rlt.data.username === this.username){
-                currentUser.username = rlt.data.username;
-                window.localStorage.setItem('fang_token', rlt.data.token)
+                currentUser.setUsername(rlt.data.username);
+                window.localStorage.setItem('fang_token', rlt.data.token);
+                window.localStorage.setItem('fang_userId', rlt.data.id);
                 this.isSuccess = true;
             }else{
                 this.isSuccess = false;
