@@ -6,6 +6,9 @@ import LoginFormWithMobx from '../withMobx/LoginFormWithMobx';
 import loginFormStore from '../../mobx/components/LoginFormStore';
 import { observer, inject } from 'mobx-react';
 import PcTopWithMobx from '../withMobx/PcTopWithMobx';
+import pageStyles from './pageStyle';
+import { withStyles } from '@material-ui/core';
+import PcFooter from '../stateless/PcFooter';
 
 @inject('currentUser')
 @inject('msg')
@@ -32,15 +35,18 @@ class Login extends React.Component<IPageProps> {
   
 
     render(){
+        const { classes } = this.props;
         return (
-            <Container fluid={true} className="App-page">
-             <PcTopWithMobx />
-               <Header as='h1'>登录</Header>
-                <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
-            </Container>
+            <div className={classes.root}>
+                <PcTopWithMobx />
+                <div>
+                    <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
+                </div>
+                <PcFooter />
+            </div>
         )
     }
     
 }
 
-export default withRouter(Login as any);
+export default  withStyles(pageStyles)(withRouter(Login as any));

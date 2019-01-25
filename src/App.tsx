@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import React, { Component} from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import { IAppProps } from './interfaces/components';
 import Home from './components/pages/home';
 import NotFound from './components/pages/notFound';
@@ -13,25 +12,28 @@ import UserAdmin from './components/pages/dashboard/users';
 import Personal from './components/pages/personal';
 
 
-const PrivateRoute = ({ component: Component, ...rest }:any) =>  {
-  
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        rest.auth ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
+interface IPrivateRouteProps {
+  msg:any, auth:boolean, exact:boolean, path:any,
+  component: any,
+}
+
+class PrivateRoute extends Component<IPrivateRouteProps> {
+  componentDidMount(){
+    const { msg, auth  } = this.props;
+    if(!auth){
+      msg.show("请先登录")
+    }
+  }
+  render(){
+    const { auth, exact, path, component  } = this.props;
+    if(auth){
+      return <Route auth={auth} exact={exact} path={path} component={component} />
+    }else{
+      return <Redirect to="/login"/>
+    }
+    
+  }
+ 
 }
 
 @inject('msg')
@@ -57,7 +59,7 @@ class App extends Component<IAppProps> {
   componentWillUpdate(){
     const {  currentUser, msg } = this.props;
     if(!currentUser.isLogined){
-      msg.show("请先登录");
+      msg.show("您已登出");
     }
   }
 
@@ -70,7 +72,7 @@ class App extends Component<IAppProps> {
     }    
     
     return (
-      <div className="App">
+      <div style={{height:"100%"}}>
       <InformationMsgWithMobx />
         <Router>
             <Switch>

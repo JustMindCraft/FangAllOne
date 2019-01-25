@@ -7,5 +7,6 @@ export interface IAppProps {
 export interface IPageProps {
     history: any,
     currentUser: any,
-    msg: any
+    msg: any,
+    classes: any,
 }

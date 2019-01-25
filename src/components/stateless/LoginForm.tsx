@@ -1,47 +1,68 @@
 import React from 'react';
-import { Form, Button, Input, Message, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { TextField, Snackbar, Button, withStyles, createStyles } from '@material-ui/core';
+const RegisterLink = (props:any) => <Link to="/register" {...props} />
+// Non-dependent styles
+const styles = createStyles({
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around'
+    },
+  });
 
-const LoginForm = (props:any) => {
+interface ILoginFormProps {
+    classes: any;
+    onSubmit: (e: any) => false | undefined;
+    handleInputChange: (event: any, key: string) => void;
+    msg: any; 
+    msgType: any; 
+    startInput: any; 
+    isPassed: any; 
+    isSubmit: any; 
+    submitBtnHidden: any; 
+    logining: any; 
+    isSuccess: any; 
+
+}
+const LoginForm = (props:ILoginFormProps) => {
     return (
-        <Segment>
-            <Dimmer active={props.logining}>
-                <Loader indeterminate>{props.isSuccess?"登录成功":"正在登录"}</Loader>
-            </Dimmer>
-
-            <Form className="App-page-form" 
-            warning={props.msgType ==="warning"}  
-            success={props.msgType ==="success"} 
-            error={props.msgType ==="error"} 
-            onSubmit={props.onSubmit}>
-                <Form.Field>
-                    <label>用户名</label>
-                    <Input onChange={(event:any)=>props.handleInputChange(event, "username")} placeholder='用户名' />
-                </Form.Field>
-                <Form.Field>
-                    <label>密码</label>
-                    <Input type='password' onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码' />
-                </Form.Field>
-                
-                <Form.Field>
-                <Message 
-                hidden={!props.isSubmit} 
-                success={props.msgType ==="success"} 
-                error={props.msgType ==="error"} 
-                warning={props.msgType ==="warning"} 
-                content={props.msg} />
-                </Form.Field>
+           
+            
+            <form  onSubmit={props.onSubmit} className={props.classes.form}>
+                <TextField
+                    label="用户名"
+                    onChange={(event:any)=>props.handleInputChange(event, "username")} placeholder='用户名'
+                    margin="normal"
+                />
+                 <TextField
+                    label="密码"
+                    onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='用户名'
+                    margin="normal"
+                />
+    
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={props.isSubmit}
+                    autoHideDuration={6000}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{props.msg}</span>}
+                    />
                 {
                     !props.submitBtnHidden && 
-                    <Button disabled={!props.isPassed} primary={true} type='submit'>登录</Button>
+                    <Button variant="contained" color="primary"  disabled={!props.isPassed} type='submit'>登录</Button>
 
                 }
-                <br/>
-                <Button style={{maxWidth: "500px", width: '100%'}} as={Link} to="/register" secondary={true}>注册</Button>
-            </Form>
-        </Segment>
+                <Button style={{maxWidth: "500px", width: '100%'}} component={RegisterLink} variant="contained" color="secondary">注册</Button>
+            </form>
         
     )
 }
 
-export default LoginForm
+
+export default withStyles(styles)(LoginForm);

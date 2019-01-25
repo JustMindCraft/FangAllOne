@@ -4,24 +4,23 @@ import { IPageProps } from '../../interfaces/components';
 import PcFooter from '../stateless/PcFooter';
 import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 import BackendLayout from '../withMobx/BackendLayout';
-import { Header } from 'semantic-ui-react';
+import Typography from '@material-ui/core/Typography';
+
 class Dashboard extends Component<IPageProps> {
     state = { visible: false }
 
     handleHideClick = () => this.setState({ visible: false })
     handleShowClick = () => this.setState({ visible: true })
     handleSidebarHide = () => this.setState({ visible: false })
-
-    componentDidMount(){
-        
-    }
     render(){
         const { visible } = this.state
         return (
             <div  className="App-page">
                 <PcTopWithMobx />
                 <BackendLayout title="控制面板">
-                    <Header as="h2">控制面板</Header>
+                    <Typography component="h2" variant="h4" gutterBottom>
+                    控制面板
+                    </Typography>
                     
                 </BackendLayout>
                 
