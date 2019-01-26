@@ -6,6 +6,7 @@ import PcTopWithMobx from '../../withMobx/PcTopWithMobx';
 import BackendLayout from '../../withMobx/BackendLayout';
 import UserTable from '../../withMobx/UserTable';
 import PcFooter from '../../stateless/PcFooter';
+import Layout from '../../stateless/Layout';
 
 
 class UserAdmin extends Component {
@@ -17,8 +18,7 @@ class UserAdmin extends Component {
 
     render(){
         return (
-            <div className="App-page">
-                <PcTopWithMobx />
+            <Layout>
                 <BackendLayout title="用户管理">
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>
@@ -31,8 +31,7 @@ class UserAdmin extends Component {
                     <UserTable />
                 
                 </BackendLayout>
-                <PcFooter />
-            </div>
+            </Layout>
         )
     }
 }

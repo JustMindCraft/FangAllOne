@@ -5,6 +5,7 @@ import PcFooter from '../stateless/PcFooter';
 import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 import BackendLayout from '../withMobx/BackendLayout';
 import Typography from '@material-ui/core/Typography';
+import Layout from '../stateless/Layout';
 
 class Dashboard extends Component<IPageProps> {
     state = { visible: false }
@@ -15,18 +16,15 @@ class Dashboard extends Component<IPageProps> {
     render(){
         const { visible } = this.state
         return (
-            <div  className="App-page">
-                <PcTopWithMobx />
+            <Layout>
                 <BackendLayout title="控制面板">
                     <Typography component="h2" variant="h4" gutterBottom>
                     控制面板
                     </Typography>
                     
                 </BackendLayout>
-                
                     
-                <PcFooter/>
-            </div>
+            </Layout>
 
         )
     }

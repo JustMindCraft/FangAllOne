@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Header, Segment, TransitionablePortal } from 'semantic-ui-react'
 import { observer, inject } from 'mobx-react';
+import { Snackbar } from '@material-ui/core';
 
 
 interface IMsgProps{
@@ -16,12 +17,26 @@ class InformationMsgWithMobx extends Component<IMsgProps> {
 
         return (
                 
-            <TransitionablePortal  open={open}>
-                    <Segment style={{ right: '5%', position: 'fixed', top: '7%', zIndex: 1000 }}>
-                    <Header as="h5">{header}</Header>
-                    {content}
-                    </Segment>
-          </TransitionablePortal>
+           
+          <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                open={open}
+                // style={{
+                //     position: 'fixed',
+                //     zIndex: 2000,
+                //     width: "200px",
+                //     top: '20%',
+                //     left: '-80%'
+                // }}
+                autoHideDuration={6000}
+                ContentProps={{
+                    'aria-describedby': 'message-id',
+                }}
+          message={<span id="message-id">{header}<br/>{content}</span>}
+          />
            
         )
     }

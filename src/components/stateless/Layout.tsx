@@ -5,6 +5,7 @@ import { isWidthUp } from '@material-ui/core/withWidth';
 import MobileTop from './MobileTop';
 import MobileBottom from './MobileBottom';
 import TopBar from './TopBar';
+import InformationMsgWithMobx from '../withMobx/InformationMsgWithMobx';
 
 const Layout = (props: any) => {
     const isPc = isWidthUp('sm', props.width);
@@ -21,6 +22,15 @@ const Layout = (props: any) => {
             
             {isPc? <TopBar />: <MobileTop />}
             <Paper style={{flexGrow:1, overflowX: 'hidden', overflowY: 'auto',height: '80%'}}>
+            <div style={{
+                display: 'flex',
+                justifyItems: "flex-end",
+                justifyContent: "flex-end",
+                flexDirection: 'row'
+                
+            }}>
+                <InformationMsgWithMobx />
+            </div>
             
                 {props.children}
                 {isPc && <PcFooter />}

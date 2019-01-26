@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PcTop from '../stateless/PcTop';
+import TopBar  from '../stateless/TopBar';
 import { inject, observer } from 'mobx-react';
 
 interface IPcTopWithMobxProps{
@@ -25,7 +25,7 @@ class PcTopWithMobx extends Component<IPcTopWithMobxProps> {
         const { isLogined, username, fetching } = currentUser;
         
         return(
-            <PcTop logout={this.logout} content={{ isLogined, username, fetching }} />
+            <TopBar />
         )
     }
 }

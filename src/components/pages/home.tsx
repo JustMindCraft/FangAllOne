@@ -1,6 +1,4 @@
 import React from 'react';
-import PcFooter from '../stateless/PcFooter';
-import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 import { withStyles } from '@material-ui/core';
 import pageStyles from './pageStyle';
 import { IPageProps } from '../../interfaces/components';

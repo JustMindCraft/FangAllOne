@@ -73,7 +73,6 @@ class App extends Component<IAppProps> {
     
     return (
       <div style={{height:"100%"}}>
-      <InformationMsgWithMobx />
         <Router>
             <Switch>
               <Route exact path="/" component={Home} />

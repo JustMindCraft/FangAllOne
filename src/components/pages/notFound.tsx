@@ -1,16 +1,12 @@
 import React from 'react';
-import PcTopWithMobx from '../withMobx/PcTopWithMobx';
-import PcFooter from '../stateless/PcFooter';
+import Layout from '../stateless/Layout';
 
 
 const NotFound  = () => {
     return (
-        <div className="App-page">
-            <PcTopWithMobx />
+        <Layout>
             <h1>404 | NOT FOUND</h1>
-        <PcFooter/>
-
-    </div>
+        </Layout>
     )
 }
 

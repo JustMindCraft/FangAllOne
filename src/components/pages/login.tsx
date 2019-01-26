@@ -9,6 +9,7 @@ import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 import pageStyles from './pageStyle';
 import { withStyles } from '@material-ui/core';
 import PcFooter from '../stateless/PcFooter';
+import Layout from '../stateless/Layout';
 
 @inject('currentUser')
 @inject('msg')
@@ -37,13 +38,11 @@ class Login extends React.Component<IPageProps> {
     render(){
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
-                <PcTopWithMobx />
+            <Layout>
                 <div>
                     <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
                 </div>
-                <PcFooter />
-            </div>
+            </Layout>
         )
     }
     
