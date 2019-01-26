@@ -7,6 +7,11 @@ import Button from '@material-ui/core/Button';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import UserProfileDropDown from '../withMobx/UserProfileDropDown';
+
+
+
+
 
 const TopBar = (props:any) => {
     
@@ -28,8 +33,16 @@ const TopBar = (props:any) => {
                 <div>
                 <Button onClick={()=>props.history.push('/')}  color="inherit">首页</Button>
                 <Button onClick={()=>props.history.push('/about')}  color="inherit">立即开店</Button>
-                <Button onClick={()=>props.history.push('/register')}  color="inherit">注册</Button>
-                <Button onClick={()=>props.history.push('/login')}  color="inherit">登录</Button>
+                {
+                  props.isLogined ? <Button onClick={()=>props.history.push('/dashboard')}  color="inherit">面板</Button>
+                  : <Button onClick={()=>props.history.push('/register')}  color="inherit">注册</Button>
+                }
+                {
+                  props.isLogined ? <UserProfileDropDown />
+                  :  <Button onClick={()=>props.history.push('/dashboard')}  color="inherit">面板</Button>
+                }
+                
+               
                 </div>
                
               </Toolbar>

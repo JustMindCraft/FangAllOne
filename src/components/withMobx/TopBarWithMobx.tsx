@@ -10,7 +10,7 @@ interface IPcTopWithMobxProps{
 @inject('msg')
 @inject('currentUser')
 @observer
-class PcTopWithMobx extends Component<IPcTopWithMobxProps> {
+class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
     componentDidMount(){
         const { currentUser } = this.props;
         currentUser.getUserInfo();
@@ -25,10 +25,10 @@ class PcTopWithMobx extends Component<IPcTopWithMobxProps> {
         const { isLogined, username, fetching } = currentUser;
         
         return(
-            <TopBar />
+            <TopBar isLogined={isLogined}/>
         )
     }
 }
 
 
-export default PcTopWithMobx as any;
+export default TopBarWithMobx as any;

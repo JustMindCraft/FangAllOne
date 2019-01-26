@@ -1,11 +1,10 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
 import RegisterFormWithMobx from '../withMobx/RegisterFormWithMobx';
 import registerFormStore from '../../mobx/components/RegisterFormStore';
 import { withRouter } from 'react-router';
 import { IPageProps } from '../../interfaces/components';
 import { observer, inject } from 'mobx-react';
-import PcTopWithMobx from '../withMobx/PcTopWithMobx';
+import Layout from '../stateless/Layout';
 
 @inject('currentUser')
 @inject('msg')
@@ -23,11 +22,9 @@ class Register extends React.Component<IPageProps> {
     
     render(){
         return (
-            <Container fluid={true} className="App-page">
-            <PcTopWithMobx/>
-               <Header as='h1'>注册</Header>
+            <Layout>
                 <RegisterFormWithMobx store={registerFormStore} redirectSuccess={this.redirectSuccess} />
-            </Container>
+            </Layout>
         )
     }
     

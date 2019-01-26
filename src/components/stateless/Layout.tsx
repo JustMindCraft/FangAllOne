@@ -6,6 +6,7 @@ import MobileTop from './MobileTop';
 import MobileBottom from './MobileBottom';
 import TopBar from './TopBar';
 import InformationMsgWithMobx from '../withMobx/InformationMsgWithMobx';
+import TopBarWithMobx from '../withMobx/TopBarWithMobx';
 
 const Layout = (props: any) => {
     const isPc = isWidthUp('sm', props.width);
@@ -20,7 +21,7 @@ const Layout = (props: any) => {
         style={{height:"100%", overflow: 'hidden'}}
         >
             
-            {isPc? <TopBar />: <MobileTop />}
+            {isPc? <TopBarWithMobx />: <MobileTop />}
             <Paper style={{flexGrow:1, overflowX: 'hidden', overflowY: 'auto',height: '80%'}}>
             <div style={{
                 display: 'flex',

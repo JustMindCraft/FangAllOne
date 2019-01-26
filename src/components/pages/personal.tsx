@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import PcTopWithMobx from '../withMobx/PcTopWithMobx';
-import PcFooter from '../stateless/PcFooter';
+import PcTopWithMobx from '../withMobx/TopBarWithMobx';
 import ImageUploader from '../withMobx/ImageUploader';
 import Layout from '../stateless/Layout';
 

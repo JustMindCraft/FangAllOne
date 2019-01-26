@@ -5,10 +5,8 @@ import { IPageProps } from '../../interfaces/components';
 import LoginFormWithMobx from '../withMobx/LoginFormWithMobx';
 import loginFormStore from '../../mobx/components/LoginFormStore';
 import { observer, inject } from 'mobx-react';
-import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 import pageStyles from './pageStyle';
 import { withStyles } from '@material-ui/core';
-import PcFooter from '../stateless/PcFooter';
 import Layout from '../stateless/Layout';
 
 @inject('currentUser')

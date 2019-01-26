@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router';
 import { IPageProps } from '../../interfaces/components';
-import PcFooter from '../stateless/PcFooter';
-import PcTopWithMobx from '../withMobx/PcTopWithMobx';
 import BackendLayout from '../withMobx/BackendLayout';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../stateless/Layout';
