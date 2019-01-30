@@ -14,6 +14,7 @@ export default class List {
     @observable source:string="";
     @observable selectCount = 0;
     @observable selectedItems:Array<number> = [];
+    @observable filter={}
     
     
     @computed get allSelected(){
@@ -46,6 +47,12 @@ export default class List {
 
     @action search(condition:any, optional:any){
         api(this.source, LIST, condition, optional).then((rlt:any)=>{
+            this.data = rlt.data;
+        })
+    }
+
+    @action query(optional:any){
+        api(this.source, LIST, this.filter, optional).then((rlt:any)=>{
             this.data = rlt.data;
         })
     }

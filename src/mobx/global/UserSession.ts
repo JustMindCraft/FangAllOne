@@ -15,6 +15,14 @@ export class UserSession {
 
     }
 
+    @action logOut(){
+        window.localStorage.removeItem('fang_token');
+        window.localStorage.removeItem('fang_userId');
+        this.username = "";
+        this.isLogined = false;
+        this.fetching = false;
+    }
+
     @action getUserInfo(){
         this.fetching = true;
         if(!this.userId){

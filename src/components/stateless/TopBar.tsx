@@ -39,7 +39,7 @@ const TopBar = (props:any) => {
                 }
                 {
                   props.isLogined ? <UserProfileDropDown />
-                  :  <Button onClick={()=>props.history.push('/dashboard')}  color="inherit">面板</Button>
+                  :  <Button onClick={()=>props.history.push('/login')}  color="inherit">登录</Button>
                 }
                 
                

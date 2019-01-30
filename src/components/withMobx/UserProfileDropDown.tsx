@@ -7,12 +7,17 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles, createStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router';
+import { observer, inject } from 'mobx-react';
 
 const styles =  createStyles(({ spacing }:any) => ({
   root: {
-    display: 'flex',
+    display: 'inline',
+    color: 'white',
+
   },
   paper: {
+    color: 'white',
     marginRight: spacing.unit * 2,
   },
 }));
@@ -20,6 +25,8 @@ const styles =  createStyles(({ spacing }:any) => ({
 
 interface IUserProfileDropDownProps{
     classes: any,
+    history: any,
+    currentUser: any,
 
 }
 
@@ -28,6 +35,8 @@ interface IUserProfileDropDownState{
 
 }
 
+@inject('currentUser')
+@observer
 class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUserProfileDropDownState> {
 
     private anchorEl:any;
@@ -40,12 +49,29 @@ class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUs
     this.setState(state => ({ open: !this.state.open }));
   };
 
-  handleClose = (event:any) => {
+  handleClose = (event:any, action:string) => {
     if (this.anchorEl.contains(event.target)) {
       return;
     }
+    switch (action) {
 
-    this.setState({ open: false });
+      case "personal":
+        this.setState({ open: false });
+        this.props.history.push('/personal');
+        break;
+
+      case "logout":
+        this.setState({ open: false });
+        this.props.currentUser.logOut();
+        this.props.history.push('/login');
+        break;
+    
+      default:
+        this.setState({ open: false });
+        break;
+    }
+
+    
   };
 
   render() {
@@ -61,8 +87,11 @@ class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUs
             aria-owns={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             onClick={this.handleToggle}
+            style={{
+              color: "white"
+            }}
           >
-            Toggle Menu Grow
+           HALO,&nbsp;{this.props.currentUser.username}
           </Button>
           <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
             {({ TransitionProps, placement }:any) => (
@@ -73,11 +102,10 @@ class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUs
                 style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
               >
                 <Paper>
-                  <ClickAwayListener onClickAway={this.handleClose}>
+                  <ClickAwayListener onClickAway={(e:any)=>this.handleClose(e, 'personal')}>
                     <MenuList>
-                      <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                      <MenuItem onClick={(e:any)=>this.handleClose(e, 'personal')}>个人中心</MenuItem>
+                      <MenuItem onClick={(e:any)=>this.handleClose(e, 'logout')}>登出</MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
@@ -91,4 +119,4 @@ class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUs
 
 
 
-export default withStyles(styles)(UserProfileDropDown);
+export default withRouter(withStyles(styles)(UserProfileDropDown) as any);
