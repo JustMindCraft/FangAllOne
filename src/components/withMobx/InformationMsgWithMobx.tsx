@@ -25,13 +25,9 @@ class InformationMsgWithMobx extends Component<IMsgProps> {
                 }}
                 open={open}
                 style={{
-                    position: 'fixed',
                     zIndex: 2000,
-                    width: "200px",
                     top: '66px !important',
-                    left: '-80%'
                 }}
-                autoHideDuration={6000}
                 ContentProps={{
                     'aria-describedby': 'message-id',
                 }}

@@ -26,6 +26,8 @@ export default [
         method: 'POST',
         path: '/auth',
         handler: async (request, h) => {
+                console.log(request.payload);
+                
                  const { username, password} = request.payload;
                  try {
                     const user =  await User.auth(
@@ -60,7 +62,8 @@ export default [
             validate: {
                 payload: {
                     username: Joi.string().required(),
-                    password: Joi.string().required()
+                    password: Joi.string().required(),
+                    model: Joi.string().required(),
                 },  
             }
             
@@ -116,6 +119,13 @@ export default [
     {
         method: 'POST',
         path: '/users',
+        handler: (request, h) => {
+            return 'Hello, world!';
+        }
+    },
+    {
+        method: 'POST',
+        path: '/getsms',
         handler: (request, h) => {
             return 'Hello, world!';
         }

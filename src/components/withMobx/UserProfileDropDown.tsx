@@ -27,6 +27,7 @@ interface IUserProfileDropDownProps{
     classes: any,
     history: any,
     currentUser: any,
+    msg: any,
 
 }
 
@@ -35,6 +36,7 @@ interface IUserProfileDropDownState{
 
 }
 
+@inject('msg')
 @inject('currentUser')
 @observer
 class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUserProfileDropDownState> {
@@ -61,8 +63,10 @@ class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUs
         break;
 
       case "logout":
+        this.props.msg.show('正在登出');
         this.setState({ open: false });
         this.props.currentUser.logOut();
+        this.props.msg.show('您已经登出');
         this.props.history.push('/login');
         break;
     

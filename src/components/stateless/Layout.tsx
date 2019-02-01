@@ -22,12 +22,23 @@ const Layout = (props: any) => {
         >
             
             {isPc? <TopBarWithMobx />: <MobileTop />}
-            <Paper style={{flexGrow:1, overflowX: 'hidden', overflowY: 'auto',height: '80%'}}>
+            <Paper style={
+                {    
+                    flexGrow:1,
+                     overflowX: 'hidden', 
+                     overflowY: 'auto',
+                     height: '80%',
+                     display: 'flex',
+                     justifyContent: "space-around",
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }
+                }>
             <div style={{
                 display: 'flex',
                 justifyItems: "flex-end",
                 justifyContent: "flex-end",
-                flexDirection: 'row'
+                flexDirection: 'row',
                 
             }}>
                 <InformationMsgWithMobx />

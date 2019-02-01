@@ -6,6 +6,8 @@ export class InformationMsg {
     @observable content="";
 
     @action show(header:string="注意", content:string=''){
+        console.log(header);
+        
         this.open = true;
         this.header= header;
         this.content= content;

@@ -7,6 +7,9 @@ const User = sequelize.define('user', {
     username: {
       type: Sequelize.STRING, unique: true
     },
+    mobile: {
+        type: Sequelize.STRING, unique: true
+    },
     password: {
       type: Sequelize.STRING
     }

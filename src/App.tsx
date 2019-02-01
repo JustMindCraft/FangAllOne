@@ -7,7 +7,6 @@ import Dashboard from './components/pages/dashboard';
 import Register from './components/pages/register';
 import login from './components/pages/login';
 import { inject, observer } from 'mobx-react';
-import InformationMsgWithMobx from './components/withMobx/InformationMsgWithMobx';
 import UserAdmin from './components/pages/dashboard/users';
 import Personal from './components/pages/personal';
 
@@ -79,7 +78,7 @@ class App extends Component<IAppProps> {
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard" component={Dashboard} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdmin} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/personal" component={Personal} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
               <Route exact path="/login" component={login} />
               <Route  component={NotFound} />
             </Switch>

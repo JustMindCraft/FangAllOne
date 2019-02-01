@@ -6,7 +6,7 @@ import LoginFormWithMobx from '../withMobx/LoginFormWithMobx';
 import loginFormStore from '../../mobx/components/LoginFormStore';
 import { observer, inject } from 'mobx-react';
 import pageStyles from './pageStyle';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Typography } from '@material-ui/core';
 import Layout from '../stateless/Layout';
 
 @inject('currentUser')
@@ -34,12 +34,12 @@ class Login extends React.Component<IPageProps> {
   
 
     render(){
-        const { classes } = this.props;
         return (
             <Layout>
-                <div>
-                    <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
-                </div>
+                <Typography variant="h4" gutterBottom>
+                    登录正觉工场
+                </Typography>
+                <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
             </Layout>
         )
     }

@@ -27,20 +27,26 @@ interface ILoginFormProps {
     isSuccess: boolean; 
 
 }
-const LoginForm = (props:ILoginFormProps) => {
+const SMSLoginForm = (props:ILoginFormProps) => {
     return (
            
             
             <form  onSubmit={props.onSubmit} className={props.classes.form}>
+            <div style={{
+                display: 'flex',
+                alignItems: 'baseline'
+            }}>
                 <TextField
-                    label="用户名|手机号|邮箱"
-                    onChange={(event:any)=>props.handleInputChange(event, "username")} placeholder='用户名|手机号|邮箱'
+                    label="手机号"
+                    onChange={(event:any)=>props.handleInputChange(event, "mobileInput")} placeholder='手机号'
                     margin="normal"
                     disabled={props.logining}
                 />
+                <Button color='primary'>获取验证码</Button>
+            </div>
                  <TextField
-                    label="密码"
-                    onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码'
+                    label="验证码"
+                    onChange={(event:any)=>props.handleInputChange(event, "smsInput")} placeholder='密码'
                     margin="normal"
                     type="password"
                     disabled={props.logining}
@@ -51,7 +57,7 @@ const LoginForm = (props:ILoginFormProps) => {
                     !props.submitBtnHidden && 
                     <Button variant="contained" color="primary"  disabled={!props.isPassed || props.logining} type='submit'>
                     {
-                        props.logining ? <CircularProgress size={24} /> : '登录'
+                        props.logining ? <CircularProgress size={24} /> : '免注册登录'
                     }
                     </Button>
 
@@ -67,4 +73,4 @@ const LoginForm = (props:ILoginFormProps) => {
 }
 
 
-export default withStyles(styles)(LoginForm);
+export default withStyles(styles)(SMSLoginForm);

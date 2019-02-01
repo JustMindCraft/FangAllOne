@@ -21,6 +21,7 @@ const init = async () => {
     await server.register(require('hapi-auth-jwt2'));
     // bring your own validation function
     const validate = async function (decoded, request) {
+        console.log(request.route.path);
         
         // do your checks to see if the person is valid
         if (!decoded.id) {
@@ -30,7 +31,7 @@ const init = async () => {
             return { isValid: false };
         }
         try {
-            const user  = await User.findByPk(decoded.id);
+            const user  = await User.findByPk(decoded.id, {attributes:['id','password']});
             if(!user){
                 return { isValid: false };
             }

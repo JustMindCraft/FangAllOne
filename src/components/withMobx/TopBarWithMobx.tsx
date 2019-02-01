@@ -16,9 +16,14 @@ class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
         currentUser.getUserInfo();
     }
     logout = () => {
-        this.props.msg.show('正在登出')
-        window.localStorage.removeItem('fang_token');
-        return window.localStorage.removeItem('fang_userId');
+        this.props.msg.show('正在登出');;
+        this.props.currentUser.logOut();
+        this.props.msg.show('您已登出');;
+
+
+    }
+    componentWillUnmount(){
+
     }
     render(){
         const { currentUser } = this.props;
