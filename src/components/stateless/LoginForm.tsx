@@ -24,13 +24,13 @@ interface ILoginFormProps {
     isSubmit: boolean; 
     submitBtnHidden: any; 
     logining: boolean; 
-    isSuccess: boolean; 
+    isSuccess: boolean;
+    password: string; 
 
 }
 const LoginForm = (props:ILoginFormProps) => {
+    
     return (
-           
-            
             <form  onSubmit={props.onSubmit} className={props.classes.form}>
                 <TextField
                     label="用户名|手机号|邮箱"
@@ -42,6 +42,7 @@ const LoginForm = (props:ILoginFormProps) => {
                     label="密码"
                     onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码'
                     margin="normal"
+                    value={props.password}
                     type="password"
                     disabled={props.logining}
                 />

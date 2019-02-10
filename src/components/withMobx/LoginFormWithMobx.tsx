@@ -153,6 +153,9 @@ class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
                    submitBtnHidden={store.submitBtnHidden}
                    logining={store.logining}
                    isSuccess={store.isSuccess}
+                   backCount={()=>store.backCount()}
+                   isCounting = {store.isCounting}
+                   smsCounter = {store.smsCounter}
                    />
                     </div>
                    
@@ -174,6 +177,7 @@ class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
                         submitBtnHidden={store.submitBtnHidden}
                         logining={store.logining}
                         isSuccess={store.isSuccess}
+                        password={store.password}
                     />
                     </div>
                    

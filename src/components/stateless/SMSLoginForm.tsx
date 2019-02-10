@@ -25,6 +25,9 @@ interface ILoginFormProps {
     submitBtnHidden: any; 
     logining: boolean; 
     isSuccess: boolean; 
+    backCount: Function;
+    smsCounter: number;
+    isCounting: boolean;
 
 }
 const SMSLoginForm = (props:ILoginFormProps) => {
@@ -34,7 +37,9 @@ const SMSLoginForm = (props:ILoginFormProps) => {
             <form  onSubmit={props.onSubmit} className={props.classes.form}>
             <div style={{
                 display: 'flex',
-                alignItems: 'baseline'
+                alignItems: 'baseline',
+                width: '100%',
+                justifyContent: 'space-between'
             }}>
                 <TextField
                     label="手机号"
@@ -42,7 +47,9 @@ const SMSLoginForm = (props:ILoginFormProps) => {
                     margin="normal"
                     disabled={props.logining}
                 />
-                <Button color='primary'>获取验证码</Button>
+                <Button
+                    disabled={props.isCounting} size="large"
+                 onClick={(e:any)=>props.backCount()} color='primary'>{props.isCounting? props.smsCounter.toString()+'S后重新获取': "获取验证码"}</Button>
             </div>
                  <TextField
                     label="验证码"

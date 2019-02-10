@@ -1,10 +1,10 @@
 import routes from './routes';
-import connectDB from './db';
 import config from '../server/config';
-import User from './models/User';
+import {User} from './models/';
 import bcrypt from 'bcrypt';
 import assert from 'assert';
-import initSuperAdmin from './startup/fixture';
+import seed from './startup/fixture';
+import relations from './models/relations';
 
 const Hapi = require('hapi');
 const Inert = require('inert');
@@ -76,10 +76,11 @@ const init = async () => {
         }
     ]);
     server.route(routes);
-    await connectDB();
+    // await connectDB();
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
-    await initSuperAdmin(User);
+    relations();
+    await seed();
 };
 
 process.on('unhandledRejection', (err) => {

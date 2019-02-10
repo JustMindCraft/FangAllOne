@@ -1,5 +1,6 @@
-import { sequelize } from "../db";
+import sequelize from "../db";
 import Sequelize from 'sequelize';
+import App from "./App";
 
 const MobileSMS = sequelize.define('mobile_sms', {
     mobile: {
@@ -9,10 +10,8 @@ const MobileSMS = sequelize.define('mobile_sms', {
       type: Sequelize.STRING
     }
 });
-MobileSMS.sync({force: true}).then(async () => {
-    
-});
 
+MobileSMS.belongsTo(App)
 
 MobileSMS.setSMS = async function(mobile=""){
     await this.destroy({where: {mobile}});

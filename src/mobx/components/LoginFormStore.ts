@@ -11,9 +11,13 @@ export class LoginFormStore{
     @observable mobileInput="";
     @observable smsInput="";
     @observable smsFetching = false;
-    @observable model = 'sms'
+    @observable model = 'sms';
+    @observable smsCounter = 60;
+    @observable isCounting = false;
+    @observable counter:any;
 
     @computed get isPassed(){
+        
         return this.username !== ''?
                 this.password? true: false :
                 false
@@ -46,9 +50,11 @@ export class LoginFormStore{
     }
     
     @action changeUsername(value:any){
+        this.isSubmit = true;
         return this.username = value;
     }
     @action changePassword(value:any){
+        this.isSubmit = true;
         return this.password = value;
     }
     @action changeMobileInput(value: any){
@@ -72,15 +78,13 @@ export class LoginFormStore{
             password,
             model: this.model,
         }).then((rlt:any)=>{
-            
+            this.password = '';
             if(!rlt.data){
                 this.logining = false;
                 this.isSuccess = false;
                 return cb(this.msg);
 
             }
-            
-            
             if(rlt.statusCode === 400){
                 this.logining = false;
                 this.isSuccess = false;
@@ -94,9 +98,6 @@ export class LoginFormStore{
                 return cb(this.msg);
                 
             }
-            this.logining = false;
-            
-            this.isSuccess = false;
             return cb(this.msg);
             
         }).catch((err:any)=>{
@@ -110,6 +111,20 @@ export class LoginFormStore{
             this.logining = false;
             this.isSuccess = false;
         })
+    }
+    
+
+    @action backCount(){
+        this.isCounting = true;
+        this.counter = window.setInterval(()=>{
+            this.smsCounter--;
+            console.log(this.smsCounter);
+            if(this.smsCounter<=0){
+                window.clearInterval(this.counter);
+                this.isCounting = false;
+            }
+            
+        }, 1000)
     }
 }
 

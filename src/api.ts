@@ -5,7 +5,8 @@ import { LIST,
       CREATE_MANY, 
       UPDATE, UPDATE_MANY,
        DELETE, DELETE_MANY, DESTROY, DESTROY_MANY, AUTH, REGISTER, SHOW_ID, SHOW_UNIQUE,
-        CHECK_AUTH } 
+        CHECK_AUTH, 
+        GET_SMS} 
 from './constants/API';
 import config from './config';
 import axios from 'axios';
@@ -24,6 +25,10 @@ export  function auth(method:string, condition:any){
         case REGISTER:
             return axios.post(`${config.basicUri}/register`, 
                     condition,
+            );
+        case GET_SMS: 
+            return axios.post(`${config.basicUri}/getsms`,
+                condition
             );
         default:
             return new Promise((res: any, rej:any)=> res(UNKNOWN_METHOD));  

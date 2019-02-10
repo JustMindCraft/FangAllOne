@@ -1,6 +1,9 @@
 export default {
     privateKey: 'NeverShareYourSecret',
     mode: 'development',
+    defaultApp: {
+        name: '正觉工场',
+    },
     development: {
         db: {
             dialect: 'sqlite',
@@ -11,7 +14,8 @@ export default {
         }
     },
     superAdmin: {
-        username: "simontaosim",
-        password: "7686043104xsq@519"
+        username: "admin",
+        password: "admin123",
     }
+
 }

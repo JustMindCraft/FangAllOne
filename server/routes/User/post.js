@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import User from '../../models/User';
+import {User} from '../../models/';
 import JWT from 'jsonwebtoken';
 import config from '../../config';
 
@@ -28,10 +28,10 @@ export default [
         handler: async (request, h) => {
                 console.log(request.payload);
                 
-                 const { username, password} = request.payload;
+                 const { username, password, model} = request.payload;
                  try {
                     const user =  await User.auth(
-                        username, password
+                        username, password, model
                     );
                     if(!user){
                         return h.response(false).code(203)
@@ -122,12 +122,6 @@ export default [
         handler: (request, h) => {
             return 'Hello, world!';
         }
-    },
-    {
-        method: 'POST',
-        path: '/getsms',
-        handler: (request, h) => {
-            return 'Hello, world!';
-        }
-    },
+    }
+    
 ]
