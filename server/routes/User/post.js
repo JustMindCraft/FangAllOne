@@ -3,6 +3,9 @@ import {User} from '../../models/';
 import JWT from 'jsonwebtoken';
 import config from '../../config';
 
+const ENV = process.env.NODE_ENV;
+
+
 export default [
     {
         method: 'POST',
@@ -39,7 +42,7 @@ export default [
                     const token = JWT.sign({
                         id: user.id,
                         password: password,
-                    }, config.privateKey, {
+                    }, config[ENV].privateKey, {
                         expiresIn: 604800 // 1 week
                       });
                     return h.response({

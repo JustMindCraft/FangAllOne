@@ -6,8 +6,21 @@ export default  (sequelize, DataTypes) => {
         isDefault: {
             type: DataTypes.BOOLEAN(),
             defaultValue: false,
+        },
+        host: {
+            type: DataTypes.STRING,
+            defaultValue: 'localhost:3000',
+        },
+        uuid: {
+            type: DataTypes.STRING,
+            unique: true,
+            defaultValue: require('uuid/v4')(),
         }
     })
+    App.associate = models => {
+        App.hasMany(models.User);
+        App.hasMany(models.Role);
+    }
     App.countDefault = async function(){
         return this.findOne({
             attributes: { include: [[sequelize.fn('COUNT', sequelize.col('isDefault')), "default"]] }

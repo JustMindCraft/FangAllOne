@@ -6,4 +6,7 @@ export default  function(){
     App.hasMany(User);
     Role.belongsTo(App);
     App.hasMany(Role);
+
+    console.log("执行关系");
+    
 }

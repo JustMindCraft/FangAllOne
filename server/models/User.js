@@ -27,6 +27,12 @@ export default (sequelize, DataTypes)=>{
             defaultValue: false,
         }
     });
+
+    User.associate = models => {
+        User.belongsTo(models.App);
+        User.belongsToMany(models.Role, {through: 'user_roles'});
+    }
+
     User.register = async function(username, password, mobile){
         const salt = bcrypt.genSaltSync(Math.random(10));
         const cryptoPassword = bcrypt.hashSync(password, salt);
@@ -42,6 +48,32 @@ export default (sequelize, DataTypes)=>{
             
         }
     };
+
+    User.updateProfile = async function(userParams){
+        try {
+            return await this.update({
+              ...userParams
+            })
+        } catch (error) {
+           assert.fail(error);
+           return error;
+            
+        }
+    }
+
+    User.prototype.resetPassword = async function(password){
+        const salt = bcrypt.genSaltSync(Math.random(10));
+        const cryptoPassword = bcrypt.hashSync(password, salt);
+        try {
+            return await this.update({
+                password: cryptoPassword,
+            })
+        } catch (error) {
+           assert.fail(error);
+           return error;
+            
+        }
+    }
     
     User.checkUsernameExist = async function(username){
         const user = await this.findOne({where: {username}});

@@ -1,21 +1,61 @@
 export default {
-    privateKey: 'NeverShareYourSecret',
-    mode: 'development',
-    defaultApp: {
-        name: '正觉工场',
-    },
     development: {
+        privateKey: 'NeverShareYourSecret',
+
         db: {
             dialect: 'sqlite',
             username: 'simontao',
             password: 'xsq@519',
             database: 'fang_dev',
-            storage: 'database.sqlite'//sqlite only
+            storage: 'development.sqlite'//sqlite only
+        },
+        host: 'localhost:3000',
+        superAdmin: {
+            username: "admin",
+            password: "admin123",
+            mobile: '18820965455',
+            email: 'xsqfeather@gmail.com'
         }
+
     },
-    superAdmin: {
-        username: "admin",
-        password: "admin123",
-    }
+    production: {
+        privateKey: 'NeverShareYourSecret',
+
+        db: {
+            dialect: 'sqlite',
+            username: 'simontao',
+            password: 'xsq@519',
+            database: 'fang_dev',
+            storage: 'production.sqlite'//sqlite only
+        },
+        host: 'lododor.com',
+        superAdmin: {
+            username: "admin",
+            password: "admin123",
+            mobile: '18820965455',
+            email: 'xsqfeather@gmail.com'
+        }
+
+    },
+    test: {
+        privateKey: 'NeverShareYourSecret',
+
+        db: {
+            dialect: 'sqlite',
+            username: 'simontao',
+            password: 'xsq@519',
+            database: 'fang_dev',
+            storage: 'test.sqlite'//sqlite only
+        },
+        host: 'test.lododor.com',
+        superAdmin: {
+            username: "admin",
+            password: "admin123",
+            mobile: '18820965455',
+            email: 'xsqfeather@gmail.com'
+        }
+
+    },
+   
 
 }

@@ -1,18 +1,46 @@
 import Sequelize from 'sequelize';
 import config from '../config';
-import registerModel from '../fang/register_model';
 
 
-const dbConfig = config[config.mode].db;
+
+const ENV = process.env.NODE_ENV;
+
+const dbConfig = config[ENV].db;
 
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
     dialect: dbConfig.dialect,
     storage: dbConfig.storage
 });
 
-export const App = registerModel(__dirname+'/App.js', sequelize);
-export const User = registerModel(__dirname+'/User.js', sequelize);
-export const Role = registerModel(__dirname+'/Role.js', sequelize);
+export const App = sequelize.import(__dirname+'/App.js');
+export const User =  sequelize.import(__dirname+'/User.js');
+export const Role =  sequelize.import(__dirname+'/Role.js');
+export const UserRole =  sequelize.import(__dirname+'/UserRole.js');
+
+
+const models = {
+    App,
+    User,
+    Role,
+    UserRole,
+}
+
+for (const model in models) {
+    if (models.hasOwnProperty(model)) {
+        const element = models[model];
+        if(element.associate){
+            element.associate(models);
+            element.sync();
+        }else{
+            element.sync();
+            continue;
+        }
+        
+    }
+}
+
+export default models;
+
 
 
 

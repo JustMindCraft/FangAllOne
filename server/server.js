@@ -17,6 +17,9 @@ const server = Hapi.server({
     host: 'localhost'
 });
 
+
+const ENV = process.env.NODE_ENV;
+
 const init = async () => {
     await server.register(require('hapi-auth-jwt2'));
     // bring your own validation function
@@ -53,7 +56,7 @@ const init = async () => {
        
     };
     server.auth.strategy('jwt', 'jwt',
-    { key: config.privateKey,          // Never Share your secret key
+    { key: config[ENV].privateKey,          // Never Share your secret key
         validate: validate,            // validate function defined above
         verifyOptions: { algorithms: [ 'HS256' ] } // pick a strong algorithm
     });
@@ -79,7 +82,6 @@ const init = async () => {
     // await connectDB();
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
-    relations();
     await seed();
 };
 
