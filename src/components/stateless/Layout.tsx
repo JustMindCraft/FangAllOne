@@ -1,17 +1,19 @@
 import React from 'react';
-import { Grid, Paper, withWidth } from '@material-ui/core';
+import { Grid, Paper, withWidth, Button } from '@material-ui/core';
 import PcFooter from './PcFooter';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import MobileTop from './MobileTop';
 import MobileBottom from './MobileBottom';
-import TopBar from './TopBar';
 import InformationMsgWithMobx from '../withMobx/InformationMsgWithMobx';
 import TopBarWithMobx from '../withMobx/TopBarWithMobx';
+import MobileTopWithMobx from '../withMobx/MobileTopWithMobx';
+
+
+
+
 
 const Layout = (props: any) => {
     const isPc = isWidthUp('sm', props.width);
-    console.log(isPc);
-    console.log(props.width);
+    
     return (
         <Grid container 
         spacing={0}  
@@ -21,7 +23,7 @@ const Layout = (props: any) => {
         style={{height:"100%", overflow: 'hidden'}}
         >
             
-            {isPc? <TopBarWithMobx />: <MobileTop />}
+            {isPc? <TopBarWithMobx toggleDrawer={props.toggleDrawer} />: <MobileTopWithMobx toggleDrawer={props.toggleDrawer} />}
             <Paper style={
                 {    
                     flexGrow:1,
@@ -41,8 +43,10 @@ const Layout = (props: any) => {
                 flexDirection: 'row',
                 
             }}>
+
                 <InformationMsgWithMobx />
             </div>
+                
             
                 {props.children}
                 {isPc && <PcFooter />}

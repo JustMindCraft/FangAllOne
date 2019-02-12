@@ -44,7 +44,6 @@ class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
             return false;
         }
         store.login((m:string)=>{
-            console.log(m);
             
             msg.show(m);
         });
@@ -60,7 +59,6 @@ class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
             return false;
         }
         store.login((m:string)=>{
-            console.log(m);
             
             msg.show(m);
         });
@@ -92,7 +90,6 @@ class LoginFormWithMobx extends Component<ILoginFormWithMobx> {
       };
     
       handleChange = (event:any, value:any) => {
-        console.log(value);
         if(value === 0){
             this.props.store.setModel('sms');
         }

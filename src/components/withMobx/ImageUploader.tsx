@@ -19,7 +19,6 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         }
     }
     uploadFile = (file:any) => {
-        console.log(file);
         
         var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
         var xhr = new XMLHttpRequest();

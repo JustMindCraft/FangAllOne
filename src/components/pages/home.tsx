@@ -3,11 +3,12 @@ import { withStyles } from '@material-ui/core';
 import pageStyles from './pageStyle';
 import { IPageProps } from '../../interfaces/components';
 import Layout from '../stateless/Layout';
+import LayoutWithMobx from '../withMobx/LayoutWithMobx';
 
 const Home = (props:IPageProps) => {
     const {classes} = props;
     return (
-        <Layout>
+        <LayoutWithMobx>
             <h1>首页</h1>
             <br />
             <br />
@@ -65,7 +66,7 @@ const Home = (props:IPageProps) => {
             <br />
             <br />
             <br />
-        </Layout>
+        </LayoutWithMobx>
     )
 }
 

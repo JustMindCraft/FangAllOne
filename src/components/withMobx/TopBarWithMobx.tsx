@@ -5,10 +5,13 @@ import { inject, observer } from 'mobx-react';
 interface IPcTopWithMobxProps{
     currentUser: any,
     msg:any,
+    app: any,
+    toggleDrawer: any
 }
 
 @inject('msg')
 @inject('currentUser')
+@inject('app')
 @observer
 class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
     componentDidMount(){
@@ -26,11 +29,12 @@ class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
 
     }
     render(){
-        const { currentUser } = this.props;
+        const { currentUser, app, toggleDrawer } = this.props;
+        
         const { isLogined, username, fetching } = currentUser;
         
         return(
-            <TopBar isLogined={isLogined}/>
+            <TopBar toggleDrawer={toggleDrawer} appName={app.name} isLogined={isLogined}/>
         )
     }
 }

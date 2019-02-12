@@ -32,7 +32,7 @@ export default [
         options: {
             auth: false,
             description: '获取一个app的信息',
-            notes: '获取一个APP的信息',
+            notes: '获取一个APP的信息, 如果没有找到默认加载主应用',
             tags: ['api'], // ADD THIS TAG
             validate: {
                  query: {

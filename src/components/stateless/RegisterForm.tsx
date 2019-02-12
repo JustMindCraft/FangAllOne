@@ -1,54 +1,109 @@
 import React from 'react';
-import { Form, Checkbox, Button, Input, Message, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { TextField, Button, createStyles, CircularProgress, Checkbox, FormControlLabel, withStyles } from '@material-ui/core';
+const LoginLink = (props:any) => <Link to="/login" {...props} />
+// Non-dependent styles
+const styles = createStyles({
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      maxWidth: 600,
+      minWidth: 277
+    },
+  });
 
-const RegisterForm = (props:any) => {
+interface IRegisterFormProps {
+    classes: any;
+    onSubmit: (e: any) => false | undefined;
+    handleInputChange: (event: any, key: string) => void;
+    msgType: any; 
+    startInput: any; 
+    isPassed: boolean; 
+    isSubmit: boolean; 
+    submitBtnHidden: any; 
+    logining: boolean; 
+    isSuccess: boolean;
+    password: string; 
+    validUsername: boolean;
+    usernamePassed: boolean;
+    validMsgUsername: string;
+    validMsgPassword: string;
+    passwordPassed: boolean;
+    passwordRepeat:string;
+    passwordRepeatPassed: boolean;
+    allPassed: boolean;
+
+}
+
+const RegisterForm = (props:IRegisterFormProps) => {
+
+    
     return (
-        <Segment>
-            <Dimmer active={props.registering}>
-                <Loader indeterminate>{props.isSuccess?"注册成功":"正在注册"}</Loader>
-            </Dimmer>
+           
+            <form  onSubmit={props.onSubmit} className={props.classes.form}>
+                <TextField
+                    required={true}
+                    error={!props.usernamePassed && props.startInput}
+                    label="用户名"
+                    onChange={(event:any)=>props.handleInputChange(event, "username")} placeholder='用户名'
+                    margin="normal"
+                    disabled={props.logining}
+                    helperText={props.startInput? props.validMsgUsername : ''}
+                />
+                 <TextField
+                    required={true}
+                    error={!props.passwordPassed && props.startInput}
+                    label="密码"
+                    onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码'
+                    margin="normal"
+                    value={props.password}
+                    type="password"
+                    disabled={props.logining}
+                    helperText={props.startInput? props.validMsgPassword : ''}
 
-            <Form className="App-page-form" 
-            warning={props.msgType ==="warning"}  
-            success={props.msgType ==="success"} 
-            error={props.msgType ==="error"} 
-            onSubmit={props.onSubmit}>
-                <Form.Field>
-                    <label>用户名</label>
-                    <Input onChange={(event:any)=>props.handleInputChange(event, "username")} placeholder='用户名' />
-                </Form.Field>
-                <Form.Field>
-                    <label>密码</label>
-                    <Input  type='password' onChange={(event:any)=>props.handleInputChange(event, "password")} placeholder='密码' />
-                </Form.Field>
-                <Form.Field>
-                    <label>重复密码</label>
-                    <Input  type='password' onChange={(event:any)=>props.handleInputChange(event, "passwordRepeat")} placeholder='重复密码' />
-                </Form.Field>
-                <Form.Field>
-                    <Checkbox label='同意' checked={true} />
-                    <Link to="/">注册协议</Link>
-                </Form.Field>
-                <Form.Field>
-                <Message 
-                hidden={!props.startInput} 
-                success={props.msgType ==="success"} 
-                error={props.msgType ==="error"} 
-                warning={props.msgType ==="warning"} 
-                header={props.msgType ==="success"? "恭喜" : "注意"} content={props.msg} />
-                </Form.Field>
+                />
+                 <TextField
+                    required={true}
+                    error={!props.passwordRepeatPassed && props.startInput}
+                    label="重复密码"
+                    type='password' onChange={(event:any)=>props.handleInputChange(event, "passwordRepeat")} placeholder='重复密码'
+                    margin="normal"
+                    value={props.passwordRepeat}
+                    disabled={props.logining}
+                    helperText={
+                        props.startInput? 
+                            props.passwordRepeatPassed? 
+                            "密码一致"　: '两次密码不一致' 
+                        : ''
+                    }
+                   
+                />
+    
+                
                 {
                     !props.submitBtnHidden && 
-                    <Button disabled={!props.isPassed} primary={true} type='submit'>注册</Button>
+                    <Button variant="contained" color="primary"  disabled={!props.allPassed || props.logining} type='submit'>
+                    {
+                        props.logining ? <CircularProgress size={24} /> : '注册并同意用户条款'
+                    }
+                    </Button>
+                    
 
                 }
+                <div  style={{textAlign: 'center'}}>
                 <br/>
-                <Button style={{maxWidth: "500px", width: '100%'}} as={Link} to="/login" secondary={true}>登录</Button>
-            </Form>
-        </Segment>
+                <Link to="/contact">注册协议</Link>
+                </div>
+                <br/>
+                <div>
+                <Button style={{ width: '100%', textDecoration: 'none'}} component={LoginLink} variant="contained" color="secondary">已经账户？立刻登录</Button>
+                </div>
+            </form>
+
+            
         
     )
 }
 
-export default RegisterForm
+export default withStyles(styles)(RegisterForm) as any;

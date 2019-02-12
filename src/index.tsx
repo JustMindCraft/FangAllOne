@@ -7,11 +7,11 @@ import 'semantic-ui-css/semantic.min.css';
 import currentUser from './mobx/global/UserSession';
 import {  Provider } from "mobx-react"
 import informationMsg from './mobx/global/InformationMsg';
-
+import app from './mobx/global/App';
 
 ReactDOM.render(
-    <Provider currentUser={currentUser} msg={informationMsg}>
-        <App currentUser={currentUser}/>
+    <Provider currentUser={currentUser} msg={informationMsg} app={app}>
+        <App/>
     </Provider>
     , document.getElementById('root'));
 

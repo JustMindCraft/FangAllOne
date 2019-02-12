@@ -1,6 +1,7 @@
 import { CHECK_AUTH, SHOW_ID } from './../../constants/API';
 import { observable, computed, action } from "mobx";
 import { auth, api } from "../../api";
+import informationMsg from './InformationMsg';
 
 export class UserSession {
     @observable username="";
@@ -51,7 +52,9 @@ export class UserSession {
             const token = this.token;
             
             if (!token) {
-                return this.isLogined = false;
+                this.isLogined = false;
+                return informationMsg.show('您已登出');
+
             }
             this.isLogined = true;//预期是登录成功，这样可以保障登录或者注册一瞬间，不会被登出
         
@@ -60,12 +63,14 @@ export class UserSession {
                     
                     return this.isLogined = true;
                 }
-                return this.isLogined = false;
-                
+                this.isLogined = false;
+                return informationMsg.show('您已登出');
                 
             }).catch((err:any)=>{
                if(err.toString()==='Error: Request failed with status code 401'){
-                   return this.isLogined = false;
+                   this.isLogined = false;
+                    return informationMsg.show('您已登出');
+
                }
                
             });

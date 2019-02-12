@@ -3,14 +3,11 @@ import { withRouter } from 'react-router';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import UserProfileDropDown from '../withMobx/UserProfileDropDown';
-
-
-
+import Button from '@material-ui/core/Button';
 
 
 const TopBar = (props:any) => {
@@ -22,17 +19,18 @@ const TopBar = (props:any) => {
             <AppBar position="relative">
               
               <Toolbar>
-                {!isPc && 
-                <IconButton color="inherit" aria-label="Open drawer">
+                {
+                  props.isLogined && 
+                  <IconButton color="inherit" aria-label="Open drawer" onClick={props.toggleDrawer('left', true)}>
                   <MenuIcon />
-                </IconButton>
-              }
+                  </IconButton>
+                }
+                
                 <Typography variant="h6" color="inherit" style={{flexGrow: 1, textAlign: titleAlign}}>
-                  正觉工场
+                  {props.appName}
                 </Typography>
                 <div>
                 <Button onClick={()=>props.history.push('/')}  color="inherit">首页</Button>
-                <Button onClick={()=>props.history.push('/about')}  color="inherit">立即开店</Button>
                 {
                   props.isLogined ? <Button onClick={()=>props.history.push('/dashboard')}  color="inherit">面板</Button>
                   : <Button onClick={()=>props.history.push('/register')}  color="inherit">注册</Button>

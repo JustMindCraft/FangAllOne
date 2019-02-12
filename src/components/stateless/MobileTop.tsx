@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import { withRouter } from 'react-router';
 
 const MobileTop = (props:any) => {
     
@@ -16,14 +17,13 @@ const MobileTop = (props:any) => {
             <AppBar position="relative" style={{width: '101%'}}>
               
               <Toolbar>
-                <IconButton color="inherit" aria-label="Open drawer">
+               { props.isLogined &&  <IconButton color="inherit" aria-label="Open drawer" onClick={props.toggleDrawer('left', true)}>
                   <MenuIcon />
-                </IconButton>
+                </IconButton>}
                 <Typography variant="h6" color="inherit" style={{flexGrow: 1, textAlign: 'center'}}>
-                  正觉工场
+                  {props.appName}
                 </Typography>
                 <div>
-                <Button onClick={()=>props.history.push('/login')}  color="inherit">立即开店</Button>
                 </div>
                
               </Toolbar>
@@ -32,4 +32,4 @@ const MobileTop = (props:any) => {
 }
     
 
-export default MobileTop;
+export default withRouter(MobileTop);

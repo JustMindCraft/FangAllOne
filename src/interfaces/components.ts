@@ -1,7 +1,12 @@
 
 export interface IAppProps {
     currentUser:any,
-    msg: any
+    msg: any, 
+    app:any
+}
+
+export interface IAppState {
+    loadingTime: number,
 }
 
 export interface IPageProps {
@@ -9,4 +14,5 @@ export interface IPageProps {
     currentUser: any,
     msg: any,
     classes: any,
+    app:any
 }

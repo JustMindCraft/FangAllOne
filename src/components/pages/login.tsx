@@ -8,9 +8,11 @@ import { observer, inject } from 'mobx-react';
 import pageStyles from './pageStyle';
 import { withStyles, Typography } from '@material-ui/core';
 import Layout from '../stateless/Layout';
+import LayoutWithMobx from '../withMobx/LayoutWithMobx';
 
 @inject('currentUser')
 @inject('msg')
+@inject('app')
 @observer
 class Login extends React.Component<IPageProps> {
     redirectSuccess = (isSuccess:any) => {
@@ -34,13 +36,14 @@ class Login extends React.Component<IPageProps> {
   
 
     render(){
+        const { app } = this.props;
         return (
-            <Layout>
+            <LayoutWithMobx>
                 <Typography variant="h4" gutterBottom>
-                    登录正觉工场
+                    登录{app.name}
                 </Typography>
                 <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
-            </Layout>
+            </LayoutWithMobx>
         )
     }
     

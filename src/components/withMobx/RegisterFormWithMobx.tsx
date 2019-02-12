@@ -14,14 +14,13 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
     }
     componentDidMount(){
         const { store } = this.props;
-        store.reset();
         
     }
     
     onSubmit = (e:any) => {
         e.preventDefault();
         const {store} = this.props;
-        if(!store.isPassed){
+        if(!store.allPassed){
             return false;
         }
         store.register()
@@ -64,6 +63,14 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
                 submitBtnHidden={store.submitBtnHidden}
                 registering={store.registering}
                 isSuccess={store.isSuccess}
+                validUsername={store.validUsername}
+                validMsgUsername={store.validMsg.username}
+                validMsgPassword={store.validMsg.password}
+                usernamePassed={store.usernamePassed}
+                passwordPassed={store.passwordPassed}
+                passwordRepeat={store.passwordRepeat}
+                passwordRepeatPassed={store.passwordRepeatPassed}
+                allPassed={store.allPassed}
             />
                 
         )

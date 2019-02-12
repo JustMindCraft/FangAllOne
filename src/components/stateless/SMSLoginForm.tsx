@@ -70,10 +70,7 @@ const SMSLoginForm = (props:ILoginFormProps) => {
 
                 }
                 <br/>
-                <div>
-                <Button style={{ width: '100%', textDecoration: 'none'}} component={RegisterLink} variant="contained" color="secondary">注册</Button>
-
-                </div>
+                
             </form>
         
     )

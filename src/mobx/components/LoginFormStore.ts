@@ -118,7 +118,6 @@ export class LoginFormStore{
         this.isCounting = true;
         this.counter = window.setInterval(()=>{
             this.smsCounter--;
-            console.log(this.smsCounter);
             if(this.smsCounter<=0){
                 window.clearInterval(this.counter);
                 this.isCounting = false;

@@ -1,31 +1,45 @@
-import { REGISTER, SHOW_UNIQUE } from './../../constants/API';
+import { SHOW_UNIQUE, REGISTER } from './../../constants/API';
 import { observable, computed, action } from "mobx";
 import { api, auth } from "../../api";
 import currentUser from '../global/UserSession';
 
 export class RegisterFormStore {
-    @observable loading= false;
+
+
+    @observable validMsg = {
+        username: '',
+        password: '',
+        passwordRepeat: ''
+    }
+
     @observable username = '';
-    @observable password = '';
-    @observable passwordRepeat = '';
-    @observable startInput = false;
-    @observable isSuccess = false;
-    @observable registering = false;
-    @observable checkingUsernameExist = false;
     @observable usernameExist = false;
-    @observable submitBtnHidden = false;
-    @computed  get passwordMatch(){
-        return this.password === this.passwordRepeat
-    }
-    @computed get hasMsg(){
-        return this.startInput ? 
-        this.username === ''? true: false:
-        false;
-    }
+    @observable checkingUsernameExist = false;
+    @observable usernamePassed = false;
+
+ 
+
+    @observable password = '';
+    @observable passwordPassed = false;
+
+
+
+    @observable passwordRepeat = '';
+
+
+    @observable startInput = false;
+
+
+    @observable registering = false;
+    @observable isSuccess = false;
+   
     @computed get validUsername(){
         //用户名正则，4到16位（字母，数字，下划线，减号）
+    
         const uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
-        return uPattern.test(this.username);
+        const matchRlt  = uPattern.test(this.username);
+        
+        return matchRlt;
     }
     @computed get validPassword(){
         // 最短6位，最长16位 {6,16}
@@ -35,60 +49,35 @@ export class RegisterFormStore {
         const pPattern = /^[\w_-]{6,16}$/;
         return pPattern.test(this.password);
     }
-    @computed get msgType(){
-            return this.validUsername ? 
-                        this.validPassword ? 
-                            this.passwordMatch ? 
-                                !this.checkingUsernameExist?
-                                    !this.usernameExist ? "success":"error"
-                                : 'warning'
-                            : 'error' 
-                        :'error'
-                    :'error'
-        
-    }
-    @computed get msg(){
-        
-            return this.validUsername?  
-                        this.validPassword? 
-                            this.passwordMatch? 
-                                !this.checkingUsernameExist?
-                                    !this.usernameExist ? "输入检查完毕":"用户名被占用" 
-                                : "正在检查用户是否可用"
-                            :'两次密码输入不一致'
-                        :'密码６-16位（字母，数字，下划线，减号）'
-                    :'用户名应当符合4到16位（字母，数字，下划线，减号）'
-       
-        
-       
-            
-    }
-   
-    @computed get isPassed(){
-        return this.validUsername ? 
-                this.validPassword ? 
-                    this.passwordMatch ? 
-                        !this.checkingUsernameExist?
-                        !this.usernameExist ? true:false
-                        : false
-                    : false 
-                : false
-               : false
+
+    @computed get passwordRepeatPassed(){
+        return this.password === this.passwordRepeat;
     }
 
+    @computed get allPassed(){
+        return this.usernamePassed && this.passwordPassed && this.passwordRepeatPassed;
+    }
+   
     @action  checkUsernameExist(){
         this.checkingUsernameExist = true;
+        this.validMsg.username ="正在检查用户名是否可用";
+
         api('users', SHOW_UNIQUE, {key: this.username})
         .then((rlt:any)=>{
             if(rlt.status===204){
                 this.usernameExist = false;
                 this.checkingUsernameExist = false;
-                return true;
             }
             if(rlt.data.username === this.username){
+                
                 this.usernameExist = true;
+                this.validMsg.username ="用户名被占用";
                 this.checkingUsernameExist = false;
-                return false;
+                this.usernamePassed = false;
+
+            }else{
+                this.validMsg.username ="恭喜用户名可用";
+                this.usernamePassed = true;
             }
             
         })
@@ -97,21 +86,44 @@ export class RegisterFormStore {
     @action changeUsername(value:any){
         this.startInput = true;
         this.username = value;
-        return this.checkUsernameExist();
+       
+        if(!this.validUsername && this.username !== '' ){
+            
+            this.validMsg.username ="用户名规则，4到16位（字母，数字，下划线，减号）";
+        }
+        if(this.username !== '' && this.validUsername){
+            
+            this.validMsg.username ="正在检查用户名是否可用";
+            this.checkUsernameExist();
+        }
     }
    
 
     @action changePassword(value:any){
         this.startInput = true;
-        return this.password = value;
+        this.password = value;
+
+        if(!this.validPassword && this.password !== '' ){
+            
+            return this.validMsg.password ="密码６-16位，（字母，数字，下划线，减号）";
+        }
+        if(this.password === ''){
+            return this.validMsg.password ="请输入密码";
+        }
+        
+        this.passwordPassed = true;
+        return this.validMsg.password ="密码合格通过";
+
+       
     }
     @action changePasswordRepeat(value:any){
+        
         this.startInput = true;
         return this.passwordRepeat = value;
     }
+
     @action register(){
         this.registering = true;
-        this.submitBtnHidden = true;
         auth(REGISTER, {
             username: this.username,
             password: this.password
@@ -127,18 +139,7 @@ export class RegisterFormStore {
             
         })
     }
-    @action reset(){
-        this.loading= false;
-        this.username = '';
-        this.password = '';
-        this.passwordRepeat = '';
-        this.startInput = false;
-        this.isSuccess = false;
-        this.registering = false;
-        this.checkingUsernameExist = false;
-        this.usernameExist = false;
-        this.submitBtnHidden = false;
-    }
+    
 }
 
 const registerFormStore = new RegisterFormStore();

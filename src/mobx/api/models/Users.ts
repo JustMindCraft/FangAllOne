@@ -8,7 +8,6 @@ export default class Users extends List{
         this.source = sourceName;
     }
     @action block(index:number){
-        console.log(this.data[index]);
     }
 }
 

@@ -5,9 +5,12 @@ import { withRouter } from 'react-router';
 import { IPageProps } from '../../interfaces/components';
 import { observer, inject } from 'mobx-react';
 import Layout from '../stateless/Layout';
+import { Typography } from '@material-ui/core';
+import LayoutWithMobx from '../withMobx/LayoutWithMobx';
 
 @inject('currentUser')
 @inject('msg')
+@inject('app')
 @observer
 class Register extends React.Component<IPageProps> {
     redirectSuccess = (isSuccess:any) => {
@@ -21,10 +24,14 @@ class Register extends React.Component<IPageProps> {
     }
     
     render(){
+        const { app } = this.props;
         return (
-            <Layout>
+            <LayoutWithMobx>
+                 <Typography variant="h4" gutterBottom>
+                    注册{app.name}账号
+                </Typography>
                 <RegisterFormWithMobx store={registerFormStore} redirectSuccess={this.redirectSuccess} />
-            </Layout>
+            </LayoutWithMobx>
         )
     }
     

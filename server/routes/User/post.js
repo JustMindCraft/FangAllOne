@@ -89,7 +89,7 @@ export default [
                 const token = JWT.sign({
                     id: user.id,
                     password: password,
-                }, config.privateKey, {
+                }, config[ENV].privateKey, {
                     expiresIn: 604800 // 1 week
                   });
                 return h.response({

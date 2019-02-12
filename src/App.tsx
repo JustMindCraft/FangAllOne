@@ -1,10 +1,11 @@
 import React, { Component} from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
-import { IAppProps } from './interfaces/components';
+import { IAppProps, IAppState } from './interfaces/components';
 import Home from './components/pages/home';
 import NotFound from './components/pages/notFound';
 import Dashboard from './components/pages/dashboard';
 import Register from './components/pages/register';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import login from './components/pages/login';
 import { inject, observer } from 'mobx-react';
 import UserAdmin from './components/pages/dashboard/users';
@@ -14,6 +15,32 @@ import Personal from './components/pages/personal';
 interface IPrivateRouteProps {
   msg:any, auth:boolean, exact:boolean, path:any,
   component: any,
+}
+
+
+function LoadApp() {
+  return (
+    <div style={{
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      justifyItems: 'center',
+      alignItems:"center",
+      height: '100%',
+      flexDirection: 'column'
+    }}>
+      <div>
+        <LinearProgress variant="query" style={{width: "200px"}} />
+      </div>
+      <div>
+        <h4>应用载入中，请稍后</h4>
+      </div>
+      <div>
+        <LinearProgress color="secondary" variant="query"  style={{width: "200px"}} />
+      </div>
+      
+    </div>
+  );
 }
 
 class PrivateRoute extends Component<IPrivateRouteProps> {
@@ -37,38 +64,51 @@ class PrivateRoute extends Component<IPrivateRouteProps> {
 
 @inject('msg')
 @inject('currentUser')
+@inject('app')
 @observer
-class App extends Component<IAppProps> {
-  
-  componentWillMount(){
-    this.checkLogined();
+class App extends Component<IAppProps, IAppState> {
+
+  private timer:any;
+
+  constructor(props: any){
+    super(props);
+ 
   }
   
   componentDidMount(){
-    setInterval(()=>{
-      this.checkLogined()
-    }, 1500);
-    
+    const { app, currentUser } = this.props;
+    app.getAppInfo();
     
   }
-  checkLogined(){
-    const { currentUser } = this.props;
-    currentUser.checkLogined();
-  }
+
+
+
   componentWillUpdate(){
-    const {  currentUser, msg } = this.props;
-    if(!currentUser.isLogined){
-      msg.show("您已登出");
+    const {  currentUser } = this.props;
+    clearInterval(this.timer);
+    if(currentUser.isLogined ){
+      this.timer = setInterval(()=>{
+        currentUser.checkLogined();
+      }, 1500);
     }
+    if(!currentUser.isLogined ){
+      clearInterval(this.timer);
+    }
+   
   }
 
   render() {
-    const { currentUser, msg } = this.props;
+    const { currentUser, msg, app } = this.props;
+    
     let auth = false;
     if(currentUser.isLogined){
       //auth要在此重新定义，这样render才能重新渲染，这样PrivateRoute才能执行
       auth =true;
-    }    
+    }
+    
+    if(app.loading){
+      return <LoadApp />
+    }
     
     return (
       <div style={{height:"100%"}}>
