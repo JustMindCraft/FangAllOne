@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper, withWidth, Button } from '@material-ui/core';
+import { Grid, Paper, withWidth } from '@material-ui/core';
 import PcFooter from './PcFooter';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import MobileBottom from './MobileBottom';

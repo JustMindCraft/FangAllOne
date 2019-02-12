@@ -86,6 +86,7 @@ export class RegisterFormStore {
     @action changeUsername(value:any){
         this.startInput = true;
         this.username = value;
+       console.log(value);
        
         if(!this.validUsername && this.username !== '' ){
             

@@ -20,6 +20,7 @@ export default  (sequelize, DataTypes) => {
     App.associate = models => {
         App.hasMany(models.User);
         App.hasMany(models.Role);
+        App.hasOne(models.HomeBanner, {as: 'Banner'});
     }
     App.countDefault = async function(){
         return this.findOne({

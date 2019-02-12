@@ -1,4 +1,4 @@
-import {App, Role, User, UserRole} from "../models/";
+import {App, Role, User, UserRole, HomeBanner} from "../models/";
 
 import Sequelize from 'sequelize';
 import config from "../config";
@@ -108,7 +108,19 @@ export default  async () => {
     
     //创建默认应用的默认店铺=================================================================================
 
+    const createRlt = await HomeBanner.create({
+        images: [1,2,3,4],
+        imageLinks: [1,2,3,4],
+    })
 
+    
+
+    await createRlt.setApp(defaultApp);
+    await defaultApp.setBanner(createRlt);
+
+    console.log(await createRlt.getApp());
+    // console.log(await defaultApp.getBanner());
+    
 
 
     //创建默认应用的默认存储空间========================================================================

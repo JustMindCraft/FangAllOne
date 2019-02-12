@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core';
 import pageStyles from './pageStyle';
 import { IPageProps } from '../../interfaces/components';
-import Layout from '../stateless/Layout';
 import LayoutWithMobx from '../withMobx/LayoutWithMobx';
 
 const Home = (props:IPageProps) => {
