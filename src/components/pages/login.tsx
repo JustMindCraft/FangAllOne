@@ -44,6 +44,7 @@ class Login extends React.Component<IPageProps> {
                    width: '85%',
                    paddingTop: 20,
                    minWidth: 318,
+                   minHeight: 500
                }}>
                     <Typography variant="h4" gutterBottom className={classes.title}>
                         登录{app.name}

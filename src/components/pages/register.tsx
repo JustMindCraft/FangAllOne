@@ -31,7 +31,9 @@ class Register extends React.Component<IPageProps> {
                    width: '85%',
                    minWidth: 318,
                    paddingBottom: 40,
-                   paddingTop: 20
+                   paddingTop: 20,
+                   height: "80%",
+                   minHeight: 500
                }}>
                  <Typography variant="h4" gutterBottom>
                     注册{app.name}账号
