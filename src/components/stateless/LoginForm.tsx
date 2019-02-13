@@ -47,6 +47,7 @@ const LoginForm = (props:ILoginFormProps) => {
                     disabled={props.logining}
                 />
     
+            <br/>
                 
                 {
                     !props.submitBtnHidden && 

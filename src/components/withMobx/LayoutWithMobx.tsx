@@ -6,10 +6,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import LibraryIcon from '@material-ui/icons/LibraryAdd'
+import SettingApplicationIcon from '@material-ui/icons/SettingsApplications'
+import SettingIcon from '@material-ui/icons/Settings'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Layout from '../stateless/Layout';
 import { withRouter } from 'react-router';
-import { Typography } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 
 
 
@@ -38,8 +41,8 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
       const sideList = (
         <div>
           <List>
-              <ListItem button key="create_app" onClick={(e)=>{history.push('/dashboard/users')}}>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItem button key="create_app" onClick={(e)=>{history.push('/dashboard/apps/add')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
                 <ListItemText primary='创建应用' />
               </ListItem>
               <ListItem button key="write" onClick={(e)=>{history.push('/dashboard/users')}}>
@@ -150,16 +153,16 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
               &nbsp;&nbsp;&nbsp;系统
             </Typography>
           <List>
-              <ListItem button key="system_module" onClick={(e)=>{history.push('/dashboard/users')}}>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItem button key="system_module" onClick={(e)=>{history.push('/dashboard/system/module_setting')}}>
+                <ListItemIcon><SettingApplicationIcon /></ListItemIcon>
                 <ListItemText primary='功能设置' />
               </ListItem>
               <ListItem button key="system" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='用户认证' />
               </ListItem>
-              <ListItem button key="system_setting" onClick={(e)=>{history.push('/dashboard/users')}}>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItem button key="system_setting" onClick={(e)=>{history.push('/dashboard/settings')}}>
+                <ListItemIcon><SettingIcon /></ListItemIcon>
                 <ListItemText primary='系统设置' />
               </ListItem>
               <ListItem button key="roles" onClick={(e)=>{history.push('/dashboard/users')}}>
@@ -175,6 +178,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
       );
         return (
             <Layout　toggleDrawer={this.toggleDrawer}>
+                <br/>
                 <SwipeableDrawer
                     open={this.state.left}
                     onClose={this.toggleDrawer('left', false)}
@@ -189,7 +193,8 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
                         {sideList}
                     </div>
                 </SwipeableDrawer>
-                {this.props.children}
+               
+                  {this.props.children}
             </Layout>
             
         )

@@ -35,29 +35,32 @@ const SMSLoginForm = (props:ILoginFormProps) => {
            
             
             <form  onSubmit={props.onSubmit} className={props.classes.form}>
-            <div style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                width: '100%',
-                justifyContent: 'space-between'
-            }}>
-                <TextField
+             <TextField
                     label="手机号"
                     onChange={(event:any)=>props.handleInputChange(event, "mobileInput")} placeholder='手机号'
                     margin="normal"
                     disabled={props.logining}
                 />
+            <div style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                width: '100%',
+                justifyContent: 'space-around'
+            }}>
+                <TextField
+                        label="验证码"
+                        onChange={(event:any)=>props.handleInputChange(event, "smsInput")} placeholder='密码'
+                        margin="normal"
+                        type="password"
+                        disabled={props.logining}
+                    />
+               
                 <Button
-                    disabled={props.isCounting} size="large"
+                    disabled={props.isCounting} size="medium"
                  onClick={(e:any)=>props.backCount()} color='primary'>{props.isCounting? props.smsCounter.toString()+'S后重新获取': "获取验证码"}</Button>
             </div>
-                 <TextField
-                    label="验证码"
-                    onChange={(event:any)=>props.handleInputChange(event, "smsInput")} placeholder='密码'
-                    margin="normal"
-                    type="password"
-                    disabled={props.logining}
-                />
+            <br/>
+                
     
                 
                 {
