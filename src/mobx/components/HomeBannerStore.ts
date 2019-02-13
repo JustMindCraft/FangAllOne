@@ -1,6 +1,6 @@
 import { observable, action, computed } from "mobx";
-import { auth } from "../../api";
-import { AUTH } from "../../constants/API";
+// import { auth } from "../../api";
+// import { AUTH } from "../../constants/API";
 
 export class HomeBannerStore{
     @observable img=[]
