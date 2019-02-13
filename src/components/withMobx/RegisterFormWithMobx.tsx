@@ -14,6 +14,7 @@ class RegisterFormWithMobx extends Component<IRegisterFormWithMobx> {
     }
     componentDidMount(){
         const { store } = this.props;
+        store.reset();
         
     }
     

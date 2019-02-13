@@ -57,6 +57,21 @@ export class RegisterFormStore {
     @computed get allPassed(){
         return this.usernamePassed && this.passwordPassed && this.passwordRepeatPassed;
     }
+
+    @action reset(){
+        this.validMsg = {
+            username: '',
+            password: '',
+            passwordRepeat: ''
+        };
+        this.passwordRepeat = "";
+        this.username = "";
+        this.passwordPassed = false;
+        this.registering = false;
+        this.isSuccess = false;
+        this.startInput = false;
+
+    }
    
     @action  checkUsernameExist(){
         this.checkingUsernameExist = true;

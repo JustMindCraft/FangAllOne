@@ -68,6 +68,7 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
     handleFiles = (e:any) => {
         
         const files = e.target.files;
+        console.log(files);
         
         for (var i = 0; i < files.length; i++) {
           this.uploadFile(files[i]); // call the function to upload the file

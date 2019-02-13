@@ -22,6 +22,7 @@ const Layout = (props: any) => {
         justify="space-between"
         style={{height:"100%", overflow: 'hidden'}}
         >
+                <InformationMsgWithMobx />
             
             {isPc? <TopBarWithMobx toggleDrawer={props.toggleDrawer} />: <MobileTopWithMobx toggleDrawer={props.toggleDrawer} />}
             <Paper style={
@@ -29,27 +30,24 @@ const Layout = (props: any) => {
                     flexGrow:1,
                      overflowX: 'hidden', 
                      overflowY: 'auto',
-                     height: '80%',
                      display: 'flex',
-                     justifyContent: "space-around",
+                     justifyContent: "start",
                     flexDirection: 'column',
                     alignItems: 'center',
+                    flex: 1,
                 }
                 }>
-            <div style={{
-                display: 'flex',
-                justifyItems: "flex-end",
-                justifyContent: "flex-end",
-                flexDirection: 'row',
-                
-            }}>
+         
 
-                <InformationMsgWithMobx />
-            </div>
                 
             
                 {props.children}
-                {isPc && <PcFooter />}
+                <div style={{
+                    position: 'relative',
+                    top: "100%"
+                }}>
+                    {isPc && <PcFooter />}
+                </div>
             </Paper>
             {!isPc && <MobileBottom />}
 

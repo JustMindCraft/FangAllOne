@@ -79,7 +79,7 @@ const RegisterForm = (props:IRegisterFormProps) => {
                     }
                    
                 />
-    
+                    <br/>
                 
                 {
                     !props.submitBtnHidden && 
