@@ -4,7 +4,7 @@ import { LIST,
       CREATE, 
       CREATE_MANY, 
       UPDATE, UPDATE_MANY,
-       DELETE, DELETE_MANY, DESTROY, DESTROY_MANY, AUTH, REGISTER, SHOW_ID, SHOW_UNIQUE,
+       DELETE, DELETE_MANY, DESTROY, DESTROY_MANY, AUTH, REGISTER, SHOW_ID, SHOW_UNIQUE,SET_BANNER,GET_BANNER,
         CHECK_AUTH, 
         GET_SMS} 
 from './constants/API';
@@ -39,8 +39,28 @@ export  function auth(method:string, condition:any){
 export  function api(sourceName:string="users", method:string=LIST, condition:any={}, optional:any={}){
     const inflect = require('i')();
     const singleSource = inflect.singularize(sourceName); 
+    // console.log(method);
+    // console.log(singleSource);
+    // console.log(sourceName);
+    // console.log(condition);
+    // console.log(config);
+    // console.log(optional);
+
     switch (method) {
-        
+        case SET_BANNER:
+            return axios.get(`${config.basicUri}/${sourceName}`, {
+                params: {
+                    condition,
+                    optional,
+                }
+            });
+        case GET_BANNER:
+        return axios.patch(`${config.basicUri}/${sourceName}`, {
+            params: {
+                condition,
+                optional,
+            }
+        });
         case LIST:
             return axios.get(`${config.basicUri}/${sourceName}`, {
                 params: {

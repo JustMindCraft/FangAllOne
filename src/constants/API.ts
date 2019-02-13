@@ -13,6 +13,8 @@ export const DELETE_MANY = "DELETE_MANY";
 export const DESTROY = "DESTROY";
 export const DESTROY_MANY = "DESTROY_MANY";
 export const UNKNOWN_METHOD = "UNKNOWN_METHOD"
+export const SET_BANNER = "SET_BANNER"
+export const GET_BANNER = "GET_BANNER"
 
 
 // auth provider

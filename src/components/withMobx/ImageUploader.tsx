@@ -1,21 +1,26 @@
 import React,{ Component } from 'react';
 import { Input } from 'semantic-ui-react';
+import Button from '@material-ui/core/Button';
+import { observer, inject } from 'mobx-react';
 
 const cloudName = 'ddycd5xyn';
 const unsignedUploadPreset = 'rq6jvg1m';
 
 interface IImageUploaderProps{
-
+    store: any,
 }
 interface IImageUploaderState{
-    img: string
+    img: any,
 }
 
+
+
+@observer
 export default class ImageUploader extends Component<IImageUploaderProps, IImageUploaderState>{
     constructor(props:any){
         super(props);
         this.state = {
-            img: ''
+            img: []
         }
     }
     uploadFile = (file:any) => {
@@ -52,9 +57,12 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
             var img = new Image(); // HTML5 Constructor
             img.src = tokens.join('/');
             console.log(img.src);
+            let images = this.state.img;
+            images.push(img.src)
+            console.log(this.state.img);
             
             this.setState({
-                img: img.src,
+                img: images,
             })
            
           }
@@ -64,6 +72,13 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
         fd.append('file', file);
         xhr.send(fd);
+      }
+      handleUpload= () => {
+        const {store} = this.props;
+          store.upload()
+          console.log(this.state.img);
+
+          
       }
     handleFiles = (e:any) => {
         
@@ -75,18 +90,30 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         }
     }
     render(){
+        let image=this.state.img
+        let images=[]
+        console.log(image)
+        for(let i =0;i<image.length;i++){
+            images.push(<img src={image[i]}   key={i}  width={150} />)
+        }
         return(
             <div id="dropbox">
-
-            <form>
-                <div>
-                    <img src={this.state.img} alt=""/>
+            <div>
+                    {images}
                 </div>
+            <form>
+                
             <div>
             <Input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
             </div>
             </form>
-                   
+            <Button variant="contained" color="secondary">
+                    取消
+                </Button>   
+                <Button variant="contained" color="primary" onClick={this.handleUpload}>
+                    上传
+                </Button>
+                  
                     
             </div>
         )
