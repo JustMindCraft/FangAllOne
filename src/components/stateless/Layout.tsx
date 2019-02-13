@@ -44,7 +44,7 @@ const Layout = (props: any) => {
                 {props.children}
                 <div style={{
                     position: 'relative',
-                    top: "100%"
+                    top: "300%"
                 }}>
                     {isPc && <PcFooter />}
                 </div>
