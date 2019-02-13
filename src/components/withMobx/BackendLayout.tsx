@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 
 
 interface IBackendLayutProps{
-    title: string,
+    // title: string,
     history: any,
 }
 interface IBackendLayoutState{
