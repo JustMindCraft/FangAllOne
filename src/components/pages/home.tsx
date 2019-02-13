@@ -32,6 +32,7 @@ const Home = (props:IPageProps) => {
               <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
               <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
               <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <br/>
             </div>
            
            
