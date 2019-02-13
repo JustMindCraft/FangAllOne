@@ -12,24 +12,26 @@ const Home = (props:IPageProps) => {
             <h1>首页</h1>
             </div>
             <div >
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
-              <img src="https://img.liuxue86.com/ueditor/201803/13/e48baa53c195d435c66e2effe8b86b3a.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
+              <img src="https://res.cloudinary.com/da7efhqvt/image/upload/v1548776668/jinglaidi/assets/images/pearl.jpg" alt=""/>
             </div>
            
            

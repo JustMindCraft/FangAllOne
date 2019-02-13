@@ -21,19 +21,20 @@ const Layout = (props: any) => {
         direction="column"
         justify="space-between"
         style={{height:"100%", overflow: 'hidden'}}
+       
         >
                 <InformationMsgWithMobx />
             
             {isPc? <TopBarWithMobx toggleDrawer={props.toggleDrawer} />: <MobileTopWithMobx toggleDrawer={props.toggleDrawer} />}
             <Paper style={
                 {    
-                    flexGrow:1,
                      overflowX: 'hidden', 
                      overflowY: 'auto',
                      display: 'flex',
-                     justifyContent: "start",
+                     justifyContent: "space-between",
                     flexDirection: 'column',
                     alignItems: 'center',
+                    height: "88%",
                     flex: 1,
                 }
                 }>
@@ -42,13 +43,17 @@ const Layout = (props: any) => {
                 
             
                 {props.children}
+                <br/>
                 <div style={{
-                    position: 'relative',
-                    top: "300%"
+                    flexGrow: 1
                 }}>
-                    {isPc && <PcFooter />}
+                {isPc && <PcFooter />}
                 </div>
+                
             </Paper>
+            
+            <br/>
+           
             {!isPc && <MobileBottom />}
 
         </Grid>
