@@ -71,6 +71,7 @@ export default [
                  query: {
                      condition: Joi.string(),
                      optional: Joi.string(),
+                     token: Joi.string(),
                  }
             }
             

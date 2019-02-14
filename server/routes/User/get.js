@@ -22,6 +22,7 @@ export default [
             });
         },
         options: {
+            auth: false,
             description: '获取一个用户的信息',
             notes: 'condition参数包含用户的查询条件， optional包含分页page,pagesize，筛选字段filter,以及排序sort信息',
             tags: ['api'], // ADD THIS TAG

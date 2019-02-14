@@ -17,7 +17,7 @@ const token = window.localStorage.getItem('fang_token');
 export  function auth(method:string, condition:any){
     switch(method){
         case AUTH:
-            return axios.post(`${config.basicUri}/auth`, 
+            return axios.post(`${config.basicUri}/auth?token=${token}`, 
                     condition,
             );
 
@@ -25,11 +25,11 @@ export  function auth(method:string, condition:any){
             return axios.get(`${config.basicUri}/auth?token=${condition}`);
         
         case REGISTER:
-            return axios.post(`${config.basicUri}/register`, 
+            return axios.post(`${config.basicUri}/register?token=${token}`, 
                     condition,
             );
         case GET_SMS: 
-            return axios.post(`${config.basicUri}/getsms`,
+            return axios.post(`${config.basicUri}/getsms?token=${token}`,
                 condition
             );
         default:
@@ -44,14 +44,14 @@ export  function api(sourceName:string="users", method:string=LIST, condition:an
     switch (method) {
         
         case LIST:
-            return axios.get(`${config.basicUri}/${sourceName}`, {
+            return axios.get(`${config.basicUri}/${sourceName}?token=${token}`, {
                     params: {
                         condition,
                         optional,
                     }
             });
         case SHOW:
-            return axios.get(`${config.basicUri}/${singleSource}`, {
+            return axios.get(`${config.basicUri}/${singleSource}?token=${token}`, {
                     params: {
                         condition,
                          optional,
@@ -67,17 +67,17 @@ export  function api(sourceName:string="users", method:string=LIST, condition:an
 
         case SHOW_UNIQUE:
 
-            return axios.get(`${config.basicUri}/${singleSource}/${condition.key}`);
+            return axios.get(`${config.basicUri}/${singleSource}/${condition.key}?token=${token}`);
 
         case CREATE:
-            return axios.post(`${config.basicUri}/${singleSource}`, {
+            return axios.post(`${config.basicUri}/${singleSource}?token=${token}`, {
                     condition,
                     optional,
 
             });
 
         case CREATE_MANY:
-            return axios.post(`${config.basicUri}/${sourceName}`, {
+            return axios.post(`${config.basicUri}/${sourceName}?token=${token}`, {
                     condition,
                     optional,
             });
@@ -88,30 +88,30 @@ export  function api(sourceName:string="users", method:string=LIST, condition:an
                     optional,
             });
         case UPDATE_MANY:
-            return axios.put(`${config.basicUri}/${sourceName}`, {
+            return axios.put(`${config.basicUri}/${sourceName}?token=${token}`, {
                     condition,
                     optional,
 
             });
         case DELETE:
-            return axios.patch(`${config.basicUri}/${sourceName}`, {
+            return axios.patch(`${config.basicUri}/${sourceName}?token=${token}`, {
                     condition,
                     optional,
             });
         case DELETE_MANY:
-            return axios.put(`${config.basicUri}/${sourceName}`, {
+            return axios.put(`${config.basicUri}/${sourceName}?token=${token}`, {
                     condition,
                     optional,
             });
         case DESTROY:
-            return axios.delete(`${config.basicUri}/${singleSource}`, {
+            return axios.delete(`${config.basicUri}/${singleSource}?token=${token}`, {
                 params: {
                     condition,
                     optional,
                 }
             });
         case DESTROY_MANY:
-            return axios.delete(`${config.basicUri}/${sourceName}`, {
+            return axios.delete(`${config.basicUri}/${sourceName}?token=${token}`, {
 
                 params: {
                     condition,
