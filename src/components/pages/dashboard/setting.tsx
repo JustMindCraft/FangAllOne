@@ -25,7 +25,6 @@ const SettingPage  = () => {
                     <Typography color="textSecondary" gutterBottom>
                         应用信息
                     </Typography>
-                    <br/>
                     <ExpansionPanelEditor  title="应用名称"/>
                     <ExpansionPanelEditor　title="应用LOGO"  />
                     <ExpansionPanelEditor title="应用网址"  />
@@ -38,7 +37,6 @@ const SettingPage  = () => {
                     <Typography color="textSecondary" gutterBottom>
                         应用短信
                     </Typography>
-                    <br/>
 
                     <ExpansionPanelEditor　title="短信秘钥"  />
                     <ExpansionPanelEditor title="短信API"  />
@@ -49,7 +47,6 @@ const SettingPage  = () => {
                     <Typography color="textSecondary" gutterBottom>
                         支付接口
                     </Typography>
-                    <br/>
 
                     <ExpansionPanelEditor　title="微信"  />
                     <ExpansionPanelEditor title="支付宝"  />
@@ -59,7 +56,6 @@ const SettingPage  = () => {
                     <Typography color="textSecondary" gutterBottom>
                         Cloudinary图片存储
                     </Typography>
-                    <br/>
 
                     <ExpansionPanelEditor　title="接口"  />
                     <ExpansionPanelEditor title="存储名"  />
@@ -70,7 +66,6 @@ const SettingPage  = () => {
                     <Typography color="textSecondary" gutterBottom>
                         安全与维护
                     </Typography>
-                    <br/>
 
                     <ExpansionPanelEditor　title="应用秘钥"  />
                     <ExpansionPanelEditor title="进入维护状态"  />

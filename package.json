@@ -41,7 +41,7 @@
     "vision": "^5.4.4"
   },
   "scripts": {
-    "start": "yarn run dev | yarn run server-dev",
+    "start": " rm ./development.sqlite | yarn run dev | yarn run server-dev ",
     "dev": "react-scripts start",
     "server-dev": "NODE_ENV=development nodemon server/index.js",
     "server-pro": "NODE_ENV=production nodemon server/index.js",

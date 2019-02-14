@@ -1,4 +1,4 @@
-import {App, Role, User, UserRole, HomeBanner} from "../models/";
+import {App, Role, User, UserRole, HomeBanner, Shop} from "../models/";
 
 import Sequelize from 'sequelize';
 import config from "../config";
@@ -107,28 +107,26 @@ export default  async () => {
     }
     
     //创建默认应用的默认店铺=================================================================================
+    const countShops = await Shop.count({where: {appId: defaultApp.id, isDefault: true}})
+   
+    console.log(`默认应用的默认店铺数量为${countShops}`);
 
-    const createRlt = await HomeBanner.create({
-        images: [1,2,3,4],
-        imageLinks: [1,2,3,4],
-    })
+    if(countShops===0){
+        console.log('创建默认店铺');
 
-    
+        const newShop = await Shop.create({
+            name: '默认店铺',
+            isDefault: true,
+        })
 
-    await createRlt.setApp(defaultApp);
-    await defaultApp.setBanner(createRlt);
-
-    console.log(await createRlt.getApp());
-    // console.log(await defaultApp.getBanner());
-    
+        await newShop.setApp(defaultApp);
+        console.log('创建默认店铺完毕，'+JSON.stringify(newShop));
 
 
-    //创建默认应用的默认存储空间========================================================================
-    //创建默认应用的文章分类
-    //创建默认应用的视频分类
-    //创建默认应用的音乐分类
-    //创建默认应用的游戏分类
-    
+    }else{
+        console.log('默认店铺检查完毕');
+
+    }
     
 }
 

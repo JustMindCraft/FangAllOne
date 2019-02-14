@@ -17,6 +17,9 @@ export const User =  sequelize.import(__dirname+'/User.js');
 export const Role =  sequelize.import(__dirname+'/Role.js');
 export const UserRole =  sequelize.import(__dirname+'/UserRole.js');
 export const HomeBanner =  sequelize.import(__dirname+'/HomeBanner.js');
+export const Shop =  sequelize.import(__dirname+'/Shop.js');
+export const Product =  sequelize.import(__dirname+'/Product.js');
+export const ShopAgencyProduct =  sequelize.import(__dirname+'/ShopAgencyProduct.js');
 
 
 const models = {
@@ -24,7 +27,10 @@ const models = {
     User,
     Role,
     UserRole,
-    HomeBanner
+    HomeBanner,
+    Shop,
+    Product,
+    ShopAgencyProduct
 }
 
 for (const model in models) {
