@@ -20,8 +20,9 @@ const ExpansionPanelEditor = (props:any) => {
                     display: 'flex',
                     alignItems: 'baseline'
                 }}>
-                <TextField label="修改应用名称" />
-                <Button color='secondary' type="submit" variant="contained">修改</Button>
+                <React.Fragment>
+                    {props.children}
+                </React.Fragment>
                 </form>
             
             </ExpansionPanelDetails>
