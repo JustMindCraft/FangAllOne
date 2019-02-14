@@ -1,4 +1,4 @@
-import {App, Role, User, UserRole, HomeBanner, Shop} from "../models/";
+import {App, Role, User, UserRole, HomeBanner, Shop, Setting} from "../models/";
 
 import Sequelize from 'sequelize';
 import config from "../config";
@@ -27,6 +27,13 @@ export default  async () => {
             isDefault: true,
             host:  config[ENV].host
         });
+        console.log('开始设置默认应用');
+        
+        const defaultSetting = await Setting.create();
+        await defaultSetting.setApp(defaultApp);
+        await defaultApp.setSetting(defaultSetting);
+        console.log("默认应用设置完毕"+JSON.stringify(await defaultApp.getSetting()));
+        
    }else{
         defaultApp = await App.findOne({isDefault: true});
         console.log("当前默认应用已经存在，应用名是："+ defaultApp.name);

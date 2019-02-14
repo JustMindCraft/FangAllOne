@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
 import { withRouter } from 'react-router';
 import { IPageProps } from '../../interfaces/components';
 import LoginFormWithMobx from '../withMobx/LoginFormWithMobx';
@@ -7,7 +6,6 @@ import loginFormStore from '../../mobx/components/LoginFormStore';
 import { observer, inject } from 'mobx-react';
 import pageStyles from './pageStyle';
 import { withStyles, Typography } from '@material-ui/core';
-import Layout from '../stateless/Layout';
 import LayoutWithMobx from '../withMobx/LayoutWithMobx';
 import FormCardVertical from '../stateless/FormCardVertical';
 

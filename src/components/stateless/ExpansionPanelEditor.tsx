@@ -5,7 +5,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { TextField, Button } from '@material-ui/core';
 
 const ExpansionPanelEditor = (props:any) => {
     return (
@@ -16,7 +15,7 @@ const ExpansionPanelEditor = (props:any) => {
             <Typography variant="h6">{props.title}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-                <form style={{
+                <form onSubmit={(e:any) => {e.preventDefault(); props.onSubmit(e);}} style={{
                     display: 'flex',
                     alignItems: 'baseline'
                 }}>

@@ -11,12 +11,12 @@ export default [
         path: '/app',
         handler: async (request, h) => {
             try {
-                const { host, uuid } = request.query;
+                const { host, appId } = request.query;
                 let app = await App.findOne({where: {
                     [Op.or]: 
                     [
                         {host}, 
-                        {uuid}
+                        {appId}
                     ]
                 }})
                 if(!app){

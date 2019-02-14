@@ -23,7 +23,6 @@ const init = async () => {
     await server.register(require('hapi-auth-jwt2'));
     //  validation function
     const validate = async function (decoded, request) {
-        console.log(request.route.path);
         
         // do your checks to see if the person is valid
         if (!decoded.id) {
