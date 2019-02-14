@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Input } from 'semantic-ui-react';
+// import { Input } from 'semantic-ui-react';
 import Button from '@material-ui/core/Button';
 import { observer, inject } from 'mobx-react';
 
@@ -103,7 +103,7 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
             <form>
                 
             <div>
-            <Input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
+            <input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
             </div>
             </form>
             <Button variant="contained" color="secondary">

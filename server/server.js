@@ -4,7 +4,6 @@ import {User} from './models/';
 import bcrypt from 'bcrypt';
 import assert from 'assert';
 import seed from './startup/fixture';
-import relations from './models/relations';
 
 const Hapi = require('hapi');
 const Inert = require('inert');
@@ -22,9 +21,8 @@ const ENV = process.env.NODE_ENV;
 
 const init = async () => {
     await server.register(require('hapi-auth-jwt2'));
-    // bring your own validation function
+    //  validation function
     const validate = async function (decoded, request) {
-        console.log(request.route.path);
         
         // do your checks to see if the person is valid
         if (!decoded.id) {
@@ -79,7 +77,6 @@ const init = async () => {
         }
     ]);
     server.route(routes);
-    // await connectDB();
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
     await seed();

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Header, Segment, TransitionablePortal } from 'semantic-ui-react'
 import { observer, inject } from 'mobx-react';
 import { Snackbar } from '@material-ui/core';
 

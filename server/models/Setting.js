@@ -1,8 +1,12 @@
 export default  (sequelize, DataTypes) => { 
 
-    const Setting = sequelize.define('setting', {
+    const Setting = sequelize.define('settings', {
        
         isSMSLogin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        isEmailCodeLogin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
@@ -13,7 +17,6 @@ export default  (sequelize, DataTypes) => {
         },
         SMS_URI: {
             //if only isSMSLogin equal true
-
             type: DataTypes.STRING,
             defaultValue: "",
         },
@@ -26,12 +29,22 @@ export default  (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
+
+        cloudinary: {
+            type: DataTypes.JSON,
+            defaultValue: {
+                cloudName: 'ddycd5xyn',
+                unsignedUploadPreset: 'rq6jvg1m',
+            }
+        }
         
 
     });
+
+    Setting.associate = models => {
+       Setting.belongsTo(models.App);
+    }
+    
+
     return Setting;
 }
-
-
-
-export default Setting;
