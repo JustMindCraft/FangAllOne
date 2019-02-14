@@ -2,9 +2,9 @@
 
 具体功能开发如下
 
-##　1. 在src/components/pages 中新建页面, 然后在/src/App.tsx内部添加路由
+## 1. 在src/components/pages 中新建页面, 然后在/src/App.tsx内部添加路由
 
-##　2.　react化，拆分新建的页面，使用已有的组件或者新建组件，新建的基础组件都是无状态的纯函数, 在目录/src/components/stateless目录下
+## 2.　react化，拆分新建的页面，使用已有的组件或者新建组件，新建的基础组件都是无状态的纯函数, 在目录/src/components/stateless目录下
 
 ## ３. 考察新建的页面上的组件数据交互，对需要使用数据的组件，在/src/component/withMobx 新建仓库观察者组件，使用已有的mobx仓库，或者新建mobx仓库，在src/mobx/components新建的mobx仓库，　仓库的命名尽量和数据发生的那个无状态组件一致。
 
