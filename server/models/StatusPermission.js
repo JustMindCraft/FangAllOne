@@ -1,7 +1,7 @@
 import sequelize  from "../db";
 import Sequelize from 'sequelize';
 
-const StatusPermission = sequelize.define('status_permission', {
+const StatusPermission = sequelize.define('status_permissions', {
     modelName: {
         type: Sequelize.STRING,
         unique: true,

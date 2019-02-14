@@ -24,7 +24,6 @@ export const Setting =  sequelize.import(__dirname+'/Setting.js');
 
 
 const models = {
-    App,
     User,
     Role,
     UserRole,
@@ -32,7 +31,8 @@ const models = {
     Shop,
     Product,
     ShopAgencyProduct,
-    Setting
+    Setting,
+    App,
 }
 
 for (const model in models) {
@@ -40,11 +40,8 @@ for (const model in models) {
         const element = models[model];
         if(element.associate){
             element.associate(models);
-            element.sync();
-        }else{
-            element.sync();
-            continue;
         }
+        element.sync();
         
     }
 }

@@ -6,7 +6,7 @@ const Op = Sequelize.Op;
 
 export default (sequelize, DataTypes)=>{
 
-    const User = sequelize.define('user', {
+    const User = sequelize.define('users', {
         username: {
           type: DataTypes.STRING(), unique: true
         },

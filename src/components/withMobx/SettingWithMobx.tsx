@@ -14,6 +14,10 @@ interface ISettingWithMobxProps {
 @inject('msg')
 @observer
 class SettingWithMobx extends React.Component<ISettingWithMobxProps>{
+    componentDidMount(){
+        const { app  } = this.props;
+        app.getAppSetting();
+    }
     onChangeAppNameFormSubmit = (e:any) => {
         const { app, msg  } = this.props;
         
@@ -22,6 +26,7 @@ class SettingWithMobx extends React.Component<ISettingWithMobxProps>{
         });
         
     }
+    
     render(){
         const { app } = this.props;
         return(
@@ -54,7 +59,7 @@ class SettingWithMobx extends React.Component<ISettingWithMobxProps>{
                             点击图片修改
                         </Typography>
                        
-                        <Image cloudName="demo" publicId="sample">
+                        <Image cloudName="da7efhqvt" publicId="default.jpg">
                             <Transformation angle="-45"/>
                             <Transformation effect="trim" angle="45" crop="scale" width="600">
                             </Transformation>

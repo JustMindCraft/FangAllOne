@@ -2,7 +2,7 @@ import { App } from ".";
 
 export default  (sequelize, DataTypes) => { 
 
-    const Role = sequelize.define('role', {
+    const Role = sequelize.define('roles', {
         name: {
             type: DataTypes.STRING(),
         }
