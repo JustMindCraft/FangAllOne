@@ -4,7 +4,7 @@ import { LIST,
       CREATE, 
       CREATE_MANY, 
       UPDATE, UPDATE_MANY,
-       DELETE, DELETE_MANY, DESTROY, DESTROY_MANY, AUTH, REGISTER, SHOW_ID, SHOW_UNIQUE,SET_BANNER,GET_BANNER,
+       DELETE, DELETE_MANY, DESTROY, DESTROY_MANY, AUTH, REGISTER, SHOW_ID, SHOW_UNIQUE,
         CHECK_AUTH, 
         GET_SMS} 
 from './constants/API';
@@ -13,6 +13,8 @@ import axios from 'axios';
 
 
 export  function auth(method:string, condition:any){
+    console.log(method);
+    
     switch(method){
         case AUTH:
             return axios.post(`${config.basicUri}/auth`, 
@@ -38,29 +40,16 @@ export  function auth(method:string, condition:any){
 
 export  function api(sourceName:string="users", method:string=LIST, condition:any={}, optional:any={}){
     const inflect = require('i')();
-    const singleSource = inflect.singularize(sourceName); 
-    // console.log(method);
-    // console.log(singleSource);
-    // console.log(sourceName);
-    // console.log(condition);
-    // console.log(config);
-    // console.log(optional);
+    const singleSource = inflect.singularize(sourceName); //资源名单复数转换
+
+    console.log(method);
+    console.log(singleSource);
+    console.log(sourceName);
+    console.log(condition);
+    console.log(config);
+    console.log(optional);
 
     switch (method) {
-        case SET_BANNER:
-            return axios.get(`${config.basicUri}/${sourceName}`, {
-                params: {
-                    condition,
-                    optional,
-                }
-            });
-        case GET_BANNER:
-        return axios.patch(`${config.basicUri}/${sourceName}`, {
-            params: {
-                condition,
-                optional,
-            }
-        });
         case LIST:
             return axios.get(`${config.basicUri}/${sourceName}`, {
                 params: {

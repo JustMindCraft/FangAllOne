@@ -30,7 +30,6 @@ export default [
         path: '/auth',
         handler: async (request, h) => {
                 console.log(request.payload);
-                
                  const { username, password, model} = request.payload;
                  try {
                     const user =  await User.auth(

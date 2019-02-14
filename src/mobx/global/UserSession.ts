@@ -35,6 +35,8 @@ export class UserSession {
             window.localStorage.removeItem('fang_token');
             return window.localStorage.removeItem('fang_userId');
         }
+        console.log(this.userId);
+        
         api('users',SHOW_ID, {id: this.userId, token: this.token}, {
             fields: ['username', 'id']
         }).then((rlt:any)=>{

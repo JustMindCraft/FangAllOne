@@ -14,7 +14,6 @@ interface IImageUploaderState{
 }
 
 
-
 @observer
 export default class ImageUploader extends Component<IImageUploaderProps, IImageUploaderState>{
     constructor(props:any){
@@ -24,7 +23,6 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         }
     }
     uploadFile = (file:any) => {
-        
         var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
         var xhr = new XMLHttpRequest();
         var fd = new FormData();
@@ -75,8 +73,9 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
       }
       handleUpload= () => {
         const {store} = this.props;
-          store.upload()
-          console.log(this.state.img);
+        console.log(store.name);
+        store.getImg(this.state.img)
+        store.upload()
 
           
       }
