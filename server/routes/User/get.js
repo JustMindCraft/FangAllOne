@@ -67,7 +67,7 @@ export default [
             console.log('拉取数据走了4')
             const { id } = request.params;
             const { fields } = JSON.parse(request.query.optional);
-            
+            console.log('打印穿过来的id为'+id)
             try {
                 const user = await User.findByPk(
                     id,

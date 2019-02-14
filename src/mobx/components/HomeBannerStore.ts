@@ -15,6 +15,9 @@ export class HomeBannerStore{
         return window.localStorage.getItem('fang_userId');
 
     }
+    @computed get token(){
+        return window.localStorage.getItem('fang_token');
+    }
     @action async upload(cb:Function=(msg:any)=>{}){
         console.log('1232131231231231232312312');
         
