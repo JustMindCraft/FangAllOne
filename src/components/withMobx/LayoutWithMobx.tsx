@@ -104,6 +104,10 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
               &nbsp;&nbsp;&nbsp;资料管理
             </Typography>
           <List>
+          <ListItem button key="users" onClick={(e)=>{history.push('/dashboard/users')}}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary='我的店铺' />
+              </ListItem>
               <ListItem button key="users" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='用户管理' />
