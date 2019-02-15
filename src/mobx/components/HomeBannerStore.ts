@@ -25,8 +25,8 @@ export class HomeBannerStore{
         console.log(img);
         console.log(this.userId);
         
-        api('home_banners',UPDATE,{id:this.userId,images:img},{
-            fields: ['username', 'id']
+        api('home_banners',UPDATE,{id:this.userId},{
+            images:img
         }).then((rlt:any)=>{
             console.log(rlt);
             
