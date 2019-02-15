@@ -13,7 +13,6 @@ interface IImageUploaderState{
     img: any,
 }
 
-
 @observer
 export default class ImageUploader extends Component<IImageUploaderProps, IImageUploaderState>{
     constructor(props:any){
@@ -21,6 +20,20 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         this.state = {
             img: []
         }
+    }
+
+    componentWillMount(){
+      this.props.store.getImg()
+      console.log(this.props.store.img);
+      
+    }
+    componentDidMount(){
+      console.log('================');
+      
+      console.log(this.props.store.img);
+      this.setState({
+        img:this.props.store.img
+      })
     }
     uploadFile = (file:any) => {
         var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
@@ -72,9 +85,10 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         xhr.send(fd);
       }
       handleUpload= () => {
+        
         const {store} = this.props;
         console.log(store.name);
-        store.getImg(this.state.img)
+        store.checkImg(this.state.img)
         store.upload()
 
           
@@ -83,10 +97,19 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
         
         const files = e.target.files;
         console.log(files);
-        
+        this.setState({
+          img:[]
+        })
         for (var i = 0; i < files.length; i++) {
           this.uploadFile(files[i]); // call the function to upload the file
         }
+    }
+    getpropsimg= () => {
+      const {store} = this.props;
+      console.log(store.img);
+     
+
+        
     }
     render(){
         let image=this.state.img
@@ -106,7 +129,7 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
             <input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
             </div>
             </form>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" onClick={this.getpropsimg}>
                     取消
                 </Button>   
                 <Button variant="contained" color="primary" onClick={this.handleUpload}>

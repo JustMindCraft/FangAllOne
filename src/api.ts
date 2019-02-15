@@ -15,7 +15,7 @@ import axios from 'axios';
 const token = window.localStorage.getItem('fang_token');
 
 export  function auth(method:string, condition:any){
-    console.log(method);
+    // console.log(method);
     
     switch(method){
         case AUTH:
@@ -44,12 +44,12 @@ export  function api(sourceName:string="users", method:string=LIST, condition:an
     const inflect = require('i')();
     const singleSource = inflect.singularize(sourceName); //资源名单复数转换
 
-    console.log(method);
-    console.log(singleSource);
-    console.log(sourceName);
-    console.log(condition);
-    console.log(config);
-    console.log(optional);
+    // console.log(method);
+    // console.log(singleSource);
+    // console.log(sourceName);
+    // console.log(condition);
+    // console.log(config);
+    // console.log(optional);
 
     switch (method) {
         case LIST:

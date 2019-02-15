@@ -12,15 +12,15 @@ export default [
                 const banner =await HomeBanner.findOne({where:condition})
                 console.log('打印banner结果为'+!banner)
                 if(!banner){
-                    const newone = await HomeBanner.upsert({id:condition.id,images:optional.images})
-                    console.log('新创建的banner为'+newone)
+                    const newone = await HomeBanner.create({id:condition.id,images:optional.images})
+                    console.log('新创建的banner为1'+newone)
                 return newone
 
                 }else{
                     const updateRlt  = await banner.update({
                         ...optional
                     });
-                    console.log('打印更新后的结果'+updateRlt)
+                    console.log('打印更新后的结果1'+updateRlt)
                     return h.response(updateRlt).code(200);
 
                 }
