@@ -21,6 +21,8 @@ export default [
                 const condition = JSON.parse(request.query.condition);
                 const optional = JSON.parse(request.query.optional);
                 
+                console.log(request.headers.origin.replace(/^(https?|ftp|file):\/\//, ''));
+                
                
                 const includeModels = [];
                 for (let index = 0; index < optional.fields.length; index++) {

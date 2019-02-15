@@ -14,6 +14,7 @@ interface ISettingWithMobxProps {
 @inject('msg')
 @observer
 class SettingWithMobx extends React.Component<ISettingWithMobxProps>{
+    
     componentDidMount(){
         const { app  } = this.props;
         app.getAppSetting();
