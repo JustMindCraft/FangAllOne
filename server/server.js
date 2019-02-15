@@ -13,7 +13,12 @@ const Pack = require('../package');
 
 const server = Hapi.server({
     port: 3002,
-    host: 'localhost'
+    host: 'localhost',
+    "routes": {
+        "cors": {
+            origin: ["*"],
+        }
+    }
 });
 
 

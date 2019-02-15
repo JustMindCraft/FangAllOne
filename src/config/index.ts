@@ -1,3 +1,3 @@
 export default {
-    basicUri: 'http://localhost:3000',
+    basicUri: 'http://localhost:3002',
 }
