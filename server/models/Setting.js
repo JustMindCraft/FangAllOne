@@ -43,6 +43,7 @@ export default  (sequelize, DataTypes) => {
 
     Setting.associate = models => {
        Setting.belongsTo(models.App);
+
     }
     
 

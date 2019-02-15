@@ -1,7 +1,7 @@
 import sequelize  from "../db";
 import Sequelize from 'sequelize';
 
-const Permission = sequelize.define('permission', {
+const Permission = sequelize.define('permissions', {
     modelName: {
         type: Sequelize.STRING,
     },

@@ -25,4 +25,8 @@
 3. 超越权限分割的在线OA
 4. 革命性的动态角色管理系统
 
+## 开发步骤详细简述
+
+https://github.com/JustMindCraft/FangAllOne/blob/master/dev.md
+
 
