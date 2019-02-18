@@ -34,7 +34,7 @@ const Layout = (props: any) => {
                      justifyContent: "space-between",
                     flexDirection: 'column',
                     alignItems: 'center',
-                    height: "88%",
+                    height: "100%",
                     flex: 1,
                 }
                 }>
@@ -52,7 +52,6 @@ const Layout = (props: any) => {
                 
             </Paper>
             
-            <br/>
            
             {!isPc && <MobileBottom />}
 

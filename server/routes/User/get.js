@@ -7,6 +7,8 @@ import sha256 from 'sha256';
 const querySchema = Joi.object({
     condition: Joi.string().required(),
     optional: Joi.string().optional(),
+    appId: Joi.string(),
+    token: Joi.string().optional(),
 })
 export default [
     {
@@ -22,6 +24,7 @@ export default [
             });
         },
         options: {
+            auth: false,
             description: '获取一个用户的信息',
             notes: 'condition参数包含用户的查询条件， optional包含分页page,pagesize，筛选字段filter,以及排序sort信息',
             tags: ['api'], // ADD THIS TAG
@@ -52,7 +55,8 @@ export default [
             tags: ['api'], // ADD THIS TAG
             validate: {
                 query: {
-                    token: Joi.required()
+                    token: Joi.required(),
+                    appId: Joi.string().optional(),
                 },  
             }
             
@@ -77,7 +81,25 @@ export default [
                 return h.response(error).code(203);
             }
             
-        }
+        },
+        options: {
+            auth: false,
+            description: '获取一个用户的信息',
+            notes: 'condition参数包含用户的查询条件， optional包含分页page,pagesize，筛选字段filter,以及排序sort信息',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                query: {
+                    token: Joi.required(),
+                    appId: Joi.string().optional(),
+                    condition: Joi.string(),
+                    optional: Joi.string(),
+                }, 
+                params: {
+                    id: Joi.required(),
+                } 
+            }
+            
+        },
     },
     
     {

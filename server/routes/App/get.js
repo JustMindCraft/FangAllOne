@@ -1,9 +1,14 @@
 import Joi from 'joi';
-import { App } from '../../models/';
+import models, { App } from '../../models/';
 import Sequelize from 'sequelize';
 
 const Op = Sequelize.Op;
-
+Array.prototype.remove = function(val) {
+    var index = this.indexOf(val);
+    if (index > -1) {
+    this.splice(index, 1);
+    }
+};
 
 export default [
     {
@@ -11,20 +16,55 @@ export default [
         path: '/app',
         handler: async (request, h) => {
             try {
-                const { host, uuid } = request.query;
-                let app = await App.findOne({where: {
-                    [Op.or]: 
-                    [
-                        {host}, 
-                        {uuid}
-                    ]
-                }})
-                if(!app){
-                    app = await App.findOne({where: {isDefault: true}})
+                
+                
+                const condition = JSON.parse(request.query.condition);
+                const optional = JSON.parse(request.query.optional);
+                const {token, appId} = request.query;
+
+                
+                const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+                
+               
+                const includeModels = [];
+                for (let index = 0; index < optional.fields.length; index++) {
+                    const field = optional.fields[index];
+                    if(models[field]){
+                        optional.fields.remove(field);
+                        includeModels.push({
+                            model: models[field],
+                        });
+                    }
+                    
                 }
+
+                const attributes = ['id', 'name', 'appId'].concat(optional.fields);
+                
+                let app = await App.findOne(
+                    {
+                        where: {
+                        ...condition,
+                        host,
+                        appId
+
+                        },
+                        attributes,
+                        include: includeModels,
+                })
+                if(!app){
+                    app = await App.findOne({
+                            where: {isDefault: true},
+                         attributes,
+                         include: includeModels,
+                    });
+                }
+
                 return h.response(app).code(200);
             } catch (error) {
-                console.error(error);
+                console.log(error);
+                
+                return h.response(error.original.toString()).code(203);
+
                 
             }
             
@@ -36,8 +76,10 @@ export default [
             tags: ['api'], // ADD THIS TAG
             validate: {
                  query: {
-                     host: Joi.string(),
-                     uuid: Joi.string(),
+                     condition: Joi.string(),
+                     optional: Joi.string(),
+                     token: Joi.string(),
+                     appId: Joi.string(),
                  }
             }
             

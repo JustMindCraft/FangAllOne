@@ -5,5 +5,5 @@ import PATCH from './patch';
 import PUT from './put';
 
 export default []
-.concat(GET)
+.concat(GET).concat(PATCH)
 

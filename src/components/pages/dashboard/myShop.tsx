@@ -25,8 +25,8 @@ const MyShop  = () => {
                         应用信息
                     </Typography>
                     <ExpansionPanelEditor  title="店铺名称"/>
-                    <ExpansionPanelEditor　title="应用LOGO"  />
-
+                    <ExpansionPanelEditor　title="店铺LOGO"  />
+                    <ExpansionPanelEditor　title="开关店铺"  />
                     <Divider />                  
 
                

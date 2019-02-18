@@ -1,5 +1,4 @@
 import React,{ Component } from 'react';
-import { Input } from 'semantic-ui-react';
 
 const cloudName = 'ddycd5xyn';
 const unsignedUploadPreset = 'rq6jvg1m';
@@ -82,7 +81,7 @@ export default class ImageUploader extends Component<IImageUploaderProps, IImage
                     <img src={this.state.img} alt=""/>
                 </div>
             <div>
-            <Input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
+            <input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
             </div>
             </form>
                    

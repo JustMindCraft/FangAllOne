@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import {User} from '../../models/';
+import {User, App} from '../../models/';
 import JWT from 'jsonwebtoken';
 import config from '../../config';
 
@@ -29,12 +29,14 @@ export default [
         method: 'POST',
         path: '/auth',
         handler: async (request, h) => {
-                console.log(request.payload);
                 
                  const { username, password, model} = request.payload;
+                 const host = request.headers.origin.replace(/https?:\/\//, '');
+                 const app = await App.findOne({host});
+
                  try {
                     const user =  await User.auth(
-                        username, password, model
+                        username, password, model, app.id
                     );
                     if(!user){
                         return h.response(false).code(203)
