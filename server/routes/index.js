@@ -1,5 +1,6 @@
 import User from './User';
 import App from './App';
+import Role from './Role';
 
 
 const indexRoute = {
@@ -10,6 +11,6 @@ const indexRoute = {
     }
 }
 
-const routes = [indexRoute].concat(User).concat(App);
+const routes = [indexRoute].concat(User).concat(App).concat(Role);
 
 export default routes;
