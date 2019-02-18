@@ -150,6 +150,9 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         store.uploadLoading(loading)
         const files = e.target.files;
         console.log(files);
+        if(files.length==0){
+          store.uploadLoading(false)
+        }
         this.setState({
           img:[]
         })
