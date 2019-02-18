@@ -79,8 +79,10 @@ class App extends Component<IAppProps, IAppState> {
   
   componentDidMount(){
     const { app, currentUser } = this.props;
-    app.getAppInfo();
+    console.log('拉取一次数据');
     
+    app.getAppInfo();
+    currentUser.getUserInfo()
   }
 
 

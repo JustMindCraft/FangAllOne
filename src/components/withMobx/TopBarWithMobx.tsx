@@ -18,6 +18,7 @@ class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
         const { currentUser } = this.props;
         currentUser.getUserInfo();
         homeBannerStore.getImg();
+       
         
     }
     logout = () => {
