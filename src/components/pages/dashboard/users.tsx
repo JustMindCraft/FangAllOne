@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
+import UserAdminWithMobx from '../../withMobx/UserAdminWIthMobx';
 
 
-class UserAdmin extends Component {
+class UserAdminPage extends Component {
     constructor(props:any) {
         super(props);
         
@@ -13,9 +14,10 @@ class UserAdmin extends Component {
         return (
             <LayoutWithMobx>
                <h1>用户管理</h1>
+               <UserAdminWithMobx />
             </LayoutWithMobx>
         )
     }
 }
 
-export default UserAdmin;
+export default UserAdminPage;

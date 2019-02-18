@@ -16,6 +16,7 @@
 
 1. hapiJS
 2. create-react-app
+3. TypeScript
 
 
 ## 实现功能

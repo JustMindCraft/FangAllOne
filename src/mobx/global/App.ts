@@ -4,6 +4,7 @@ import { api } from '../../api';
 
 export class App {
     @observable loading=true;
+    @observable loadingSetting=true;
     @observable appId='';
     @observable name="";
 
@@ -17,17 +18,20 @@ export class App {
             this.loading = false;
             this.name = rlt.data.name;
             window.document.title = this.name; 
-            this.appId = rlt.data.uuid;    
+            this.appId = rlt.data.appId;
+            window.localStorage.setItem("fang_app_id", this.appId);    
         });
         
     }
 
     @action getAppSetting(){
+        this.loadingSetting = true;
         return api('apps', SHOW, {appId: this.appId}, {
             fields: ["Setting"],
             
         }).then(rlt=>{
-            console.log(rlt);
+            this.loadingSetting = false;
+            return rlt;
             
         })
     }

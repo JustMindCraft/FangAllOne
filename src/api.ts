@@ -38,7 +38,20 @@ export  function auth(method:string, condition:any){
 }
 
 
-export  function api(sourceName:string="users", method:string=LIST, condition:any={}, optional:any={}){
+
+
+
+
+export  function api(
+    sourceName: 
+    "users" | "posts" | "apps" 
+    = "users", 
+    method:string
+    =LIST, 
+    condition:any
+    ={}, 
+    optional:any={}
+    ){
     const inflect = require('i')();
     const singleSource = inflect.singularize(sourceName); 
     switch (method) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Card, Typography, Divider, Button } from '@material-ui/core';
+import { TextField, Card, Typography, Divider, Button, CircularProgress } from '@material-ui/core';
 import FormCardVertical from '../stateless/FormCardVertical';
 import ExpansionPanelEditor from '../stateless/ExpansionPanelEditor';
 import { observer, inject } from 'mobx-react';
@@ -30,6 +30,14 @@ class SettingWithMobx extends React.Component<ISettingWithMobxProps>{
     
     render(){
         const { app } = this.props;
+        if (app.loadingSetting) {
+            return (
+                <FormCardVertical>
+                     <CircularProgress /><br/>
+                        正在载入设置
+                </FormCardVertical>
+            )
+        }
         return(
             <FormCardVertical style={{
                 width: '60%',
@@ -116,8 +124,6 @@ class SettingWithMobx extends React.Component<ISettingWithMobxProps>{
                         安全与维护
                     </Typography>
     
-                    <ExpansionPanelEditor　title="应用秘钥"  />
-                   
                     <ExpansionPanelEditor title="进入维护状态"  />
                     <ExpansionPanelEditor title="停止新用户注册" />
     

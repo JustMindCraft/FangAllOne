@@ -8,9 +8,9 @@ import Register from './components/pages/register';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import login from './components/pages/login';
 import { inject, observer } from 'mobx-react';
-import UserAdmin from './components/pages/dashboard/users';
 import Personal from './components/pages/personal';
 import SettingPage from './components/pages/dashboard/setting';
+import UserAdminPage from './components/pages/dashboard/users';
 
 
 interface IPrivateRouteProps {
@@ -117,7 +117,7 @@ class App extends Component<IAppProps, IAppState> {
             <Switch>
               <Route exact path="/" component={Home} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdmin} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdminPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingPage} />
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />

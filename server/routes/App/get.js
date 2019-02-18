@@ -20,8 +20,10 @@ export default [
                 
                 const condition = JSON.parse(request.query.condition);
                 const optional = JSON.parse(request.query.optional);
+                const {token, appId} = request.query;
+
                 
-                console.log(request.headers.origin.replace(/^(https?|ftp|file):\/\//, ''));
+                const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
                 
                
                 const includeModels = [];
@@ -41,7 +43,10 @@ export default [
                 let app = await App.findOne(
                     {
                         where: {
-                        ...condition
+                        ...condition,
+                        host,
+                        appId
+
                         },
                         attributes,
                         include: includeModels,
@@ -74,6 +79,7 @@ export default [
                      condition: Joi.string(),
                      optional: Joi.string(),
                      token: Joi.string(),
+                     appId: Joi.string(),
                  }
             }
             
