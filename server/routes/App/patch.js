@@ -46,6 +46,7 @@ export default [
                  },
                  query: {
                      token: Joi.string().required(),
+                     appId: Joi.string()
                  }
             }
             

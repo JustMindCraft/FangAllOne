@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 import bcrypt from 'bcrypt';
 import assert from 'assert';
+import { App } from '.';
 
 const Op = Sequelize.Op;
 
@@ -85,9 +86,10 @@ export default (sequelize, DataTypes)=>{
     
     
     
-    User.auth = async function(username, password, model){
+    User.auth = async function(username, password, model, appId){
         try {
             const user = await this.findOne({where: {
+                appId,
                 [Op.or]: 
                 [
                     {username}, 

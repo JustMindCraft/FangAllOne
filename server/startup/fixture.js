@@ -77,11 +77,13 @@ export default  async () => {
     if(userCount===0){
         console.log(`发现${defaultApp.name}下，superAdmin角色下没有有用户，　正在创建`);
         const superAdmin = await User.register(username, password, mobile, email);
+        await superAdmin.setApp(defaultApp);
         await superAdmin.addRole(superAdminRole);
         console.log(`${defaultApp.name}下，超级管理员检查完毕${JSON.stringify(superAdmin)}`);
 
     }else{
         let user = await User.findOne({where: {
+            appId: defaultApp.id,
             [Op.or]: 
             [
                 {username}, 
@@ -107,6 +109,7 @@ export default  async () => {
             console.log("根据配置找不到已经存在的管理员，根据配置重新创建一个");
             user = await User.register(username, password, mobile, email);
             await user.addRole(superAdminRole);
+            await user.setApp(defaultApp);
             
         }
         console.log(`${defaultApp.name}下，superAdmin角色已经有用户，超级管理员检查完毕${JSON.stringify(user)}`);

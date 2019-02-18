@@ -40,7 +40,20 @@ export  function auth(method:string, condition:any){
 }
 
 
-export  function api(sourceName:string="users", method:string=LIST, condition:any={}, optional:any={}){
+
+
+
+
+export  function api(
+    sourceName: 
+    "users" | "posts" | "apps" | "roles"| "home_banners"
+    = "users", 
+    method:string
+    =LIST, 
+    condition:any
+    ={}, 
+    optional:any={}
+    ){
     const inflect = require('i')();
     const singleSource = inflect.singularize(sourceName); //资源名单复数转换
 

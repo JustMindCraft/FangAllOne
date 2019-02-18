@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react';
 import {  computed } from "mobx";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import userSession from '../../mobx/global/UserSession';
+import msg from '../../mobx/global/InformationMsg';
 import app from '../../mobx/global/App';
 const cloudName = 'ddycd5xyn';
 const unsignedUploadPreset = 'rq6jvg1m';
@@ -90,6 +91,13 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         });
       
         xhr.onreadystatechange = (e) => {
+          console.log(xhr);
+          if(xhr.status != 200){
+            msg.show('图片上传失败，请稍后再试')
+            const {store} = this.props;
+            let loading = false
+            store.uploadLoading(loading)
+          }
           if (xhr.readyState == 4 && xhr.status == 200) {
             const {store} = this.props;
             let loading = false
@@ -114,6 +122,8 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
             })
            
           }
+
+          
         };
       
         fd.append('upload_preset', unsignedUploadPreset);
@@ -126,7 +136,10 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         const {store} = this.props;
         console.log(store.name);
         store.checkImg(this.state.img)
-        store.upload()
+        store.upload((m:string)=>{
+            
+          msg.show(m);
+      });
 
           
       }

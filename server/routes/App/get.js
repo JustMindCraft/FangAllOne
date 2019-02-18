@@ -20,8 +20,10 @@ export default [
                 
                 const condition = JSON.parse(request.query.condition);
                 const optional = JSON.parse(request.query.optional);
+                const {token, appId} = request.query;
+
                 
-                console.log(request.headers.origin.replace(/^(https?|ftp|file):\/\//, ''));
+                const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
                 
                
                 const includeModels = [];
@@ -41,7 +43,10 @@ export default [
                 let app = await App.findOne(
                     {
                         where: {
-                        ...condition
+                        ...condition,
+                        host,
+                        appId
+
                         },
                         attributes,
                         include: includeModels,
@@ -74,6 +79,81 @@ export default [
                      condition: Joi.string(),
                      optional: Joi.string(),
                      token: Joi.string(),
+                     appId: Joi.string(),
+                 }
+            }
+            
+        },
+    },
+    {
+        method: 'GET',
+        path: '/apps',
+        handler: async (request, h) => {
+            try {
+                
+                
+                const condition = JSON.parse(request.query.condition);
+                const optional = JSON.parse(request.query.optional);
+                const {token, appId} = request.query;
+
+                
+                const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+                
+               
+                const includeModels = [];
+                for (let index = 0; index < optional.fields.length; index++) {
+                    const field = optional.fields[index];
+                    if(models[field]){
+                        optional.fields.remove(field);
+                        includeModels.push({
+                            model: models[field],
+                        });
+                    }
+                    
+                }
+
+                const attributes = ['id', 'name', 'appId'].concat(optional.fields);
+                
+                let app = await App.findOne(
+                    {
+                        where: {
+                        ...condition,
+                        host,
+                        appId
+
+                        },
+                        attributes,
+                        include: includeModels,
+                })
+                if(!app){
+                    app = await App.findOne({
+                            where: {isDefault: true},
+                         attributes,
+                         include: includeModels,
+                    });
+                }
+
+                return h.response(app).code(200);
+            } catch (error) {
+                console.log(error);
+                
+                return h.response(error.original.toString()).code(203);
+
+                
+            }
+            
+        },
+        options: {
+            auth: false,
+            description: '获取一个app的信息的列表',
+            notes: 'condition 是查询条件， optional 是排序和分页',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                 query: {
+                     condition: Joi.string(),
+                     optional: Joi.string(),
+                     token: Joi.string(),
+                     appId: Joi.string(),
                  }
             }
             

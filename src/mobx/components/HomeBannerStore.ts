@@ -42,6 +42,11 @@ export class HomeBannerStore{
         }).then((rlt:any)=>{
             console.log(rlt);
             this.loading = false;
+            if(rlt.status==200){
+                return cb('图片上传成功')
+            }else{
+                return cb('图片上传失败，请稍后再试')
+            }
             
         })
         
