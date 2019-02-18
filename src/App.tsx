@@ -10,13 +10,10 @@ import login from './components/pages/login';
 import { inject, observer } from 'mobx-react';
 import Personal from './components/pages/personal';
 import SettingPage from './components/pages/dashboard/setting';
-<<<<<<< HEAD
 import Shops from './components/pages/dashboard/shops'
 import MyShop from './components/pages/dashboard/myShop'
-=======
 import UserAdminPage from './components/pages/dashboard/users';
 
->>>>>>> bdfe69ee30a1d337c5db568fcc465ce3ebd803d2
 
 interface IPrivateRouteProps {
   msg:any, auth:boolean, exact:boolean, path:any,

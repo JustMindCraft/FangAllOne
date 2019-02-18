@@ -1,5 +1,6 @@
 import User from './User';
 import App from './App';
+import Product from './Product'
 
 
 const indexRoute = {
@@ -10,6 +11,6 @@ const indexRoute = {
     }
 }
 
-const routes = [indexRoute].concat(User).concat(App);
+const routes = [indexRoute].concat(User).concat(App).concat(Product);
 
 export default routes;
