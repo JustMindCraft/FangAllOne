@@ -21,9 +21,16 @@ export default [
                 const condition = JSON.parse(request.query.condition);
                 const optional = JSON.parse(request.query.optional);
                 const { sort, feilds, page, pagesize} = optional;
+                const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+                const app = await App.findOne({
+                    where: {
+                        host
+                    },
+                })
                 const roles = await Role.findAll({
                     where: {
-                        ...condition
+                        ...condition,
+                        appId: app.id,
                     },
                     attributes: feilds,
                     order: [sort],
@@ -41,7 +48,7 @@ export default [
             
         },
         options: {
-            auth: false,
+            auth: 'jwt',
             description: '获取一个角色的信息的列表',
             notes: 'condition 是查询条件， optional包含sort排序和fields字段 page, pagesize分页',
             tags: ['api'], // ADD THIS TAG
