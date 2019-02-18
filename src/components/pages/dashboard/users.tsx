@@ -1,22 +1,13 @@
-import React, { Component } from 'react';
-import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
-import UserAdminWithMobx from '../../withMobx/UserAdminWIthMobx';
+import React from 'react';
+import LayoutWithMobx from "../../withMobx/LayoutWithMobx";
 
-
-class UserAdminPage extends Component {
-    constructor(props:any) {
-        super(props);
-        
-    }
-   
-
+class UserAdminPage extends React.Component{
     render(){
         return (
             <LayoutWithMobx>
-               <h1>用户管理</h1>
-               <UserAdminWithMobx />
+                <h1>Users</h1>
             </LayoutWithMobx>
-        )
+        )    
     }
 }
 

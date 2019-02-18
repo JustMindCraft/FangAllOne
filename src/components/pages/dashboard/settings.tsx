@@ -1,15 +1,14 @@
 import React from 'react';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
 
-class ProductsAdminPage extends React.Component{
+class SettingsPage extends React.Component{
     render(){
-        return (
+        return(
             <LayoutWithMobx>
-                <h1>Products</h1>
-                
+                <h1>Settings</h1>
             </LayoutWithMobx>
         )
     }
 }
 
-export default ProductsAdminPage;
+export default SettingsPage;
