@@ -1,13 +1,13 @@
 import { observable, action } from "mobx";
 import { api } from "../../api";
-import { LIST } from "../../constants/API";
+import { LIST, CREATE } from "../../constants/API";
 
 class RolesAdmin {
     @observable loading = true;
     @observable list = [];
-    @action listRoles(){
+    @action listRoles(condition:any){
         return api('roles', LIST, {
-           name: 'superAdmin',
+            ...condition
         }, {
             sort: ["createdAt", 'DESC'],
             fields: ['name', 'id'],
@@ -17,6 +17,14 @@ class RolesAdmin {
             console.log(rlt);
             this.loading = false
             this.list = rlt.data;
+        })
+    }
+    @action createRole(condition:any){
+        return api('roles', CREATE, {
+            ...condition
+        }).then((rlt:any)=>{
+            console.log(rlt);
+            
         })
     }
 }
