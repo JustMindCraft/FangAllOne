@@ -15,7 +15,7 @@ class RolesAdmin {
             pagesize: 10,
         }).then((rlt:any)=>{
             console.log(rlt);
-            
+            this.loading = false
             this.list = rlt.data;
         })
     }

@@ -46,7 +46,7 @@ export  function auth(method:string, condition:any){
 
 export  function api(
     sourceName: 
-    "users" | "posts" | "apps" | "roles"| "home_banners"
+    "users" | "posts" | "apps" | "roles"|"products"|"home_banners"
     = "users", 
     method:string
     =LIST, 

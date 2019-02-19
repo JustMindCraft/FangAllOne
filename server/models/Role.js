@@ -6,6 +6,10 @@ export default  (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING(),
         },
+        cardLevel: {
+            type: DataTypes.INTEGER(),
+            defaultValue: 0,
+        },
         isDeleted: {
             type: DataTypes.BOOLEAN(),
             defaultValue: false,

@@ -21,6 +21,8 @@ export const Shop =  sequelize.import(__dirname+'/Shop.js');
 export const Product =  sequelize.import(__dirname+'/Product.js');
 export const ShopAgencyProduct =  sequelize.import(__dirname+'/ShopAgencyProduct.js');
 export const Setting =  sequelize.import(__dirname+'/Setting.js');
+export const ProductSpecification =  sequelize.import(__dirname+'/ProductSpecification.js');
+export const ProductProperty =  sequelize.import(__dirname+'/ProductProperty.js');
 
 
 const models = {
@@ -33,6 +35,8 @@ const models = {
     ShopAgencyProduct,
     Setting,
     App,
+    ProductSpecification,
+    ProductProperty
 }
 
 for (const model in models) {

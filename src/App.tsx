@@ -11,6 +11,8 @@ import { inject, observer } from 'mobx-react';
 import HomeBanner from './components/pages/dashboard/banner'
 import Personal from './components/pages/personal';
 import SettingPage from './components/pages/dashboard/setting';
+import Shops from './components/pages/dashboard/shops'
+import MyShop from './components/pages/dashboard/myShop'
 import UserAdminPage from './components/pages/dashboard/users';
 import RolesAdminPage from './components/pages/dashboard/roles';
 
@@ -124,6 +126,9 @@ class App extends Component<IAppProps, IAppState> {
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/banner" component={HomeBanner} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdminPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/my_shop" component={MyShop} />
+
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/roles" component={RolesAdminPage} />
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
