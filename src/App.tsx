@@ -13,6 +13,7 @@ import SettingPage from './components/pages/dashboard/setting';
 import Shops from './components/pages/dashboard/shops'
 import MyShop from './components/pages/dashboard/myShop'
 import UserAdminPage from './components/pages/dashboard/users';
+import RolesAdminPage from './components/pages/dashboard/roles';
 
 
 interface IPrivateRouteProps {
@@ -124,6 +125,7 @@ class App extends Component<IAppProps, IAppState> {
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/my_shop" component={MyShop} />
 
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/roles" component={RolesAdminPage} />
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
               <Route exact path="/login" component={login} />

@@ -4,7 +4,7 @@ import {Product} from '../../models/';
 export default [
   {
     method: 'GET',
-    path: '/product/{id}',
+    path: '/products/{id}',
     handler: async (request, h) => {
         try {
           const { id } = request.params;
@@ -16,8 +16,6 @@ export default [
         } catch (error) {
             console.log(error);
             return h.response(error.original.toString()).code(203);
-
-            
         }
         
     },
@@ -35,4 +33,5 @@ export default [
         
     },
   },
+
 ]
