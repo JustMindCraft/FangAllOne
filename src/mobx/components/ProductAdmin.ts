@@ -1,7 +1,8 @@
-import { observable } from "mobx";
+import { observable, IObservableArray } from "mobx";
 
 export class ProductAdmin {
     @observable loading = true;
+    readonly todos = observable<IObservableArray>([]);
 }
 
 

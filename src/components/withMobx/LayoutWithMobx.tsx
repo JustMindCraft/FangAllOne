@@ -165,7 +165,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
                 <ListItemIcon><SettingIcon /></ListItemIcon>
                 <ListItemText primary='系统设置' />
               </ListItem>
-              <ListItem button key="roles" onClick={(e)=>{history.push('/dashboard/users')}}>
+              <ListItem button key="roles" onClick={(e)=>{history.push('/dashboard/roles')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='角色管理' />
               </ListItem>
