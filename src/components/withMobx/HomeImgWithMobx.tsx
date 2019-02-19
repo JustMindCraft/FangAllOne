@@ -14,7 +14,6 @@ class HomeImgWithMobx extends React.Component<IImageGetProps>{
     }
     render(){
         
-        
         return (
             <HomeImg imgs={this.props.store.img}/>
         )
