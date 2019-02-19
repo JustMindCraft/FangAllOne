@@ -11,7 +11,8 @@ import { inject, observer } from 'mobx-react';
 import Personal from './components/pages/personal';
 import SettingsPage from './components/pages/dashboard/settings';
 import UserAdminPage from './components/pages/dashboard/users';
-import ProductsAdminPage from './components/pages/dashboard/products';
+import ProductsPage from './components/pages/dashboard/products';
+import OrdersPage from './components/pages/dashboard/orders';
 
 
 interface IPrivateRouteProps {
@@ -119,8 +120,9 @@ class App extends Component<IAppProps, IAppState> {
               <Route exact path="/" component={Home} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard" component={Dashboard} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdminPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/products" component={ProductsPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/orders" component={OrdersPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingsPage} />
-              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/products" component={ProductsAdminPage} />
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
               <Route exact path="/login" component={login} />

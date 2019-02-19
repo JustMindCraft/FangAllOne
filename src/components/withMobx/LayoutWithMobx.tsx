@@ -89,7 +89,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
               &nbsp;&nbsp;&nbsp;账单订单
             </Typography>
            <List>
-              <ListItem button key="orders" onClick={(e)=>{history.push('/dashboard/users')}}>
+              <ListItem button key="orders" onClick={(e)=>{history.push('/dashboard/orders')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='订单管理' />
               </ListItem>
