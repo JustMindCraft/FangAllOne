@@ -5,7 +5,9 @@ import { api } from "../../api";
 import { UPDATE ,SHOW_UNIQUE} from './../../constants/API';
 
 export class HomeBannerStore{
-    @observable img=[]
+    
+    @observable img: Array<string> = [];
+
     @observable loading=false;
 
     @action checkImg(value:any){
@@ -31,7 +33,6 @@ export class HomeBannerStore{
       }
     
     @action async upload(cb:Function=(msg:any)=>{}){
-        console.log('1232131231231231232312312');
         this.loading = true;
         
         let img = this.img;
@@ -60,9 +61,10 @@ export class HomeBannerStore{
             console.log(rlt);
             this.loading = false;
             set(this.img,rlt.data.images)
-            return  
-            
-            
+            // return  
+        }
+        ).catch((err:any)=>{
+            this.loading = false;
         })
         
         

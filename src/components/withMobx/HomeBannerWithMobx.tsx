@@ -51,20 +51,13 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
             img: []
         }
     }
-    @computed get aaa() {
-      // 正确的; 计算属性会追踪 `user.name` 属性
-      return userSession
-    }
+   
     componentWillMount(){
       this.props.store.getImg()
       // userSession.getUserInfo();
-      // console.log(this.aaa);
-      
     }
+
     componentDidMount(){
-      console.log('================');
-      
-      console.log(this.props.store.img);
       this.setState({
         img:this.props.store.img
       })
@@ -112,10 +105,10 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
             // tokens.splice(-2, 0, 'w_150,c_scale');
             var img = new Image(); // HTML5 Constructor
             img.src = url
-            console.log(img.src);
+            // console.log(img.src);
             let images = this.state.img;
             images.push(img.src)
-            console.log(this.state.img);
+            // console.log(this.state.img);
             
             this.setState({
                 img: images,
@@ -134,7 +127,7 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
       handleUpload= () => {
         
         const {store} = this.props;
-        console.log(store.name);
+        // console.log(store.name);
         store.checkImg(this.state.img)
         store.upload((m:string)=>{
             
@@ -149,7 +142,6 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         let loading = true
         store.uploadLoading(loading)
         const files = e.target.files;
-        console.log(files);
         if(files.length==0){
           store.uploadLoading(false)
         }
@@ -175,7 +167,6 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         let images=[]
         let children;
         const {store} = this.props
-        console.log(store.loading);
         if (store.loading) {
           children = <LoadApp />
         }else{
@@ -185,27 +176,22 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
           }
           children = images
         }
-
-
-        
-        
         return(
             <div id="dropbox">
             <div style={{width:'700px',height:'300px',border:'1px dashed #aaa',overflowY: 'scroll'}}>
                     {children}
                 </div>
             <form>
-                
             <div>
             <input type="file" multiple={true} accept="image/*" onChange={this.handleFiles} />
             </div>
             </form>
             <Button variant="contained" color="secondary" onClick={this.getpropsimg}>
                     取消
-                </Button>   
-                <Button variant="contained" color="primary" onClick={this.handleUpload}>
+            </Button>   
+            <Button variant="contained" color="primary" onClick={this.handleUpload}>
                     上传
-                </Button>
+            </Button>
                   
                     
             </div>
