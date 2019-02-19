@@ -17,7 +17,7 @@ class OrdersListWithMobx extends Component<IOrdersListWithMobx> {
                 maxWidth: '500px'
             }}>
                 <OrdersList/>
-                <h1>内容</h1>
+                <h1>内容1</h1>
             </div>
         )
     }

@@ -5,7 +5,7 @@ import OrdersListWithMobx from '../../withMobx/OrdersListWithMobx';
 import ordersListStore from '../../../mobx/components/OrdersListStore'
 
 
-export default class OrderPage extends React.Component{
+class Orders extends React.Component{
     render(){
         return (
             <LayoutWithMobx>
@@ -22,3 +22,5 @@ export default class OrderPage extends React.Component{
         )
     }
 }
+
+export default Orders;
