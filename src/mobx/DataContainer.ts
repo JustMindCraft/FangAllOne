@@ -1,14 +1,20 @@
+import { LIST } from './../constants/API';
 import { observable, action } from "mobx";
+import { api } from "./../api";
 
-export class AdminPanel {
+export class DataContainer {
     @observable title = "";
     @observable dataSource = [];
+    @observable columns = [];
     @observable singleDataSource = {};
     @observable sourceName = "users";
     @observable loading = true;
+    @observable actionLoading = true;
     @observable page=1;
     @observable pagesize = 25;
-    @observable sortDirection = 'up';//倒序还是逆序
+    @observable sortDirection = 'DESC';//倒序还是逆序
+    @observable sortColumn = "id";
+    @observable condition = {}
 
 
     @action setTitle(title:string){
@@ -19,8 +25,17 @@ export class AdminPanel {
         return this.sourceName = sourceName;
     }
 
-    @action sort(){
-        
+
+    @action getList(optional:any){
+        return api(this.sourceName as any, LIST, this.condition, optional);
+    }
+
+    @action sort(sortColumn:string, sortDirection:string ){
+        this.loading = true;
+        return this.getList({sort: [sortColumn, sortDirection]}).then((rlt:any)=>{
+            this.dataSource = rlt.data;
+            this.loading = false;
+        })
     }
 
     @action getDataSource(){
@@ -61,7 +76,7 @@ export class AdminPanel {
 }
 
 
-const adminPanel = new AdminPanel();
+const dataContainer = new DataContainer();
 
 
-export default adminPanel;
+export default dataContainer;
