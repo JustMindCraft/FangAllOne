@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import OrdersList from '../stateless/OrdersList';
-
+import Button from '@material-ui/core/Button';
 
 interface IOrdersListWithMobx {
     store: any
@@ -12,13 +12,12 @@ class OrdersListWithMobx extends Component<IOrdersListWithMobx> {
         const { store } = this.props;
 
         return (
-            <div style={{
-                width:'85%',
-                minWidth: '320px',
-                maxWidth: '500px'
-            }}>
+            <div>
+                <Button>
+                    导出
+                </Button>
+                <br/>
                 <OrdersList/>
-                <h1>内容1</h1>
             </div>
         )
     }
