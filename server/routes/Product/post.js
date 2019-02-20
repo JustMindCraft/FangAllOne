@@ -14,7 +14,7 @@ export default [
            
         },
         options: {
-            description: '创建一个用户',
+            description: '创建一个产品',
             notes: 'condition参数包含创建的字段, username, password, 这个方法特殊的地方在于，会返回一个token',
             tags: ['api'], // ADD THIS TAG
             validate: {
@@ -25,5 +25,22 @@ export default [
             
         },
     },
-    
+    {
+        method: 'POST',
+        path: '/products',
+        handler: async (request, h) => {
+           
+        },
+        options: {
+            description: '创建一个产品',
+            notes: 'condition参数包含创建的字段, username, password, 这个方法特殊的地方在于，会返回一个token',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                query: {
+                    condition: Joi.required()
+                },  
+            }
+            
+        },
+    }, 
 ]
