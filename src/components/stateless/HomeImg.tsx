@@ -26,7 +26,6 @@ const HomeImg =  (props:any)=>{
   return(
         <div >
               <ReactSwiper  swiperOptions={swiperOptions} showPagination items={items}  className="swiper-example"/> 
-        
         </div>
 
   )
