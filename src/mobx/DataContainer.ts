@@ -1,10 +1,10 @@
 import { LIST } from './../constants/API';
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import { api } from "./../api";
 
 export class DataContainer {
     @observable title = "";
-    @observable dataSource = [];
+    @observable list = [];
     @observable columns = [];
     @observable singleDataSource = {};
     @observable sourceName = "users";
@@ -16,6 +16,13 @@ export class DataContainer {
     @observable sortColumn = "id";
     @observable condition = {}
 
+    @computed get DataSource(){
+        return this.list.slice();
+    }
+
+    @action setCondition(condition:any){
+        return this.condition = condition;
+    }
 
     @action setTitle(title:string){
         return this.title = title;
@@ -33,7 +40,7 @@ export class DataContainer {
     @action sort(sortColumn:string, sortDirection:string ){
         this.loading = true;
         return this.getList({sort: [sortColumn, sortDirection]}).then((rlt:any)=>{
-            this.dataSource = rlt.data;
+            this.list = rlt.data;
             this.loading = false;
         })
     }
