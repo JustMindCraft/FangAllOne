@@ -7,6 +7,7 @@ const pageStyles = createStyles({
    root: {
      display: "flex",
      flexDirection: 'column',
-   }
+   },
+  
   });
 export default pageStyles

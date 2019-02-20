@@ -8,6 +8,7 @@ import Register from './components/pages/register';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import login from './components/pages/login';
 import { inject, observer } from 'mobx-react';
+import HomeBanner from './components/pages/dashboard/banner'
 import Personal from './components/pages/personal';
 import SettingPage from './components/pages/dashboard/setting';
 import Shops from './components/pages/dashboard/shops'
@@ -81,8 +82,10 @@ class App extends Component<IAppProps, IAppState> {
   
   componentDidMount(){
     const { app, currentUser } = this.props;
-    app.getAppInfo();
+    console.log('拉取一次数据');
     
+    app.getAppInfo();
+    currentUser.getUserInfo()
   }
 
 
@@ -120,6 +123,7 @@ class App extends Component<IAppProps, IAppState> {
             <Switch>
               <Route exact path="/" component={Home} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/banner" component={HomeBanner} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdminPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />

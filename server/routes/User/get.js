@@ -15,6 +15,7 @@ export default [
         method: 'GET',
         path: '/user',
         handler: (request, h) => {
+            console.log('拉取数据走了1')
             const condition = decodeURI(request.query.condition);
             const {id} = JSON.parse(condition);
             return h.response({
@@ -38,6 +39,7 @@ export default [
         method: 'GET',
         path: '/users',
         handler: (request, h) => {
+            console.log('拉取数据走了2')
             return 'Hello, world!';
         }
     },
@@ -45,7 +47,7 @@ export default [
         method: 'GET',
         path: '/auth',
         handler: (request, h) => {
-            
+            console.log('拉取数据走了3')
             return h.response(request.auth.credentials.id).code(200)
         },
         options: {
@@ -66,9 +68,10 @@ export default [
         method: 'GET',
         path: '/users/{id}',
         handler: async (request, h) => {
+            console.log('拉取数据走了4')
             const { id } = request.params;
             const { fields } = JSON.parse(request.query.optional);
-            
+            console.log('打印穿过来的id为'+id)
             try {
                 const user = await User.findByPk(
                     id,
@@ -107,6 +110,7 @@ export default [
         path: '/user/{username}',
         config: {auth: false},
         handler: async (request, h) => {
+            console.log('拉取数据走了5')
             const { username } = request.params;
             
             try {
@@ -128,7 +132,7 @@ export default [
         method: 'GET',
         path: '/getsms',
         handler: async (request, h) => {
-
+            console.log('拉取数据走了6')
            const { mobile } = request.query;
            if(!mobile){
                 return h.response("mobile missing").code(404);

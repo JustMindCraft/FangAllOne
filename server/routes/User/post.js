@@ -29,7 +29,6 @@ export default [
         method: 'POST',
         path: '/auth',
         handler: async (request, h) => {
-                
                  const { username, password, model} = request.payload;
                  const host = request.headers.origin.replace(/https?:\/\//, '');
                  const app = await App.findOne({host});

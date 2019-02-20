@@ -34,6 +34,7 @@ export class UserSession {
         api('users',SHOW_ID, {id: this.userId, token: this.token}, {
             fields: ['username', 'id']
         }).then((rlt:any)=>{
+            console.log(rlt);
             this.fetching = false;
             
             if(rlt.data.id.toString() === this.userId){

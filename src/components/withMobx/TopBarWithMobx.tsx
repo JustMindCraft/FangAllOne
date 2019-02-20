@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopBar  from '../stateless/TopBar';
 import { inject, observer } from 'mobx-react';
-
+import homeBannerStore from '../../mobx/components/HomeBannerStore';
 interface IPcTopWithMobxProps{
     currentUser: any,
     msg:any,
@@ -17,6 +17,11 @@ class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
     componentDidMount(){
         const { currentUser } = this.props;
         currentUser.getUserInfo();
+        console.log('这拉了一次');
+        
+        homeBannerStore.getImg();
+       
+        
     }
     logout = () => {
         this.props.msg.show('正在登出');;
