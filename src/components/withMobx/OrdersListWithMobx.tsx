@@ -7,6 +7,7 @@ interface IOrdersListWithMobx {
 }
 
 class OrdersListWithMobx extends Component<IOrdersListWithMobx> {
+    
     render(){
         const { store } = this.props;
 

@@ -8,15 +8,13 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper'
 
 const styles = createStyles({
     root: {
-        width: '100%',
-        overflowX: 'auto',
+        width: '100%'
     },
     table: {
-        minWidth: 700,
+        fontSize: '36px',
     },
     form: {
         display: 'flex',
@@ -26,8 +24,24 @@ const styles = createStyles({
     },
     searchIcon: {
         
+    },
+    inputRoot: {
+
+    },
+    inputInput: {
+
     }
 })
+
+let id = 0;
+function createdData(orderNo:any, orderTime:any, amount:any, payment:any, payTime:any, status:any) {
+    id += 1;
+    return {id, orderNo, orderTime, amount, payment, payTime, status}
+}
+
+const rows = [
+    createdData('46516351','1992.1012','1','45','25','jm')
+]
 
 interface IOrdersListProps {
     classes: any
@@ -53,7 +67,6 @@ const OrdersList = (props:IOrdersListProps) => {
                 />
                 <Button>搜索</Button>
             </div>
-            <Paper>
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow>
@@ -64,11 +77,21 @@ const OrdersList = (props:IOrdersListProps) => {
                             <TableCell>支付时间</TableCell>
                             <TableCell>订单状态</TableCell>
                             <TableCell>操作</TableCell>
-
                         </TableRow>
                     </TableHead>
+                    <TableBody>
+                        {rows.map(row => (
+                            <TableRow key={row.id}>
+                                <TableCell>{ row.orderNo}</TableCell>
+                                <TableCell>{ row.orderTime}</TableCell>
+                                <TableCell>{ row.amount }</TableCell>
+                                <TableCell>{ row.payment }</TableCell>
+                                <TableCell>{ row.payTime }</TableCell>
+                                <TableCell>{ row.status }</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
                 </Table>
-            </Paper>
         </div>
         
     )
