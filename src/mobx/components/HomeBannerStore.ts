@@ -6,13 +6,14 @@ import { UPDATE ,SHOW_UNIQUE} from './../../constants/API';
 
 export class HomeBannerStore{
     
-    @observable img: Array<string> = [];
+    @observable banners: Array<string> = [];
 
     @observable loading=false;
 
+
     @action checkImg(value:any){
         
-        return this.img = value;
+        return this.banners = value;
     }
 
     @action uploadLoading(value:any){
@@ -29,17 +30,17 @@ export class HomeBannerStore{
     }
 
     @computed get mobximg() {
-        return this.img
+        return this.banners.slice()
       }
     
     @action async upload(cb:Function=(msg:any)=>{}){
         this.loading = true;
         
-        let img = this.img;
-        console.log(img);
+        let home_banners = this.banners;
+        console.log(home_banners);
         console.log(this.userId);
         api('home_banners',UPDATE,{id:this.userId},{
-            images:img
+            images:home_banners
         }).then((rlt:any)=>{
             console.log(rlt);
             this.loading = false;
@@ -55,12 +56,11 @@ export class HomeBannerStore{
     }
     @action async getImg(cb:Function=(msg:any)=>{}){
         
-        console.log('走了这里！！！');
         this.loading = true;
         api('home_banners',SHOW_UNIQUE,{key:this.userId,token:this.token}).then((rlt:any)=>{
             console.log(rlt);
             this.loading = false;
-            set(this.img,rlt.data.images)
+            set(this.banners,rlt.data.images)
             // return  
         }
         ).catch((err:any)=>{

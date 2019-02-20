@@ -6,14 +6,14 @@ import ReactSwiper from 'reactjs-swiper';
 
 const HomeImg =  (props:any)=>{
       const items = new Array();
-      const imgs = props.imgs
-      console.log(imgs);
-      imgs.map((key:any)=>{
+      const banners = props.homebanners
+      console.log(banners);
+      banners.map((key:any)=>{
             console.log(key);
       })
         
-      for(let i = 0; i<imgs.length;i++){
-             let obj = {image:imgs[i],link:'www.baidu.com'}
+      for(let i = 0; i<banners.length;i++){
+             let obj = {image:banners[i],link:'www.baidu.com'}
             items.push(obj)
         }
        console.log(items);

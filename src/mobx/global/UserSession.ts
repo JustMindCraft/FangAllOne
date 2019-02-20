@@ -17,8 +17,6 @@ export class UserSession {
     }
 
     @action logOut(){
-        console.log('2');
-        
         window.localStorage.removeItem('fang_token');
         window.localStorage.removeItem('fang_userId');
         this.username = "";
@@ -27,21 +25,16 @@ export class UserSession {
     }
 
     @action getUserInfo(){
-        console.log('登录成功拉取数据');
-        
         this.fetching = true;
         if(!this.userId){
             this.isLogined = false;
             window.localStorage.removeItem('fang_token');
             return window.localStorage.removeItem('fang_userId');
         }
-        console.log(this.userId);
-        
         api('users',SHOW_ID, {id: this.userId, token: this.token}, {
             fields: ['username', 'id']
         }).then((rlt:any)=>{
             console.log(rlt);
-            
             this.fetching = false;
             
             if(rlt.data.id.toString() === this.userId){
