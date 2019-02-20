@@ -1,10 +1,10 @@
-import { LIST } from './../constants/API';
-import { observable, action, computed } from "mobx";
+import { LIST, SHOW, SHOW_ID } from './../constants/API';
+import { observable, action, computed, IObservableObject, toJS } from "mobx";
 import { api } from "./../api";
 
 export class DataContainer {
     @observable title = "";
-    @observable list = [];
+    @observable dataSource = [];
     @observable columns = [];
     @observable singleDataSource = {};
     @observable sourceName = "users";
@@ -16,8 +16,12 @@ export class DataContainer {
     @observable sortColumn = "id";
     @observable condition = {}
 
-    @computed get DataSource(){
-        return this.list.slice();
+    @computed get list(){
+        return this.dataSource.slice() as Array<any>;
+    }
+
+    @computed get one(){
+        return toJS(this.singleDataSource) as any;
     }
 
     @action setCondition(condition:any){
@@ -33,32 +37,51 @@ export class DataContainer {
     }
 
 
-    @action getList(optional:any){
-        return api(this.sourceName as any, LIST, this.condition, optional);
-    }
-
-    @action sort(sortColumn:string, sortDirection:string ){
-        this.loading = true;
-        return this.getList({sort: [sortColumn, sortDirection]}).then((rlt:any)=>{
-            this.list = rlt.data;
+    @action getList(optional:any,  cb: (msg: any)=> {}){
+        return api(this.sourceName as any, LIST, this.condition, optional).then((rlt:any)=>{
+            this.dataSource = rlt.data;
             this.loading = false;
-        })
+
+        }).catch((err:any)=>{
+            this.loading = false;
+            cb(err);
+        });
     }
 
-    @action getDataSource(){
-
+    @action sort(sortColumn:string, sortDirection:string, cb: (msg: any)=> {}){
+        this.loading = true;
+        cb('正在加载');
+        return this.getList({sort: [sortColumn, sortDirection]}, cb);
     }
 
-    @action getSingleDataSource(id:number){
+    @action getOne(optional:any,  cb: (msg: any)=> {}){
+        return api(this.sourceName as any, SHOW, this.condition, optional).then((rlt:any)=>{
+            this.singleDataSource = rlt.data;
+            this.loading = false;
 
+        }).catch((err:any)=>{
+            this.loading = false;
+            cb(err);
+        });
     }
 
-    @action sortDataSource(){
+   @action getOneById(id:number, optional:any,  cb: (msg: any)=> {}){
+    return api(this.sourceName as any, SHOW_ID, id, optional).then((rlt:any)=>{
+        this.singleDataSource = rlt.data;
+        this.loading = false;
 
-    }
+    }).catch((err:any)=>{
+        this.loading = false;
+        cb(err);
+    });
+   }
+
     @action search(){
 
     }
+
+   
+
     @action betweenCreatedTime(time:TimeRanges){
 
     }
