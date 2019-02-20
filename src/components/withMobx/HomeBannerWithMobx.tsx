@@ -52,7 +52,6 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
     }
    
     componentWillMount(){
-      console.log('走了一次');
       
       this.props.store.getImg()
       // userSession.getUserInfo();
@@ -76,7 +75,6 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         // Update progress (can be used to show progress indicator)
         xhr.upload.addEventListener("progress", function(e) {
           const progress = Math.round((e.loaded * 100.0) / e.total);
-          console.log(progress);
           
         //   document.getElementById('progress').style.width = progress + "%";
       
@@ -85,7 +83,6 @@ export default class HomeBannerWithMobx extends Component<IImageUploaderProps, I
         });
       
         xhr.onreadystatechange = (e) => {
-          console.log(xhr);
           if(xhr.status != 200){
             msg.show('图片上传失败，请稍后再试')
             const {store} = this.props;
