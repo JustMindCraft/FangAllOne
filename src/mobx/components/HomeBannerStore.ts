@@ -58,7 +58,6 @@ export class HomeBannerStore{
         
         this.loading = true;
         api('home_banners',SHOW_UNIQUE,{key:this.userId,token:this.token}).then((rlt:any)=>{
-            console.log(rlt);
             this.loading = false;
             set(this.banners,rlt.data.images)
             // return  
