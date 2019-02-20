@@ -39,7 +39,7 @@ export default [
                 })
                 return h.response(roles).code(200);
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 
                 return h.response(error.original.toString()).code(203);
 

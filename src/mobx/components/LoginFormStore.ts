@@ -63,7 +63,6 @@ export class LoginFormStore{
         return this.smsInput = value;
     }
     @action async login(cb:Function=(msg:any)=>{}){
-        console.log(this.username);
         
         this.isSubmit = true;
         this.logining = true;
@@ -109,7 +108,6 @@ export class LoginFormStore{
             }
             
         }).finally(()=>{
-            console.log('用户名密码错误');
             
             this.logining = false;
             this.isSuccess = false;

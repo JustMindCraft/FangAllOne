@@ -17,6 +17,7 @@ class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
     componentDidMount(){
         const { currentUser } = this.props;
         currentUser.getUserInfo();
+        
         homeBannerStore.getImg();
        
         

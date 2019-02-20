@@ -52,7 +52,7 @@ export default [
                         token
                     }).code(200);
                  } catch (error) {
-                    console.log(error);
+                    console.error(error);
                 
                     return error.errors;
                  }
@@ -78,9 +78,7 @@ export default [
         path: '/register',
         
         handler: async (request, h) => {
-            console.log(request.payload);
             const { username, password} = request.payload;
-            console.log(username, password);
             
             try {
                 const user =  await User.register(
@@ -100,7 +98,7 @@ export default [
                 }).code(200);
                 
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 
                 return error.errors;
             }

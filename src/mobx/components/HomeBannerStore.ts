@@ -37,12 +37,9 @@ export class HomeBannerStore{
         this.loading = true;
         
         let home_banners = this.banners;
-        console.log(home_banners);
-        console.log(this.userId);
         api('home_banners',UPDATE,{id:this.userId},{
             images:home_banners
         }).then((rlt:any)=>{
-            console.log(rlt);
             this.loading = false;
             if(rlt.status==200){
                 return cb('图片上传成功')

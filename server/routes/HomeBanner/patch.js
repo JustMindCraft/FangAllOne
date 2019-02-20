@@ -5,22 +5,17 @@ export default [
         method: 'PATCH',
         path: '/home_banner',
         handler: async (request, h) => {
-            // let updataimg= await HomeBanner.insertOrUpdate()
             try{
                 const { condition, optional} = request.payload;
-                // console.log('打印参数'+optional.images)
                 const banner =await HomeBanner.findOne({where:condition})
-                // console.log('打印banner结果为'+!banner)
                 if(!banner){
                     const newone = await HomeBanner.create({id:condition.id,images:optional.images})
-                    // console.log('新创建的banner为1'+newone)
                 return newone
 
                 }else{
                     const updateRlt  = await banner.update({
                         ...optional
                     });
-                    // console.log('打印更新后的结果1'+updateRlt)
                     return h.response(updateRlt).code(200);
 
                 }

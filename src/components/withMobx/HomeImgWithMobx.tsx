@@ -18,10 +18,8 @@ export default class HomeImgWithMobx extends React.Component<IImageGetProps,IIma
         }
     }
     componentWillMount(){
-        console.log('走了一次');
         
         this.props.store.getImg()
-        console.log(this.props.store.mobximg);
         
     }
     componentDidMount(){
@@ -32,7 +30,6 @@ export default class HomeImgWithMobx extends React.Component<IImageGetProps,IIma
         })
     }
     getAgain(){
-        console.log(this.props.store.mobximg);
         this.setState({
             images:this.props.store.banners
         })
@@ -44,7 +41,6 @@ export default class HomeImgWithMobx extends React.Component<IImageGetProps,IIma
         })
     }
     render(){
-        console.log(this.state.images);
         
         return (
             <HomeImg homebanners={this.state.images}/>
