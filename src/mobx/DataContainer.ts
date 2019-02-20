@@ -1,14 +1,24 @@
 import { LIST, SHOW, SHOW_ID } from './../constants/API';
-import { observable, action, computed, IObservableObject, toJS } from "mobx";
+import { observable, action, computed, toJS } from "mobx";
 import { api } from "./../api";
+
+
+interface IQueryOptional{
+    sort: Array<string>;
+    page: number;
+    pagesize: number;
+}
 
 export class DataContainer {
     @observable title = "";
     @observable dataSource = [];
     @observable columns = [];
+    @observable belongsColumns = [];
+    @observable hasManyColumn = [];
     @observable singleDataSource = {};
     @observable sourceName = "users";
     @observable loading = true;
+    @observable loadingOne = true;
     @observable actionLoading = true;
     @observable page=1;
     @observable pagesize = 25;
@@ -37,21 +47,46 @@ export class DataContainer {
     }
 
 
-    @action getList(optional:any,  cb: (msg: any)=> {}){
-        return api(this.sourceName as any, LIST, this.condition, optional).then((rlt:any)=>{
+    @action getList(optional:IQueryOptional={sort: ['id', 'DESC'], page: 1, pagesize: 25},  cb: (msg: any)=> {}){
+        cb('正在加载');
+        if(!optional){
+            optional = {sort: ['id', 'DESC'], page: 1, pagesize: 25}
+        }
+        const { page, pagesize, sort } = optional;
+
+        if(!sort){
+            optional.sort = ['id', 'DESC'];
+        }
+        if(page>0 && pagesize >0){
+            this.page = page;
+            this.pagesize = pagesize;
+        }else{
+            optional.page = this.page;
+            optional.pagesize = this.pagesize;
+        }
+        
+        return api(this.sourceName as any, LIST, toJS(this.condition), optional).then((rlt:any)=>{
+
+            if(rlt.status === 203){
+                this.loading = false;
+                return cb( rlt.data);
+            }
             this.dataSource = rlt.data;
             this.loading = false;
+            cb('加载完毕!');
+
 
         }).catch((err:any)=>{
+            console.error(err);
+            
             this.loading = false;
-            cb(err);
+            cb(err.error);
         });
     }
 
     @action sort(sortColumn:string, sortDirection:string, cb: (msg: any)=> {}){
         this.loading = true;
-        cb('正在加载');
-        return this.getList({sort: [sortColumn, sortDirection]}, cb);
+        return this.getList({sort: [sortColumn, sortDirection], page: this.page, pagesize:  this.pagesize}, cb);
     }
 
     @action getOne(optional:any,  cb: (msg: any)=> {}){

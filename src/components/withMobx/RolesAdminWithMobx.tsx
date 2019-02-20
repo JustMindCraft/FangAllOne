@@ -1,50 +1,41 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { element } from 'prop-types';
+import AdminPanel from '../stateless/AdminPanel';
 
 
 interface IRolesAdminWithMobxProps {
     store: any,
+    msg: any,
 }
 
+@inject('msg')
 @observer
 class RolesAdminWithMobx extends React.Component<IRolesAdminWithMobxProps>{
     componentDidMount(){
-        const { store } = this.props;
-        store.listRoles();
-        store.createRole({
-            name: '新的角色'
+        const { store, msg } = this.props;
+        store.setSourceName('roles');
+        store.setCondition({});
+        store.getList(null, (m: any)=>{
+            msg.show(m);
         })
+        // store.sort('name', "ASC", (m: any)=>{
+        //     msg.show(m);
+        // })
     }
     render (){
         const { store } = this.props;
-        const { loading, dataSource } = store
-      
-        
-        if(loading){
-            return  (
-                <div>
-                    列表载入中{store.loading}
-                </div>
-            )
-        }
+        const { loading, list, title, one } = store
 
-        const RoleItems = dataSource.map((item:any, index:number)=>{
-                   return  <ListItem key={index}>
-                    <ListItemText primary={item.name}  />
-                    </ListItem>
-        })
+     
         
         return (
             <div>
-                RolesAdminWithMobx{store.loading}\
-                <List>
-                    {RoleItems}
-                </List>
+              <AdminPanel list={list} title={title} one={one}/>
             </div>
         )
     }
 }
 
-export default RolesAdminWithMobx;
+export default RolesAdminWithMobx as any;
