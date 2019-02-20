@@ -18,17 +18,17 @@ const styles = createStyles({
   });
 
 let id = 0;
-function createData(name:any, calories:any, fat:any, carbs:any, protein:any) {
+function createData(name:string, calories:number, fat:number, carbs:any, protein:number,status: any,action:string) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, name, calories, fat, carbs, protein,status,action };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作')
 ];
 const WithdrawalAdminList = (props:any) => {
   const { classes } = props;
@@ -38,11 +38,13 @@ const WithdrawalAdminList = (props:any) => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat (g)</TableCell>
-            <TableCell align="right">Carbs (g)</TableCell>
-            <TableCell align="right">Protein (g)</TableCell>
+            <TableCell>用户</TableCell>
+            <TableCell align="right">银行卡号</TableCell>
+            <TableCell align="right">金额</TableCell>
+            <TableCell align="right">姓名</TableCell>
+            <TableCell align="right">时间</TableCell>
+            <TableCell align="right">状态</TableCell>
+            <TableCell align="right">操作</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,6 +57,8 @@ const WithdrawalAdminList = (props:any) => {
               <TableCell align="right">{row.fat}</TableCell>
               <TableCell align="right">{row.carbs}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.status}</TableCell>
+              <TableCell align="right">{row.action}</TableCell>
             </TableRow>
           ))}
         </TableBody>
