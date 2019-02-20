@@ -1,22 +1,28 @@
-import sequelize  from "../db";
-import Sequelize from 'sequelize';
+export default  (sequelize, DataTypes) => { 
 
-const Permission = sequelize.define('permissions', {
-    modelName: {
-        type: Sequelize.STRING,
-    },
-    recordId: {
-        type: Sequelize.STRING,
-    },
-    action: {
-      type: Sequelize.BOOLEAN,
-    },
-    granted: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+    const Permission = sequelize.define('permissions', {
+        name: {
+            type: DataTypes.STRING,
+        },
+        value: {
+            type: DataTypes.STRING,
+        },
+        granted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        }
+        
+    });
+
+    Permission.associate = models => {
+        Permission.belongsTo(models.Role);
     }
-    
-});
+
+    return Permission;
+}
+
+
+
 
 
 export default Permission;
