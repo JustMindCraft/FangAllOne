@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import MyShopWithMobx from '../../withMobx/MyShopWithMobx';
+import MyShopAdminWithMobx from '../../withMobx/MyShopAdminWithMobx';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
+import { withStyles, TextField } from '@material-ui/core';
+import pageStyles from '../pageStyle';
+import { IPageProps } from '../../../interfaces/components';
 
-class MyShop extends React.Component {
+
+class MyShopAdminPage extends React.Component<IPageProps>  {
     constructor(props:any) {
         super(props);
         
@@ -11,20 +15,21 @@ class MyShop extends React.Component {
 
     render(){
         return (
+
+
             <LayoutWithMobx >
-            <div style={{width:'100%',background:'#f0f2f5',padding:'5px'}}>
-               <div style={{width:'80%'}}>
-
-               <MyShopWithMobx store={1}/>
-
+               
+            <div style={{width:'100%'}}>
+                <div style={{width:'100%',height:'100%',padding:'5px',display:'flex',justifyContent:'center'}}>
+               <MyShopAdminWithMobx store={1}/>
                </div>
             </div>
                
 
-
             </LayoutWithMobx>
+
         )
     }
 }
 
-export default MyShop;
+export default withStyles(pageStyles)(MyShopAdminPage);
