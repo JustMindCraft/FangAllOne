@@ -15,7 +15,7 @@ export default [
           )
           return h.response(product).code(200);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return h.response(error.original.toString()).code(203);
         }
         

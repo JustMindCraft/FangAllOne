@@ -1,7 +1,7 @@
 import React from 'react';
 import RolesAdminWithMobx from '../../withMobx/RolesAdminWithMobx';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
-import rolesAdmin from '../../../mobx/components/RolesAdmin';
+import dataContainer from '../../../mobx/DataContainer';
 
 
 class RolesAdminPage extends React.Component {
@@ -9,7 +9,7 @@ class RolesAdminPage extends React.Component {
         return (
             <LayoutWithMobx>
              <h1>角色管理</h1>
-             <RolesAdminWithMobx store={rolesAdmin}/>
+             <RolesAdminWithMobx store={dataContainer}/>
             </LayoutWithMobx>
         )
         
