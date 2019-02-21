@@ -45,7 +45,6 @@ export default [
         method: 'GET',
         path: '/auth',
         handler: (request, h) => {
-            
             return h.response(request.auth.credentials.id).code(200)
         },
         options: {
@@ -68,7 +67,6 @@ export default [
         handler: async (request, h) => {
             const { id } = request.params;
             const { fields } = JSON.parse(request.query.optional);
-            
             try {
                 const user = await User.findByPk(
                     id,
@@ -117,7 +115,7 @@ export default [
                return user;
                 
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 
                 return error.errors;
             }
@@ -128,7 +126,7 @@ export default [
         method: 'GET',
         path: '/getsms',
         handler: async (request, h) => {
-
+            
            const { mobile } = request.query;
            if(!mobile){
                 return h.response("mobile missing").code(404);

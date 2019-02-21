@@ -29,7 +29,6 @@ export default [
         method: 'POST',
         path: '/auth',
         handler: async (request, h) => {
-                
                  const { username, password, model} = request.payload;
                  const host = request.headers.origin.replace(/https?:\/\//, '');
                  const app = await App.findOne({host});
@@ -53,7 +52,7 @@ export default [
                         token
                     }).code(200);
                  } catch (error) {
-                    console.log(error);
+                    console.error(error);
                 
                     return error.errors;
                  }
@@ -79,9 +78,7 @@ export default [
         path: '/register',
         
         handler: async (request, h) => {
-            console.log(request.payload);
             const { username, password} = request.payload;
-            console.log(username, password);
             
             try {
                 const user =  await User.register(
@@ -101,7 +98,7 @@ export default [
                 }).code(200);
                 
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 
                 return error.errors;
             }

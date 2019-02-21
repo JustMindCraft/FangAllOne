@@ -17,7 +17,6 @@ export class LoginFormStore{
     @observable counter:any;
 
     @computed get isPassed(){
-        
         return this.username !== ''?
                 this.password? true: false :
                 false
@@ -64,6 +63,7 @@ export class LoginFormStore{
         return this.smsInput = value;
     }
     @action async login(cb:Function=(msg:any)=>{}){
+        
         this.isSubmit = true;
         this.logining = true;
         let username = this.username;
@@ -108,6 +108,7 @@ export class LoginFormStore{
             }
             
         }).finally(()=>{
+            
             this.logining = false;
             this.isSuccess = false;
         })

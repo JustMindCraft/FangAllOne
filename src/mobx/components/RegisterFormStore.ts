@@ -76,7 +76,7 @@ export class RegisterFormStore {
     @action  checkUsernameExist(){
         this.checkingUsernameExist = true;
         this.validMsg.username ="正在检查用户名是否可用";
-
+        
         api('users', SHOW_UNIQUE, {key: this.username})
         .then((rlt:any)=>{
             if(rlt.status===204){

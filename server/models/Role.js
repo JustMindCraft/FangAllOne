@@ -5,7 +5,15 @@ export default  (sequelize, DataTypes) => {
     const Role = sequelize.define('roles', {
         name: {
             type: DataTypes.STRING(),
-        }
+        },
+        cardLevel: {
+            type: DataTypes.INTEGER(),
+            defaultValue: 0,
+        },
+        isDeleted: {
+            type: DataTypes.BOOLEAN(),
+            defaultValue: false,
+        },
         
     });
     Role.associate = models => {
