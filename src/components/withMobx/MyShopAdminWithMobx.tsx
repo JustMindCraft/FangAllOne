@@ -11,7 +11,7 @@ class MyShopAdminWithMobx extends React.Component<MyShopWithMobxProps>{
     }
     render (){
         return (
-                <MyShopAdminList/>
+                <MyShopAdminList />
         )
     }
 }
