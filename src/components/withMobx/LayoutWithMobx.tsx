@@ -39,7 +39,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
     render(){
       const { history } = this.props;
       const sideList = (
-        <div>
+        <div style={{background:'#f0f2f5'}}>
           <List>
               <ListItem button key="create_app" onClick={(e)=>{history.push('/dashboard/apps/add')}}>
                 <ListItemIcon><LibraryIcon /></ListItemIcon>
