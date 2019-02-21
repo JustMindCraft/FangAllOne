@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const styles = createStyles({
     root: {
@@ -15,6 +16,9 @@ const styles = createStyles({
       table: {
         minWidth: 700,
       },
+      button: {
+        margin: '2px'
+      }
   });
 
 let id = 0;
@@ -58,7 +62,14 @@ const WithdrawalAdminList = (props:any) => {
               <TableCell align="right">{row.carbs}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.action}</TableCell>
+              <TableCell align="right">
+              <Button variant="contained" color="primary" className={classes.button}>
+                {row.action}
+              </Button>
+              <Button variant="contained" color="primary" className={classes.button}>
+                {row.action}
+              </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
