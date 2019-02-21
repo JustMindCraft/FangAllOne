@@ -181,6 +181,10 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='权限管理' />
               </ListItem>
+              <ListItem button key="api_test" onClick={(e)=>{history.push('/dashboard/api_test')}}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary='API测试组件' />
+              </ListItem>
           </List>
         </div>
       );
