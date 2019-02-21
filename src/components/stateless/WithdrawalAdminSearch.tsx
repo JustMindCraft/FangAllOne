@@ -1,14 +1,17 @@
-import 'date-fns';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import {DateFormatInput } from 'material-ui-next-pickers'
-const styles = {
+import { DateFormatInput } from 'material-ui-next-pickers'
+import Button from '@material-ui/core/Button';
+const styles = (theme:any) => ({
   grid: {
     width: '60%',
+    margin: '10px',
   },
-};
+  button: {
+    margin: theme.spacing.unit,
+  }
+});
 
 
 interface IWithdrawalAdminSearchProps {
@@ -19,8 +22,15 @@ interface IWithdrawalAdminSearchProps {
 const WithdrawalAdminSearch = (props:IWithdrawalAdminSearchProps) => {
     return(
        <div>
-         <DateFormatInput name='date-input'  onChange={props.handleDateChange}/>
-         <DateFormatInput name='date-input'  onChange={props.handleDateChange}/>
+         <Grid container className={props.classes.grid} justify="space-around">
+            时间筛选:
+            <DateFormatInput name='date-input'  onChange={props.handleDateChange}/>
+            -
+            <DateFormatInput name='date-input'  onChange={props.handleDateChange}/>
+         </Grid>
+         <Button variant="contained" color="primary" className={props.classes.button}>
+           导出本业数据
+        </Button>
        </div>
     )
 }

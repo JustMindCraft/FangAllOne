@@ -8,10 +8,8 @@ class WithdrawalAdminWithMobx extends React.Component{
     render(){
         return(
             <div>
-            WithdrawalAdminWithMobx
-            13
-            <WithdrawalAdminSearch handleDateChange={this.handleDateChange} />
-            <WithdrawalAdminList />
+                <WithdrawalAdminSearch handleDateChange={this.handleDateChange} />
+                <WithdrawalAdminList />
             </div>
         )
     }

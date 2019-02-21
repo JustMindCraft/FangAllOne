@@ -11,6 +11,7 @@ const styles = createStyles({
     root: {
         width: '100%',
         overflowX: 'auto',
+        margin: '10px',
       },
       table: {
         minWidth: 700,
