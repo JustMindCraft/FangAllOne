@@ -104,6 +104,10 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
               &nbsp;&nbsp;&nbsp;资料管理
             </Typography>
           <List>
+          <ListItem button key="myshop" onClick={(e)=>{history.push('/dashboard/users')}}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary='我的店铺' />
+              </ListItem>
               <ListItem button key="users" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='用户管理' />
@@ -157,6 +161,10 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
                 <ListItemIcon><SettingApplicationIcon /></ListItemIcon>
                 <ListItemText primary='功能设置' />
               </ListItem>
+              <ListItem button key="home_banner" onClick={(e)=>{history.push('/dashboard/banner')}}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary='轮播图设置' />
+              </ListItem>
               <ListItem button key="system" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='用户认证' />
@@ -165,13 +173,17 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
                 <ListItemIcon><SettingIcon /></ListItemIcon>
                 <ListItemText primary='系统设置' />
               </ListItem>
-              <ListItem button key="roles" onClick={(e)=>{history.push('/dashboard/users')}}>
+              <ListItem button key="roles" onClick={(e)=>{history.push('/dashboard/roles')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='角色管理' />
               </ListItem>
               <ListItem button key="permissions" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='权限管理' />
+              </ListItem>
+              <ListItem button key="api_test" onClick={(e)=>{history.push('/dashboard/api_test')}}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary='API测试组件' />
               </ListItem>
           </List>
         </div>

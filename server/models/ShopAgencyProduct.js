@@ -8,8 +8,6 @@ export default  (sequelize, DataTypes) => {
         ShopAgencyProduct.belongsTo(models.Shop);
         ShopAgencyProduct.belongsTo(models.Product);
     }
-
-
     return ShopAgencyProduct;
 }
 

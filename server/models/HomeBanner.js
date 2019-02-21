@@ -15,5 +15,7 @@ export default  (sequelize, DataTypes) => {
         HomeBanner.belongsTo(models.App);
     }
 
+
+
     return HomeBanner;
 }

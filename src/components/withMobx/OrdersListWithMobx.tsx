@@ -13,7 +13,9 @@ class OrdersListWithMobx extends Component<IOrdersListWithMobx> {
 
         return (
             <div>
-                <Button>
+                <Button variant="contained" style={{
+                    paddingRight:'20px'
+                }}>
                     导出
                 </Button>
                 <br/>

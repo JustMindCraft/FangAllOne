@@ -1,14 +1,17 @@
 import React from 'react';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
+import ProductsAdminWithMobx from '../../withMobx/ProductsAdminWithMobx';
+import productsAdmin from '../../../mobx/components/ProductsAdmin';
 
-class ProductsPage extends React.Component{
+class ProductsAdminPage extends React.Component{
     render(){
         return (
             <LayoutWithMobx>
-                <h1>Products</h1>       
-            </LayoutWithMobx>
+            <h1>商品管理</h1>
+            <ProductsAdminWithMobx store={productsAdmin}/>
+           </LayoutWithMobx>
         )
     }
 }
 
-export default ProductsPage;
+export default ProductsAdminPage;

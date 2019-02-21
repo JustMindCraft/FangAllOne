@@ -67,21 +67,6 @@ const OrdersList = (props:IOrdersListProps) => {
     const {classes} = props;
     return (
         <div className={classes.root}>
-            <FormControl className={classes.formControl}>
-                <Select
-                    displayEmpty
-                    name="filter"
-                    className={classes.selectEmpty}
-                >
-                    <MenuItem value="">
-                    <em>None</em>
-                    </MenuItem>
-                    <MenuItem>全部订单</MenuItem>
-                    <MenuItem>近一周</MenuItem>
-                    <MenuItem>近一个月</MenuItem>
-                </Select>
-                <FormHelperText>dingdan</FormHelperText>
-            </FormControl>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -103,7 +88,8 @@ const OrdersList = (props:IOrdersListProps) => {
                             </TableCell>
                             <TableCell>订单号</TableCell>
                             <TableCell>下单时间</TableCell>
-                            <TableCell></TableCell>
+                            <TableCell>买家ID</TableCell>
+                            <TableCell>手机号</TableCell>
                             <TableCell>金额</TableCell>
                             <TableCell>支付方式</TableCell>
                             <TableCell>支付时间</TableCell>
@@ -126,11 +112,8 @@ const OrdersList = (props:IOrdersListProps) => {
                                 <TableCell align='right'>{ row.payTime }</TableCell>
                                 <TableCell align='right'>{ row.status }</TableCell>
                                 <TableCell>
-                                    <Select>
-                                        <MenuItem>详情</MenuItem>
-                                        <MenuItem></MenuItem>
-                                        <MenuItem></MenuItem>
-                                    </Select>
+                                    <Button color="primary">详情</Button>
+                                    <Button color="primary">发货</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

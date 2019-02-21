@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 
-class Orders extends React.Component<IPageProps> {
+class OrderAdminPage extends React.Component<IPageProps> {
 
     render(){
         const { classes } = this.props;
@@ -31,4 +31,4 @@ class Orders extends React.Component<IPageProps> {
     }
 }
 
-export default withStyles(pageStyles)(Orders);
+export default withStyles(pageStyles)(OrderAdminPage);

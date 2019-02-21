@@ -15,6 +15,7 @@ export const DESTROY_MANY = "DESTROY_MANY";
 export const UNKNOWN_METHOD = "UNKNOWN_METHOD"
 
 
+
 // auth provider
 
 export const AUTH = "AUTH";

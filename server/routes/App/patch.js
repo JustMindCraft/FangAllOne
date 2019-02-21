@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import Sequelize from 'sequelize';
-import {App} from '../../models/index.js';
+import { App } from '../../models/index.js';
 
 const Op = Sequelize.Op;
 

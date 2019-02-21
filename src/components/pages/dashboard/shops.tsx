@@ -1,15 +1,16 @@
 import React from 'react';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
-import SettingWithMobx from '../../withMobx/SettingWithMobx';
 
 
-const SettingPage  = () => {
+
+const Shops  = () => {
     return (
         <LayoutWithMobx>
-            <SettingWithMobx />
+            <h1>店铺管理</h1>
+            
         </LayoutWithMobx>
     )
 }
 
 
-export default SettingPage;
+export default Shops;

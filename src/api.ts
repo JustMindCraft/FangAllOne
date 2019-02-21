@@ -15,6 +15,8 @@ import axios from 'axios';
 const token = window.localStorage.getItem('fang_token');
 
 export  function auth(method:string, condition:any){
+    // console.log(method);
+    
     switch(method){
         case AUTH:
             return axios.post(`${config.basicUri}/auth?token=${token}`, 
@@ -44,7 +46,7 @@ export  function auth(method:string, condition:any){
 
 export  function api(
     sourceName: 
-    "users" | "posts" | "apps" 
+    "users" | "posts" | "apps" | "roles"|"products"|"home_banners"
     = "users", 
     method:string
     =LIST, 
@@ -53,9 +55,16 @@ export  function api(
     optional:any={}
     ){
     const inflect = require('i')();
-    const singleSource = inflect.singularize(sourceName); 
+    const singleSource = inflect.singularize(sourceName); //资源名单复数转换
+
+    // console.log(method);
+    // console.log(singleSource);
+    // console.log(sourceName);
+    // console.log(condition);
+    // console.log(config);
+    // console.log(optional);
+
     switch (method) {
-        
         case LIST:
             return axios.get(`${config.basicUri}/${sourceName}?token=${token}`, {
                     params: {

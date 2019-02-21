@@ -8,11 +8,14 @@ import Register from './components/pages/register';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import login from './components/pages/login';
 import { inject, observer } from 'mobx-react';
+import HomeBanner from './components/pages/dashboard/banner'
 import Personal from './components/pages/personal';
-import SettingsPage from './components/pages/dashboard/settings';
+import SettingPage from './components/pages/dashboard/setting';
+import Shops from './components/pages/dashboard/shops'
+import MyShop from './components/pages/dashboard/myShop'
 import UserAdminPage from './components/pages/dashboard/users';
-import ProductsPage from './components/pages/dashboard/products';
-import OrdersPage from './components/pages/dashboard/orders';
+import RolesAdminPage from './components/pages/dashboard/roles';
+import OrderAdminPage from './components/pages/dashboard/orders';
 
 
 interface IPrivateRouteProps {
@@ -80,8 +83,9 @@ class App extends Component<IAppProps, IAppState> {
   
   componentDidMount(){
     const { app, currentUser } = this.props;
-    app.getAppInfo();
     
+    app.getAppInfo();
+    currentUser.getUserInfo()
   }
 
 
@@ -119,10 +123,13 @@ class App extends Component<IAppProps, IAppState> {
             <Switch>
               <Route exact path="/" component={Home} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/banner" component={HomeBanner} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdminPage} />
-              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/products" component={ProductsPage} />
-              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/orders" component={OrdersPage} />
-              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingsPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/orders" component={OrderAdminPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/my_shop" component={MyShop} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/roles" component={RolesAdminPage} />
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
               <Route exact path="/login" component={login} />
