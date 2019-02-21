@@ -14,8 +14,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
-import { MuiPickersUtilsProvider, TimePicker, DatePicker } from 'material-ui-pickers';
 
 const styles = createStyles({
     root: {
@@ -88,29 +86,6 @@ const OrdersList = (props:IOrdersListProps) => {
                 <div className={classes.searchIcon}>
                     <SearchIcon />
                 </div>
-                <TextField
-                    id="datefrom"
-                    lable="datefrom"
-                    type="date"
-                    dafaultValue="2019-01-01"
-                    className={classes.textField}
-                />
-            <MuiPickersUtilsProvider>
-        <Grid container className={classes.grid} justify="space-around">
-          <DatePicker
-            margin="normal"
-            label="Date picker"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
-          <TimePicker
-            margin="normal"
-            label="Time picker"
-            value={selectedDate}
-            onChange={this.handleDateChange}
-          />
-        </Grid>
-      </MuiPickersUtilsProvider>
                 <InputBase
                     placeholder="订单号/买家ID/手机号"
                     classes={{
@@ -128,6 +103,7 @@ const OrdersList = (props:IOrdersListProps) => {
                             </TableCell>
                             <TableCell>订单号</TableCell>
                             <TableCell>下单时间</TableCell>
+                            <TableCell></TableCell>
                             <TableCell>金额</TableCell>
                             <TableCell>支付方式</TableCell>
                             <TableCell>支付时间</TableCell>
