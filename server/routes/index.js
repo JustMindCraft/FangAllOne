@@ -13,7 +13,13 @@ const indexRoute = {
     }
 }
 
-const routes = [indexRoute].concat(User).concat(App).concat(Product).concat(Role).concat(HomeBanner);
+const routes = [indexRoute]
+    .concat(User)
+    .concat(App)
+    .concat(Product)
+    .concat(Role)
+    .concat(HomeBanner)
+    ;
 
 
 export default routes;
