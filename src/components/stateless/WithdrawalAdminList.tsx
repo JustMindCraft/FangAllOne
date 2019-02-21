@@ -7,7 +7,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-
 const styles = createStyles({
     root: {
         width: '100%',
@@ -20,6 +19,7 @@ const styles = createStyles({
         margin: '2px'
       }
   });
+
 
 let id = 0;
 function createData(name:string, calories:number, fat:number, carbs:any, protein:number,status: any,action:string) {
