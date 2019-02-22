@@ -1,20 +1,18 @@
 import React from 'react';
-import LayoutWithMobx from "../../withMobx/LayoutWithMobx";
-import FormCardVertical from '../../stateless/FormCardVertical';
-import OrderListWithMobx from '../../withMobx/OrderListWithMobx';
-import orderListStore from '../../../mobx/components/OrderListStore'
-import pageStyles from '../pageStyle';
-import { IPageProps } from '../../../interfaces/components';
+import LayoutWithMobx from "../withMobx/LayoutWithMobx";
+import FormCardVertical from '../stateless/FormCardVertical';
+import pageStyles from './pageStyle';
+import { IPageProps } from '../../interfaces/components';
 import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 
-class OrderAdminPage extends React.Component<IPageProps> {
+class OrderDetail extends React.Component<IPageProps> {
 
-    render(){
-        const { classes } = this.props;
-        return (
-            <LayoutWithMobx>
+  render(){
+    const {classes} = this.props;
+    return (
+        <LayoutWithMobx>
                 <FormCardVertical style={{
                     width:'90%',
                     paddingTop:20,
@@ -27,8 +25,8 @@ class OrderAdminPage extends React.Component<IPageProps> {
                     <OrderListWithMobx store={orderListStore}/>
                 </FormCardVertical>
             </LayoutWithMobx>
-        )
-    }
+    )
+  }
 }
 
-export default withStyles(pageStyles)(OrderAdminPage);
+export default withStyles(pageStyles)(OrderDetail);

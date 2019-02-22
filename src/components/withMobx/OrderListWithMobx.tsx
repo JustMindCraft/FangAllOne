@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import OrdersList from '../stateless/OrdersList';
+import React from 'react';
+import OrderList from '../stateless/OrderList';
 import Button from '@material-ui/core/Button';
 
 interface IOrdersListWithMobx {
     store: any
 }
 
-class OrdersListWithMobx extends Component<IOrdersListWithMobx> {
+class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     
     render(){
         const { store } = this.props;
@@ -19,10 +19,10 @@ class OrdersListWithMobx extends Component<IOrdersListWithMobx> {
                     导出
                 </Button>
                 <br/>
-                <OrdersList/>
+                <OrderList/>
             </div>
         )
     }
 }
 
-export default OrdersListWithMobx;
+export default OrderListWithMobx;

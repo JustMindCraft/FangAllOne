@@ -57,13 +57,13 @@ const rows = [
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
 ]
 
-interface IOrdersListProps {
+interface IOrderListProps {
     classes: any
 }
 
 
 
-const OrdersList = (props:IOrdersListProps) => {
+const OrderList = (props:IOrderListProps) => {
     const {classes} = props;
     return (
         <div className={classes.root}>
@@ -124,4 +124,4 @@ const OrdersList = (props:IOrdersListProps) => {
     )
 }
 
-export default withStyles(styles)(OrdersList);
+export default withStyles(styles)(OrderList);
