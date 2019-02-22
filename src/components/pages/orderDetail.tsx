@@ -22,7 +22,6 @@ class OrderDetail extends React.Component<IPageProps> {
                     <Typography variant='h4' gutterBottom className={classes.title} >
                         订单管理
                     </Typography>
-                    <OrderListWithMobx store={orderListStore}/>
                 </FormCardVertical>
             </LayoutWithMobx>
     )

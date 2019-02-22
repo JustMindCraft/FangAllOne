@@ -20,11 +20,16 @@ const OrderListSearch = (props:IOrderListSearchProps) => {
     const {classes} = props;
     return (
         <div>
+            <Grid container className={classes.grid} justify='space-aroud'>
             <DateFormatInput name='date-input' onChange={props.handleDateChange}/>
             <TimeFormatInput name='time-input' onChange={props.handleDateChange}/>
             至
             <DateFormatInput name='date-input' onChange={props.handleDateChange}/>
             <TimeFormatInput name='time-input' onChange={props.handleDateChange}/>
+            </Grid>
+            <Button>
+                导出本页数据
+            </Button>
         </div>
     )
 }

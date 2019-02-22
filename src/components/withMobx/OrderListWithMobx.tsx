@@ -1,6 +1,7 @@
 import React from 'react';
 import OrderList from '../stateless/OrderList';
 import Button from '@material-ui/core/Button';
+import OrderListSearch from '../stateless/OrderListSearch';
 
 interface IOrdersListWithMobx {
     store: any
@@ -19,6 +20,7 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
                     导出
                 </Button>
                 <br/>
+                <OrderListSearch/>
                 <OrderList/>
             </div>
         )
