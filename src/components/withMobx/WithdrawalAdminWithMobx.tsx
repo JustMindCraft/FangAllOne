@@ -13,8 +13,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     handleDateChange = (date:any) => {
 
     }
-    handleChange = () => {
-
+    handleChange = (event:any ,value: any) => {
+        console.log(event)
+        this.setState({ value });
     }
     render(){
         return(

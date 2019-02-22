@@ -26,7 +26,8 @@ const styles = (theme:any) => ({
 });
 interface IWithdrawalAdminTabProps {
     classes: any;
-    handleChange: () => void;
+    handleChange: (event: any, value: number) => void;
+ 
     value: number;
 }
 
@@ -34,7 +35,7 @@ const WithdrawalAdminTab = (props: IWithdrawalAdminTabProps) => {
     return(
         <div className={props.classes.root}>
             <AppBar position="static">
-            <Tabs value={props.value} onChange={props.handleChange}>
+            <Tabs value={props.value} onChange={props.handleChange} centered>
                 <Tab label="未打款" />
                 <Tab label="已打款" />
                 <Tab label="已撤销" />
