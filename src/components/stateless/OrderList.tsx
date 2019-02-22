@@ -54,13 +54,13 @@ const rows = [
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending')
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
 ]
 
 interface IOrderListProps {

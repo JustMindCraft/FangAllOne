@@ -1,8 +1,7 @@
-import 'date-fns';
 import React from 'react';
-import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
 import { withStyles, createStyles } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import {DateFormatInput, TimeFormatInput} from 'material-ui-next-pickers';
 
 const styles = createStyles({
@@ -20,12 +19,16 @@ const OrderListSearch = (props:IOrderListSearchProps) => {
     const {classes} = props;
     return (
         <div>
-            <Grid container className={classes.grid} justify='space-aroud'>
-            <DateFormatInput name='date-input' onChange={props.handleDateChange}/>
-            <TimeFormatInput name='time-input' onChange={props.handleDateChange}/>
-            至
-            <DateFormatInput name='date-input' onChange={props.handleDateChange}/>
-            <TimeFormatInput name='time-input' onChange={props.handleDateChange}/>
+            <Grid container className={classes.grid} justify="space-around">
+                <DateFormatInput 
+                    name='date-input' 
+                    onChange={(date:string)=>props.handleDateChange}
+                />
+                至
+                <DateFormatInput 
+                    name='date-input' 
+                    onChange={props.handleDateChange}
+                />
             </Grid>
             <Button>
                 导出本页数据
