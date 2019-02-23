@@ -15,6 +15,7 @@ import Shops from './components/pages/dashboard/shops'
 import MyShop from './components/pages/dashboard/myShop'
 import UserAdminPage from './components/pages/dashboard/users';
 import WithdrawalAdminPage from './components/pages/dashboard/withdrawal';
+import MembershipCardAdminPage from './components/pages/dashboard/membershipCardAdminPage';
 import RolesAdminPage from './components/pages/dashboard/roles';
 
 
@@ -126,6 +127,7 @@ class App extends Component<IAppProps, IAppState> {
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/banner" component={HomeBanner} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/users" component={UserAdminPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/settings" component={SettingPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/membership_card" component={MembershipCardAdminPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/withdrawal" component={WithdrawalAdminPage} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/my_shop" component={MyShop} />
