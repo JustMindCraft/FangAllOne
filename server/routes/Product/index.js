@@ -10,8 +10,15 @@ export default [
     handler: async (request, h) => {
         try {
           const { id } = request.params;
+          const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+          const app = await App.findOne({
+              where: {
+                  host
+              },
+          })
           let product = await Product.findOne({
-            id:id
+            id:id,
+            appId: app.id,
             }
           )
           return h.response(product).code(200);
@@ -135,7 +142,21 @@ export default [
     method: 'POST',
     path: '/product',
     handler: async (request, h) => {
-       
+      const { condition } = request.payload
+      const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+      const app = await App.findOne({
+          where: {
+              host
+          },
+      })
+      const product = await Product.create(
+        {
+            ...condition,
+            appId: app.id
+        }
+    );
+      
+    return h.response(product).code(200);
     },
     options: {
         description: '创建一个产品',
@@ -245,7 +266,7 @@ export default [
       handler: (request, h) => {
           const condition = JSON.parse(request.query.condition);
           Product.destroy({
-            where:condition
+            where:condition,
           }).then(function(rowDeleted){
               if(rowDeleted===0){
                 console.log('删除成功')
