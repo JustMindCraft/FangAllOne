@@ -136,6 +136,45 @@ export default [
       
   }
   },
+  {
+    method: 'GET',
+    path: '/products/restore',
+    handler: async (request, h) => {
+        try {
+          const condition = JSON.parse(request.query.condition);
+
+          const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+          const app = await App.findOne({
+              where: {
+                  host
+              },
+          })
+          let product = await Product.restore({
+            where:condition,
+            appId: app.id,
+            }
+          )
+          return h.response(product).code(200);
+        } catch (error) {
+            console.error(error);
+            return h.response(error.original.toString()).code(203);
+        }
+        
+    },
+    options: {
+        auth: false,
+        description: '根据条件恢复软删除',
+        notes: '根据条件恢复软删除',
+        tags: ['api'], // ADD THIS TAG
+        validate: {
+             query: {
+                 condition: Joi.string(),
+                 optional: Joi.string(),
+             }
+        }
+        
+    },
+  },
   //==============END OF GET=======================
   //==============POST=============================
   {
