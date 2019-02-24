@@ -15,17 +15,10 @@ class OrderAdminPage extends React.Component<IPageProps> {
         const { classes } = this.props;
         return (
             <LayoutWithMobx>
-                <FormCardVertical style={{
-                    width:'90%',
-                    paddingTop:20,
-                    minWidth:318,
-                    minHeight:500
-                }}>
-                    <Typography variant='h4' gutterBottom className={classes.title} >
+                <Typography variant='h4' gutterBottom className={classes.title} >
                         订单管理
-                    </Typography>
-                    <OrderListWithMobx store={orderListStore}/>
-                </FormCardVertical>
+                </Typography>
+                <OrderListWithMobx store={orderListStore}/>
             </LayoutWithMobx>
         )
     }

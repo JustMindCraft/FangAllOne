@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createStyles } from '@material-ui/core';
+import { withStyles, createStyles, Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -17,27 +17,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = createStyles({
     root: {
-        width: '100%'
-    },
-    textField: {
-        width: '200px'
+        width: '100%',
+        overflow: 'auto',
+        margin: '10px'
     },
     table: {
         fontSize: '36px',
     },
-    form: {
-        display: 'flex',
-    },
-    search: {
-        position: 'relative',
-    },
-    searchIcon: {
-        
-    },
-    inputRoot: {
-
-    },
-    inputInput: {
+    button: {
 
     }
 })
@@ -57,36 +44,16 @@ const rows = [
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
     createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData(46516351, '2019.02.12', 'tony', '10086', '888', 'alipay', '2019.02.13', 'pending'),
 ]
 
 interface IOrderListProps {
     classes: any
 }
 
-
-
 const OrderList = (props:IOrderListProps) => {
-    const {classes} = props;
     return (
-        <div className={classes.root}>
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
-                </div>
-                <InputBase
-                    placeholder="订单号/买家ID/手机号"
-                    classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                    }}
-                />
-                <Button>搜索</Button>
-            </div>
-                <Table className={classes.table}>
+        <Paper className={props.classes.root}>
+            <Table className={props.classes.table}>
                     <TableHead>
                         <TableRow>
                             <TableCell>
@@ -118,14 +85,18 @@ const OrderList = (props:IOrderListProps) => {
                                 <TableCell align='right'>{ row.payTime }</TableCell>
                                 <TableCell align='right'>{ row.status }</TableCell>
                                 <TableCell>
-                                    <Button color="primary">详情</Button>
-                                    <Button color="primary">发货</Button>
+                                    <Button color="primary" className={props.classes.button}>
+                                        详情
+                                    </Button>
+                                    <Button color="primary">
+                                        发货
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
-        </div>
+        </Paper>
         
     )
 }

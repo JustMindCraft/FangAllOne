@@ -8,20 +8,12 @@ interface IOrdersListWithMobx {
 }
 
 class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
-    handleDateChange = (date:string) => {
+    handleDateChange = (date: any) => {
 
     }
     render(){
-        const { store } = this.props;
-
         return (
             <div>
-                <Button variant="contained" style={{
-                    paddingRight:'20px'
-                }}>
-                    导出
-                </Button>
-                <br/>
                 <OrderListSearch handleDateChange={this.handleDateChange} />
                 <OrderList/>
             </div>
@@ -29,4 +21,4 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     }
 }
 
-export default OrderListWithMobx;
+export default OrderListWithMobx as any;
