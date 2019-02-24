@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ProductsAdminForm from '../stateless/ProductsAdminForm';
 
 interface ProductsAdminWithMobxProps {
     store: any,
@@ -12,7 +12,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
     render (){
         return (
             <div>
-                ProductsAdminWithMobx
+                <ProductsAdminForm/>
             </div>
         )
     }
