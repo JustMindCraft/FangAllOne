@@ -88,7 +88,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
 
           <List component="nav" className={classes.root}>
                 <ListItem button>
-                  <ListItemText primary="图片上传" />
+                  <ListItemText primary="商品上传" />
                 </ListItem>
                 <Divider />
           </List>
