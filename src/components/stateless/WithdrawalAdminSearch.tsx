@@ -17,7 +17,6 @@ const styles = (theme:any) => ({
 interface IWithdrawalAdminSearchProps {
     classes: any;
     handleDateChange: (date: string) => void;
-    
 }
 const WithdrawalAdminSearch = (props:IWithdrawalAdminSearchProps) => {
     return(
@@ -28,8 +27,8 @@ const WithdrawalAdminSearch = (props:IWithdrawalAdminSearchProps) => {
             -
             <DateFormatInput name='date-input'  onChange={props.handleDateChange}/>
          </Grid>
-         <Button variant="contained" color="primary" className={props.classes.button}>
-           导出本业数据
+据         <Button variant="contained" color="primary" className={props.classes.button}>
+           导出本业数
         </Button>
        </div>
     )

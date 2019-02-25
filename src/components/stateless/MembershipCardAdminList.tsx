@@ -47,7 +47,7 @@ const MembershipCardAdminList = (props:any) => {
             <TableCell align="right">会员卡名字</TableCell>
             <TableCell align="right">会员卡价格</TableCell>
             <TableCell align="right">会员卡分类</TableCell>
-            <TableCell align="right">会员卡描述</TableCell></TableCell>
+            <TableCell align="right">会员卡描述</TableCell>
             <TableCell align="right">授卡</TableCell>
           </TableRow>
         </TableHead>

@@ -15,6 +15,7 @@ interface IResponsiveDialogProps {
     title: string;
     text: string;
     handleClose: (event: any) => void;
+    open: boolean;
 
 }
 
@@ -23,7 +24,7 @@ const ResponsiveDialog = (props: IResponsiveDialogProps) => {
         <div>
             <Dialog
             fullScreen={props.fullScreen}
-            open={props.state.open}
+            open={props.open}
             onClose={props.handleClose}
             aria-labelledby="responsive-dialog-title"
             >
@@ -48,4 +49,4 @@ const ResponsiveDialog = (props: IResponsiveDialogProps) => {
 
 
 
-export default withMobileDialog()(ResponsiveDialog);
+export default ResponsiveDialog;

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-class UserAdminWithMob extends React.Components{
+class UserAdminWithMobx extends React.Component{
     render() {
         return(
             <div>
@@ -11,3 +11,5 @@ class UserAdminWithMob extends React.Components{
         )
     }
 }
+
+export default UserAdminWithMobx as any;
