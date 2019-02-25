@@ -51,6 +51,9 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
         if(val==="apps"){
             setTitle("应用列表");
         }
+        if(val==="products"){
+            setTitle("产品列表");
+        }
         
     }
 
