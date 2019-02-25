@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import {Product} from '../../models/';
+import {Product, App} from '../../models/';
 
 export default [
   //==============GET==============================
@@ -38,7 +38,7 @@ export default [
   //查询产品列表
   {
     method: 'GET',
-    path: '/products/',
+    path: '/products',
     handler: async (request, h) => {
       try {
           const condition = JSON.parse(request.query.condition);
@@ -53,7 +53,6 @@ export default [
           const products = await Product.findAll({
               where: {
                   ...condition,
-                  appId: app.id,
               },
               attributes: feilds,
               order: [sort],
