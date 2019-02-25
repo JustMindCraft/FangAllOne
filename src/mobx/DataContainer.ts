@@ -15,7 +15,7 @@ export class DataContainer {
     @observable columns = [];
     @observable belongsColumns = [];
     @observable hasManyColumn = [];
-    @observable singleDataSource = {};
+    @observable singleDataSource = new Map();
     @observable sourceName = "users";
     @observable loading = true;
     @observable loadingOne = true;
@@ -24,7 +24,7 @@ export class DataContainer {
     @observable pagesize = 25;
     @observable sortDirection = 'DESC';//倒序还是逆序
     @observable sortColumn = "id";
-    @observable condition = {}
+    @observable condition = new Map();
 
     @computed get list(){
         return this.dataSource.slice() as Array<any>;
@@ -38,16 +38,19 @@ export class DataContainer {
         return this.condition = condition;
     }
 
-    @action setTitle(title:string){
+    @action setTitle = (title:string) => {
+
         return this.title = title;
     }
 
-    @action setSourceName(sourceName:string){
+    @action setSourceName = (sourceName:string) => {
+        
         return this.sourceName = sourceName;
     }
 
 
-    @action getList(optional:IQueryOptional={sort: ['id', 'DESC'], page: 1, pagesize: 25},  cb: (msg: any)=> {}){
+    @action getList = (optional:IQueryOptional={sort: ['id', 'DESC'], page: 1, pagesize: 25},  cb:Function) => {
+        this.loading = true;
         cb('正在加载');
         if(!optional){
             optional = {sort: ['id', 'DESC'], page: 1, pagesize: 25}
@@ -71,7 +74,12 @@ export class DataContainer {
                 this.loading = false;
                 return cb( rlt.data);
             }
-            this.dataSource = rlt.data;
+            if(Array.isArray(rlt.data)){
+                this.dataSource = rlt.data;
+            }else{
+                this.dataSource = [];
+                return cb( rlt.data);
+            }
             this.loading = false;
             cb('加载完毕!');
 
