@@ -5,7 +5,9 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
+import TableFooter from '@material-ui/core/TableFooter';
 import TableRow from '@material-ui/core/TableRow';
+import TablePagination from '@material-ui/core/TablePagination';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = createStyles({
@@ -27,18 +29,12 @@ const styles = createStyles({
 })
 
 let id = 0;
-function createdData(orderNo:any,productID:any, orderTime:string, amount:any, payment:any, payTime:any, status:any) {
+function createdData(orderNo:any, productID:any, orderTime:string, amount:any, payment:any, payTime:any, status:any) {
     id += 1;
-    return {id, orderNo,productID, orderTime, amount, payment, payTime, status}
+    return {id, orderNo, productID, orderTime, amount, payment, payTime, status}
 }
 
 const rows = [
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
     createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
     createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
     createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
@@ -95,9 +91,18 @@ const OrderList = (props:IOrderListProps) => {
                             </TableRow>
                         ))}
                     </TableBody>
+                    {/* <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowPerPageOption={[5, 10, 25]}
+                                colSpan={3}
+                            />
+                        </TableRow>
+                    </TableFooter> */}
                 </Table>
         </Paper>
-        
+        // 尝试使用dx-react-grid-material-ui
+        // 可以完成分页排序过滤分组编辑
     )
 }
 

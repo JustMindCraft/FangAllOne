@@ -5,10 +5,6 @@ import Button from '@material-ui/core/Button';
 import {DateFormatInput, TimeFormatInput} from 'material-ui-next-pickers';
 
 const styles = createStyles({
-    root: {
-        display: 'flex',
-        
-    },
     grid: {
         width: '60%',
         margin: '10px'
@@ -21,36 +17,51 @@ const styles = createStyles({
 interface IOrderListSearchProps {
     classes: any;
     handleDateChange: (date: any) => void;
-    // handleTimeChange: (time: any) => void;
+    handleTimeChange: (time: any) => void;
+    date: Date;
+    time: Date;
 }
 
 const OrderListSearch = (props:IOrderListSearchProps) => {
     return (
-        <div className={props.classes.root}>
+        <div>
             <Grid container className={props.classes.grid} justify="space-around">
-                <DateFormatInput 
-                    name='date-input' 
-                    onChange={props.handleDateChange}
-                />
-                {/* <TimeFormatInput
-                    name='time-imput'
-                    onChange={props.handleTimeChange}
-                /> */}
-                至
-                <DateFormatInput 
-                    name='date-input' 
-                    onChange={props.handleDateChange}
-                />
-                {/* <TimeFormatInput
-                    name='time-imput'
-                    onChange={props.handleTimeChange}
-                /> */}
+                <Grid item xs={12}>
+                    <DateFormatInput
+                        label="起始日期"
+                        name="date-input"
+                        value={props.date}
+                        onChange={props.handleDateChange}
+                    />
+                    <TimeFormatInput
+                        label="起始时间"
+                        name="time-input"
+                        value={props.time}
+                        onChange={props.handleTimeChange}
+                    />
+                    至
+                    <DateFormatInput
+                        label="终止日期"
+                        name="date-input"
+                        value={props.date} 
+                        onChange={props.handleDateChange}
+                    />
+                    <TimeFormatInput
+                        label="终止时间"
+                        name="time-input"
+                        value={props.date}
+                        onChange={props.handleTimeChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    
+                </Grid>
             </Grid>
             <Button variant="contained" color="primary" className={props.classes.button}>
                 搜索
             </Button>
             <Button color="primary" className={props.classes.button}>
-                导出本页数据
+                导出
             </Button>
         </div>
     )

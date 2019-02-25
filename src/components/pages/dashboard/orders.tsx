@@ -1,6 +1,5 @@
 import React from 'react';
 import LayoutWithMobx from "../../withMobx/LayoutWithMobx";
-import FormCardVertical from '../../stateless/FormCardVertical';
 import OrderListWithMobx from '../../withMobx/OrderListWithMobx';
 import orderListStore from '../../../mobx/components/OrderListStore'
 import pageStyles from '../pageStyle';
