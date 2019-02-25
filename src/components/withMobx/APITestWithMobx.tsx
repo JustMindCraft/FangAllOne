@@ -51,6 +51,9 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
         if(val==="apps"){
             setTitle("应用列表");
         }
+        if(val==="products"){
+            setTitle("产品列表");
+        }
         
     }
 
@@ -84,7 +87,8 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
             <br/>
             <Paper  style={{
                 overflow: "auto",
-                width: "96%"
+                width: "96%",
+                minHeight: '400px'
             }}>
             {
                 loading? '加载中' :

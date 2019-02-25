@@ -12,6 +12,7 @@ interface IQueryOptional{
 export class DataContainer {
     @observable title = "";
     @observable dataSource = [];
+    @observable searchColumns = [];
     @observable columns = [];
     @observable belongsColumns = [];
     @observable hasManyColumn = [];
