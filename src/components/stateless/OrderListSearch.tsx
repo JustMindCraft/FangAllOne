@@ -20,21 +20,30 @@ const styles = createStyles({
 
 interface IOrderListSearchProps {
     classes: any;
-    handleDateChange: (date: string) => void;
+    handleDateChange: (date: any) => void;
+    // handleTimeChange: (time: any) => void;
 }
 
 const OrderListSearch = (props:IOrderListSearchProps) => {
     return (
         <div className={props.classes.root}>
             <Grid container className={props.classes.grid} justify="space-around">
-                {/* <DateFormatInput 
+                <DateFormatInput 
                     name='date-input' 
                     onChange={props.handleDateChange}
                 />
+                {/* <TimeFormatInput
+                    name='time-imput'
+                    onChange={props.handleTimeChange}
+                /> */}
                 至
                 <DateFormatInput 
                     name='date-input' 
                     onChange={props.handleDateChange}
+                />
+                {/* <TimeFormatInput
+                    name='time-imput'
+                    onChange={props.handleTimeChange}
                 /> */}
             </Grid>
             <Button variant="contained" color="primary" className={props.classes.button}>

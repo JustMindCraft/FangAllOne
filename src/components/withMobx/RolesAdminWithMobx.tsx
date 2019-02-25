@@ -15,24 +15,32 @@ interface IRolesAdminWithMobxProps {
 class RolesAdminWithMobx extends React.Component<IRolesAdminWithMobxProps>{
     componentDidMount(){
         const { store, msg } = this.props;
-        store.setSourceName('roles');
-        store.setCondition({});
-        store.getList(null, (m: any)=>{
-            msg.show(m);
-        })
-        // store.sort('name', "ASC", (m: any)=>{
-        //     msg.show(m);
-        // })
+        store.listRoles();
+        store.createRole({
+            name: '新的角色'
+        });
     }
     render (){
         const { store } = this.props;
-        const { loading, list, title, one } = store
+        const { loading, dataSource } = store
 
-     
-        
+        const listItems =  dataSource.map((item:any, index:number)=>{
+            return (
+                <li key={index}>
+                    {item.name}
+                </li>
+            )
+        })
+        if(loading){
+            return (
+                <div>加载中</div>
+            )
+        }
         return (
             <div>
-              <AdminPanel list={list} title={title} one={one}/>
+                <ul>
+                {listItems}  
+                </ul>
             </div>
         )
     }

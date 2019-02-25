@@ -1,13 +1,15 @@
 import React from 'react';
 
+
+
 class UserAdminWithMobx extends React.Component{
-    render(){
+    render() {
         return(
             <div>
-                UserAdmin
+                user
             </div>
         )
     }
 }
 
-export default UserAdminWithMobx;
+export default UserAdminWithMobx as any;

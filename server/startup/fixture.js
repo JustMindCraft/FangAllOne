@@ -93,8 +93,6 @@ export default  async () => {
         }});
 
         const authRlt = await User.auth(username, password, 'password')
-        
-       
         //不管如何都更新一下管理员资料
         if(user){
             if(!authRlt && !user.passwordSettedByUser){
@@ -115,7 +113,6 @@ export default  async () => {
         console.log(`${defaultApp.name}下，superAdmin角色已经有用户，超级管理员检查完毕${JSON.stringify(user)}`);
 
     }
-    
     //创建默认应用的默认店铺=================================================================================
     const countShops = await Shop.count({where: {appId: defaultApp.id, isDefault: true}})
    
@@ -123,20 +120,14 @@ export default  async () => {
 
     if(countShops===0){
         console.log('创建默认店铺');
-
         const newShop = await Shop.create({
             name: '默认店铺',
             isDefault: true,
         })
-
         await newShop.setApp(defaultApp);
         console.log('创建默认店铺完毕，'+JSON.stringify(newShop));
-
-
     }else{
         console.log('默认店铺检查完毕');
-
     }
-    
 }
 
