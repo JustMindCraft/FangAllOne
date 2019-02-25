@@ -1,4 +1,4 @@
-import {App, Role, User, UserRole, HomeBanner, Shop, Setting} from "../models/";
+import {App, Role, User, UserRole, HomeBanner, Shop, Setting, Product} from "../models/";
 
 import Sequelize from 'sequelize';
 import config from "../config";
@@ -129,5 +129,45 @@ export default  async () => {
     }else{
         console.log('默认店铺检查完毕');
     }
+
+    //为默认店铺创建会员卡产品和基本的免费的软件购买
+    const defaultShop = await Shop.findOne({where: {appId: defaultApp.id, isDefault: true}});
+    const cardLevel = defaultShop.cardLevel;
+    const firstCardCount = await Product.count({where: {
+        cardLevel,
+    }})
+    if(firstCardCount===0){
+        const firstCard = await Product.createCard(
+            '会员卡',
+            "这是默认的会员卡",
+            "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
+            [
+                "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
+            ],
+            defaultShop,
+        )
+    }else{
+        console.log("默认店铺的第一张会员卡已经存在");
+    }
+
+    //为默认店铺添加软件商品
+    const ProductFreeCount = await Product.count({where: {name: "免费开店", shopId: defaultShop.id}})
+    if(ProductFreeCount === 0){
+        await Product.create({
+            name: '免费开店',
+            desciption: "马上拥有自己的独立的店铺",
+            limitForEachUser: 1,
+        })
+    }else{
+        console.log("默认店铺已经有软件商品了");
+    }
+
+
+    
+   
+    
+    
+    
+    
 }
 

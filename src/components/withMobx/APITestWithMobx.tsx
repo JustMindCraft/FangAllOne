@@ -43,6 +43,7 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
         setSourceName(val);
 
         if(val==="users"){
+            document.title="用户列表"
             setTitle("用户列表");
         }
         if(val==="roles"){

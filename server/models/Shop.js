@@ -7,6 +7,10 @@ export default  (sequelize, DataTypes) => {
         },
         isDefault: {
             type: DataTypes.BOOLEAN,
+        },
+        cardLevel: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
         }
     });
 
