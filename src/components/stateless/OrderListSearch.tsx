@@ -6,10 +6,12 @@ import {DateFormatInput, TimeFormatInput} from 'material-ui-next-pickers';
 
 const styles = createStyles({
     root: {
-
+        display: 'flex',
+        
     },
     grid: {
         width: '60%',
+        margin: '10px'
     },
     button: {
 
@@ -25,7 +27,7 @@ const OrderListSearch = (props:IOrderListSearchProps) => {
     return (
         <div className={props.classes.root}>
             <Grid container className={props.classes.grid} justify="space-around">
-                <DateFormatInput 
+                {/* <DateFormatInput 
                     name='date-input' 
                     onChange={props.handleDateChange}
                 />
@@ -33,9 +35,12 @@ const OrderListSearch = (props:IOrderListSearchProps) => {
                 <DateFormatInput 
                     name='date-input' 
                     onChange={props.handleDateChange}
-                />
+                /> */}
             </Grid>
             <Button variant="contained" color="primary" className={props.classes.button}>
+                搜索
+            </Button>
+            <Button color="primary" className={props.classes.button}>
                 导出本页数据
             </Button>
         </div>
