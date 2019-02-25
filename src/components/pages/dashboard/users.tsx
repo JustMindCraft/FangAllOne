@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
-// import UserAdminWithMobx from '../../withMobx//UserAdminWithBox';
+import UserAdminWithMobx from '../../withMobx//UserAdminWithMobx';
 
 
 class UserAdminPage extends Component {
@@ -13,7 +13,7 @@ class UserAdminPage extends Component {
         return (
             <LayoutWithMobx>
                <h1>用户管理</h1>
-               {/* <UserAdminWithMobx /> */}
+               <UserAdminWithMobx />
             </LayoutWithMobx>
         )
     }
