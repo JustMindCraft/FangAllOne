@@ -39,7 +39,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
     render(){
       const { history } = this.props;
       const sideList = (
-        <div>
+        <div style={{background:'#f0f2f5'}}>
           <List>
               <ListItem button key="shop" onClick={(e)=>{history.push('/dashboard/apps/add')}}>
                 <ListItemIcon><LibraryIcon /></ListItemIcon>
@@ -109,6 +109,10 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
               &nbsp;&nbsp;&nbsp;账单订单
             </Typography>
            <List>
+              <ListItem button key="users" onClick={(e)=>{history.push('/dashboard/my_shop')}}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary='我的店铺' />
+              </ListItem>
               <ListItem button key="orders" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='订单管理' />
@@ -124,10 +128,6 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
               &nbsp;&nbsp;&nbsp;资料管理
             </Typography>
           <List>
-          <ListItem button key="myshop" onClick={(e)=>{history.push('/dashboard/users')}}>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary='我的店铺' />
-              </ListItem>
               <ListItem button key="users" onClick={(e)=>{history.push('/dashboard/users')}}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary='用户管理' />

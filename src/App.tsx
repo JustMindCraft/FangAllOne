@@ -17,6 +17,7 @@ import UserAdminPage from './components/pages/dashboard/users';
 import WithdrawalAdminPage from './components/pages/dashboard/withdrawal';
 import MembershipCardAdminPage from './components/pages/dashboard/membershipCardAdminPage';
 import RolesAdminPage from './components/pages/dashboard/roles';
+import APITest from './components/pages/dashboard/APITest';
 
 
 interface IPrivateRouteProps {
@@ -132,6 +133,7 @@ class App extends Component<IAppProps, IAppState> {
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/my_shop" component={MyShop} />
               <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/roles" component={RolesAdminPage} />
+              <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/api_test" component={APITest} />
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
               <Route exact path="/login" component={login} />
