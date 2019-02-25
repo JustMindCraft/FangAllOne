@@ -28,6 +28,21 @@ export default  (sequelize, DataTypes) => {
         cardLevelProfits: {
             type: DataTypes.JSON,
             defaultValue: [],
+        },
+        limitForEachUser: {
+            //限制每个用户购买的数量，-1代表不限制
+            type: DataTypes.INTEGER,
+            defaultValue: -1,
+        },
+        storage: {
+            //库存
+            type: DataTypes.INTEGER,
+            defaultValue: -1,
+        },
+        storageUnit: {
+            //库存单位
+            type: DataTypes.STRING,
+            defaultValue: '件',
         }
         
     });
@@ -41,8 +56,26 @@ export default  (sequelize, DataTypes) => {
 
     }
 
-    Product.createCard = function(cardName, cardDescription, cardCover, cardImages){
+    Product.createCard = async function(
+        cardName, cardDescription, cardCover, cardImages, shop
+    ){
+        
+         const newCard = await this.create({
+            name: cardName,
+            description: cardDescription,
+            cover: cardCover,
+            images: cardImages,
+            isCard: true,
+            shopId: shop.id,
+            cardLevel: shop.cardLevel+1
+         });
+         
+         await shop.update({
+             cardLevel: shop.cardLevel+1,
+         })
 
+         return newCard;
+         
     }
 
 

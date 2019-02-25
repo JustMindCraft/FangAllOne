@@ -11,15 +11,15 @@ const Home = (props:IPageProps) => {
      
     return (
         <LayoutWithMobx>
-            <div>
-            <h1>首页</h1>
-            </div>
-            <div style={{width:'100%'}}>
+            <div style={{width:'100%',minHeight: '200px'}}>
                 <HomeImgWithMobx store={homeBannerStore}/>
-             
             </div>
-           
-           
+            <div>
+                产品列表
+            </div>
+            <div>
+                文章列表
+            </div>
         </LayoutWithMobx>
     )
 }
