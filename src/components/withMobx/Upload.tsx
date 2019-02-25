@@ -45,11 +45,14 @@ export default class Upload extends Component<IImageUploaderProps, IImageUploade
           images: 1
         }
     }
-  
+    componentWillMount(){
+      const {uploadtype,btntitle} =this.props
+        console.log(uploadtype,btntitle);
+    }
     uploadFile = (file:any) => {
       console.log('走了这');
-        const {uploadtype} =this.props
-        console.log(uploadtype);
+        const {uploadtype,btntitle} =this.props
+        console.log(uploadtype,btntitle);
 
         const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
         const xhr = new XMLHttpRequest();
@@ -138,7 +141,7 @@ export default class Upload extends Component<IImageUploaderProps, IImageUploade
     render(){
       const {store,uploadtype,btntitle} = this.props
       let localImage
-      console.log(store);
+      console.log(uploadtype,btntitle);
         if(uploadtype=='images'){
           localImage=store.images
         }

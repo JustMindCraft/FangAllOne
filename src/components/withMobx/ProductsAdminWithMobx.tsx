@@ -52,9 +52,10 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
                         </ListItem>
                         <Divider />
                 </List>
-                <Upload  store={store} uploadtype={'images'} btntitle={'商品多图上传'}/>
                 <Upload  store={store} uploadtype={'cover'} btntitle={'商品封面上传'}/>
+                <Upload  store={store} uploadtype={'images'} btntitle={'商品多图上传'}/>
                 <Upload  store={store} uploadtype={'detailsImage'} btntitle={'商品详情图上传'}/>
+
                 <List component="nav" >
             <ListItem button>
               <ListItemText primary="商品确认" />
