@@ -37,7 +37,6 @@ const rows = [
 ];
 const WithdrawalAdminList = (props:any) => {
   const { classes } = props;
-
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>

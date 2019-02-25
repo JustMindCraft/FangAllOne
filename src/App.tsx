@@ -15,7 +15,7 @@ import Shops from './components/pages/dashboard/shops'
 import MyShop from './components/pages/dashboard/myShop'
 import UserAdminPage from './components/pages/dashboard/users';
 import WithdrawalAdminPage from './components/pages/dashboard/withdrawal';
-import MembershipCardAdminPage from './components/pages/dashboard/membershipCardAdminPage';
+import MembershipCardAdminPage from './components/pages/dashboard/membershipCard';
 import RolesAdminPage from './components/pages/dashboard/roles';
 import APITest from './components/pages/dashboard/APITest';
 
