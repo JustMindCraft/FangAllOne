@@ -50,7 +50,6 @@ export default class Upload extends Component<IImageUploaderProps, IImageUploade
         console.log(uploadtype,btntitle);
     }
     uploadFile = (file:any) => {
-      console.log('走了这');
         const {uploadtype,btntitle} =this.props
         console.log(uploadtype,btntitle);
 
