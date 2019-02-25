@@ -11,9 +11,12 @@ import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Upload from '../withMobx/Upload';
+// import productsAdmin from '../../mobx/components/ProductsAdmin'
+
 interface ILoginFormProps {
   classes: any;
-  
+  handleInputChange: (event: any, key: string) => void;
 }
 const styles = createStyles({
   container: {
@@ -52,16 +55,18 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             id="outlined-email-input"
             label="商品名称"
             type="username"
-            name="username"
+            name="name"
             margin="normal"
             variant="outlined"
+            onChange={(event:any)=>props.handleInputChange(event, "name")}
             className={classes.head}
           />
           <TextField
             id="outlined-email-input"
             label="商品中文名称"
             type="username"
-            name="english"
+            name="name_zh"
+            onChange={(event:any)=>props.handleInputChange(event, "name_zh")}
             margin="normal"
             variant="outlined"
           />
@@ -70,7 +75,8 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             id="outlined-email-input"
             label="商品销量"
             type="username"
-            name="count"
+            name="sales_volume"
+            onChange={(event:any)=>props.handleInputChange(event, "sales_volume")}
             margin="normal"
             variant="outlined"
           />
@@ -79,66 +85,39 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             label="商品简介"
             type="username"
             name="breif"
+            onChange={(event:any)=>props.handleInputChange(event, "brief")}
             margin="normal"
             variant="outlined"
           />
-
+            {/* <List component="nav" >
+                    <ListItem button>
+                    <ListItemText primary="商品上传" />
+                    </ListItem>
+                    <Divider />
+                </List>
+                <Upload  store={productsAdmin} uploadtype={'images'} btntitle={'商品多图上传'}/>
+                <Upload  store={productsAdmin} uploadtype={'cover'} btntitle={'商品封面上传'}/>
+                <Upload  store={productsAdmin} uploadtype={'detailsImage'} btntitle={'商品详情图上传'}/>
+                <List component="nav" >
+            <ListItem button>
+              <ListItemText primary="商品确认" />
+            </ListItem>
+            <Divider />
+            </List>
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end',marginTop:'50px'}}>
+                <Button variant="contained" color="secondary" style={{marginRight:'20px'}}>
+                取消
+            </Button>
+            <Button variant="contained" color="primary" >
+                确认
+            </Button>
+                </div>
+            <div style={{width:'100%',height:'200px'}}>
+            </div> */}
           
 
 
-          <List component="nav" className={classes.root}>
-                <ListItem button>
-                  <ListItemText primary="商品上传" />
-                </ListItem>
-                <Divider />
-          </List>
-          <div style={{width:'100%',height:'300px',border:'1px dashed #aaa',overflowY: 'scroll',textAlign:'center',marginTop:'10px'}}>
-                    {/* {children} */}
-                </div>
-          <input
-              accept="image/*"
-              id="text-button-file"
-              multiple
-              type="file"
-              // onChange={this.handleFiles}
-              style={{display:'none'}}
-            />
-            <Button variant="contained" color="default" className={classes.button}>
-              商品封面上传
-              <CloudUploadIcon className={classes.rightIcon} />
-            </Button>
-
-            <div style={{width:'100%',height:'300px',border:'1px dashed #aaa',overflowY: 'scroll',textAlign:'center',marginTop:'20px'}}>
-                    {/* {children} */}
-                </div>
-            <input
-              accept="image/*"
-              id="text-button-file"
-              multiple
-              type="file"
-              // onChange={this.handleFiles}
-              style={{display:'none'}}
-            />
-            <Button variant="contained" color="default" className={classes.button}>
-              商品轮播图上传
-              <CloudUploadIcon className={classes.rightIcon} />
-            </Button>
-
-            <div style={{width:'100%',height:'300px',border:'1px dashed #aaa',overflowY: 'scroll',textAlign:'center',marginTop:'20px'}}>
-                    {/* {children} */}
-                </div>
-            <input
-              accept="image/*"
-              id="text-button-file"
-              multiple
-              type="file"
-              // onChange={this.handleFiles}
-              style={{display:'none'}}
-            />
-            <Button variant="contained" color="default" className={classes.button}>
-              商品详情图上传
-              <CloudUploadIcon className={classes.rightIcon} />
-            </Button>
+          
             <List component="nav" className={classes.root}>
                 <ListItem button>
                   <ListItemText primary="商品操作" />
@@ -183,24 +162,10 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             />
           }
         />
+
           </FormGroup>
 
-      <List component="nav" className={classes.root}>
-            <ListItem button>
-              <ListItemText primary="商品确认" />
-            </ListItem>
-            <Divider />
-      </List>
-        <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end',marginTop:'50px'}}>
-        <Button variant="contained" color="secondary" style={{marginRight:'20px'}}>
-        取消
-      </Button>
-      <Button variant="contained" color="primary" >
-        确认
-      </Button>
-        </div>
-      <div style={{width:'100%',height:'200px'}}>
-      </div>
+      
     </div>
     )
   }
