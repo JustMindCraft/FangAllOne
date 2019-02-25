@@ -161,6 +161,9 @@ export default  async () => {
     }else{
         console.log("默认店铺已经有软件商品了");
     }
+
+
+    
    
     
     
