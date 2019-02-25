@@ -5,8 +5,10 @@ import { DateFormatInput } from 'material-ui-next-pickers'
 import Button from '@material-ui/core/Button';
 const styles = (theme:any) => ({
   grid: {
-    width: '60%',
+    width: '50%',
     margin: '10px',
+    display: 'flex',
+    justifyContent: 'flex-start',
   },
   button: {
     margin: theme.spacing.unit,
@@ -27,8 +29,8 @@ const WithdrawalAdminSearch = (props:IWithdrawalAdminSearchProps) => {
             -
             <DateFormatInput name='date-input'  onChange={props.handleDateChange}/>
          </Grid>
-据         <Button variant="contained" color="primary" className={props.classes.button}>
-           导出本业数
+         <Button variant="contained" color="primary" className={props.classes.button}>
+           导出本业数据
         </Button>
        </div>
     )
