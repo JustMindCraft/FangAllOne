@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TextField, Snackbar, Button, withStyles, createStyles, CircularProgress } from '@material-ui/core';
+import { TextField,  Button, withStyles, createStyles, CircularProgress } from '@material-ui/core';
 const RegisterLink = (props:any) => <Link to="/register" {...props} />
 // Non-dependent styles
 const styles = createStyles({
