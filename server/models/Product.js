@@ -52,8 +52,7 @@ export default  (sequelize, DataTypes) => {
         Product.hasMany(models.ShopAgencyProduct);
         Product.hasMany(models.ProductSpecification);
         Product.hasMany(models.ProductProperty);
-
-
+        Product.belongsTo(models.ProductCategory);
     }
 
     Product.createCard = async function(

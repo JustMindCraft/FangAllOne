@@ -8,6 +8,7 @@ export default  (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         granted: {
+            //通过或者拒绝角色们的通过
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         }
@@ -15,14 +16,15 @@ export default  (sequelize, DataTypes) => {
     });
 
     Permission.associate = models => {
-        Permission.belongsTo(models.Role);
+        Permission.belongsToMany(models.Role, {through: models.RolePermission});
+    }
+    Permission.check = function(roles){
+
+        //检查一组角色是否被授权；
+        
+
     }
 
     return Permission;
 }
 
-
-
-
-
-export default Permission;

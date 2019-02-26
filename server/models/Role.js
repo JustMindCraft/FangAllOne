@@ -1,5 +1,3 @@
-import { App } from ".";
-
 export default  (sequelize, DataTypes) => { 
 
     const Role = sequelize.define('roles', {
@@ -18,12 +16,10 @@ export default  (sequelize, DataTypes) => {
     });
     Role.associate = models => {
         Role.belongsTo(models.App);
-        Role.belongsToMany(models.User, {through: 'user_roles'});
+        Role.belongsToMany(models.User, {through: models.UserRole});
+        Role.belongsToMany(models.Permission, {through: models.RolePermission});
 
     }
-
-   
-
     Role.countInApp = function(name, appId){
         return this.findOne({
             attributes: { include: [[sequelize.fn('COUNT', sequelize.col('name')), "countName"]] },
