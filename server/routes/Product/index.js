@@ -272,7 +272,9 @@ export default [
     //         host
     //     },
     // })
+
     const condition = JSON.parse(request.query.condition);
+
     Product.destroy({
       ...condition,
       // appId: app.id
@@ -316,15 +318,15 @@ export default [
       path: '/product',
       handler: (request, h) => {
         const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
-        // const app = await App.findOne({
-        //     where: {
-        //         host
-        //     },
-        // })
+        const app =  App.findOne({
+            where: {
+                host
+            },
+        })
           const condition = JSON.parse(request.query.condition);
           Product.destroy({
             ...condition,
-            // appId: app.id
+            appId: app.id
           }).then(function(rowDeleted){
               if(rowDeleted===0){
                 console.log('删除成功')
@@ -353,15 +355,15 @@ export default [
     path: '/products',
     handler: (request, h) => {
       const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
-      // const app = await App.findOne({
-      //     where: {
-      //         host
-      //     },
-      // })
+      const app =  App.findOne({
+          where: {
+              host
+          },
+      })
         const condition = JSON.parse(request.query.condition);
         Product.destroy({
           ...condition,
-          // appId:app.id
+          appId:app.id
         }).then(function(rowDeleted){
             if(rowDeleted===0){
               console.log('删除成功')
