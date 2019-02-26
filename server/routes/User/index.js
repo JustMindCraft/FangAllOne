@@ -397,8 +397,37 @@ export default [
     method: 'DELETE',
     path: '/user',
     handler: (request, h) => {
-        return 'delete one';
-    }
+        const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+        const app =  App.findOne({
+            where: {
+                host
+            },
+        })
+          const condition = JSON.parse(request.query.condition);
+          User.destroy({
+            ...condition,
+            appId: app.id
+          }).then(function(rowDeleted){
+              if(rowDeleted===0){
+                console.log('删除成功')
+              }
+          },function(error){
+            console.log(err)
+          })
+      },
+      options: {
+        auth: false,
+        description: '从数据库中删除用户信息',
+        notes: '从数据库中删除用户信息',
+        tags: ['api'], // ADD THIS TAG
+        validate: {
+             query: {
+                 condition: Joi.string(),
+                 optional: Joi.string(),
+             }
+        }
+        
+    },
   },
   {
       method: 'DELETE',
