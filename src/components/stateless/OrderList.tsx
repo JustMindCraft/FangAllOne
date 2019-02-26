@@ -15,7 +15,7 @@ const styles = createStyles({
         display: 'flex',
         width: '100%',
         overflow: 'auto',
-        margin: '10px'
+        margin: '20px'
     },
     table: {
         fontSize: '36px',

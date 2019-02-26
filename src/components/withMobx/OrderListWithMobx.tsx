@@ -10,16 +10,15 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     handleDateChange = (date: any) => {
 
     }
-    // handleTimeChange = (time: any) => {
+    handleTimeChange = (time: any) => {
 
-    // }
+    }
     render(){
         return (
             <div>
-                <OrderListSearch
-                    handleDateChange={this.handleDateChange}
-                    // handleTimeChange={this.handleTimeChange}
-                />
+                <OrderListSearch 
+                    handleDateChange={this.handleDateChange} 
+                    handleTimeChange={this.handleTimeChange}/>
                 <OrderList/>
             </div>
         )
