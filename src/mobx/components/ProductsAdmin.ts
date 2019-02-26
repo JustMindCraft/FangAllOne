@@ -14,10 +14,10 @@ export class ProductsAdmin {
     @observable images:Array<IObservableArray> = [];
     @observable cover:Array<IObservableArray> = [];
     @observable detailsImage:Array<IObservableArray> = [];
+    @observable parameterCount= 0;
 
 
     @action uploadLoading(value:any){
-        console.log('走了这'+value);
         
         return this.loading = value;
     }
@@ -39,6 +39,10 @@ export class ProductsAdmin {
         console.log(value);
         return this.brief = value;
     }
+
+    @computed get getParameterCount(){
+        return this.parameterCount
+    }
     @action  changeImages(value:any,type:string){
         console.log(type);
         
@@ -53,14 +57,13 @@ export class ProductsAdmin {
             this.detailsImage=value;
             break
         }
-
-        console.log('当前封面'+this.cover);
-        console.log('当前多图'+this.images);
-        console.log("当前详情"+this.detailsImage);
-        
-        
-        
     }
+
+    @action  creatParameter(value:any){
+        let parameter_count = this.parameterCount
+        this.parameterCount=parameter_count+1
+    }
+
     @action  dataSource(type:string){
         switch(type){
             case "images":
@@ -104,6 +107,8 @@ export class ProductsAdmin {
             this.product = rlt
         })
     }
+
+
 
     @action async getImage(cb:Function=(msg:any)=>{}){
         

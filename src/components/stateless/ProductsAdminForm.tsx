@@ -43,6 +43,7 @@ const styles = createStyles({
 
 const ProductsAdminForm = (props:ILoginFormProps) =>  {
   const { classes } = props;
+  
     return(
     <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
             <List component="nav" className={classes.root}>
@@ -120,7 +121,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
           
             <List component="nav" className={classes.root}>
                 <ListItem button>
-                  <ListItemText primary="商品操作" />
+                  <ListItemText primary="商品类型" />
                 </ListItem>
                 <Divider />
           </List>
@@ -164,7 +165,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
         />
 
           </FormGroup>
-
+          
       
     </div>
     )
