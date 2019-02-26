@@ -80,7 +80,6 @@ class App extends Component<IAppProps, IAppState> {
 
   constructor(props: any){
     super(props);
- 
   }
   
   componentDidMount(){

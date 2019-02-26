@@ -64,13 +64,33 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
             msg.show(m);
         })
     }
+    getPageList = (title:string) => {
+        // let PageLIst;
+        switch (title) {
+            case '产品列表':
+        return  (<h1>Hello</h1>) 
+                break;
+            case '角色列表':
+            return (<h1>角色列表</h1>)
+            break;
+            case '应用列表':
+            return (<h1>应用列表</h1>)
+            break;
+            default:
+                return (<h1>Good</h1>)
+                break;
+        }
+    }
     render(){
-        const { dataContainer } = this.props;
-        const { title, list, loading} = dataContainer;
-        console.log(list);
         
+        const { dataContainer } = this.props;
+        const { title, list, loading, getTitle} = dataContainer;
+        console.log(title)
+       console.log(this.getPageList(title))
+       const PageList =  this.getPageList(title) 
         return (
             <React.Fragment>
+             { PageList }
              <form onSubmit={(e:any)=>{e.preventDefault();this.getList()}}  style={{
                     display: 'flex',
                     alignItems: 'baseline'
