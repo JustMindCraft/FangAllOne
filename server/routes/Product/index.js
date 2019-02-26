@@ -10,15 +10,8 @@ export default [
     handler: async (request, h) => {
         try {
           const { id } = request.params;
-          const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
-          const app = await App.findOne({
-              where: {
-                  host
-              },
-          })
           let product = await Product.findOne({
-            id:id,
-            appId: app.id,
+            id:id
             }
           )
           return h.response(product).code(200);
@@ -213,10 +206,20 @@ export default [
       method: 'POST',
       path: '/products',
       handler: async (request, h) => {
-        
+        const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+        const app = await App.findOne({
+            where: {
+                host
+            },
+        })
+        const { condition } = request.payload
+        const products = await Product.bulkCreate(condition,
+          {ignoreDuplicates : true,
+          appId:app.id});
+      return h.response(products).code(200);
       },
       options: {
-          description: '创建一个产品',
+          description: '批量创建产品',
           notes: 'condition参数包含创建的字段, username, password, 这个方法特殊的地方在于，会返回一个token',
           tags: ['api'], // ADD THIS TAG
           validate: {

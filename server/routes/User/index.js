@@ -44,8 +44,49 @@ export default [
   {
       method: 'GET',
       path: '/users',
-      handler: (request, h) => {
-          return 'Hello, world!';
+      handler: async (request, h) => {
+        try {
+            const condition = JSON.parse(request.query.condition);
+            const optional = JSON.parse(request.query.optional);
+            const { sort, feilds, page, pagesize} = optional;
+            const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
+            const app = await App.findOne({
+                where: {
+                    host
+                },
+            })
+            const users = await User.findAll({
+                where: {
+                    ...condition,
+                    appId: app.id,
+                },
+                attributes: feilds,
+                order: [sort],
+                limit: pagesize,
+                offset: (page-1)*pagesize
+            })
+            return h.response(users).code(200);
+        } catch (error) {
+            console.log(error);
+            
+            return h.response(error.original.toString()).code(203);
+        }
+          
+      },
+      options: {
+          auth: false,
+          description: '获取用户的列表',
+          notes: '获取用户的列表',
+          tags: ['api'], // ADD THIS TAG
+          validate: {
+              query: {
+                  condition: Joi.string(),
+                  optional: Joi.string(),
+                  token: Joi.string(),
+                  appId: Joi.string(),
+              }
+          }
+          
       }
   },
   {
@@ -312,10 +353,31 @@ export default [
   //==============PATCH============================
   {
     method: 'PATCH',
-    path: '/user',
+    path: '/user/{id}',
     handler: (request, h) => {
-        return 'Hello, world!';
-    }
+        const id = request.params
+        const condition = JSON.parse(request.query.condition);
+        User.update(id,condition).then(function(alt){
+          if(!error){
+            return h.response(alt).code(200);
+          }
+        },function(error){
+          console.log(error)
+        })
+        },
+        options: {
+          auth: false,
+          description: '根据ID修改用户信息',
+          notes: '根据ID修改用户信息',
+          tags: ['api'], // ADD THIS TAG
+          validate: {
+               query: {
+                   condition: Joi.string(),
+                   optional: Joi.string(),
+               }
+          }
+          
+      },
   },
   //==============END OF PATCH=====================
 
@@ -324,8 +386,9 @@ export default [
     method: 'PUT',
     path: '/users',
     handler: (request, h) => {
-        return 'Hello, world!';
-    }
+        return 'hello world';
+        },
+
   },
   //==============END OF PUT=======================
 
