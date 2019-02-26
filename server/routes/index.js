@@ -3,7 +3,7 @@ import App from './App';
 import HomeBanner from './HomeBanner'
 import Product from './Product'
 import Role from './Role';
-
+import Shop from './Shop';
 
 const indexRoute = {
     method: 'GET',
@@ -19,6 +19,7 @@ const routes = [indexRoute]
     .concat(Product)
     .concat(Role)
     .concat(HomeBanner)
+    .concat(Shop)
     ;
 
 
