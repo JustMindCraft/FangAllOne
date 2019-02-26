@@ -28,6 +28,9 @@ export default [
             
            
             const includeModels = [];
+            if(!optional.fields){
+                optional.fields=[];
+            }
             for (let index = 0; index < optional.fields.length; index++) {
                 const field = optional.fields[index];
                 if(models[field]){
@@ -95,13 +98,10 @@ export default [
               
               const condition = JSON.parse(request.query.condition);
               const optional = JSON.parse(request.query.optional);
-              const {token, appId} = request.query;
-
-              
-              const host = request.headers.origin.replace(/^(https?|ftp|file):\/\//, '');
-              
-            
               const includeModels = [];
+              if(!optional.fields){
+                optional.fields=[];
+              }
               for (let index = 0; index < optional.fields.length; index++) {
                   const field = optional.fields[index];
                   if(models[field]){
@@ -115,26 +115,16 @@ export default [
 
               const attributes = ['id', 'name', 'appId'].concat(optional.fields);
               
-              let app = await App.findOne(
+              const apps = await App.findAll(
                   {
                       where: {
                       ...condition,
-                      host,
-                      appId
-
                       },
                       attributes,
                       include: includeModels,
               })
-              if(!app){
-                  app = await App.findOne({
-                          where: {isDefault: true},
-                      attributes,
-                      include: includeModels,
-                  });
-              }
 
-              return h.response(app).code(200);
+              return h.response(apps).code(200);
           } catch (error) {
               console.log(error);
               
