@@ -20,7 +20,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
     componentWillReceiveProps(){
         const { store } = this.props;
         console.log(store.parameterCount);
-        
     }
     handleInputChange = (event:any, key:string) => {
         const {store} = this.props;
