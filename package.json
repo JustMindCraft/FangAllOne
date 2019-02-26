@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.0",
     "@material-ui/icons": "^3.0.2",
+    "@sigodenh/wechatpay": "^1.1.0",
     "@types/jest": "23.3.13",
     "@types/node": "10.12.18",
     "@types/pouchdb": "^6.3.2",

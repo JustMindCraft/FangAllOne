@@ -51,6 +51,7 @@ export default  (sequelize, DataTypes) => {
         Product.belongsTo(models.Shop);
         Product.hasMany(models.ShopAgencyProduct);
         Product.hasMany(models.ProductSpecification);
+        Product.belongsTo(models.ProductSpecification);//这个唯一性标示当前产品使用了哪一个种规格
         Product.hasMany(models.ProductProperty);
         Product.belongsTo(models.ProductCategory);
     }
