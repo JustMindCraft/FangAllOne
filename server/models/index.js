@@ -23,6 +23,9 @@ export const ShopAgencyProduct =  sequelize.import(__dirname+'/ShopAgencyProduct
 export const Setting =  sequelize.import(__dirname+'/Setting.js');
 export const ProductSpecification =  sequelize.import(__dirname+'/ProductSpecification.js');
 export const ProductProperty =  sequelize.import(__dirname+'/ProductProperty.js');
+export const Permission =  sequelize.import(__dirname+'/Permission.js');
+export const RolePermission =  sequelize.import(__dirname+'/RolePermission.js');
+export const ProductCategory =  sequelize.import(__dirname+'/ProductCategory.js');
 
 
 const models = {
@@ -36,7 +39,10 @@ const models = {
     Setting,
     App,
     ProductSpecification,
-    ProductProperty
+    ProductProperty,
+    Permission,
+    RolePermission,
+    ProductCategory
 }
 
 for (const model in models) {

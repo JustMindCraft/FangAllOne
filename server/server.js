@@ -4,6 +4,7 @@ import {User} from './models/';
 import bcrypt from 'bcrypt';
 import assert from 'assert';
 import seed from './startup/fixture';
+import UserCache from './cache/UserCache';
 
 const Hapi = require('hapi');
 const Inert = require('inert');
@@ -37,7 +38,7 @@ const init = async () => {
             return { isValid: false };
         }
         try {
-            const user  = await User.findByPk(decoded.id, {attributes:['id','password']});
+            const user = UserCache.findOne({id: decoded.id});
             if(!user){
                 return { isValid: false };
             }

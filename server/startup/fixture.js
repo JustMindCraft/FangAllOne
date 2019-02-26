@@ -2,6 +2,7 @@ import {App, Role, User, UserRole, HomeBanner, Shop, Setting, Product} from "../
 
 import Sequelize from 'sequelize';
 import config from "../config";
+import UserCache from "../cache/UserCache";
 
 
 const Op = Sequelize.Op;
@@ -161,8 +162,6 @@ export default  async () => {
     }else{
         console.log("默认店铺已经有软件商品了");
     }
-
-
     
    
     
