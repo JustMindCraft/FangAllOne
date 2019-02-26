@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TextField, Button, createStyles, CircularProgress, Checkbox, FormControlLabel, withStyles } from '@material-ui/core';
+import { TextField, Button, createStyles, CircularProgress, withStyles } from '@material-ui/core';
 const LoginLink = (props:any) => <Link to="/login" {...props} />
-// Non-dependent styles
 const styles = createStyles({
     form: {
       display: 'flex',

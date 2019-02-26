@@ -6,29 +6,29 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter } from 'react-router';
 
-const MobileTop = (props:any) => {
-    
-    // const { isLogined, username, fetching } = props.content;
-    
-    
-    
-    return (
-            <AppBar position="relative" style={{width: '101%'}}>
-              
-              <Toolbar>
-               { props.isLogined &&  <IconButton color="inherit" aria-label="Open drawer" onClick={props.toggleDrawer('left', true)}>
-                  <MenuIcon />
-                </IconButton>}
-                <Typography variant="h6" color="inherit" style={{flexGrow: 1, textAlign: 'center'}}>
-                  {props.appName}
-                </Typography>
-                <div>
-                </div>
-               
-              </Toolbar>
-            </AppBar>
-    )
+const MobileTop = (props: any) => {
+
+  // const { isLogined, username, fetching } = props.content;
+
+
+
+  return (
+    <AppBar position="relative" style={{ width: '101%' }}>
+
+      <Toolbar>
+        {props.isLogined && <IconButton color="inherit" aria-label="Open drawer" onClick={props.toggleDrawer('left', true)}>
+          <MenuIcon />
+        </IconButton>}
+        <Typography variant="h6" color="inherit" style={{ flexGrow: 1, textAlign: 'center' }}>
+          {props.appName}
+        </Typography>
+        <div>
+        </div>
+      </Toolbar>
+      
+    </AppBar>
+  )
 }
-    
+
 
 export default withRouter(MobileTop);

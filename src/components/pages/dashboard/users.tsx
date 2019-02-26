@@ -1,5 +1,9 @@
-import React from 'react';
-import LayoutWithMobx from "../../withMobx/LayoutWithMobx";
+import React, { Component } from 'react';
+import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
+import UserAdminWithMobx from '../../withMobx//UserAdminWithMobx';
+
+
+   
 
 class UserAdminPage extends React.Component{
     render(){

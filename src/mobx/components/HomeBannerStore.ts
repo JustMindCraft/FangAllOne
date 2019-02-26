@@ -1,4 +1,4 @@
-import { observable, action, computed ,set} from "mobx";
+import { observable, action, computed ,set,IObservableArray} from "mobx";
 import { api } from "../../api";
 // import { auth } from "../../api";
 // import { AUTH } from "../../constants/API";
@@ -6,7 +6,7 @@ import { UPDATE ,SHOW_UNIQUE} from './../../constants/API';
 
 export class HomeBannerStore{
     
-    @observable banners: Array<string> = [];
+    @observable banners:Array<IObservableArray> = [];
 
     @observable loading=false;
 
@@ -29,9 +29,9 @@ export class HomeBannerStore{
         return window.localStorage.getItem('fang_token');
     }
 
-    @computed get mobximg() {
-        return this.banners.slice()
-      }
+    @computed get dataSource(){
+        return this.banners.slice();
+    }
     
     @action async upload(cb:Function=(msg:any)=>{}){
         this.loading = true;
