@@ -1,3 +1,5 @@
+import { ProductSpecification, Role } from ".";
+
 export default  (sequelize, DataTypes) => { 
 
     const Product = sequelize.define('products', {
@@ -51,15 +53,28 @@ export default  (sequelize, DataTypes) => {
         Product.belongsTo(models.Shop);
         Product.hasMany(models.ShopAgencyProduct);
         Product.hasMany(models.ProductSpecification);
+        Product.belongsTo(models.ProductSpecification);//这个唯一性标示当前产品使用了哪一个种规格
         Product.hasMany(models.ProductProperty);
-
-
+        Product.belongsTo(models.ProductCategory);
     }
 
     Product.createCard = async function(
-        cardName, cardDescription, cardCover, cardImages, shop
+        cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits,
     ){
-        
+
+        //创建会员卡片
+         await shop.update({
+             cardLevel: shop.cardLevel+1,
+         })
+
+         const app = await shop.getApp();
+
+         const role = await Role.create({
+            name: cardName+"持有者"
+         });
+
+         await role.setApp(app);
+
          const newCard = await this.create({
             name: cardName,
             description: cardDescription,
@@ -67,15 +82,35 @@ export default  (sequelize, DataTypes) => {
             images: cardImages,
             isCard: true,
             shopId: shop.id,
+            cardLevelProfits,
             cardLevel: shop.cardLevel+1
          });
-         
-         await shop.update({
-             cardLevel: shop.cardLevel+1,
+
+         await newCard.setShop(shop);
+
+         const newProductSpecification = await ProductSpecification.create({
+             price,
          })
+
+         await newProductSpecification.setProduct(newCard);
 
          return newCard;
          
+    }
+
+
+    Product.createSoftWare = function(appName, shopName, host, user){
+        //创建软件商品
+    }
+
+
+    Product.createDisCountCoupon = function(couponName, shop, discount, products){
+        //创建折扣优惠券
+
+    }
+
+    Product.createDeduction = function(couponName, shop, deduction, products){
+        //创建代金优惠券
     }
 
 

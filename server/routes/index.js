@@ -4,6 +4,9 @@ import HomeBanner from './HomeBanner'
 import Product from './Product'
 import Role from './Role';
 import Shop from './Shop';
+import wechat from './wechat';
+import Contact from './Contact';
+
 
 const indexRoute = {
     method: 'GET',
@@ -20,6 +23,8 @@ const routes = [indexRoute]
     .concat(Role)
     .concat(HomeBanner)
     .concat(Shop)
+    .concat(wechat)
+    .concat(Contact)
     ;
 
 

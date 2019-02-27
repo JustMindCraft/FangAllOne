@@ -2,6 +2,7 @@ import {App, Role, User, UserRole, HomeBanner, Shop, Setting, Product} from "../
 
 import Sequelize from 'sequelize';
 import config from "../config";
+import UserCache from "../cache/UserCache";
 
 
 const Op = Sequelize.Op;
@@ -138,13 +139,15 @@ export default  async () => {
     }})
     if(firstCardCount===0){
         const firstCard = await Product.createCard(
-            '会员卡',
+            '1级别会员卡',
             "这是默认的会员卡",
             "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
             [
                 "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
             ],
             defaultShop,
+            36500,
+            [2880]
         )
     }else{
         console.log("默认店铺的第一张会员卡已经存在");
@@ -161,8 +164,6 @@ export default  async () => {
     }else{
         console.log("默认店铺已经有软件商品了");
     }
-
-
     
    
     
