@@ -14,10 +14,15 @@ export class ProductsAdmin {
     @observable images:Array<IObservableArray> = [];
     @observable cover:Array<IObservableArray> = [];
     @observable detailsImage:Array<IObservableArray> = [];
+    @observable parameterCount= 0;
+    @observable parameterName:Array<IObservableArray> = [];
+    @observable parameterValue:Array<IObservableArray> = [];
 
+    @observable specificationsCount= 0;
+    @observable specificationsName:Array<IObservableArray> = [];
+    @observable specificationsValue:Array<IObservableArray> = [];
 
     @action uploadLoading(value:any){
-        console.log('走了这'+value);
         
         return this.loading = value;
     }
@@ -39,6 +44,14 @@ export class ProductsAdmin {
         console.log(value);
         return this.brief = value;
     }
+
+    @computed get getParameterCount(){
+        return this.parameterCount
+    }
+    @action  changeParameter(value:any,key:number){
+        console.log(key);
+        
+    }
     @action  changeImages(value:any,type:string){
         console.log(type);
         
@@ -53,14 +66,45 @@ export class ProductsAdmin {
             this.detailsImage=value;
             break
         }
-
-        console.log('当前封面'+this.cover);
-        console.log('当前多图'+this.images);
-        console.log("当前详情"+this.detailsImage);
-        
-        
-        
     }
+
+    @action  addParameter(value:any){
+        let parameter_count = this.parameterCount
+        this.parameterCount=parameter_count+1
+    }
+
+    @action  creatParameterName(i:number,value:any){
+        let count = this.parameterCount
+        let parameter=this.parameterName.slice()
+        parameter[i]=value
+        this.parameterName=parameter
+    }
+    @action  creatParameterValue(i:number,value:any){
+        let count = this.parameterCount
+        let parameter=this.parameterValue.slice()
+        parameter[i]=value
+        this.parameterValue=parameter
+    }
+
+
+
+    @action  addSpecifications(value:any){
+        let specifications_count = this.specificationsCount
+        this.specificationsCount=specifications_count+1
+    }
+    @action  creatSpecificationsName(i:number,value:any){
+        let count = this.specificationsCount
+        let specifications=this.specificationsName.slice()
+        specifications[i]=value
+        this.specificationsName=specifications
+    }
+    @action  creatSpecificationsValue(i:number,value:any){
+        let count = this.specificationsCount
+        let specifications=this.specificationsValue.slice()
+        specifications[i]=value
+        this.specificationsValue=specifications
+    }
+
     @action  dataSource(type:string){
         switch(type){
             case "images":
@@ -103,6 +147,28 @@ export class ProductsAdmin {
             this.loading = false
             this.product = rlt
         })
+    }
+    
+    @action async creatProduct(){
+        let name = this.name;
+        let name_zh = this.name_zh;
+        let brief = this.brief;
+        let sales_volume = this.sales_volume;
+        let images = this.images.slice();
+        let cover = this.cover.slice();
+        let detailsImage = this.detailsImage.slice();
+        let parameterCount=this.parameterCount;
+        let parameterName= this.parameterName.slice();
+        let parameterValue= this.parameterValue.slice();
+
+        let SynthesisParameters=[]
+        for(let i = 0;i<parameterCount;i++){
+            SynthesisParameters.push({ParameterName:parameterName[i],parameterValue:parameterValue[i]})
+        }
+
+        console.log(SynthesisParameters);
+        
+
     }
 
     @action async getImage(cb:Function=(msg:any)=>{}){

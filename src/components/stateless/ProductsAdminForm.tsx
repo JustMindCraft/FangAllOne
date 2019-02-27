@@ -43,6 +43,7 @@ const styles = createStyles({
 
 const ProductsAdminForm = (props:ILoginFormProps) =>  {
   const { classes } = props;
+  
     return(
     <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
             <List component="nav" className={classes.root}>
@@ -89,38 +90,13 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             margin="normal"
             variant="outlined"
           />
-            {/* <List component="nav" >
-                    <ListItem button>
-                    <ListItemText primary="商品上传" />
-                    </ListItem>
-                    <Divider />
-                </List>
-                <Upload  store={productsAdmin} uploadtype={'images'} btntitle={'商品多图上传'}/>
-                <Upload  store={productsAdmin} uploadtype={'cover'} btntitle={'商品封面上传'}/>
-                <Upload  store={productsAdmin} uploadtype={'detailsImage'} btntitle={'商品详情图上传'}/>
-                <List component="nav" >
-            <ListItem button>
-              <ListItemText primary="商品确认" />
-            </ListItem>
-            <Divider />
-            </List>
-                <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end',marginTop:'50px'}}>
-                <Button variant="contained" color="secondary" style={{marginRight:'20px'}}>
-                取消
-            </Button>
-            <Button variant="contained" color="primary" >
-                确认
-            </Button>
-                </div>
-            <div style={{width:'100%',height:'200px'}}>
-            </div> */}
           
-
+          
 
           
             <List component="nav" className={classes.root}>
                 <ListItem button>
-                  <ListItemText primary="商品操作" />
+                  <ListItemText primary="商品类型" />
                 </ListItem>
                 <Divider />
           </List>
@@ -164,7 +140,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
         />
 
           </FormGroup>
-
+          
       
     </div>
     )
