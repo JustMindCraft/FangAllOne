@@ -10,14 +10,19 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     state = {
         rowsPerPage: 5,
         page: 0,
+        selected: [],
+        numSelected: 0,
+        rowCount: 0,
+
+        
     }
 
     handleDateChange = (date: any) => {
-
+        console.log(date)
     }
 
     handleTimeChange = (time: any) => {
-
+        console.log(time)
     }
 
     handleChangePage = (event: any, page: number) => {
@@ -26,9 +31,13 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
         this.setState({ page })
     }
 
-    handleChangeRowsPerPage = (event:any) => {
+    handleChangeRowsPerPage = (event: any) => {
         console.log(event.target.value)
         this.setState({ rowsPerPage:event.target.value})
+    }
+
+    handleSelectAllClick = (event: any) => {
+        console.log(event)
     }
 
     render(){
@@ -44,6 +53,9 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
                     handleChangeRowsPerPage={(e:any)=>this.handleChangeRowsPerPage(e)}
                     page={this.state.page}
                     rowsPerPage={this.state.rowsPerPage}
+                    handleSelectAllClick={this.handleSelectAllClick}
+                    numSelected={this.state.numSelected}
+                    rowCount={this.state.rowCount}
                 />
             </div>
         )
