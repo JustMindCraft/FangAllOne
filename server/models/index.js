@@ -28,6 +28,7 @@ export const RolePermission =  sequelize.import(__dirname+'/RolePermission.js');
 export const ProductCategory =  sequelize.import(__dirname+'/ProductCategory.js');
 export const Order =  sequelize.import(__dirname+'/Order.js');
 export const Contact =  sequelize.import(__dirname+'/Contact.js');
+export const Cart =  sequelize.import(__dirname+'/Cart.js');
 
 
 const models = {
