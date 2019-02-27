@@ -88,7 +88,7 @@ export default [
   //根据条件查询单个产品
   {
     method: 'GET',
-    path: '/product/',
+    path: '/product',
     handler: async (request, h) => {
       try{
         const condition = JSON.parse(request.query.condition);

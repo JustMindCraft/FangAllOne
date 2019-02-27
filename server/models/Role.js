@@ -4,20 +4,13 @@ export default  (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING(),
         },
-        cardLevel: {
-            type: DataTypes.INTEGER(),
-            defaultValue: 0,
-        },
-        isDeleted: {
-            type: DataTypes.BOOLEAN(),
-            defaultValue: false,
-        },
         
     });
     Role.associate = models => {
         Role.belongsTo(models.App);
         Role.belongsToMany(models.User, {through: models.UserRole});
         Role.belongsToMany(models.Permission, {through: models.RolePermission});
+        Role.hasMany(models.StatusPermission);
 
     }
     Role.countInApp = function(name, appId){
