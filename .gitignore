@@ -25,4 +25,4 @@ development.sqlite
 production.sqlite
 test.sqlite
 package-lock.json
-cache.db
+cachedb/*

@@ -9,7 +9,7 @@ export default [
   //==============GET==============================
   {
     method: 'GET',
-    path: '/wechat',
+    path: '/wechatpay',
     handler: async (request, h) => {
         try {
             //获取wechat支付参数
@@ -44,7 +44,7 @@ export default [
   //==============END OF POST======================
   {
     method: 'POST',
-    path: '/wechat',
+    path: '/wechatpay',
     handler: async (request, h) => {
         try {
             //获取wechat支付结果的通知

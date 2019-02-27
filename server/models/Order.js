@@ -1,12 +1,13 @@
-import { UserRole } from '.';
 import ProductRolePrice from './ProductRolePrice';
 import Sequelize from 'sequelize';
 
 const Op = Sequelize.Op;
 
 const Pay = require('@sigodenh/wechatpay');
+
 // var pfxContent = fs.readFileSync("<location-of-your-apiclient-cert.p12>")
 const wechatPay = new Pay("", "", "");
+
 export default  (sequelize, dataType) => { 
 
     const Order =   sequelize.define('orders', {
@@ -65,9 +66,7 @@ export default  (sequelize, dataType) => {
 
         for (let i = 0; i < products.length; i++) {
             const product = products[i];
-            if(product.shopId !==shopId){
-                return "请传入同一个店铺的商品, 每个订单只有一个店铺关联";
-            }
+            
             const { price } = await product.getProductSpecification();
             //获取一个产品规格的价格
             const count = productsCount[product.id];
@@ -78,6 +77,8 @@ export default  (sequelize, dataType) => {
             const productsPrice = price*count*promotion.discount- promotion.deduction;
 
             totalCost = totalCost + productsPrice;
+            //在生成订单的同时，先计算其他账户是否能够获得佣金
+            
         }
 
         try {

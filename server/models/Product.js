@@ -45,7 +45,12 @@ export default  (sequelize, DataTypes) => {
             //库存单位
             type: DataTypes.STRING,
             defaultValue: '件',
-        }
+        },
+        isTool: {
+            //是否是工具类别，如果是的，新建相关角色
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
         
     });
 
@@ -108,7 +113,7 @@ export default  (sequelize, DataTypes) => {
     }
 
 
-    Product.createDisCountCoupon = function(couponName, shop, discount, products){
+    Product.createDiscountCoupon = function(couponName, shop, discount, products){
         //创建折扣优惠券
 
     }

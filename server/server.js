@@ -39,6 +39,7 @@ const init = async () => {
         }
         try {
             const user = UserCache.findOne({id: decoded.id});
+            
             if(!user){
                 return { isValid: false };
             }

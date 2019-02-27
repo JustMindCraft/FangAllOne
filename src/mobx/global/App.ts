@@ -8,6 +8,7 @@ export class App {
     @observable currentTitle="";
     @observable appId='';
     @observable name="";
+    @observable clientId = window.localStorage.getItem("fang_client_id");
 
     @observable updating = false;
 
