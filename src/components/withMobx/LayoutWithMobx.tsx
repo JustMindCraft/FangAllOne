@@ -45,7 +45,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
                 <ListItemIcon><LibraryIcon /></ListItemIcon>
                 <ListItemText primary='我的店铺' />
               </ListItem>
-              <ListItem button key="application" onClick={(e)=>{history.push('/dashboard/applicaitons')}}>
+              <ListItem button key="application" onClick={(e)=>{history.push('/dashboard/applications')}}>
                 <ListItemIcon><LibraryIcon /></ListItemIcon>
                 <ListItemText primary='应用管理' />
               </ListItem>
