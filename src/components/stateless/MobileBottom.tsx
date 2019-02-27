@@ -6,15 +6,15 @@ import MessageIcon from '@material-ui/icons/Message';
 import UserIcon from '@material-ui/icons/Person';
 
 
-const MobileBottom = (props:any) => {
+const MobileBottom = (props: any) => {
     return (
         <BottomNavigation
             showLabels
         >
-        <BottomNavigationAction label="发现" icon={<DiscoverIcon />} />
-        <BottomNavigationAction label="消息" icon={<MessageIcon />} />
-        <BottomNavigationAction label="我" icon={<UserIcon />} />
-      </BottomNavigation>
+            <BottomNavigationAction label="发现" icon={<DiscoverIcon />} />
+            <BottomNavigationAction label="消息" icon={<MessageIcon />} />
+            <BottomNavigationAction label="我" icon={<UserIcon />} />
+        </BottomNavigation>
     )
 }
 

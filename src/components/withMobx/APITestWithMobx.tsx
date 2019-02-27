@@ -85,8 +85,10 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
     }
     render(){
         const { dataContainer } = this.props;
-        const { title, list, loading, getTitle} = dataContainer;
+        const { title, list, loading } = dataContainer;
         console.log(title)
+        console.log('list')
+        console.log(list)
        console.log(this.getPageList(title))
        const PageList =  this.getPageList(title) 
         return (
