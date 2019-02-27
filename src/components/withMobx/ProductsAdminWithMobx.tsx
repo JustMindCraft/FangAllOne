@@ -9,11 +9,25 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import { observer, inject } from 'mobx-react';
+import { constants } from 'http2';
 interface ProductsAdminWithMobxProps {
     store: any,
 }
+interface IProductsAdminState{
+    parameterName: any,
+    parameterValue:any
+  }
 @observer
-class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
+class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,IProductsAdminState>{
+  
+    constructor(props:any){
+        super(props);
+        this.state ={
+        parameterName:[],
+        parameterValue:[]
+        }
+    }
+    
     componentDidMount(){
         const { store } = this.props;
     }
@@ -47,27 +61,51 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
     handleChangeParameterName=(event:any,i:any)=>{
         const {store} = this.props
         const value = event.target.value;
-        const arr = []
-        arr.push(value)
-        console.log(value,i)
-        console.log(store.parameterCount);
-        console.log(arr);
+        const arr = new Array(store.parameterCount)
+        arr[i]=value
+        store.creatParameterName(i,value)
+        // arr.push(value)
+
+        // if(i<store.parameterCount){
+        //     loaclstate.push(arr[0])
+        // }
+        // console.log(store.parameterCount);
+        // console.log(arr);
+        // console.log(loaclstate);
+        
         
         
         
     }
     handleChangeParameterValue=(event:any,i:any)=>{
+        const {store} = this.props
         const value = event.target.value;
-        console.log(value)
+        const arr = new Array(store.parameterCount)
+        arr[i]=value
+        store.creatParameterValue(i,value)
+        // arr.push(value)
+
+        // if(i<store.parameterCount){
+        //     loaclstate.push(arr[0])
+        // }
+        // console.log(store.parameterCount);
+        // console.log(arr);
+        // console.log(loaclstate);
     }
 
     addParameter=(event:any)=>{
         const {store} =this.props;
-
+        console.log(store.parameter);
+        
         console.log('点击触发');
-        store.creatParameter();
+        store.addParameter();
         console.log(store.parameterCount);
         
+        
+    }
+    creatproduct=()=>{
+        const {store} =this.props;
+        console.log(store.parameterValue);
         
     }
     render (){
@@ -77,14 +115,14 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
         let parameterArray=[]
         for(let i = 0;i<store.parameterCount;i++){
             parameterArray.push(
-                <div key={i} style={{textAlign:'center'}}>
+                <div key={i} style={{display:'flex',flexDirection:'row',justifyContent:'space-between',paddingLeft:'10px'}}>
                     <TextField
                         id="standard-name"
                         label="参数名"
                         name="name"
                         margin="normal"
                         // key={2*i}
-                        style={{width:'40%'}}
+                        style={{width:'35%'}}
                         onChange={(event:any)=>this.handleChangeParameterName(event,i)}
                         />
 
@@ -94,9 +132,20 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
                         name="value"
                         margin="normal"
                         // key={2*i+1}
-                        style={{marginLeft:'5px',width:'40%'}}
+                        style={{marginLeft:'5px',width:'35%'}}
                         onChange={(event:any)=>this.handleChangeParameterValue(event,i)}
                         />
+                        <div style={{display:'flex',
+                        flexDirection:'row',
+                        alignItems:'center',
+                        paddingTop:'20px',
+                        marginLeft:'5px'
+                        }}>
+                        <Button color="secondary" variant="contained" style={{width:'20%'}}>
+                        删除
+                       </Button>
+                        </div>
+                        
                 </div>
             )
         }
@@ -130,16 +179,19 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps>{
             添加参数
             </Button>
             {parameterArray}
-            <ListItem button>
+
+            <div style={{width:'100%',height:'200px'}}>
+            </div>
+            <ListItem >
               <ListItemText primary="商品确认" />
             </ListItem>
             <Divider />
             </List>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end',marginTop:'50px'}}>
-                <Button variant="contained" color="secondary" style={{marginRight:'20px'}}>
+                <Button variant="contained" color="secondary"  style={{marginRight:'20px'}}>
                 取消
             </Button>
-            <Button variant="contained" color="primary" >
+            <Button variant="contained" onClick={this.creatproduct} color="primary" >
                 确认
             </Button>
                 </div>

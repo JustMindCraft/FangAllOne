@@ -15,7 +15,8 @@ export class ProductsAdmin {
     @observable cover:Array<IObservableArray> = [];
     @observable detailsImage:Array<IObservableArray> = [];
     @observable parameterCount= 0;
-
+    @observable parameterName:Array<IObservableArray> = [];
+    @observable parameterValue:Array<IObservableArray> = [];
 
     @action uploadLoading(value:any){
         
@@ -43,6 +44,10 @@ export class ProductsAdmin {
     @computed get getParameterCount(){
         return this.parameterCount
     }
+    @action  changeParameter(value:any,key:number){
+        console.log(key);
+        
+    }
     @action  changeImages(value:any,type:string){
         console.log(type);
         
@@ -59,9 +64,22 @@ export class ProductsAdmin {
         }
     }
 
-    @action  creatParameter(value:any){
+    @action  addParameter(value:any){
         let parameter_count = this.parameterCount
         this.parameterCount=parameter_count+1
+    }
+
+    @action  creatParameterName(i:number,value:any){
+        let count = this.parameterCount
+        let parameter=this.parameterName.slice()
+        parameter[i]=value
+        this.parameterName=parameter
+    }
+    @action  creatParameterValue(i:number,value:any){
+        let count = this.parameterCount
+        let parameter=this.parameterValue.slice()
+        parameter[i]=value
+        this.parameterValue=parameter
     }
 
     @action  dataSource(type:string){
