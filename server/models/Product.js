@@ -25,7 +25,7 @@ export default  (sequelize, DataTypes) => {
         },
         cardLevel: {
             type: DataTypes.INTEGER,
-            defaultValue: null,
+            defaultValue: 0,
         },
         cardLevelProfits: {
             type: DataTypes.JSON,
@@ -53,9 +53,12 @@ export default  (sequelize, DataTypes) => {
         Product.belongsTo(models.Shop);
         Product.hasMany(models.ShopAgencyProduct);
         Product.hasMany(models.ProductSpecification);
-        Product.belongsTo(models.ProductSpecification);//这个唯一性标示当前产品使用了哪一个种规格
+        Product.belongsTo(models.ProductSpecification);
+        //这个唯一性标示当前产品使用了哪一个种规格
         Product.hasMany(models.ProductProperty);
+        Product.hasMany(models.ProductStoreRecord);
         Product.belongsTo(models.ProductCategory);
+        Product.belongsToMany(models.Tag, {through: models.ProductTag});
     }
 
     Product.createCard = async function(
@@ -101,6 +104,7 @@ export default  (sequelize, DataTypes) => {
 
     Product.createSoftWare = function(appName, shopName, host, user){
         //创建软件商品
+        
     }
 
 
@@ -112,6 +116,8 @@ export default  (sequelize, DataTypes) => {
     Product.createDeduction = function(couponName, shop, deduction, products){
         //创建代金优惠券
     }
+
+    
 
 
     return Product;

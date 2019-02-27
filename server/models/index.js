@@ -23,12 +23,20 @@ export const ShopAgencyProduct =  sequelize.import(__dirname+'/ShopAgencyProduct
 export const Setting =  sequelize.import(__dirname+'/Setting.js');
 export const ProductSpecification =  sequelize.import(__dirname+'/ProductSpecification.js');
 export const ProductProperty =  sequelize.import(__dirname+'/ProductProperty.js');
+export const ProductStoreRecord =  sequelize.import(__dirname+'/ProductStoreRecord.js');
 export const Permission =  sequelize.import(__dirname+'/Permission.js');
 export const RolePermission =  sequelize.import(__dirname+'/RolePermission.js');
 export const ProductCategory =  sequelize.import(__dirname+'/ProductCategory.js');
 export const Order =  sequelize.import(__dirname+'/Order.js');
 export const Contact =  sequelize.import(__dirname+'/Contact.js');
 export const Cart =  sequelize.import(__dirname+'/Cart.js');
+export const StatusPermission =  sequelize.import(__dirname+'/StatusPermission.js');
+export const Post =  sequelize.import(__dirname+'/Post.js');
+export const PostTag =  sequelize.import(__dirname+'/PostTag.js');
+export const ProductTag =  sequelize.import(__dirname+'/ProductTag.js');
+export const Tag =  sequelize.import(__dirname+'/Tag.js');
+export const Balance =  sequelize.import(__dirname+'/Balance.js');
+export const BalanceChange =  sequelize.import(__dirname+'/BalanceChange.js');
 
 
 const models = {
@@ -48,6 +56,14 @@ const models = {
     ProductCategory,
     Order,
     Contact,
+    StatusPermission,
+    Post,
+    PostTag,
+    Tag,
+    ProductTag,
+    ProductStoreRecord,
+    Balance,
+    BalanceChange,
 }
 
 for (const model in models) {

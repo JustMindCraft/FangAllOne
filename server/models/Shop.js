@@ -18,6 +18,9 @@ export default  (sequelize, DataTypes) => {
         Shop.belongsTo(models.App);
         Shop.hasMany(models.Product);
         Shop.hasMany(models.ShopAgencyProduct);
+        Shop.hasMany(models.ProductCategory);
+        Shop.hasMany(models.ProductStoreRecord);
+        Shop.hasOne(models.Balance);
     }
     return Shop;
 }

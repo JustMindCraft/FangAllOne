@@ -32,6 +32,9 @@ export default (sequelize, DataTypes)=>{
         User.belongsTo(models.App);
         User.belongsToMany(models.Role, {through: models.UserRole});
         User.hasMany(models.Contact);
+        User.hasMany(models.Post);
+        User.hasOne(models.Balance);
+
     }
 
     User.register = async function(username, password, mobile){

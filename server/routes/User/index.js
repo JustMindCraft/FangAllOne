@@ -7,10 +7,6 @@ import sha256 from 'sha256';
 import UserCache from '../../cache/UserCache';
 const ENV = process.env.NODE_ENV;
 
-
-
-
-
 const querySchema = Joi.object({
     condition: Joi.string().required(),
     optional: Joi.string().optional(),
@@ -201,7 +197,7 @@ export default [
         notes: 'condition参数包含创建的字段, username, password, 这个方法特殊的地方在于，会返回一个token',
         tags: ['api'], // ADD THIS TAG
         validate: {
-            query: {
+            payload: {
                 condition: Joi.required()
             },  
         }
