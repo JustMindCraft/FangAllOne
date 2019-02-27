@@ -37,7 +37,8 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
             <div>
                 <OrderListSearch 
                     handleDateChange={this.handleDateChange} 
-                    handleTimeChange={this.handleTimeChange}/>
+                    handleTimeChange={this.handleTimeChange}
+                />
                 <OrderList
                     handleChangePage={this.handleChangePage}
                     handleChangeRowsPerPage={(e:any)=>this.handleChangeRowsPerPage(e)}

@@ -54,7 +54,7 @@ const OrderListSearch = (props:IOrderListSearchProps) => {
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid container spacing={16}>
+                    <Grid container spacing={16} alignItems="center">
                         <Grid item>
                             <DateFormatInput
                                 label="起始日期"

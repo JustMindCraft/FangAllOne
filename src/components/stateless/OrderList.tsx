@@ -1,5 +1,6 @@
 import React from 'react';
-import { withStyles, createStyles, Paper } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,7 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Checkbox from '@material-ui/core/Checkbox';
-import dataContainer from '../../mobx/DataContainer';
 
 const styles = createStyles({
     root: {
@@ -54,10 +54,10 @@ interface IOrderListProps {
 const OrderList = (props: IOrderListProps) => {
     const { classes } = props;
     return (
+        <Paper className={classes.root}>
 
-        <Paper className={props.classes.root}>
-            <Table className={props.classes.table}>
-                <TableHead className={props.classes.head}>
+            <Table className={classes.table}>
+                <TableHead className={classes.head}>
                     <TableRow>
                         <TableCell>
                             <Checkbox />
@@ -86,7 +86,7 @@ const OrderList = (props: IOrderListProps) => {
                             <TableCell align='right'>{row.payTime}</TableCell>
                             <TableCell align='right'>{row.status}</TableCell>
                             <TableCell>
-                                <Button color="primary" className={props.classes.button}>
+                                <Button color="primary" className={classes.button}>
                                     详情
                                     </Button>
                                 <Button color="primary">
@@ -98,7 +98,7 @@ const OrderList = (props: IOrderListProps) => {
                 </TableBody>
             </Table>
             <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
+                rowsPerPageOptions={[10, 25, 50]}
                 component="div"
                 count={rows.length}
                 rowsPerPage={props.rowsPerPage}
