@@ -93,6 +93,46 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         // console.log(loaclstate);
     }
 
+    handleChangeSpecificationsName=(event:any,i:any)=>{
+        const {store} = this.props
+        const value = event.target.value;
+        const arr = new Array(store.specificationsCount)
+        arr[i]=value
+        store.creatSpecificationsName(i,value)
+        // arr.push(value)
+
+        // if(i<store.parameterCount){
+        //     loaclstate.push(arr[0])
+        // }
+        // console.log(store.parameterCount);
+        // console.log(arr);
+        // console.log(loaclstate);
+        
+        
+        
+        
+    }
+
+    handleChangeSpecificationsValue=(event:any,i:any)=>{
+        const {store} = this.props
+        const value = event.target.value;
+        const arr = new Array(store.specificationsCount)
+        arr[i]=value
+        store.creatSpecificationsValue(i,value)
+        // arr.push(value)
+
+        // if(i<store.parameterCount){
+        //     loaclstate.push(arr[0])
+        // }
+        // console.log(store.parameterCount);
+        // console.log(arr);
+        // console.log(loaclstate);
+        
+        
+        
+        
+    }
+
     addParameter=(event:any)=>{
         const {store} =this.props;
         console.log(store.parameter);
@@ -103,9 +143,23 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         
         
     }
+
+    
+    addSpecifications=(event:any)=>{
+        const {store} =this.props;
+        console.log(store.specifications);
+        
+        console.log('点击触发');
+        store.addSpecifications();
+        console.log(store.specificationsCount);
+        
+        
+    }
+
     creatproduct=()=>{
         const {store} =this.props;
         console.log(store.parameterValue);
+        store.creatProduct()
         
     }
     render (){
@@ -150,11 +204,61 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             )
         }
         parameter=parameterArray
+
+
+
+
+        let specifications
+        let specificationsArray=[]
+        for(let i = 0;i<store.specificationsCount;i++){
+            specificationsArray.push(
+                <div key={i} style={{display:'flex',flexDirection:'row',justifyContent:'space-between',paddingLeft:'10px'}}>
+                    <TextField
+                        id="standard-name"
+                        label="规格名"
+                        name="name"
+                        margin="normal"
+                        // key={2*i}
+                        style={{width:'35%'}}
+                        onChange={(event:any)=>this.handleChangeSpecificationsName(event,i)}
+                        />
+
+                        <TextField
+                        id="standard-uncontrolled"
+                        label="规格值"
+                        name="value"
+                        margin="normal"
+                        // key={2*i+1}
+                        style={{marginLeft:'5px',width:'35%'}}
+                        onChange={(event:any)=>this.handleChangeSpecificationsValue(event,i)}
+                        />
+                        <div style={{display:'flex',
+                        flexDirection:'row',
+                        alignItems:'center',
+                        paddingTop:'20px',
+                        marginLeft:'5px'
+                        }}>
+                        <Button color="secondary" variant="contained" style={{width:'20%'}}>
+                        删除
+                       </Button>
+                        </div>
+                        
+                </div>
+            )
+        }
+        specifications=specificationsArray
+
+
+
+
         
         return (
             <div>
                 
                 <ProductsAdminForm handleInputChange={this.handleInputChange} />
+                <div style={{width:'100%',height:'100px'}}>
+            </div>
+
                 <List component="nav" >
                         <ListItem button>
                         <ListItemText primary="商品上传" />
@@ -164,7 +268,8 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                 <Upload  store={store} uploadtype={'cover'} btntitle={'商品封面上传'} ref="cover"/>
                 <Upload  store={store} uploadtype={'images'} btntitle={'商品多图上传'} ref="images"/>
                 <Upload  store={store} uploadtype={'detailsImage'} btntitle={'商品详情图上传'} ref="detailsImage"/>
-
+                <div style={{width:'100%',height:'100px'}}>
+            </div>
                 <List component="nav" >
            
            
@@ -174,13 +279,24 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                 </ListItem>
                 <Divider />
           </List>
-
-          <Button variant="contained" onClick={this.addParameter} color="secondary" style={{width:'20%'}}>
+            <div style={{border:'1px dashed #aaa',padding:'10px',borderRadius:'5px'}}>
+            <Button variant="contained" onClick={this.addParameter} color="secondary" style={{width:'20%'}}>
             添加参数
             </Button>
-            {parameterArray}
+            {parameter}
+            </div>
+         
 
-            <div style={{width:'100%',height:'200px'}}>
+            <div style={{width:'100%',height:'100px'}}>
+            </div>
+            <div style={{border:'1px dashed #aaa',padding:'10px',borderRadius:'5px'}}>
+            <Button variant="contained" onClick={this.addSpecifications} color="secondary" style={{width:'20%'}}>
+            添加规格
+            </Button>
+            {specifications}
+            </div>
+
+            <div style={{width:'100%',height:'100px'}}>
             </div>
             <ListItem >
               <ListItemText primary="商品确认" />

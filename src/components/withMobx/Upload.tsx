@@ -176,7 +176,7 @@ export default class Upload extends Component<IImageUploaderProps, IImageUploade
     }
     return (
       <div >
-        <div style={{ height: '300px', border: '1px dashed #aaa', overflowY: 'scroll', textAlign: 'center' }}>
+        <div style={{ height: '300px', border: '1px dashed #aaa', overflowY: 'scroll', textAlign: 'center',borderRadius:'5px' }}>
           {children}
         </div>
         {/* <form> */}

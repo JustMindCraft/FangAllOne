@@ -18,6 +18,10 @@ export class ProductsAdmin {
     @observable parameterName:Array<IObservableArray> = [];
     @observable parameterValue:Array<IObservableArray> = [];
 
+    @observable specificationsCount= 0;
+    @observable specificationsName:Array<IObservableArray> = [];
+    @observable specificationsValue:Array<IObservableArray> = [];
+
     @action uploadLoading(value:any){
         
         return this.loading = value;
@@ -82,6 +86,25 @@ export class ProductsAdmin {
         this.parameterValue=parameter
     }
 
+
+
+    @action  addSpecifications(value:any){
+        let specifications_count = this.specificationsCount
+        this.specificationsCount=specifications_count+1
+    }
+    @action  creatSpecificationsName(i:number,value:any){
+        let count = this.specificationsCount
+        let specifications=this.specificationsName.slice()
+        specifications[i]=value
+        this.specificationsName=specifications
+    }
+    @action  creatSpecificationsValue(i:number,value:any){
+        let count = this.specificationsCount
+        let specifications=this.specificationsValue.slice()
+        specifications[i]=value
+        this.specificationsValue=specifications
+    }
+
     @action  dataSource(type:string){
         switch(type){
             case "images":
@@ -125,8 +148,28 @@ export class ProductsAdmin {
             this.product = rlt
         })
     }
+    
+    @action async creatProduct(){
+        let name = this.name;
+        let name_zh = this.name_zh;
+        let brief = this.brief;
+        let sales_volume = this.sales_volume;
+        let images = this.images.slice();
+        let cover = this.cover.slice();
+        let detailsImage = this.detailsImage.slice();
+        let parameterCount=this.parameterCount;
+        let parameterName= this.parameterName.slice();
+        let parameterValue= this.parameterValue.slice();
 
+        let SynthesisParameters=[]
+        for(let i = 0;i<parameterCount;i++){
+            SynthesisParameters.push({ParameterName:parameterName[i],parameterValue:parameterValue[i]})
+        }
 
+        console.log(SynthesisParameters);
+        
+
+    }
 
     @action async getImage(cb:Function=(msg:any)=>{}){
         
