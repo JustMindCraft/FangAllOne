@@ -28,7 +28,7 @@ interface IRoleShow {
 @inject('dataContainer')
 @observer
 class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
-    componentDidMount(){
+    componentWillMount(){
         const { dataContainer, msg } = this.props;
         const { sourceName, setSourceName, setTitle } = dataContainer;
         setSourceName("roles");

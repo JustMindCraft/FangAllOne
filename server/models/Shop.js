@@ -16,6 +16,7 @@ export default  (sequelize, DataTypes) => {
 
     Shop.associate = models => {
         Shop.belongsTo(models.App);
+        Shop.belongsTo(models.User, {as: "onwer"});
         Shop.hasMany(models.Product);
         Shop.hasMany(models.ShopAgencyProduct);
         Shop.hasMany(models.ProductCategory);

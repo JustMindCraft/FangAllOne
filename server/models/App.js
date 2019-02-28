@@ -1,5 +1,3 @@
-import { async } from 'q';
-
 export default  (sequelize, DataTypes) => { 
     const App = sequelize.define('apps', {
         name: {

@@ -1,6 +1,19 @@
 import { ProductSpecification, Role } from ".";
 
-export default  (sequelize, DataTypes) => { 
+interface ICardParams{
+    //
+    cardName: string,
+    cardDescription: string,
+    allowOpenShop: boolean,
+    cardCover:string,
+    cardImages:Array<string>, 
+    shop:any, 
+    price:number, 
+    cardLevelProfits:Array<number>,
+
+}
+
+export default  (sequelize:any, DataTypes:any) => { 
 
     const Product = sequelize.define('products', {
        
@@ -51,6 +64,11 @@ export default  (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
+        isFree: {
+            //是否免费，这个字段适用于优惠券场景
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
         isBook: {
             //是否是订购
             type: DataTypes.BOOLEAN,
@@ -78,8 +96,9 @@ export default  (sequelize, DataTypes) => {
     }
 
     Product.createCard = async function(
-        cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits,
+        params: ICardParams
     ){
+        const {cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits} = params;
 
         //创建会员卡片
          await shop.update({
