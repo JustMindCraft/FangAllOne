@@ -3,19 +3,42 @@ import WithdrawalAdminList from '../stateless/WithdrawalAdminList';
 import WithdrawalAdminSearch from '../stateless/WithdrawalAdminSearch'
 import WithdrawalAdminTab from '../stateless/WithdrawalAdminTab'
 import { withStyles } from '@material-ui/core/styles';
-
+import { observer, inject } from 'mobx-react';
 
 import { styles } from '../../css/common'
 interface IWithdrawalAdminWithMobx {
     value: number,
     classes: any,
+    dataContainer: any;
+    msg: any;
 }
+
+@inject('msg')
+@inject('dataContainer')
+@observer
 class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     state = {
         value: 1,
         page: 0,
         rowsPerPage: 5,
     }
+    componentDidMount() {
+        const { dataContainer, msg } = this.props;
+        const { sourceName, setSourceName, setTitle } = dataContainer;
+        setSourceName("withdrawals");
+        this.getList();
+        setTitle('提现列表')
+    }
+
+    getList = () =>{
+        const { dataContainer, msg } = this.props;
+        const { getList } = dataContainer;
+        getList({sort: ['id', 'DESC'], page: 1, pagesize: 25}, (m:any)=>{
+            console.log(m)
+            msg.show(m);
+        })
+    }
+
     handleDateChange = (date: any) => {
 
     }
@@ -35,8 +58,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     }
 
     render() {
-        const { classes } = this.props;
-        return (
+        const { classes, dataContainer, msg  } = this.props;
+        const { title, list, loading} = dataContainer;
+         return (
             <div className={classes.root}>
                 <WithdrawalAdminTab value={this.state.value} handleChange={this.handleChange} />
                 <WithdrawalAdminSearch handleDateChange={this.handleDateChange} />
@@ -45,6 +69,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                     handleChangePage={this.handleChangePage}
                     page={this.state.page}
                     rowsPerPage={this.state.rowsPerPage}
+                    list={list}
+                    title={title}
+                    loading={loading}
                 />
             </div>
         )
