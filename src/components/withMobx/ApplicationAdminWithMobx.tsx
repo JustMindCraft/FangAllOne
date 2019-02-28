@@ -45,7 +45,7 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
     }
 
     render() {
-        const { classes, dataContainer, msg  } = this.props;
+        const { classes, dataContainer  } = this.props;
         const { title, list, loading} = dataContainer;
         return (
             <div className={classes.root}>

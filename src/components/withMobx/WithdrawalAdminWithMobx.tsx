@@ -30,10 +30,10 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
         setTitle('提现列表')
     }
 
-    getList = () =>{
+    getList = () => {
         const { dataContainer, msg } = this.props;
         const { getList } = dataContainer;
-        getList({sort: ['id', 'DESC'], page: 1, pagesize: 25}, (m:any)=>{
+        getList({ sort: ['id', 'DESC'], page: 1, pagesize: 25 }, (m: any) => {
             console.log(m)
             msg.show(m);
         })
@@ -58,9 +58,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     }
 
     render() {
-        const { classes, dataContainer, msg  } = this.props;
-        const { title, list, loading} = dataContainer;
-         return (
+        const { classes, dataContainer } = this.props;
+        const { title, list, loading } = dataContainer;
+        return (
             <div className={classes.root}>
                 <WithdrawalAdminTab value={this.state.value} handleChange={this.handleChange} />
                 <WithdrawalAdminSearch handleDateChange={this.handleDateChange} />
