@@ -4,6 +4,11 @@ import WithdrawalAdminSearch from '../stateless/WithdrawalAdminSearch'
 import WithdrawalAdminTab from '../stateless/WithdrawalAdminTab'
 import { withStyles } from '@material-ui/core/styles';
 import { observer, inject } from 'mobx-react';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+
 
 import { styles } from '../../css/common'
 interface IWithdrawalAdminWithMobx {
@@ -12,6 +17,14 @@ interface IWithdrawalAdminWithMobx {
     dataContainer: any;
     msg: any;
     titile: string;
+}
+
+const TabContainer = (props: any) => {
+    return (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+            {props.children}
+        </Typography>
+    )
 }
 
 @inject('msg')
@@ -63,17 +76,62 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
         const { title, list, loading } = dataContainer;
         return (
             <div className={classes.root}>
-                <WithdrawalAdminTab value={this.state.value} handleChange={this.handleChange} />
-                <WithdrawalAdminSearch handleDateChange={this.handleDateChange} />
-                {/* <WithdrawalAdminList
-                    handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
-                    handleChangePage={this.handleChangePage}
-                    page={this.state.page}
-                    rowsPerPage={this.state.rowsPerPage}
-                    list={list}
-                    title={title}
-                    loading={loading}
-                /> */}
+                <AppBar position="static">
+                    <Tabs value={this.state.value} onChange={this.handleChange} centered>
+                        <Tab label="未打款" />
+                        <Tab label="已打款" />
+                        <Tab label="已撤销" />
+                    </Tabs>
+                </AppBar>
+                {this.state.value === 0
+                    &&
+                    <TabContainer>
+                        未打款
+                    <WithdrawalAdminList
+                            handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
+                            handleChangePage={this.handleChangePage}
+                            page={this.state.page}
+                            rowsPerPage={this.state.rowsPerPage}
+                            list={list}
+                            title={title}
+                            loading={loading}
+                        />
+                    </TabContainer>
+                }
+                {this.state.value === 1
+                    &&
+                    <TabContainer>
+                        已打款
+                        <WithdrawalAdminList
+                            handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
+                            handleChangePage={this.handleChangePage}
+                            page={this.state.page}
+                            rowsPerPage={this.state.rowsPerPage}
+                            list={list}
+                            title={title}
+                            loading={loading}
+                        />
+                    </TabContainer>
+                }
+                {this.state.value === 2
+                    &&
+                    <TabContainer>
+                        已撤销
+                        <WithdrawalAdminList
+                            handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
+                            handleChangePage={this.handleChangePage}
+                            page={this.state.page}
+                            rowsPerPage={this.state.rowsPerPage}
+                            list={list}
+                            title={title}
+                            loading={loading}
+                        />
+                    </TabContainer>
+                }
+
+                {/* <WithdrawalAdminTab value={this.state.value} handleChange={this.handleChange} />
+                <WithdrawalAdminSearch handleDateChange={this.handleDateChange} /> */}
+
             </div>
         )
     }
