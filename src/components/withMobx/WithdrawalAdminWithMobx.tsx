@@ -11,6 +11,7 @@ interface IWithdrawalAdminWithMobx {
     classes: any,
     dataContainer: any;
     msg: any;
+    titile: string;
 }
 
 @inject('msg')
@@ -43,7 +44,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
 
     }
     handleChange = (event: any, value: any) => {
-        console.log(event)
+        console.log(value)
         this.setState({ value });
     }
     handleChangePage = (event: any, page: number) => {
@@ -64,7 +65,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
             <div className={classes.root}>
                 <WithdrawalAdminTab value={this.state.value} handleChange={this.handleChange} />
                 <WithdrawalAdminSearch handleDateChange={this.handleDateChange} />
-                <WithdrawalAdminList
+                {/* <WithdrawalAdminList
                     handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
                     handleChangePage={this.handleChangePage}
                     page={this.state.page}
@@ -72,7 +73,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                     list={list}
                     title={title}
                     loading={loading}
-                />
+                /> */}
             </div>
         )
     }

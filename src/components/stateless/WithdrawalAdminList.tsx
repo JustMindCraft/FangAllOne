@@ -44,6 +44,9 @@ interface IWithdrawalAdminList {
   handleChangeRowsPerPage: (event: any) => void;
   page: number;
   rowsPerPage: number;
+  title: string;
+  loading: boolean;
+  list: Array<any>;
 }
 const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
   const { classes } = props;
