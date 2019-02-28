@@ -200,7 +200,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         console.log(i);
         const {store} =this.props;
         store.deleteAgencyLevelPrices(i)
-        
     }
 
     render (){
