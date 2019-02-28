@@ -128,10 +128,16 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         // console.log(arr);
         // console.log(loaclstate);
         
-        
-        
-        
     }
+
+    handleChangeAgencyLevelPrices=(event:any,i:any)=>{
+        const {store} = this.props
+        const value = event.target.value;
+        const arr = new Array(store.agencyLevelPricesCount)
+        arr[i]=value
+        store.creatAgencyLevelPrices(i,value)
+    }
+
 
     addParameter=(event:any)=>{
         const {store} =this.props;
@@ -156,15 +162,51 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         
     }
 
+    addAgencyLevelPrices=(event:any)=>{
+        const {store} =this.props;
+        console.log(store.agencyLevelPrices);
+        
+        console.log('点击触发');
+        store.addAgencyLevelPrices();
+        console.log(store.agencyLevelPricesCount);
+        
+        
+    }
+
     creatproduct=()=>{
         const {store} =this.props;
         console.log(store.parameterValue);
         store.creatProduct()
         
     }
+
+    deleteSpecifications=(i:number)=>{
+        console.log(i);
+        const {store} =this.props;
+        store.deleteSpecifications(i)
+        
+    }
+
+    
+    deleteParameter=(i:number)=>{
+        console.log(i);
+        const {store} =this.props;
+        store.deleteParameter(i)
+        
+    }
+
+    
+    deleteAgencyLevelPrices=(i:number)=>{
+        console.log(i);
+        const {store} =this.props;
+        store.deleteAgencyLevelPrices(i)
+        
+    }
+
     render (){
         const { store } = this.props;
         console.log(store);
+        
         let parameter
         let parameterArray=[]
         for(let i = 0;i<store.parameterCount;i++){
@@ -174,6 +216,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                         id="standard-name"
                         label="参数名"
                         name="name"
+                        value={store.parameterName.slice()[i]}
                         margin="normal"
                         // key={2*i}
                         style={{width:'35%'}}
@@ -184,6 +227,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                         id="standard-uncontrolled"
                         label="参数值"
                         name="value"
+                        value={store.parameterValue.slice()[i]}
                         margin="normal"
                         // key={2*i+1}
                         style={{marginLeft:'5px',width:'35%'}}
@@ -195,7 +239,12 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                         paddingTop:'20px',
                         marginLeft:'5px'
                         }}>
-                        <Button color="secondary" variant="contained" style={{width:'20%'}}>
+                        <Button 
+                        color="secondary" 
+                        variant="contained" 
+                        key={i}  
+                        style={{width:'20%'}}
+                        onClick={()=>this.deleteParameter(i)}>
                         删除
                        </Button>
                         </div>
@@ -217,6 +266,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                         id="standard-name"
                         label="规格名"
                         name="name"
+                        value={store.specificationsName.slice()[i]}
                         margin="normal"
                         // key={2*i}
                         style={{width:'35%'}}
@@ -227,6 +277,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                         id="standard-uncontrolled"
                         label="规格值"
                         name="value"
+                        value={store.specificationsValue.slice()[i]}
                         margin="normal"
                         // key={2*i+1}
                         style={{marginLeft:'5px',width:'35%'}}
@@ -238,7 +289,12 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                         paddingTop:'20px',
                         marginLeft:'5px'
                         }}>
-                        <Button color="secondary" variant="contained" style={{width:'20%'}}>
+                        <Button 
+                        color="secondary" 
+                        variant="contained" 
+                        key={i}  
+                        style={{width:'20%'}}
+                        onClick={()=>this.deleteSpecifications(i)}>
                         删除
                        </Button>
                         </div>
@@ -247,6 +303,46 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             )
         }
         specifications=specificationsArray
+
+
+        let agencyLevelPrices
+        let agencyLevelPricesArray=[]
+        for(let i = 0;i<store.agencyLevelPricesCount;i++){
+            agencyLevelPricesArray.push(
+                <div key={i} style={{display:'flex',flexDirection:'row',justifyContent:'flex-start',paddingLeft:'10px'}}>
+                    <TextField
+                        id="standard-name"
+                        label={i+1+"级奖励"}
+                        name="name"
+                        value={store.agencyLevelPrices.slice()[i]}
+                        margin="normal"
+                        // key={2*i}
+                        style={{width:'35%'}}
+                        onChange={(event:any)=>this.handleChangeAgencyLevelPrices(event,i)}
+                        />
+
+                       
+                        <div style={{display:'flex',
+                        flexDirection:'row',
+                        alignItems:'center',
+                        paddingTop:'20px',
+                        marginLeft:'5px'
+                        }}>
+                        <Button 
+                        color="secondary" 
+                        variant="contained" 
+                        key={i}  
+                        style={{width:'20%'}}
+                        onClick={()=>this.deleteAgencyLevelPrices(i)}>
+                        删除
+                       </Button>
+                        </div>
+                        
+                </div>
+            )
+        }
+        agencyLevelPrices=agencyLevelPricesArray
+
 
 
 
@@ -294,6 +390,17 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             添加规格
             </Button>
             {specifications}
+            </div>
+
+            <div style={{width:'100%',height:'100px'}}>
+            </div>
+
+
+            <div style={{border:'1px dashed #aaa',padding:'10px',borderRadius:'5px'}}>
+            <Button variant="contained" onClick={this.addAgencyLevelPrices} color="secondary" style={{width:'20%'}}>
+            添加分销等级奖励
+            </Button>
+            {agencyLevelPrices}
             </div>
 
             <div style={{width:'100%',height:'100px'}}>

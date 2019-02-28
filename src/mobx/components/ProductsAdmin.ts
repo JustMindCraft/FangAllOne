@@ -7,13 +7,16 @@ export class ProductsAdmin {
     @observable productsList = [];
     @observable product = {}   
     @observable products = [] 
+
     @observable name = '';
     @observable name_zh = '';
     @observable brief = '';
     @observable sales_volume = 0;
+
     @observable images:Array<IObservableArray> = [];
     @observable cover:Array<IObservableArray> = [];
     @observable detailsImage:Array<IObservableArray> = [];
+
     @observable parameterCount= 0;
     @observable parameterName:Array<IObservableArray> = [];
     @observable parameterValue:Array<IObservableArray> = [];
@@ -21,6 +24,9 @@ export class ProductsAdmin {
     @observable specificationsCount= 0;
     @observable specificationsName:Array<IObservableArray> = [];
     @observable specificationsValue:Array<IObservableArray> = [];
+
+    @observable agencyLevelPricesCount= 0;
+    @observable agencyLevelPrices:Array<IObservableArray>= [];
 
     @action uploadLoading(value:any){
         
@@ -103,6 +109,52 @@ export class ProductsAdmin {
         let specifications=this.specificationsValue.slice()
         specifications[i]=value
         this.specificationsValue=specifications
+    }
+    
+    @action  deleteSpecifications(i:number){
+        let count = this.specificationsCount
+        this.specificationsCount=count-1
+        let specificationsName=this.specificationsName.slice()
+        let specificationsValue=this.specificationsValue.slice()
+        specificationsName.splice(i,1)
+        specificationsValue.splice(i,1)
+        this.specificationsName=specificationsName
+        this.specificationsValue=specificationsValue
+    }
+    
+
+    @action  deleteParameter(i:number){
+        let count = this.parameterCount
+        this.parameterCount=count-1
+        let parameterName=this.parameterName.slice()
+        let parameterValue=this.parameterValue.slice()
+        parameterName.splice(i,1)
+        parameterValue.splice(i,1)
+        console.log('剩余参数名'+parameterName);
+        console.log('剩余参数值'+parameterValue);
+        this.parameterName=parameterName
+        this.parameterValue=parameterValue
+    }
+
+    @action  addAgencyLevelPrices(value:any){
+        let agencyLevelPrices_count = this.agencyLevelPricesCount
+        this.agencyLevelPricesCount=agencyLevelPrices_count+1
+    }
+    
+    @action  creatAgencyLevelPrices(i:number,value:any){
+        let count = this.agencyLevelPricesCount
+        let agencyLevelPrices=this.agencyLevelPrices.slice()
+        agencyLevelPrices[i]=value
+        this.agencyLevelPrices=agencyLevelPrices
+    }
+
+    
+    @action  deleteAgencyLevelPrices(i:number){
+        let count = this.agencyLevelPricesCount
+        this.agencyLevelPricesCount=count-1
+        let agencyLevelPrices=this.agencyLevelPrices.slice()
+        agencyLevelPrices.splice(i,1)
+        this.agencyLevelPrices=agencyLevelPrices
     }
 
     @action  dataSource(type:string){
