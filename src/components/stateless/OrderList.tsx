@@ -71,6 +71,7 @@ interface IOrderListProps {
     handleSelectAllClick: (event:any) => void;
     isSelected: boolean;
     handleClick: (event: any, id: number) => void;
+    // history: any;
 }
 
 const OrderList = (props: IOrderListProps) => {
@@ -128,16 +129,19 @@ const OrderList = (props: IOrderListProps) => {
                 </TableHead>
                 <TableBody>
                     {data.map(n => (
-                        <TableRow 
-                            key={n.id}
-                            onClick={props.handleClick}
-                            role="checkbox"
-                            aria-checked={props.isSelected}
-                            selected={props.isSelected}
-                            tableIndex={-1}
-                        >
-                            <TableCell padding="checkbox">
-                                <Checkbox cheacked={props.isSelected}/>
+                        // <TableRow 
+                        //     key={n.id}
+                        //     onClick={(key:any)=>props.handleClick(key)}
+                        //     role="checkbox"
+                        //     aria-checked={props.isSelected}
+                        //     selected={props.isSelected}
+                        //     tableIndex={-1}
+                        // >
+                        //     <TableCell padding="checkbox">
+                        //         <Checkbox cheacked={props.isSelected}/>
+                        <TableRow>
+                            <TableCell>
+                                <Checkbox/>
                             </TableCell>
                             <TableCell align='right'>{n.orderNo}</TableCell>
                             <TableCell align='right'>{n.productID}</TableCell>
@@ -147,7 +151,12 @@ const OrderList = (props: IOrderListProps) => {
                             <TableCell align='right'>{n.payTime}</TableCell>
                             <TableCell align='right'>{n.status}</TableCell>
                             <TableCell>
-                                <Button color="primary" className={classes.button}>
+                                {/* <Button 
+                                    color="primary" 
+                                    className={classes.button}
+                                    onClick={()=>props.history.push('/dashboard/detail')}
+                                > */}
+                                <Button color="primary">
                                     详情
                                     </Button>
                                 <Button color="primary">

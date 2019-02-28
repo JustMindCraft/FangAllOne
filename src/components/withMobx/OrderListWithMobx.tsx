@@ -13,8 +13,8 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
         selected: [],
         numSelected: 0,
         rowCount: 0,
-
-        
+        isSelected: false,
+        data: [],
     }
 
     handleDateChange = (date: any) => {
@@ -38,6 +38,7 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
 
     handleSelectAllClick = (event: any) => {
         console.log(event)
+   
     }
 
     handleClick = (event: any, id: number ) =>{
@@ -45,7 +46,6 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     }
 
     render(){
-        const { classes } = this.props;
         return (
             <div>
                 <OrderListSearch 
@@ -61,6 +61,7 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
                     numSelected={this.state.numSelected}
                     rowCount={this.state.rowCount}
                     handleClick={this.handleClick}
+                    isSelected={this.state.isSelected}
                 />
             </div>
         )
