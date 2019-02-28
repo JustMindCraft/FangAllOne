@@ -66,6 +66,8 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                 {title}
             </Typography>
             <Paper className={classes.root}>
+            {
+                loading ? '加载中' :
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow>
@@ -84,9 +86,6 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                                 <TableCell align="right">{row.appId}</TableCell>
                                 <TableCell align="right">{row.secrect}</TableCell>
                                 <TableCell align="right">{row.host}</TableCell>
-                                {/* <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
-                                <TableCell align="right">{row.status}</TableCell> */}
                                 {/* <TableCell align="right">
                                     <Button variant="contained" color="primary" className={classes.button}>
                                         {row.action}
@@ -99,6 +98,7 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                         ))}
                     </TableBody>
                 </Table>
+            }
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
