@@ -39,7 +39,7 @@ export default  (sequelize, dataType) => {
 
 
     Order.associate = models => {
-       Order.hasMany(models.Product);
+       Order.belongsToMany(models.Product, {through: models.ProductOrder});
        Order.belongsTo(models.User);
        Order.belongsTo(models.Shop);
        Order.belongsTo(models.Contact);

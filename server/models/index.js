@@ -37,6 +37,7 @@ export const ProductTag =  sequelize.import(__dirname+'/ProductTag.js');
 export const Tag =  sequelize.import(__dirname+'/Tag.js');
 export const Balance =  sequelize.import(__dirname+'/Balance.js');
 export const BalanceChange =  sequelize.import(__dirname+'/BalanceChange.js');
+export const ProductOrder =  sequelize.import(__dirname+'/ProductOrder.js');
 
 
 const models = {
@@ -64,6 +65,7 @@ const models = {
     ProductStoreRecord,
     Balance,
     BalanceChange,
+    ProductOrder
 }
 
 for (const model in models) {
