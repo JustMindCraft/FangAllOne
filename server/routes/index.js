@@ -6,6 +6,7 @@ import Role from './Role';
 import Shop from './Shop';
 import wechat from './wechat';
 import Contact from './Contact';
+import ProductCategory from './ProductCategory';
 
 
 const indexRoute = {
@@ -25,6 +26,7 @@ const routes = [indexRoute]
     .concat(Shop)
     .concat(wechat)
     .concat(Contact)
+    .concat(ProductCategory)
     ;
 
 
