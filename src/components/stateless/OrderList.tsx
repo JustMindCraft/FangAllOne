@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createStyles } from '@material-ui/core';
+import { withStyles, createStyles  } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
@@ -10,6 +10,11 @@ import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import Checkbox from '@material-ui/core/Checkbox';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const styles = createStyles({
     root: {
@@ -64,6 +69,8 @@ interface IOrderListProps {
     numSelected: number;
     rowCount: number;
     handleSelectAllClick: (event:any) => void;
+    isSelected: boolean;
+    handleClick: (event: any, id: number) => void;
 }
 
 const OrderList = (props: IOrderListProps) => {
@@ -72,10 +79,35 @@ const OrderList = (props: IOrderListProps) => {
         <Paper className={classes.root}>
             <div>
                 <Toolbar>
-                    Toolbar
+                    <div className={classes.title}>
+                        {props.numSelected > 0 ?(
+                            <Typography color="inherit" variant="subtitle1">
+                                {props.numSelected} selected
+                            </Typography>
+                        ) : (
+                            <Typography variant="h6" id="tableTile">
+                                订单列表
+                            </Typography>
+                        )}
+                    </div>
+                    <div className={classes.actions}>
+                        {props.numSelected > 0 ? (
+                            <Tooltip title="Delete">
+                                <IconButton aria-label="Delete">
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Tooltip>
+                        ) : (
+                            <Tooltip title="Filter list">
+                                <IconButton aria-label="Filter list">
+                                    <FilterListIcon />
+                                </IconButton>
+                            </Tooltip>
+                        )}
+                    </div>
                 </Toolbar>
             </div>
-
+            
             <Table className={classes.table}>
                 <TableHead className={classes.head}>
                     <TableRow>
@@ -96,9 +128,16 @@ const OrderList = (props: IOrderListProps) => {
                 </TableHead>
                 <TableBody>
                     {data.map(n => (
-                        <TableRow key={n.id}>
-                            <TableCell>
-                                <Checkbox />
+                        <TableRow 
+                            key={n.id}
+                            onClick={props.handleClick}
+                            role="checkbox"
+                            aria-checked={props.isSelected}
+                            selected={props.isSelected}
+                            tableIndex={-1}
+                        >
+                            <TableCell padding="checkbox">
+                                <Checkbox cheacked={props.isSelected}/>
                             </TableCell>
                             <TableCell align='right'>{n.orderNo}</TableCell>
                             <TableCell align='right'>{n.productID}</TableCell>

@@ -40,6 +40,10 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
         console.log(event)
     }
 
+    handleClick = (event: any, id: number ) =>{
+        console.log(event)
+    }
+
     render(){
         const { classes } = this.props;
         return (
@@ -56,6 +60,7 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
                     handleSelectAllClick={this.handleSelectAllClick}
                     numSelected={this.state.numSelected}
                     rowCount={this.state.rowCount}
+                    handleClick={this.handleClick}
                 />
             </div>
         )
