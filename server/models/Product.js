@@ -51,6 +51,16 @@ export default  (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
+        isBook: {
+            //是否是订购
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
+        bookPeriod: {
+            //订购周期，默认为１天，就是说这个产品是１天后要续费
+            type: DataTypes.INTEGER,
+            defaultValue: 1
+        }
         
     });
 
@@ -63,6 +73,7 @@ export default  (sequelize, DataTypes) => {
         Product.hasMany(models.ProductProperty);
         Product.hasMany(models.ProductStoreRecord);
         Product.belongsTo(models.ProductCategory);
+        Product.belongsToMany(models.Order, {through: models.ProductOrder});
         Product.belongsToMany(models.Tag, {through: models.ProductTag});
     }
 
