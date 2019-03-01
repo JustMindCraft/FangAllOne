@@ -47,6 +47,7 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
     render() {
         const { classes, dataContainer  } = this.props;
         const { title, list, loading} = dataContainer;
+        console.log(list)
         return (
             <div className={classes.root}>
                 <ApplicationAdminList handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
