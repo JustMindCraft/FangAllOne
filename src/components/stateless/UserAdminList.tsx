@@ -21,7 +21,12 @@ const styles = createStyles({
   }
 });
 
-
+interface IUserAdminList {
+  classes: any;
+  title: string;
+  loading: boolean;
+  list: Array<any>;
+}
 let id = 0;
 function createData(name: string, calories: number, fat: number, carbs: any, protein: number, status: any, action: string) {
   id += 1;
@@ -35,7 +40,7 @@ const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作')
 ];
-const WithdrawalAdminList = (props: any) => {
+const UserAdminList = (props: IUserAdminList) => {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
@@ -80,4 +85,4 @@ const WithdrawalAdminList = (props: any) => {
 
 
 
-export default withStyles(styles)(WithdrawalAdminList);
+export default withStyles(styles)(UserAdminList);
