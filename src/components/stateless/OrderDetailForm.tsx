@@ -1,21 +1,25 @@
 import React from 'react';
-import { withStyles, createStyles, withMobileDialog } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 
 
 const styles = createStyles({
-  
+    root: {
+
+    }
 })
 
 interface IOrderDetailProps {
-  classes: any
+    classes: any;
 }
 
-const OrderDetail = (props:IOrderDetailProps) => {
-  return (
-      <div>
-          
-      </div>
-  )
+const OrderDetail = (props: IOrderDetailProps) => {
+    const { classes } = props;
+    return (
+        <Paper className={classes.root}>
+
+        </Paper>
+    )
 }
 
 export default withStyles(styles)(OrderDetail);

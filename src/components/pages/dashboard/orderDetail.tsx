@@ -4,11 +4,10 @@ import orderDetailStore from '../../../mobx/components/OrderDetailStore';
 import OrderDetailFormWithMobx from '../../withMobx/OrderDetailFormWithMobx';
 import pageStyles from '../pageStyle';
 import { IPageProps } from '../../../interfaces/components';
-import { withStyles } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-
-class OrderDetail extends React.Component<IPageProps> {
+class OrderDetailAdminPage extends React.Component<IPageProps> {
 
     render() {
         const { classes } = this.props;
@@ -19,8 +18,8 @@ class OrderDetail extends React.Component<IPageProps> {
                 </Typography>
                 <OrderDetailFormWithMobx store={orderDetailStore}/>
             </LayoutWithMobx >
-    )
+        )
     }
 }
 
-export default withStyles(pageStyles)(OrderDetail);
+export default withStyles(pageStyles)(OrderDetailAdminPage);

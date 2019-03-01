@@ -2,22 +2,23 @@ import React from 'react';
 import OrderDetailForm from '../stateless/OrderDetailForm';
 
 interface IOrderDetailFormWithMobx {
-  classes: any;
+    classes: any,
+    
 }
 
 class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> {
-  state = {
+    state = {
 
-  }
+    }
 
 
-render() {
-  return (
-    <div>
-
-    </div>
-  )
-}
+    render() {
+        return (
+            <div>
+                <OrderDetailForm />
+            </div>
+        )
+    }
 }
 
 export default OrderDetailFormWithMobx as any;

@@ -1,11 +1,13 @@
 import React from 'react';
 import OrderListSearch from '../stateless/OrderListSearch';
 import OrderList from '../stateless/OrderList';
+import { observer } from 'mobx-react';
 
 interface IOrdersListWithMobx {
     classes: any,
 }
 
+@observer
 class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     state = {
         rowsPerPage: 5,
@@ -45,7 +47,7 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
         console.log(event)
     }
 
-    render(){
+    render() {
         return (
             <div>
                 <OrderListSearch 
