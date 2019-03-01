@@ -7,6 +7,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import TablePagination from '@material-ui/core/TablePagination';
+import Typography from '@material-ui/core/Typography';
 const styles = createStyles({
   root: {
     width: '100%',
@@ -23,6 +25,10 @@ const styles = createStyles({
 
 interface IUserAdminList {
   classes: any;
+  handleChangePage: (event: any, page: number) => void;
+  handleChangeRowsPerPage: (event: any) => void;
+  page: number;
+  rowsPerPage: number;
   title: string;
   loading: boolean;
   list: Array<any>;
@@ -79,6 +85,21 @@ const UserAdminList = (props: IUserAdminList) => {
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={list.length}
+                    rowsPerPage={props.rowsPerPage}
+                    page={props.page}
+                    backIconButtonProps={{
+                        'aria-label': 'Previous Page',
+                    }}
+                    nextIconButtonProps={{
+                        'aria-label': 'Next Page',
+                    }}
+                    onChangePage={props.handleChangePage}
+                    onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+                />
     </Paper>
   );
 }
