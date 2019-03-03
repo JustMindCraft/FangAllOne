@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
+import CircularUnderLoad from '../stateless/CircularUnderLoad';
 const styles = createStyles({
   root: {
     width: '100%',
@@ -48,7 +49,7 @@ const UserAdminList = (props: IUserAdminList) => {
         {title}
       </Typography>
       {
-       loading ? '加载中' :
+       loading ? <CircularUnderLoad /> :
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
