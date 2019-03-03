@@ -34,16 +34,21 @@ interface IUserAdminList {
   list: Array<any>;
 }
 interface IUsersShow {
-  id:string;
+  id: string;
   username: string;
   mobile: string;
   email: string;
 }
 
 const UserAdminList = (props: IUserAdminList) => {
-  const { classes,list } = props;
+  const { classes, list, title, loading } = props;
   return (
     <Paper className={classes.root}>
+      <Typography variant="h5" component="h3">
+        {title}
+      </Typography>
+      {
+       loading ? '加载中' :
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -53,7 +58,7 @@ const UserAdminList = (props: IUserAdminList) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {list.map((row:IUsersShow) => (
+          {list.map((row: IUsersShow) => (
             <TableRow key={row.id}>
               <TableCell component="th" scope="row">
                 {row.username}
@@ -64,21 +69,22 @@ const UserAdminList = (props: IUserAdminList) => {
           ))}
         </TableBody>
       </Table>
+      }
       <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={list.length}
-                    rowsPerPage={props.rowsPerPage}
-                    page={props.page}
-                    backIconButtonProps={{
-                        'aria-label': 'Previous Page',
-                    }}
-                    nextIconButtonProps={{
-                        'aria-label': 'Next Page',
-                    }}
-                    onChangePage={props.handleChangePage}
-                    onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
-                />
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={list.length}
+        rowsPerPage={props.rowsPerPage}
+        page={props.page}
+        backIconButtonProps={{
+          'aria-label': 'Previous Page',
+        }}
+        nextIconButtonProps={{
+          'aria-label': 'Next Page',
+        }}
+        onChangePage={props.handleChangePage}
+        onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+      />
     </Paper>
   );
 }
