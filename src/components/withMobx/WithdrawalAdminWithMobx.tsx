@@ -16,7 +16,6 @@ interface IWithdrawalAdminWithMobx {
     classes: any,
     dataContainer: any;
     msg: any;
-    titile: string;
 }
 
 const TabContainer = (props: any) => {
@@ -29,7 +28,6 @@ const TabContainer = (props: any) => {
 
 @inject('msg')
 @inject('dataContainer')
-@observer
 class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     state = {
         value: 1,
@@ -73,7 +71,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
 
     render() {
         const { classes, dataContainer } = this.props;
-        const { title, list, loading } = dataContainer;
+        const { title, list, loading, page, pagesize } = dataContainer;
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -90,8 +88,8 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                     <WithdrawalAdminList
                             handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
                             handleChangePage={this.handleChangePage}
-                            page={this.state.page}
-                            rowsPerPage={this.state.rowsPerPage}
+                            page={page}
+                            rowsPerPage={pagesize}
                             list={list}
                             title={title}
                             loading={loading}
@@ -105,8 +103,8 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                         <WithdrawalAdminList
                             handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
                             handleChangePage={this.handleChangePage}
-                            page={this.state.page}
-                            rowsPerPage={this.state.rowsPerPage}
+                            page={page}
+                            rowsPerPage={pagesize}
                             list={list}
                             title={title}
                             loading={loading}
@@ -120,8 +118,8 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                         <WithdrawalAdminList
                             handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
                             handleChangePage={this.handleChangePage}
-                            page={this.state.page}
-                            rowsPerPage={this.state.rowsPerPage}
+                            page={page}
+                            rowsPerPage={pagesize}
                             list={list}
                             title={title}
                             loading={loading}
