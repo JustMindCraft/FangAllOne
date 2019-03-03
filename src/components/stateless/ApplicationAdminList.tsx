@@ -26,19 +26,6 @@ const styles = createStyles({
 });
 
 
-let id = 0;
-function createData(name: string, calories: number, fat: number, carbs: any, protein: number, status: any, action: string) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein, status, action };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作')
-];
 
 
 interface IApplicationAdminList {

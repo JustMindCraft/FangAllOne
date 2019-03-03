@@ -9,7 +9,8 @@ interface IUserAdminWithMobx{
     dataContainer: any;
     msg: any;
 }
-
+@inject('msg')
+@inject('dataContainer')
 class UserAdminWithMobx extends React.Component<IUserAdminWithMobx>{
     state = {
         page: 0,
@@ -44,13 +45,13 @@ class UserAdminWithMobx extends React.Component<IUserAdminWithMobx>{
     
     render() {
         const { classes, dataContainer  } = this.props;
-        const { title, list, loading} = dataContainer;
+        const { title, list, loading, page, pagesize } = dataContainer;
         return(
             <div className={classes.root}>
                <UserAdminList handleChangeRowsPerPage={(e: any) => this.handleChangeRowsPerPage(e)}
                 handleChangePage={this.handleChangePage}
-                page={this.state.page}
-                rowsPerPage={this.state.rowsPerPage}
+                page={page}
+                rowsPerPage={pagesize}
                 list={list}
                 title={title}
                 loading={loading}
