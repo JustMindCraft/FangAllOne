@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, createStyles  } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
@@ -34,30 +34,29 @@ const styles = createStyles({
 })
 
 let id = 0;
-function createdData(orderNo: any, productID: any, orderTime: string, amount: any, payment: any, payTime: any, status: any) {
+function createdData(orderNo: any, orderTime: string, amount: any, payment: any, payTime: any, status: any) {
     id += 1;
-    return { id, orderNo, productID, orderTime, amount, payment, payTime, status }
+    return { id, orderNo, orderTime, amount, payment, payTime, status }
 }
 
 const rows = [
-    {id: 'orderNo', label: '订单号'},
-    {id: 'productID', label: '商品号'},
-    {id: 'orderTime', label: '下单时间'},
-    {id: 'amount', label: '金额'},
-    {id: 'payment', label: '支付方式'},
-    {id: 'payTime', label: '支付时间'},
-    {id: 'status', label: '订单状态'},
-    {id: 'operatiom', label: '操作'},
+    { id: 'orderNo', label: '订单号' },
+    { id: 'orderTime', label: '下单时间' },
+    { id: 'amount', label: '金额' },
+    { id: 'payment', label: '支付方式' },
+    { id: 'payTime', label: '支付时间' },
+    { id: 'status', label: '订单状态' },
+    { id: 'operatiom', label: '操作' },
 ]
 
 const data = [
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-    createdData('46516351', '465vbsdfv', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
+    createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
 ]
 
 interface IOrderListProps {
@@ -68,7 +67,7 @@ interface IOrderListProps {
     page: number;
     numSelected: number;
     rowCount: number;
-    handleSelectAllClick: (event:any) => void;
+    handleSelectAllClick: (event: any) => void;
     isSelected: boolean;
     handleClick: (event: any, id: number) => void;
     // history: any;
@@ -81,15 +80,15 @@ const OrderList = (props: IOrderListProps) => {
             <div>
                 <Toolbar>
                     <div className={classes.title}>
-                        {props.numSelected > 0 ?(
+                        {props.numSelected > 0 ? (
                             <Typography color="inherit" variant="subtitle1">
                                 {props.numSelected} selected
                             </Typography>
                         ) : (
-                            <Typography variant="h6" id="tableTile">
-                                订单列表
+                                <Typography variant="h6" id="tableTile">
+                                    订单列表
                             </Typography>
-                        )}
+                            )}
                     </div>
                     <div className={classes.actions}>
                         {props.numSelected > 0 ? (
@@ -99,23 +98,23 @@ const OrderList = (props: IOrderListProps) => {
                                 </IconButton>
                             </Tooltip>
                         ) : (
-                            <Tooltip title="Filter list">
-                                <IconButton aria-label="Filter list">
-                                    <FilterListIcon />
-                                </IconButton>
-                            </Tooltip>
-                        )}
+                                <Tooltip title="Filter list">
+                                    <IconButton aria-label="Filter list">
+                                        <FilterListIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            )}
                     </div>
                 </Toolbar>
             </div>
-            
+
             <Table className={classes.table}>
                 <TableHead className={classes.head}>
                     <TableRow>
                         <TableCell>
                             <Checkbox
-                                checked={ props.numSelected === props.rowCount }
-                                onChange={ props.handleSelectAllClick }
+                                checked={props.numSelected === props.rowCount}
+                                onChange={props.handleSelectAllClick}
                             />
                         </TableCell>
                         {rows.map(
@@ -141,10 +140,9 @@ const OrderList = (props: IOrderListProps) => {
                         //         <Checkbox cheacked={props.isSelected}/>
                         <TableRow>
                             <TableCell>
-                                <Checkbox/>
+                                <Checkbox />
                             </TableCell>
                             <TableCell align='right'>{n.orderNo}</TableCell>
-                            <TableCell align='right'>{n.productID}</TableCell>
                             <TableCell align='right'>{n.orderTime}</TableCell>
                             <TableCell align='right'>{n.amount}</TableCell>
                             <TableCell align='right'>{n.payment}</TableCell>
@@ -167,7 +165,7 @@ const OrderList = (props: IOrderListProps) => {
                     ))}
                 </TableBody>
             </Table>
-            
+
             <TablePagination
                 rowsPerPageOptions={[10, 25, 50]}
                 component="div"
@@ -181,7 +179,7 @@ const OrderList = (props: IOrderListProps) => {
                     'aria-label': 'Next Page',
                 }}
                 onChangePage={props.handleChangePage}
-                onChangeRowsPerPage={(e:any)=>props.handleChangeRowsPerPage(e)}
+                onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
             />
         </Paper>
     )
