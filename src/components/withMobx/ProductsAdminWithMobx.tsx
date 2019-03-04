@@ -33,11 +33,11 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
     }
     componentWillReceiveProps(){
         const { store } = this.props;
-        console.log(store.parameterCount);
+        // console.log(store.parameterCount);
     }
     handleInputChange = (event:any, key:string) => {
         const {store} = this.props;
-        console.log(store);
+        // console.log(store);
         
         const value = event.target.value;
         switch (key) {
@@ -58,24 +58,43 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         }
         
     }
+
+    handleInputChecked= (event:any, key:string) => {
+        const {store} = this.props;
+        // console.log(store);
+        
+        const value = event.target.value;
+        switch (key) {
+            case "isTool":
+                store.changeIsTool(value);
+                break;
+            case "isAppointment":
+                store.changeIsAppointment(value);
+                break;
+            case 'isRecommend':
+                store.changeIsRecommend(value);
+                break;
+       
+            default:
+                break;
+        }
+        
+    }
+
+
+    handleSelect=(event:any)=>{
+        const {store} = this.props;
+        // console.log(event.target.value)
+        store.changeProductClassName(event.target.value)
+
+    }
     handleChangeParameterName=(event:any,i:any)=>{
         const {store} = this.props
         const value = event.target.value;
         const arr = new Array(store.parameterCount)
         arr[i]=value
         store.creatParameterName(i,value)
-        // arr.push(value)
-
-        // if(i<store.parameterCount){
-        //     loaclstate.push(arr[0])
-        // }
-        // console.log(store.parameterCount);
-        // console.log(arr);
-        // console.log(loaclstate);
-        
-        
-        
-        
+       
     }
     handleChangeParameterValue=(event:any,i:any)=>{
         const {store} = this.props
@@ -83,14 +102,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         const arr = new Array(store.parameterCount)
         arr[i]=value
         store.creatParameterValue(i,value)
-        // arr.push(value)
-
-        // if(i<store.parameterCount){
-        //     loaclstate.push(arr[0])
-        // }
-        // console.log(store.parameterCount);
-        // console.log(arr);
-        // console.log(loaclstate);
     }
 
     handleChangeSpecificationsName=(event:any,i:any)=>{
@@ -99,18 +110,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         const arr = new Array(store.specificationsCount)
         arr[i]=value
         store.creatSpecificationsName(i,value)
-        // arr.push(value)
-
-        // if(i<store.parameterCount){
-        //     loaclstate.push(arr[0])
-        // }
-        // console.log(store.parameterCount);
-        // console.log(arr);
-        // console.log(loaclstate);
-        
-        
-        
-        
     }
 
     handleChangeSpecificationsValue=(event:any,i:any)=>{
@@ -119,15 +118,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         const arr = new Array(store.specificationsCount)
         arr[i]=value
         store.creatSpecificationsValue(i,value)
-        // arr.push(value)
-
-        // if(i<store.parameterCount){
-        //     loaclstate.push(arr[0])
-        // }
-        // console.log(store.parameterCount);
-        // console.log(arr);
-        // console.log(loaclstate);
-        
     }
 
     handleChangeAgencyLevelPrices=(event:any,i:any)=>{
@@ -141,11 +131,11 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
 
     addParameter=(event:any)=>{
         const {store} =this.props;
-        console.log(store.parameter);
+        // console.log(store.parameter);
         
-        console.log('点击触发');
+        // console.log('点击触发');
         store.addParameter();
-        console.log(store.parameterCount);
+        // console.log(store.parameterCount);
         
         
     }
@@ -153,35 +143,35 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
     
     addSpecifications=(event:any)=>{
         const {store} =this.props;
-        console.log(store.specifications);
+        // console.log(store.specifications);
         
-        console.log('点击触发');
+        // console.log('点击触发');
         store.addSpecifications();
-        console.log(store.specificationsCount);
+        // console.log(store.specificationsCount);
         
         
     }
 
     addAgencyLevelPrices=(event:any)=>{
         const {store} =this.props;
-        console.log(store.agencyLevelPrices);
+        // console.log(store.agencyLevelPrices);
         
-        console.log('点击触发');
+        // console.log('点击触发');
         store.addAgencyLevelPrices();
-        console.log(store.agencyLevelPricesCount);
+        // console.log(store.agencyLevelPricesCount);
         
         
     }
 
     creatproduct=()=>{
         const {store} =this.props;
-        console.log(store.parameterValue);
+        console.log(store);
         store.creatProduct()
         
     }
 
     deleteSpecifications=(i:number)=>{
-        console.log(i);
+        // console.log(i);
         const {store} =this.props;
         store.deleteSpecifications(i)
         
@@ -189,7 +179,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
 
     
     deleteParameter=(i:number)=>{
-        console.log(i);
+        // console.log(i);
         const {store} =this.props;
         store.deleteParameter(i)
         
@@ -197,15 +187,14 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
 
     
     deleteAgencyLevelPrices=(i:number)=>{
-        console.log(i);
+        // console.log(i);
         const {store} =this.props;
         store.deleteAgencyLevelPrices(i)
+        
     }
 
     render (){
         const { store } = this.props;
-        console.log(store);
-        
         let parameter
         let parameterArray=[]
         for(let i = 0;i<store.parameterCount;i++){
@@ -350,7 +339,16 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         return (
             <div>
                 
-                <ProductsAdminForm handleInputChange={this.handleInputChange} />
+                <ProductsAdminForm 
+                    handleInputChange={this.handleInputChange} 
+                    handleInputChecked={this.handleInputChecked}     
+                    handleSelect={this.handleSelect} 
+                    productClassName={store.productClassName} 
+                    productClasses={store.productClasses}
+                    isTool={store.isTool}
+                    isAppointment={store.isAppointment}
+                    isRecommend={store.isRecommend}
+                />
                 <div style={{width:'100%',height:'100px'}}>
             </div>
 

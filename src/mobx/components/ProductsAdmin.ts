@@ -28,6 +28,13 @@ export class ProductsAdmin {
     @observable agencyLevelPricesCount= 0;
     @observable agencyLevelPrices:Array<IObservableArray>= [];
 
+
+    @observable productClassName = '水果';
+    @observable productClasses= ['水果','器具','其他'];
+    @observable isTool = false
+    @observable isAppointment = false
+    @observable isRecommend = false
+
     @action uploadLoading(value:any){
         
         return this.loading = value;
@@ -42,6 +49,25 @@ export class ProductsAdmin {
         console.log(value);
         return this.name_zh = value;
     }
+
+    @action changeIsTool(value:any){
+        console.log(value);
+        let checked = this.isTool
+        return this.isTool = !checked;
+    }
+    
+    @action changeIsAppointment(value:any){
+        console.log(value);
+        let checked = this.isAppointment
+        return this.isAppointment = !checked;
+    }
+
+    @action changeIsRecommend(value:any){
+        console.log(value);
+        let checked = this.isRecommend
+        return this.isRecommend = !checked;
+    }
+
     @action changeSalesVolume(value:any){
         console.log(value);
         return this.sales_volume = value;
@@ -72,6 +98,12 @@ export class ProductsAdmin {
             this.detailsImage=value;
             break
         }
+    }
+
+
+
+    @action  changeProductClassName(value:any){
+        this.productClassName=value
     }
 
     @action  addParameter(value:any){

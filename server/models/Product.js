@@ -51,11 +51,11 @@ export default  (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
-        isBook: {
-            //是否是订购
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
-        },
+        // isBook: {
+        //     //是否是订购
+        //     type: DataTypes.BOOLEAN,
+        //     defaultValue: false,
+        // },
         bookPeriod: {
             //订购周期，默认为１天，就是说这个产品是１天后要续费
             type: DataTypes.INTEGER,

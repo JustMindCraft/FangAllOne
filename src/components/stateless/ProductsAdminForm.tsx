@@ -11,12 +11,30 @@ import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { values } from 'mobx';
 // import Upload from '../withMobx/Upload';
 // import productsAdmin from '../../mobx/components/ProductsAdmin'
 
 interface ILoginFormProps {
   classes: any;
   handleInputChange: (event: any, key: string) => void;
+  handleSelect:(event: any) => void;
+  handleInputChecked: (event: any, key: string) => void;
+  productClasses:any;
+  productClassName:any;
+  isTool:boolean;
+  isAppointment:boolean;
+  isRecommend:boolean;
+}
+
+interface InputLabelProps {
+  ref:any
 }
 const styles = createStyles({
   container: {
@@ -42,16 +60,41 @@ const styles = createStyles({
 
 
 const ProductsAdminForm = (props:ILoginFormProps) =>  {
-  const { classes } = props;
-  
+  const { classes,productClasses,productClassName,isTool,isRecommend,isAppointment } = props;
+  let productClass = new Array
+  for(let i = 0;i<productClasses.length;i++){
+    productClass.push(<MenuItem key={i} value={productClasses[i]}>{productClasses[i]}</MenuItem>)
+  }
     return(
     <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
+
+
+
             <List component="nav" className={classes.root}>
                 <ListItem button>
                   <ListItemText primary="商品信息" />
                 </ListItem>
                 <Divider />
           </List>
+          <FormControl className={classes.formControl} style={{width:'200px'}}>
+          <InputLabel htmlFor="age-simple">商品类别</InputLabel>
+          <Select
+            value={productClassName}
+            onChange={(event:any)=>props.handleSelect(event)}
+            inputProps={{
+              name: 'age',
+              id: 'age-simple',
+            }}
+          >
+            {/* <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem> */}
+            {productClass}
+          </Select>
+        </FormControl>
       <TextField
             id="outlined-email-input"
             label="商品名称"
@@ -107,9 +150,9 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
 
           control={
             <Switch
-              // checked={this.state.checkedA}
-              // onChange={this.handleChange('checkedA')}
-              value="checkedA"
+              checked={isTool}
+              onChange={(event:any)=>props.handleInputChecked(event,'isTool')}
+              value="isTool"
               color="primary"
             />
           }
@@ -119,9 +162,9 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
 
           control={
             <Switch
-              // checked={this.state.checkedB}
-              // onChange={this.handleChange('checkedB')}
-              value="checkedB"
+              checked={isAppointment}
+              onChange={(event:any)=>props.handleInputChecked(event,'isAppointment')}
+              value="isAppointment"
               color="primary"
             />
           }
@@ -131,9 +174,9 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
 
           control={
             <Switch
-              // checked={this.state.checkedB}
-              // onChange={this.handleChange('checkedB')}
-              value="checkedB"
+              checked={isRecommend}
+              onChange={(event:any)=>props.handleInputChecked(event,'isRecommend')}
+              value="isRecommend"
               color="primary"
             />
           }
