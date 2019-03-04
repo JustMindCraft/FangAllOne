@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import ProductCard from './ProductCard';
 
 const ProductCardList = (props: any) => {
-    const {list} = props;
+    const {list, onCardClick} = props;
     return (
         <Grid
             container={true}
@@ -14,11 +14,13 @@ const ProductCardList = (props: any) => {
         {
             list.map((item:any, index:Number)=>{
                 return (
-                    <ProductCard 
+                    <ProductCard
+                    onCardClick={onCardClick}
                     name={item.name} 
                     description={item.description}
                     cover={item.cover}
                     key={index}
+                    id={item.id}
                     />
                 )
             })

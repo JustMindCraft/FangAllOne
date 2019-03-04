@@ -20,7 +20,6 @@ function localpath() {
 
 const Layout = (props: any) => {
     const isPc = isWidthUp('sm', props.width);
-    console.log(window.location.pathname);
   
     return (
         <Grid container 
@@ -42,6 +41,7 @@ const Layout = (props: any) => {
                      justifyContent: "space-between",
                     flexDirection: 'column',
                     alignItems: 'center',
+                    justityItems: 'center',
                     height: "100%",
                     flex: 1,
                 }

@@ -17,6 +17,7 @@ import Product from './components/pages/dashboard/products'
 import UserAdminPage from './components/pages/dashboard/users';
 import RolesAdminPage from './components/pages/dashboard/roles';
 import APITest from './components/pages/dashboard/APITest';
+import ProductPage from './components/pages/product';
 
 
 interface IPrivateRouteProps {
@@ -136,6 +137,7 @@ class App extends Component<IAppProps, IAppState> {
               <Route exact path="/register" component={Register} />
               <PrivateRoute msg={msg} auth={auth} exact path="/personal" component={Personal} />
               <Route exact path="/login" component={login} />
+              <Route exact path="/products/:id" component={ProductPage} />
               <Route  component={NotFound} />
             </Switch>
         </Router>

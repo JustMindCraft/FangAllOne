@@ -1,5 +1,6 @@
 import React from 'react';
-import { Paper, createStyles, withStyles } from '@material-ui/core';
+import { Paper, createStyles, withStyles, withWidth } from '@material-ui/core';
+import { isWidthDown } from '@material-ui/core/withWidth';
 
 
 const styles = createStyles({
@@ -13,12 +14,15 @@ const styles = createStyles({
   });
 
 const FormCardVertical = (props: any) => {
+  console.log(props.width);
+  
+    const isMobile = isWidthDown('sm', props.width);
     return (
-        <Paper className={props.classes.paper}  style={props.style}>
+        <Paper className={props.classes.paper}  style={{...props.style, maxWidth: isMobile? 320: 800}}>
             {props.children}
         </Paper>
     )  
 }
 
 
-export default withStyles(styles)(FormCardVertical);
+export default withWidth()(withStyles(styles)(FormCardVertical));

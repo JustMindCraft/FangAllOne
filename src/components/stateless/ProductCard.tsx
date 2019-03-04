@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 const ProductCard = (props: any) => {
-    const { name, description, cover } = props;
+    const { name, description, cover, onCardClick, id } = props;
     return (
         <Card style={{
             maxWidth: 345,
@@ -17,7 +17,7 @@ const ProductCard = (props: any) => {
             flexDirection: 'column',
             alignItems: "space-around"
         }}>
-            <CardActionArea>
+            <CardActionArea onClick={(e:any)=>onCardClick(e, id)}>
                 <CardMedia style={{
                     minHeight: 140,
                     height: "60%"

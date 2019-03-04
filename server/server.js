@@ -2,7 +2,7 @@ import routes from './routes';
 import config from '../server/config';
 import bcrypt from 'bcrypt';
 import assert from 'assert';
-import seed from './startup/fixture.ts';
+import seed from './startup/fixture.js';
 import UserCache from './cache/UserCache';
 
 const Hapi = require('hapi');

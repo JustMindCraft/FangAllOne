@@ -1,19 +1,6 @@
 import { ProductSpecification, Role } from ".";
 
-interface ICardParams{
-    //
-    cardName: string,
-    cardDescription: string,
-    allowOpenShop: boolean,
-    cardCover:string,
-    cardImages:Array<string>, 
-    shop:any, 
-    price:number, 
-    cardLevelProfits:Array<number>,
-
-}
-
-export default  (sequelize:any, DataTypes:any) => { 
+export default  (sequelize, DataTypes) => { 
 
     const Product = sequelize.define('products', {
        
@@ -96,9 +83,8 @@ export default  (sequelize:any, DataTypes:any) => {
     }
 
     Product.createCard = async function(
-        params: ICardParams
+        cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits
     ){
-        const {cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits} = params;
 
         //创建会员卡片
          await shop.update({
