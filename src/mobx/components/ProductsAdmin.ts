@@ -244,13 +244,47 @@ export class ProductsAdmin {
         let parameterCount=this.parameterCount;
         let parameterName= this.parameterName.slice();
         let parameterValue= this.parameterValue.slice();
+        let agencyLevelPricesCount=this.agencyLevelPricesCount;
+        let addAgencyLevelPrices = this.agencyLevelPrices.slice();
+        let specificationsCount  =this.specificationsCount;
+        let specificationsName = this.specificationsName.slice();
+        let specificationsValue = this.specificationsValue.slice();
+        let productClassName = this.productClassName;
+        let productClasses = this.productClasses.slice();
+        let isTool=this.isTool;
+        let isAppointment=this.isAppointment;
+        let isRecommend=this.isRecommend
 
-        let SynthesisParameters=[]
+        let parameters=[]
         for(let i = 0;i<parameterCount;i++){
-            SynthesisParameters.push({ParameterName:parameterName[i],parameterValue:parameterValue[i]})
+            parameters.push({parameterName:parameterName[i],parameterValue:parameterValue[i]})
         }
 
-        console.log(SynthesisParameters);
+        let specifications=[]
+        for(let i = 0;i<specificationsCount;i++){
+            specifications.push({specificationsName:specificationsName[i],specificationsValue:specificationsValue[i]})
+        }
+
+        
+        let productInfor = {name,
+                            name_zh,
+                            brief,
+                            sales_volume,
+                            images,
+                            cover,
+                            detailsImage,
+                            parameters,
+                            specifications,
+                            agencyLevelPricesCount,
+                            addAgencyLevelPrices,
+                            productClassName,
+                            productClasses,
+                            isTool,
+                            isAppointment,
+                            isRecommend
+                        }
+
+        console.log(productInfor);
         
 
     }
