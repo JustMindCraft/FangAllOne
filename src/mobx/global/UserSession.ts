@@ -53,6 +53,8 @@ export class UserSession {
             
             if (!token) {
                 this.isLogined = false;
+                window.localStorage.removeItem('fang_token');
+                window.localStorage.removeItem('fang_userId');
                 return informationMsg.show('您已登出');
 
             }
@@ -64,11 +66,15 @@ export class UserSession {
                     return this.isLogined = true;
                 }
                 this.isLogined = false;
+                window.localStorage.removeItem('fang_token');
+                window.localStorage.removeItem('fang_userId');
                 return informationMsg.show('您已登出');
                 
             }).catch((err:any)=>{
                if(err.toString()==='Error: Request failed with status code 401'){
                    this.isLogined = false;
+                   window.localStorage.removeItem('fang_token');
+                   window.localStorage.removeItem('fang_userId');
                     return informationMsg.show('您已登出');
 
                }

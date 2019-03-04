@@ -51,6 +51,11 @@ export default  (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
+        isFree: {
+            //是否免费，这个字段适用于优惠券场景
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
         // isBook: {
         //     //是否是订购
         //     type: DataTypes.BOOLEAN,
@@ -78,7 +83,7 @@ export default  (sequelize, DataTypes) => {
     }
 
     Product.createCard = async function(
-        cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits,
+        cardName, cardDescription, cardCover, cardImages, shop, price, cardLevelProfits
     ){
 
         //创建会员卡片

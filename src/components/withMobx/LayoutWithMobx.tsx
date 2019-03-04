@@ -41,6 +41,30 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
       const sideList = (
         <div style={{background:'#f0f2f5'}}>
           <List>
+              <ListItem button key="shop" onClick={(e)=>{history.push('/dashboard/apps/add')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
+                <ListItemText primary='我的店铺' />
+              </ListItem>
+              <ListItem button key="application" onClick={(e)=>{history.push('/dashboard/applications')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
+                <ListItemText primary='应用管理' />
+              </ListItem>
+              <ListItem button key="order" onClick={(e)=>{history.push('/dashboard/apps/add')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
+                <ListItemText primary='订单管理' />
+              </ListItem>
+              <ListItem button key="withdrawal" onClick={(e)=>{history.push('/dashboard/withdrawal')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
+                <ListItemText primary='提现管理' />
+              </ListItem>
+              <ListItem button key="membership_card" onClick={(e)=>{history.push('/dashboard/membership_card')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
+                <ListItemText primary='会员卡管理'/>
+              </ListItem>
+              <ListItem button key="user" onClick={(e)=>{history.push('/dashboard/users')}}>
+                <ListItemIcon><LibraryIcon /></ListItemIcon>
+                <ListItemText primary='用户管理' />
+              </ListItem>
               <ListItem button key="create_app" onClick={(e)=>{history.push('/dashboard/apps/add')}}>
                 <ListItemIcon><LibraryIcon /></ListItemIcon>
                 <ListItemText primary='创建应用' />

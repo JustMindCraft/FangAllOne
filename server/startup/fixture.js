@@ -1,8 +1,7 @@
-import {App, Role, User, UserRole, HomeBanner, Shop, Setting, Product} from "../models/";
+import {App, Role, User, UserRole, HomeBanner, Shop, Setting, Product} from "../models";
 
-import Sequelize from 'sequelize';
+import * as Sequelize from 'sequelize';
 import config from "../config";
-import UserCache from "../cache/UserCache";
 
 
 const Op = Sequelize.Op;
@@ -24,7 +23,7 @@ export default  async () => {
    if(appCount === 0){
         console.log("当前没有默认应用建设中");
         defaultApp = await App.create({
-            name: '默认应用',
+            name: '乐多多企业解决方案',
             isDefault: true,
             host:  config[ENV].host
         });
@@ -45,7 +44,7 @@ export default  async () => {
     
    
     
-    const roles = ['logined', 'nobody', 'superAdmin'];
+    const roles = ['登录用户', '匿名用户', '超级管理员'];
     for (const role of roles) {
         console.log('是否有角色'+role+'?');
         const roleCount = await Role.count({where: {name: role, appId: defaultApp.id}});
@@ -69,7 +68,7 @@ export default  async () => {
    
     console.log('默认的超级管理员============================================================================');
     
-    const superAdminRole = await Role.findOne({where: {name:'superAdmin', appId: defaultApp.id}});
+    const superAdminRole = await Role.findOne({where: {name:'超级管理员', appId: defaultApp.id}});
 
   
     const  userCount =  await UserRole.count({where: {roleId: superAdminRole.id}});
@@ -139,8 +138,8 @@ export default  async () => {
     }})
     if(firstCardCount===0){
         const firstCard = await Product.createCard(
-            cardLevel+1+'级别会员卡',
-            "这是默认的会员卡",
+            "乐多多黑卡",
+            "打包的年费服务，包括分销等更多权益和功能",
             "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
             [
                 "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
@@ -154,12 +153,14 @@ export default  async () => {
     }
 
     //为默认店铺添加软件商品
-    const ProductFreeCount = await Product.count({where: {name: "免费开店", shopId: defaultShop.id}})
+    const ProductFreeCount = await Product.count({where: {name: "免费开店", shopId: defaultShop.id, isFree: true}})
     if(ProductFreeCount === 0){
         await Product.create({
             name: '免费开店',
             desciption: "马上拥有自己的独立的店铺",
+            cover: "https://res.cloudinary.com/da7efhqvt/image/upload/v1545225684/zhengjue/imgs/vip1.jpg",
             limitForEachUser: 1,
+            isFree: true,
         })
     }else{
         console.log("默认店铺已经有软件商品了");

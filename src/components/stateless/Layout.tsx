@@ -20,47 +20,47 @@ function localpath() {
 
 const Layout = (props: any) => {
     const isPc = isWidthUp('sm', props.width);
-    console.log(window.location.pathname);
   
     return (
-        <Grid container 
-        spacing={0}  
-        alignItems="stretch"
-        direction="column"
-        justify="space-between"
-        style={{height:"100%", overflow: 'hidden'}}
-       
+        <Grid container
+            spacing={0}
+            alignItems="stretch"
+            direction="column"
+            justify="space-between"
+            style={{ height: "100%", overflow: 'hidden' }}
+
         >
-                <InformationMsgWithMobx />
-            
-            {isPc? <TopBarWithMobx toggleDrawer={props.toggleDrawer} />: <MobileTopWithMobx toggleDrawer={props.toggleDrawer} />}
+            <InformationMsgWithMobx />
+
+            {isPc ? <TopBarWithMobx toggleDrawer={props.toggleDrawer} /> : <MobileTopWithMobx toggleDrawer={props.toggleDrawer} />}
             <Paper style={
-                {    
-                     overflowX: 'hidden', 
-                     overflowY: 'auto',
-                     display: 'flex',
-                     justifyContent: "space-between",
+                {
+                    overflowX: 'hidden',
+                    overflowY: 'auto',
+                    display: 'flex',
+                    justifyContent: "space-between",
                     flexDirection: 'column',
                     alignItems: 'center',
+                    // justityItems: 'center',
                     height: "100%",
                     flex: 1,
                 }
-                }>
-         
+            }>
 
-                
-            
+
+
+
                 {props.children}
-                <br/>
+                <br />
                 <div style={{
                     flexGrow: 1
                 }}>
                 {isPc&&localpath()? <PcFooter />:<br/>}
                 </div>
-                
+
             </Paper>
-            
-           
+
+
             {!isPc && <MobileBottom />}
 
         </Grid>

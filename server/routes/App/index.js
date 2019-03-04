@@ -18,6 +18,7 @@ export default [
     handler: async (request, h) => {
         try {
             
+            console.log(request.info.remoteAddress);
             
             const condition = JSON.parse(request.query.condition);
             const optional = JSON.parse(request.query.optional);
