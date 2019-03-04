@@ -17,7 +17,8 @@ import { Typography, Grid } from '@material-ui/core';
 
 
 interface ILayoutWithMobxProps{
-  history: any
+  history: any,
+  match: any
 }
 
 
@@ -37,7 +38,16 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
 
       };
     render(){
-      const { history } = this.props;
+      const { history, match } = this.props;
+      const isBack = () =>{
+        switch (match.path) {
+          case "/products/:id":
+            return true;
+          default: 
+            return false;
+        }
+      }
+      
       const sideList = (
         <div style={{background:'#f0f2f5'}}>
           <List>
@@ -213,7 +223,7 @@ class LayoutWithMobx extends React.Component<ILayoutWithMobxProps>{
         </div>
       );
         return (
-            <Layout　toggleDrawer={this.toggleDrawer}>
+            <Layout　toggleDrawer={this.toggleDrawer} isBack={isBack()}>
                 <br/>
                 <SwipeableDrawer
                     open={this.state.left}

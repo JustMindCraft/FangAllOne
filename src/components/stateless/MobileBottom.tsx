@@ -9,17 +9,40 @@ import { withRouter } from 'react-router';
 
 
 const MobileBottom = (props:any) => {
-    const { history } = props;
-    return (
-        <BottomNavigation
+    const { history, match } = props;
+    const isBuy = () =>{
+        switch (match.path) {
+          case "/products/:id":
+            return true;
+          default: 
+            return false;
+        }
+      }
+
+      if(isBuy()){
+        return (
+            <BottomNavigation
             showLabels
-        >
-        <BottomNavigationAction onClick={(e:any)=>{history.push('/')}} label="首页" icon={<HomeIcon />} />
-        <BottomNavigationAction onClick={(e:any)=>{history.push('/discover')}} label="发现" icon={<ExploreIcon />} />
-        <BottomNavigationAction onClick={(e:any)=>{history.push('/cart')}} label="购物车" icon={<MessageIcon />} />
-        <BottomNavigationAction onClick={(e:any)=>{history.push('/personal')}} label="我" icon={<UserIcon />} />
-      </BottomNavigation>
-    )
+           >
+                    <BottomNavigationAction  label="收藏" icon={<HomeIcon />} />
+                 <BottomNavigationAction onClick={(e:any)=>{history.push('/discover')}} label="立即购买" icon={<ExploreIcon />} />
+                 </BottomNavigation>
+        )
+      }else{
+        return (
+            <BottomNavigation
+                    showLabels
+                >
+               <BottomNavigationAction onClick={(e:any)=>{history.push('/')}} label="首页" icon={<HomeIcon />} />
+               <BottomNavigationAction onClick={(e:any)=>{history.push('/discover')}} label="发现" icon={<ExploreIcon />} />
+               <BottomNavigationAction onClick={(e:any)=>{history.push('/cart')}} label="购物车" icon={<MessageIcon />} />
+               <BottomNavigationAction onClick={(e:any)=>{history.push('/personal')}} label="我" icon={<UserIcon />} />
+               </BottomNavigation>
+        )
+      }
+    
+            
+           
 }
 
 
