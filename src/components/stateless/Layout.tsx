@@ -7,13 +7,20 @@ import InformationMsgWithMobx from '../withMobx/InformationMsgWithMobx';
 import TopBarWithMobx from '../withMobx/TopBarWithMobx';
 import MobileTopWithMobx from '../withMobx/MobileTopWithMobx';
 
-
+function localpath() {
+    if(window.location.pathname!='/dashboard/product'&&window.location.pathname!='/dashboard/my_shop'){
+        return true
+    }else{
+        return false
+    }
+    
+  }
 
 
 
 const Layout = (props: any) => {
     const isPc = isWidthUp('sm', props.width);
-
+  
     return (
         <Grid container
             spacing={0}
@@ -34,6 +41,7 @@ const Layout = (props: any) => {
                     justifyContent: "space-between",
                     flexDirection: 'column',
                     alignItems: 'center',
+                    // justityItems: 'center',
                     height: "100%",
                     flex: 1,
                 }
@@ -47,7 +55,7 @@ const Layout = (props: any) => {
                 <div style={{
                     flexGrow: 1
                 }}>
-                    {isPc && <PcFooter />}
+                {isPc&&localpath()? <PcFooter />:<br/>}
                 </div>
 
             </Paper>

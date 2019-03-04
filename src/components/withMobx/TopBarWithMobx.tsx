@@ -23,11 +23,8 @@ class TopBarWithMobx extends Component<IPcTopWithMobxProps> {
         
     }
     logout = () => {
-        this.props.msg.show('正在登出');;
+        this.props.msg.show('正在登出');
         this.props.currentUser.logOut();
-        this.props.msg.show('您已登出');;
-
-
     }
     componentWillUnmount(){
 

@@ -45,7 +45,7 @@ class Login extends React.Component<IPageProps> {
                    minHeight: 500
                }}>
                     <Typography variant="h4" gutterBottom className={classes.title}>
-                        登录{app.name}
+                        登录
                     </Typography>
                     <LoginFormWithMobx store={loginFormStore} redirectSuccess={this.redirectSuccess} />
                </FormCardVertical>

@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Snackbar } from '@material-ui/core';
 
 
-interface IMsgProps{
+interface IMsgProps {
     msg: any
 }
 @inject('msg')
 @observer
 class InformationMsgWithMobx extends Component<IMsgProps> {
-  
-    render(){
-        
-        const { open, header, content } = this.props.msg 
+
+    render() {
+
+        const { open, header, content } = this.props.msg
 
         return (
-                
-           
-          <Snackbar
+
+
+            <Snackbar
                 anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
@@ -30,9 +30,9 @@ class InformationMsgWithMobx extends Component<IMsgProps> {
                 ContentProps={{
                     'aria-describedby': 'message-id',
                 }}
-          message={<span id="message-id">{header}<br/>{content}</span>}
-          />
-           
+                message={<span id="message-id">{header}<br />{content}</span>}
+            />
+
         )
     }
 }
