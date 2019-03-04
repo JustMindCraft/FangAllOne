@@ -8,7 +8,7 @@ interface IAdminPanelProps {
 
 }
 
-const AdminPanel = ( props: IAdminPanelProps ) => {
+const AdminPanel = (props: IAdminPanelProps) => {
     return (
         <div>
             管理界面

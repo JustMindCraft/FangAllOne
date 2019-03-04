@@ -1,24 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
+import ApplicationAdminWithMobx from '../../withMobx/ApplicationAdminWithMobx';
 import { Provider } from 'mobx-react';
-import UserAdminWithMobx from '../../withMobx//UserAdminWithMobx';
 import dataContainer from '../../../mobx/DataContainer';
 
-class UserAdminPage extends Component {
-    constructor(props: any) {
-        super(props);
-    }
 
-
+export default class ApplicationAdminPage extends React.Component {
     render() {
         return (
             <LayoutWithMobx>
                 <Provider dataContainer={dataContainer}>
-                    <UserAdminWithMobx />
+                    <ApplicationAdminWithMobx />
                 </Provider>
             </LayoutWithMobx>
         )
     }
 }
-
-export default UserAdminPage;

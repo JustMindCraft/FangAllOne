@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import EnchancedTableHead from '../stateless/EnhancedTableHead';
 import { TextField, Button } from '@material-ui/core';
 import { observer, inject } from 'mobx-react';
-
+import UserAdminWithMobx from './UserAdminWithMobx';
 let id = 0;
 
 
@@ -65,13 +65,36 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
             msg.show(m);
         })
     }
+
+    getPageList = (title:string) => {
+        switch (title) {
+            case '产品列表':
+        return  (<h1>Hello</h1>) 
+                break;
+            case '角色列表':
+        return (<h1>角色列表</h1>) 
+            break;
+            case '用户列表':
+            return <UserAdminWithMobx />
+            break;
+            case '应用列表':
+            return (<h1>应用列表</h1>)
+            default:
+                return (<h1>Good</h1>)
+                break;
+        }
+    }
     render(){
         const { dataContainer } = this.props;
-        const { title, list, loading} = dataContainer;
-        console.log(list);
-        
+        const { title, list, loading } = dataContainer;
+        console.log(title)
+        console.log('list')
+        console.log(list)
+       console.log(this.getPageList(title))
+       const PageList =  this.getPageList(title) 
         return (
             <React.Fragment>
+             { PageList }
              <form onSubmit={(e:any)=>{e.preventDefault();this.getList()}}  style={{
                     display: 'flex',
                     alignItems: 'baseline'

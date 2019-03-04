@@ -28,20 +28,20 @@ const PcFooter = () => (
       }
     }>
         <Grid container spacing={32} justify="space-evenly">
-        {footers.map(footer => (
-            <Grid item xs key={footer.title}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-            </Typography>
-            {footer.description.map(item => (
-                <Typography key={item} variant="subtitle1" color="textSecondary">
-                {item}
-                </Typography>
+            {footers.map(footer => (
+                <Grid item xs key={footer.title}>
+                    <Typography variant="h6" color="textPrimary" gutterBottom>
+                        {footer.title}
+                    </Typography>
+                    {footer.description.map(item => (
+                        <Typography key={item} variant="subtitle1" color="textSecondary">
+                            {item}
+                        </Typography>
+                    ))}
+                </Grid>
             ))}
-            </Grid>
-        ))}
         </Grid>
-   </footer>
+    </footer>
 )
 
 export default PcFooter
