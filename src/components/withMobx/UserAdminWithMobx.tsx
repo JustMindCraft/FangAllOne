@@ -40,7 +40,7 @@ class UserAdminWithMobx extends React.Component<IUserAdminWithMobx>{
 
     handleChangeRowsPerPage = (event: any) => {
         console.log(event.target.value)
-        this.setState({ rowsPerPage: event.target.value });
+        // this.setState({ rowsPerPage: event.target.value });
     }
     
     render() {

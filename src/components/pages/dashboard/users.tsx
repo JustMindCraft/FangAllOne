@@ -13,7 +13,6 @@ class UserAdminPage extends Component {
     render() {
         return (
             <LayoutWithMobx>
-                <h1>用户管理</h1>
                 <Provider dataContainer={dataContainer}>
                     <UserAdminWithMobx />
                 </Provider>

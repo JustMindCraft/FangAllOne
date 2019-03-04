@@ -50,7 +50,7 @@ interface IWithdrawalAdminList {
   list: Array<any>;
 }
 const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
-  const { classes } = props;
+  const { classes,list } = props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -91,7 +91,7 @@ const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={rows.length}
+        count={list.length}
         rowsPerPage={props.rowsPerPage}
         page={props.page}
         backIconButtonProps={{

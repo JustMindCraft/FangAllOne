@@ -44,49 +44,57 @@ interface IUsersShow {
 const UserAdminList = (props: IUserAdminList) => {
   const { classes, list, title, loading } = props;
   return (
-    <Paper className={classes.root}>
-      <Typography variant="h5" component="h3">
-        {title}
-      </Typography>
+    <div>
       {
-       loading ? <CircularUnderLoad /> :
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>用户名</TableCell>
-            <TableCell align="right">手机</TableCell>
-            <TableCell align="right">邮箱</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {list.map((row: IUsersShow) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.username}
-              </TableCell>
-              <TableCell align="right">{row.mobile}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+        loading ? <CircularUnderLoad /> :
+          <div>
+            <Typography variant="h5" component="h3">
+              {title}
+            </Typography>
+
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>用户名</TableCell>
+                    <TableCell align="right">手机</TableCell>
+                    <TableCell align="right">邮箱</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {list.map((row: IUsersShow) => (
+                    <TableRow key={row.id}>
+                      <TableCell component="th" scope="row">
+                        {row.username}
+                      </TableCell>
+                      <TableCell align="right">{row.mobile}</TableCell>
+                      <TableCell align="right">{row.email}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={list.length}
+                rowsPerPage={props.rowsPerPage}
+                page={props.page}
+                backIconButtonProps={{
+                  'aria-label': 'Previous Page',
+                }}
+                nextIconButtonProps={{
+                  'aria-label': 'Next Page',
+                }}
+                onChangePage={props.handleChangePage}
+                onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+              />
+
+
+            </Paper>
+          </div>
       }
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={list.length}
-        rowsPerPage={props.rowsPerPage}
-        page={props.page}
-        backIconButtonProps={{
-          'aria-label': 'Previous Page',
-        }}
-        nextIconButtonProps={{
-          'aria-label': 'Next Page',
-        }}
-        onChangePage={props.handleChangePage}
-        onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
-      />
-    </Paper>
+    </div>
   );
 }
 

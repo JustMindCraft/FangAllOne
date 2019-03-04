@@ -9,10 +9,16 @@ const styles = (theme:any) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    color: 'red',
+    margin: 20,
   }
 });
 const  CircularUnderLoad = (props:any) => {
-  return <CircularProgress disableShrink  className={props.center}/>;
+  return (
+  <div className={props.classes.center}>
+    <CircularProgress disableShrink  />
+  </div>
+  )
 }
 
 export default withStyles(styles)(CircularUnderLoad);

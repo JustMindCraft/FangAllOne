@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
+import CircularUnderLoad from '../stateless/CircularUnderLoad';
 const styles = createStyles({
     root: {
         width: '100%',
@@ -22,7 +23,6 @@ const styles = createStyles({
     button: {
         margin: '2px'
     }
-
 });
 
 
@@ -39,7 +39,7 @@ interface IApplicationAdminList {
     list: Array<any>;
 }
 interface IApplicationShow {
-    id:string;
+    id: string;
     name: string;
     appId: string;
     secrect: string;
@@ -49,31 +49,33 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
     const { classes, title, list, loading } = props;
     return (
         <div>
-            <Typography variant="h5" component="h3">
-                {title}
-            </Typography>
-            <Paper className={classes.root}>
             {
-                loading ? '加载中' :
-                <Table className={classes.table}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>应用名称</TableCell>
-                            <TableCell align="right">应用AppId</TableCell>
-                            <TableCell align="right">应用Secrect</TableCell>
-                            <TableCell align="right">应用Host</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {list.map((row:IApplicationShow) => (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.appId}</TableCell>
-                                <TableCell align="right">{row.secrect}</TableCell>
-                                <TableCell align="right">{row.host}</TableCell>
-                                {/* <TableCell align="right">
+                loading ? <CircularUnderLoad /> :
+                    <div>
+                        <Typography variant="h5" component="h3">
+                            {title}
+                        </Typography>
+                        <Paper className={classes.root}>
+
+                            <Table className={classes.table}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>应用名称</TableCell>
+                                        <TableCell align="right">应用AppId</TableCell>
+                                        <TableCell align="right">应用Secrect</TableCell>
+                                        <TableCell align="right">应用Host</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {list.map((row: IApplicationShow) => (
+                                        <TableRow key={row.id}>
+                                            <TableCell component="th" scope="row">
+                                                {row.name}
+                                            </TableCell>
+                                            <TableCell align="right">{row.appId}</TableCell>
+                                            <TableCell align="right">{row.secrect}</TableCell>
+                                            <TableCell align="right">{row.host}</TableCell>
+                                            {/* <TableCell align="right">
                                     <Button variant="contained" color="primary" className={classes.button}>
                                         {row.action}
                                     </Button>
@@ -81,27 +83,29 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                                         {row.action}
                                     </Button>
                                 </TableCell> */}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                            
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25]}
+                                component="div"
+                                count={list.length}
+                                rowsPerPage={props.rowsPerPage}
+                                page={props.page}
+                                backIconButtonProps={{
+                                    'aria-label': 'Previous Page',
+                                }}
+                                nextIconButtonProps={{
+                                    'aria-label': 'Next Page',
+                                }}
+                                onChangePage={props.handleChangePage}
+                                onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+                            />
+                        </Paper>
+                    </div>
             }
-                <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
-                    component="div"
-                    count={list.length}
-                    rowsPerPage={props.rowsPerPage}
-                    page={props.page}
-                    backIconButtonProps={{
-                        'aria-label': 'Previous Page',
-                    }}
-                    nextIconButtonProps={{
-                        'aria-label': 'Next Page',
-                    }}
-                    onChangePage={props.handleChangePage}
-                    onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
-                />
-            </Paper>
         </div>
     );
 }

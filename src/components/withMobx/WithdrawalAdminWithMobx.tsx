@@ -61,12 +61,12 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     handleChangePage = (event: any, page: number) => {
         console.log(event)
         console.log(page)
-        this.setState({ page });
+        // this.setState({ page });
     }
 
     handleChangeRowsPerPage = (event: any) => {
         console.log(event.target.value)
-        this.setState({ rowsPerPage: event.target.value });
+        // this.setState({ rowsPerPage: event.target.value });
     }
 
     render() {
