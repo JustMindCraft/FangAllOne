@@ -15,8 +15,8 @@ interface IWithdrawalAdminWithMobx {
     value: number,
     classes: any,
     dataContainer: any;
-    msg: any;
     dialogContainer: any;
+    msg: any
 }
 
 const TabContainer = (props: any) => {
@@ -29,6 +29,7 @@ const TabContainer = (props: any) => {
 
 @inject('msg')
 @inject('dataContainer')
+@inject('dialogContainer')
 class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     state = {
         value: 1,
@@ -71,9 +72,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     }
 
     render() {
-        const { classes, dataContainer, dialogContainer } = this.props;
+        const { classes, dataContainer, dialogContainer  } = this.props;
         const { title, list, loading, page, pagesize } = dataContainer;
-        // const {  handleClose, handelClickOpen } = dialogContainer;
+        const { handleClickOpen } = dialogContainer;
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -95,6 +96,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                             list={list}
                             title={title}
                             loading={loading}
+                            handleClickOpen = {handleClickOpen}
                         />
                     </TabContainer>
                 }
@@ -110,6 +112,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                             list={list}
                             title={title}
                             loading={loading}
+                            handleClickOpen = {handleClickOpen}
                         />
                     </TabContainer>
                 }
@@ -125,6 +128,7 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                             list={list}
                             title={title}
                             loading={loading}
+                            handleClickOpen = {handleClickOpen}
                         />
                     </TabContainer>
                 }

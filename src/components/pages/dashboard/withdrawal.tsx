@@ -9,7 +9,7 @@ export default class WithdrawalAdminPage extends React.Component {
     render() {
         return (
             <LayoutWithMobx>
-                <Provider dataContainer={dataContainer} dialogsContainer={dialogContainer}>
+                <Provider dataContainer={dataContainer} dialogContainer={dialogContainer}>
                     <WithdrawalAdminWithMobx />
                 </Provider>
             </LayoutWithMobx>
