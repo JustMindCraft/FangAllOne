@@ -71,10 +71,16 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
         // this.setState({ rowsPerPage: event.target.value });
     }
 
+
+    isSelected = () => {
+        
+    }
+
     render() {
         const { classes, dataContainer, dialogContainer  } = this.props;
         const { title, list, loading, page, pagesize } = dataContainer;
         const { handleClickOpen } = dialogContainer;
+        console.log(handleClickOpen)
         return (
             <div className={classes.root}>
                 <AppBar position="static">

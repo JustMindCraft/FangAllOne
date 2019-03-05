@@ -7,7 +7,8 @@ export class DialogContainer {
         return this.open = false
     }
 
-    @action handelClickOpen = () => {
+    @action handleClickOpen = () => {
+        console.log(this.open)
         return this.open = true
     }
 

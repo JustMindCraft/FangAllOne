@@ -50,11 +50,12 @@ interface IWithdrawalAdminList {
   title: string;
   loading: boolean;
   list: Array<any>;
-  handleClickOpen: IhandleClickOpen;
+  handleClickOpen: () => void;
   
 }
 const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
-  const { classes,list } = props;
+  const { classes,list,handleClickOpen } = props;
+  console.log(handleClickOpen)
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -81,7 +82,7 @@ const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">
-                <Button variant="contained" color="primary" className={classes.button}>
+                <Button variant="contained" color="primary" className={classes.button} onClick={props.handleClickOpen}>
                 打款
                 </Button>
                 <Button variant="contained" color="primary" className={classes.button}>
