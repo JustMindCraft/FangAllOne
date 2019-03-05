@@ -133,6 +133,7 @@ class App extends Component<IAppProps, IAppState> {
             <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/membership_card" component={MembershipCardAdminPage} />
             <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/withdrawal" component={WithdrawalAdminPage} />
             <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/shops" component={Shops} />
+            <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/add_product" component={Product} />
             <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/my_shop" component={MyShop} />
             <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/roles" component={RolesAdminPage} />
             <PrivateRoute msg={msg} auth={auth} exact path="/dashboard/applications" component={ApplicationAdminPage} />

@@ -53,6 +53,12 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             case 'brief':
                 store.changeBrief(value);
                 break;
+            case 'storage':
+                store.changeStorage(value);
+                break;
+
+
+                
             default:
                 break;
         }
@@ -348,6 +354,12 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                     isTool={store.isTool}
                     isAppointment={store.isAppointment}
                     isRecommend={store.isRecommend}
+                    validMsgName={store.validMsg.name}
+                    namePassed= {store.namePassed}
+                    validMsgNameZh={store.validMsg.name_zh}
+                    nameZhPassed= {store.name_zhPassed}
+                    validMsgBrief={store.validMsg.brief}
+                    briefPassed= {store.briefPassed}
                 />
                 <div style={{width:'100%',height:'100px'}}>
             </div>
@@ -411,7 +423,10 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                 <Button variant="contained" color="secondary"  style={{marginRight:'20px'}}>
                 取消
             </Button>
-            <Button variant="contained" onClick={this.creatproduct} color="primary" >
+
+
+
+            <Button variant="contained" disabled={!store.allPassed} onClick={this.creatproduct} color="primary" >
                 确认
             </Button>
                 </div>

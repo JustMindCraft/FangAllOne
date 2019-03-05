@@ -8,7 +8,7 @@ import TopBarWithMobx from '../withMobx/TopBarWithMobx';
 import MobileTopWithMobx from '../withMobx/MobileTopWithMobx';
 
 function localpath() {
-    if(window.location.pathname!='/dashboard/product'&&window.location.pathname!='/dashboard/my_shop'){
+    if(window.location.pathname!='/dashboard/add_product'&&window.location.pathname!='/dashboard/my_shop'){
         return true
     }else{
         return false

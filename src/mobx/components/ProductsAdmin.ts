@@ -3,7 +3,16 @@ import { api } from '../../api'
 import { LIST,SHOW } from "../../constants/API";
 
 export class ProductsAdmin {
+    @observable validMsg = {
+        name: '',
+        name_zh: '',
+        brief: '',
+        storage:0
+    }
+
+
     @observable loading = false;
+    @observable pageLoading = false;
     @observable productsList = [];
     @observable product = {}   
     @observable products = [] 
@@ -12,6 +21,12 @@ export class ProductsAdmin {
     @observable name_zh = '';
     @observable brief = '';
     @observable sales_volume = 0;
+    @observable storage = 0
+
+    @observable namePassed = true;
+    @observable name_zhPassed = true;
+    @observable briefPassed = true;
+    @observable storagePassed = true;
 
     @observable images:Array<IObservableArray> = [];
     @observable cover:Array<IObservableArray> = [];
@@ -42,12 +57,38 @@ export class ProductsAdmin {
     @action changeName(value:any){
 
         console.log(value);
+        if(value==''){
+            
+            this.namePassed=false;
+            this.validMsg.name = '商品名不能为空'
+            console.log(this.namePassed)
+            return
+        }else{
+            this.namePassed=true
+            this.validMsg.name ='商品名可用'
+            console.log(this.namePassed);
+
+            return this.name = value;
+        }
         
-        return this.name = value;
+
+
     }
     @action changeNameZh(value:any){
         console.log(value);
-        return this.name_zh = value;
+        if(value==''){
+            
+            this.name_zhPassed=false;
+            this.validMsg.name_zh = '商品中文名不能为空'
+            console.log(this.namePassed)
+            return
+        }else{
+            this.name_zhPassed=true
+            this.validMsg.name_zh ='商品中文名可用'
+            console.log(this.namePassed);
+
+            return this.name_zh = value;
+        }
     }
 
     @action changeIsTool(value:any){
@@ -74,7 +115,25 @@ export class ProductsAdmin {
     }
     @action changeBrief(value:any){
         console.log(value);
-        return this.brief = value;
+        if(value==''){
+            
+            this.briefPassed=false;
+            this.validMsg.brief = '商品简介不能为空'
+            console.log(this.briefPassed)
+            return
+        }else{
+            this.briefPassed=true
+            this.validMsg.brief ='商品简介可用'
+            console.log(this.briefPassed);
+
+            return this.brief = value;
+        }
+    }
+
+    
+    @action changeStorage(value:any){
+        console.log(value);
+        return this.storage = value;
     }
 
     @computed get getParameterCount(){
@@ -232,12 +291,22 @@ export class ProductsAdmin {
             this.product = rlt
         })
     }
+
+
+    @computed get allPassed(){
+        return this.namePassed && this.name_zhPassed && this.briefPassed;
+    }
+
     
-    @action async creatProduct(){
+    @action async creatProduct(cb:Function=(msg:any)=>{}){
+        this.pageLoading = true;
+
+
         let name = this.name;
         let name_zh = this.name_zh;
         let brief = this.brief;
         let sales_volume = this.sales_volume;
+        let storage =this.storage;
         let images = this.images.slice();
         let cover = this.cover.slice();
         let detailsImage = this.detailsImage.slice();
@@ -255,6 +324,8 @@ export class ProductsAdmin {
         let isAppointment=this.isAppointment;
         let isRecommend=this.isRecommend
 
+      
+
         let parameters=[]
         for(let i = 0;i<parameterCount;i++){
             parameters.push({parameterName:parameterName[i],parameterValue:parameterValue[i]})
@@ -270,6 +341,7 @@ export class ProductsAdmin {
                             name_zh,
                             brief,
                             sales_volume,
+                            storage,
                             images,
                             cover,
                             detailsImage,
@@ -285,6 +357,8 @@ export class ProductsAdmin {
                         }
 
         console.log(productInfor);
+        
+
         
 
     }

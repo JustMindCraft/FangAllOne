@@ -13,7 +13,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
-const RegisterLink = (props:any) => <Link to="/dashboard/product" {...props} />
+const RegisterLink = (props:any) => <Link to="/dashboard/add_product" {...props} />
 interface ILoginFormProps {
   classes: any;
 
@@ -67,8 +67,8 @@ const MyShopAdminList = (props: ILoginFormProps) => {
   return (
     <div style={{ width: '90%' }}>
       <h2>我的店铺</h2>
-      <div style={{ margin: '5px', border: '1px solid #aaa', display: 'flex', flexDirection: 'column' }}>
-        <div style={{ width: '100%', border: '1px solid blue', display: 'flex', flexDirection: 'row' }}>
+      <div style={{ margin: '5px',display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: '100%',display: 'flex', flexDirection: 'row' }}>
           <div style={{ padding: '10px' }}>
             <Grid container alignItems="center">
               <Avatar alt="Remy Sharp" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" className={classes.bigAvatar} />
@@ -84,7 +84,7 @@ const MyShopAdminList = (props: ILoginFormProps) => {
           </div>
         </div>
         <div style={{ width: '100%', height: '40px' }}>
-          <Button variant="outlined" size="medium" color="primary" className={classes.btnstyle}>
+          <Button variant="outlined" size="medium" color="primary" component={RegisterLink} className={classes.btnstyle}>
             发布商品
                 </Button>
           <Button variant="outlined" size="medium" color="primary" className={classes.btnstyle}>
@@ -94,7 +94,7 @@ const MyShopAdminList = (props: ILoginFormProps) => {
                 </Button>
 
         </div>
-        <div style={{ width: '100%', height: '400px', border: '1px solid yellow' }}>
+        <div style={{ width: '100%', height: '400px',  }}>
 
           <Table className={classes.table}>
             <TableHead>

@@ -31,6 +31,12 @@ interface ILoginFormProps {
   isTool:boolean;
   isAppointment:boolean;
   isRecommend:boolean;
+  validMsgName:any;
+  namePassed:boolean;
+  validMsgNameZh:any;
+  nameZhPassed:boolean;
+  validMsgBrief:any;
+  briefPassed:boolean;
 }
 
 interface InputLabelProps {
@@ -102,6 +108,8 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             name="name"
             margin="normal"
             variant="outlined"
+            error={!props.namePassed}
+            helperText={props.validMsgName}
             onChange={(event:any)=>props.handleInputChange(event, "name")}
             className={classes.head}
           />
@@ -110,6 +118,8 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             label="商品中文名称"
             type="username"
             name="name_zh"
+            error={!props.nameZhPassed}
+            helperText={props.validMsgNameZh}
             onChange={(event:any)=>props.handleInputChange(event, "name_zh")}
             margin="normal"
             variant="outlined"
@@ -124,10 +134,24 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             margin="normal"
             variant="outlined"
           />
+
+          <TextField
+            id="outlined-email-input"
+            label="商品库存"
+            type="username"
+            name="storage"
+            onChange={(event:any)=>props.handleInputChange(event, "storage")}
+            margin="normal"
+            variant="outlined"
+          />
+
+
           <TextField
             id="outlined-email-input"
             label="商品简介"
             type="username"
+            error={!props.briefPassed}
+            helperText={props.validMsgBrief}
             name="breif"
             onChange={(event:any)=>props.handleInputChange(event, "brief")}
             margin="normal"
