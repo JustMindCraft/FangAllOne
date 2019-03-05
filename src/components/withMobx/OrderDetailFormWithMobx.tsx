@@ -11,11 +11,21 @@ class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> 
 
     }
 
+    handleClickOpen = (event:any) => {
+        console.log(event)
+    }
+
+    handleClose = (event:any) => {
+        console.log(event)
+    }
 
     render() {
         return (
             <div>
-                <OrderDetailForm />
+                <OrderDetailForm 
+                    handleClickOpen={this.handleClickOpen}
+                    handleClose={this.handleClose}
+                />
             </div>
         )
     }

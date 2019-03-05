@@ -10,7 +10,7 @@ interface IOrdersListWithMobx {
 @observer
 class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     state = {
-        rowsPerPage: 5,
+        rowsPerPage: 10,
         page: 0,
         selected: [],
         numSelected: 0,
