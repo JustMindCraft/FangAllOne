@@ -24,19 +24,17 @@ class Register extends React.Component<IPageProps> {
     }
     
     render(){
-        const { app } = this.props;
+
         return (
             <LayoutWithMobx>
                  <FormCardVertical style={{
-                   width: '85%',
-                   minWidth: 318,
+                   minWidth: 300,
                    paddingBottom: 40,
                    paddingTop: 20,
-                   height: "80%",
-                   minHeight: 500
+                   
                }}>
-                 <Typography variant="h4" gutterBottom>
-                    注册{app.name}账号
+                 <Typography variant="h4">
+                    注册账号
                 </Typography>
                 <RegisterFormWithMobx store={registerFormStore} redirectSuccess={this.redirectSuccess} />
 

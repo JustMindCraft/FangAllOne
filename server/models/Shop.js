@@ -7,13 +7,21 @@ export default  (sequelize, DataTypes) => {
         },
         isDefault: {
             type: DataTypes.BOOLEAN,
+        },
+        cardLevel: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
         }
     });
 
     Shop.associate = models => {
         Shop.belongsTo(models.App);
+        Shop.belongsTo(models.User, {as: "onwer"});
         Shop.hasMany(models.Product);
         Shop.hasMany(models.ShopAgencyProduct);
+        Shop.hasMany(models.ProductCategory);
+        Shop.hasMany(models.ProductStoreRecord);
+        Shop.hasOne(models.Balance);
     }
     return Shop;
 }

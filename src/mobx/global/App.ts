@@ -5,10 +5,17 @@ import { api } from '../../api';
 export class App {
     @observable loading=true;
     @observable loadingSetting=true;
+    @observable currentTitle="";
     @observable appId='';
     @observable name="";
+    @observable clientId = window.localStorage.getItem("fang_client_id");
 
     @observable updating = false;
+
+    @action setCurrentTitle(title:string){
+        document.title = this.name + " | "+ title;
+        this.currentTitle = title;
+    }
 
     @action getAppInfo(){
         this.loading = true;

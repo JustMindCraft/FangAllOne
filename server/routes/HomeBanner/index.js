@@ -17,7 +17,14 @@ export default [
             
             return h.response(error).code(203);
         }
-    }
+    },
+    options: {
+        auth: false,
+        description: '获取首页轮播',
+        notes: 'condition参数包含用户的查询条件， optional包含分页page,pagesize，筛选字段filter,以及排序sort信息',
+        tags: ['api'], // ADD THIS TAG
+        
+    },
   },
   //==============END OF GET=======================
   //==============POST=============================

@@ -18,9 +18,8 @@ class MyShopAdminPage extends React.Component<IPageProps>  {
 
 
             <LayoutWithMobx >
-               
             <div style={{width:'100%'}}>
-                <div style={{width:'100%',height:'100%',padding:'5px',display:'flex',justifyContent:'center'}}>
+                <div style={{padding:'5px',display:'flex',justifyContent:'center'}}>
                <MyShopAdminWithMobx store={1}/>
                </div>
             </div>

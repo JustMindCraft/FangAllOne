@@ -8,7 +8,13 @@ class ProductsAdminPage extends React.Component{
         return (
             <LayoutWithMobx>
             <h1>商品管理</h1>
+            <div style={{width:'80%',padding:'5px',display:'flex',justifyContent: "center",borderRadius:'10px'}}>
+            <div style={{padding:'5px',width:'80%'}}>
             <ProductsAdminWithMobx store={productsAdmin}/>
+            </div>
+
+
+            </div>
            </LayoutWithMobx>
         )
     }

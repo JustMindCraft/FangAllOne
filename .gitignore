@@ -25,3 +25,5 @@ development.sqlite
 production.sqlite
 test.sqlite
 package-lock.json
+cachedb/*
+!cachedb/index.js

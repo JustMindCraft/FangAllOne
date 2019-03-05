@@ -25,7 +25,7 @@ const MobileTop = (props: any) => {
         <div>
         </div>
       </Toolbar>
-      
+
     </AppBar>
   )
 }

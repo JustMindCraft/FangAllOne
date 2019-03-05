@@ -4,11 +4,8 @@ import JWT from 'jsonwebtoken';
 import config from '../../config';
 import Request from 'request-promise';
 import sha256 from 'sha256';
+import UserCache from '../../cache/UserCache';
 const ENV = process.env.NODE_ENV;
-
-
-
-
 
 const querySchema = Joi.object({
     condition: Joi.string().required(),
@@ -200,7 +197,7 @@ export default [
         notes: 'condition参数包含创建的字段, username, password, 这个方法特殊的地方在于，会返回一个token',
         tags: ['api'], // ADD THIS TAG
         validate: {
-            query: {
+            payload: {
                 condition: Joi.required()
             },  
         }
@@ -219,9 +216,12 @@ export default [
                   const user =  await User.auth(
                       username, password, model, app.id
                   );
+                 
                   if(!user){
                       return h.response(false).code(203)
                   }
+                   //将查出来的用户加入loki数据高速缓存
+                  UserCache.insert({id: user.id, password: user.password});
                   const token = JWT.sign({
                       id: user.id,
                       password: password,

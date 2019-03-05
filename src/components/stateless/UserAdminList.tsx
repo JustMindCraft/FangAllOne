@@ -7,6 +7,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import TablePagination from '@material-ui/core/TablePagination';
+import Typography from '@material-ui/core/Typography';
+import CircularUnderLoad from '../stateless/CircularUnderLoad';
 const styles = createStyles({
   root: {
     width: '100%',
@@ -21,63 +24,80 @@ const styles = createStyles({
   }
 });
 
-
-let id = 0;
-function createData(name: string, calories: number, fat: number, carbs: any, protein: number, status: any, action: string) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein, status, action };
+interface IUserAdminList {
+  classes: any;
+  handleChangePage: (event: any, page: number) => void;
+  handleChangeRowsPerPage: (event: any) => void;
+  page: number;
+  rowsPerPage: number;
+  title: string;
+  loading: boolean;
+  list: Array<any>;
+}
+interface IUsersShow {
+  id: string;
+  username: string;
+  mobile: string;
+  email: string;
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作')
-];
-const WithdrawalAdminList = (props: any) => {
-  const { classes } = props;
+const UserAdminList = (props: IUserAdminList) => {
+  const { classes, list, title, loading } = props;
   return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>用户</TableCell>
-            <TableCell align="right">银行卡号</TableCell>
-            <TableCell align="right">金额</TableCell>
-            <TableCell align="right">姓名</TableCell>
-            <TableCell align="right">时间</TableCell>
-            <TableCell align="right">状态</TableCell>
-            <TableCell align="right">操作</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">
-                <Button variant="contained" color="primary" className={classes.button}>
-                  {row.action}
-                </Button>
-                <Button variant="contained" color="primary" className={classes.button}>
-                  {row.action}
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+    <div>
+      {
+        loading ? <CircularUnderLoad /> :
+          <div>
+            <Typography variant="h5" component="h3">
+              {title}
+            </Typography>
+
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>用户名</TableCell>
+                    <TableCell align="right">手机</TableCell>
+                    <TableCell align="right">邮箱</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {list.map((row: IUsersShow) => (
+                    <TableRow key={row.id}>
+                      <TableCell component="th" scope="row">
+                        {row.username}
+                      </TableCell>
+                      <TableCell align="right">{row.mobile}</TableCell>
+                      <TableCell align="right">{row.email}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={list.length}
+                rowsPerPage={props.rowsPerPage}
+                page={props.page}
+                backIconButtonProps={{
+                  'aria-label': 'Previous Page',
+                }}
+                nextIconButtonProps={{
+                  'aria-label': 'Next Page',
+                }}
+                onChangePage={props.handleChangePage}
+                onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+              />
+
+
+            </Paper>
+          </div>
+      }
+    </div>
   );
 }
 
 
 
-export default withStyles(styles)(WithdrawalAdminList);
+export default withStyles(styles)(UserAdminList);

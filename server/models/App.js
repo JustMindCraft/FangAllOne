@@ -31,6 +31,7 @@ export default  (sequelize, DataTypes) => {
         App.hasOne(models.Setting);
     }
     App.countDefault = async function(){
+        //获得默认app数量
         return this.findOne({
             attributes: { include: [[sequelize.fn('COUNT', sequelize.col('isDefault')), "default"]] }
         });
