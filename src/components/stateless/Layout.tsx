@@ -32,7 +32,7 @@ const Layout = (props: any) => {
         >
             <InformationMsgWithMobx />
 
-            {isPc ? <TopBarWithMobx toggleDrawer={props.toggleDrawer} /> : <MobileTopWithMobx toggleDrawer={props.toggleDrawer} />}
+            {isPc ? <TopBarWithMobx toggleDrawer={props.toggleDrawer} /> : <MobileTopWithMobx isBack={props.isBack} toggleDrawer={props.toggleDrawer} />}
             <Paper style={
                 {
                     overflowX: 'hidden',

@@ -4,6 +4,7 @@ import HomeBanner from './HomeBanner'
 import Product from './Product'
 import Role from './Role';
 import wechat from './wechat';
+import Auth from './Auth';
 
 
 const indexRoute = {
@@ -21,6 +22,7 @@ const routes = [indexRoute]
     .concat(Role)
     .concat(HomeBanner)
     .concat(wechat)
+    .concat(Auth)
     ;
 
 
