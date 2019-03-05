@@ -8,14 +8,17 @@ interface IOrderDetailFormWithMobx {
 
 class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> {
     state = {
-
+        open: false,
+        orderNo: '14b52f1b',
+        status: '待发货',
+        orderTime: '2019-03-16'
     }
 
-    handleClickOpen = (event:any) => {
+    handleClickOpen = () => {
         console.log(event)
     }
 
-    handleClose = (event:any) => {
+    handleClose = () => {
         console.log(event)
     }
 
@@ -25,6 +28,10 @@ class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> 
                 <OrderDetailForm 
                     handleClickOpen={this.handleClickOpen}
                     handleClose={this.handleClose}
+                    open={this.state.open}
+                    orderNo={this.state.orderNo}
+                    status={this.state.status}
+                    orderTime={this.state.orderTime}
                 />
             </div>
         )

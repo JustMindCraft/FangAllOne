@@ -53,10 +53,12 @@ const data = [
 
 interface IOrderDetailProps {
     classes: any;
-    handleClickOpen: (event:any) => void;
-    handleClose: (event:any) => void;
+    handleClickOpen: () => void;
+    handleClose: () => void;
     open: boolean;
-    
+    orderNo: string;
+    status: string;
+    orderTime: string;
 }
 
 const OrderDetailForm = (props: IOrderDetailProps) => {
@@ -69,10 +71,10 @@ const OrderDetailForm = (props: IOrderDetailProps) => {
                 </Typography>
                 <Grid container justify='center' alignItems='center'>
                     <Grid item xs={4}>
-                        订单号:4561351
+                        订单号:{props.orderNo}
                     </Grid>
                     <Grid item xs={4}>
-                        订单状态:代发货
+                        订单状态:{props.status}
                     </Grid>
                     <Grid item xs={4}>
                         <Button 
@@ -95,8 +97,17 @@ const OrderDetailForm = (props: IOrderDetailProps) => {
                                 <TextField
                                     autoFocus
                                     margin='dense'
-                                    id='deliver'
+                                    id='deliverNo'
                                     label='快递单号'
+                                    type='email'
+                                    fullWidth
+                                >
+                                </TextField>
+                                <TextField
+                                    autoFocus
+                                    margin='dense'
+                                    id='deliver'
+                                    label='快递'
                                     type='email'
                                     fullWidth
                                 >
@@ -106,7 +117,7 @@ const OrderDetailForm = (props: IOrderDetailProps) => {
                                 <Button onClick={props.handleClose} color='primary'>
                                     取消
                                 </Button>
-                                <Button onClick={props.handleClose}>
+                                <Button onClick={props.handleClose} color='primary'>
                                     保存
                                 </Button>
                             </DialogActions>
