@@ -16,6 +16,7 @@ interface IWithdrawalAdminWithMobx {
     classes: any,
     dataContainer: any;
     msg: any;
+    dialogContainer: any;
 }
 
 const TabContainer = (props: any) => {
@@ -70,8 +71,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
     }
 
     render() {
-        const { classes, dataContainer } = this.props;
+        const { classes, dataContainer, dialogContainer } = this.props;
         const { title, list, loading, page, pagesize } = dataContainer;
+        // const {  handleClose, handelClickOpen } = dialogContainer;
         return (
             <div className={classes.root}>
                 <AppBar position="static">

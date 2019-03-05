@@ -76,7 +76,6 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
                     loading={loading}
                     selected={this.state.selected}
                     labels={this.state.labels}
-                    handleSelected={this.isSelected}
                 />
             </div>
         )

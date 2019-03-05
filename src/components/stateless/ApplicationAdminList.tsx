@@ -34,7 +34,6 @@ interface IApplicationAdminList {
     classes: any;
     handleChangePage: (event: any, page: number) => void;
     handleChangeRowsPerPage: (event: any) => void;
-    handleSelected: (event: any,id: boolean) =>  null;
     page: number;
     rowsPerPage: number
     title: string;
@@ -51,7 +50,7 @@ interface IApplicationShow {
     host: string;
 }
 const ApplicationAdminList = (props: IApplicationAdminList) => {
-    const { classes, title, list, loading, selected, labels, handleSelected} = props;
+    const { classes, title, list, loading, selected, labels} = props;
     return (
         <div>
             {
@@ -61,7 +60,6 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                             {title}
                         </Typography>
                         <Paper className={classes.root}>
-                            <div onClick={props.handleSelected}>123</div>
                             <Table className={classes.table}>
                                 <EnhancedTableHead numSelected={selected.length} labels={labels}/>
 
@@ -78,7 +76,7 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                                         <TableRow key={row.id}     role="checkbox" aria-checked={true}  tabIndex={-1}
                                         selected={true}>
                                         <TableCell padding="checkbox">
-                                           <Checkbox checked={props.handleSelected} />
+                                           <Checkbox checked={true} />
                                         </TableCell>
                                             <TableCell component="th" scope="row">
                                                 {row.name}

@@ -78,10 +78,10 @@ const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">
                 <Button variant="contained" color="primary" className={classes.button}>
-                  {row.action}
+                打款
                 </Button>
                 <Button variant="contained" color="primary" className={classes.button}>
-                  {row.action}
+                撤销
                 </Button>
               </TableCell>
             </TableRow>
