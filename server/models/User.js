@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize';
 import bcrypt from 'bcrypt';
 import assert from 'assert';
-import { App } from '.';
 
 const Op = Sequelize.Op;
 
@@ -31,7 +30,11 @@ export default (sequelize, DataTypes)=>{
 
     User.associate = models => {
         User.belongsTo(models.App);
-        User.belongsToMany(models.Role, {through: 'user_roles'});
+        User.belongsToMany(models.Role, {through: models.UserRole});
+        User.hasMany(models.Contact);
+        User.hasMany(models.Post);
+        User.hasOne(models.Balance);
+
     }
 
     User.register = async function(username, password, mobile){

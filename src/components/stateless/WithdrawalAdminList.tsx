@@ -1,45 +1,67 @@
 import React from 'react';
 import Table from '@material-ui/core/Table';
-import {  withStyles, createStyles, } from '@material-ui/core';
+import { withStyles, createStyles, } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import TablePagination from '@material-ui/core/TablePagination';
+import CircularUnderLoad from '../stateless/CircularUnderLoad';
+import ResponsiveDialog from '../stateless/ResponsiveDialog';
 const styles = createStyles({
-    root: {
-        width: '100%',
-        overflowX: 'auto',
-        margin: '10px',
-      },
-      table: {
-        minWidth: 700,
-      },
-      button: {
-        margin: '2px'
-      }
-  });
+  root: {
+    width: '100%',
+    overflowX: 'auto',
+    margin: '10px',
+  },
+  table: {
+    minWidth: 700,
+  },
+  button: {
+    margin: '2px'
+  }
+});
 
 
 let id = 0;
-function createData(name:string, calories:number, fat:number, carbs:any, protein:number,status: any,action:string) {
+function createData(name: string, calories: number, fat: number, carbs: any, protein: number, status: any, action: string) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein,status,action };
+  return { id, name, calories, fat, carbs, protein, status, action };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作'),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,'未打款','操作')
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作'),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作')
 ];
-const WithdrawalAdminList = (props:any) => {
-  const { classes } = props;
 
+interface IhandleClickOpen {
+  (): boolean;
+}
+interface IWithdrawalAdminList {
+  classes: any;
+  handleChangePage: (event: any, page: number) => void;
+  handleChangeRowsPerPage: (event: any) => void;
+  page: number;
+  rowsPerPage: number;
+  title: string;
+  loading: boolean;
+  list: Array<any>;
+  open: boolean;
+  handleClickOpen: () => void;
+  handleClose: () => void;
+  
+}
+const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
+  const { classes,list,handleClickOpen,open, handleClose} = props;
+  console.log(handleClickOpen)
   return (
     <Paper className={classes.root}>
+    <ResponsiveDialog open={open} title={"测试"} handleClose={handleClose}/>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -64,17 +86,32 @@ const WithdrawalAdminList = (props:any) => {
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">
-              <Button variant="contained" color="primary" className={classes.button}>
-                {row.action}
-              </Button>
-              <Button variant="contained" color="primary" className={classes.button}>
-                {row.action}
-              </Button>
+                <Button variant="contained" color="primary" className={classes.button} onClick={props.handleClickOpen}>
+                打款
+                </Button>
+                <Button variant="contained" color="primary" className={classes.button}>
+                撤销
+                </Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={list.length}
+        rowsPerPage={props.rowsPerPage}
+        page={props.page}
+        backIconButtonProps={{
+          'aria-label': 'Previous Page',
+        }}
+        nextIconButtonProps={{
+          'aria-label': 'Next Page',
+        }}
+        onChangePage={props.handleChangePage}
+        onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+      />
     </Paper>
   );
 }

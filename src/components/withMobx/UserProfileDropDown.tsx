@@ -66,6 +66,8 @@ class UserProfileDropDown extends React.Component<IUserProfileDropDownProps, IUs
         this.props.msg.show('正在登出');
         this.setState({ open: false });
         this.props.currentUser.logOut();
+        window.localStorage.removeItem('fang_token');
+        window.localStorage.removeItem('fang_userId');
         this.props.msg.show('您已经登出');
         this.props.history.push('/login');
         break;
