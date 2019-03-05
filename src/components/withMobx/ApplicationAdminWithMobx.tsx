@@ -16,6 +16,13 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
     state = {
         page: 0,
         rowsPerPage: 5,
+        selected: [],
+        labels: [
+            { name: '应用名称'},
+            { name: '应用appId'},
+            { name: '应用Secrect'},
+            { name: '应用Host'}
+        ]
     }
     componentDidMount(){
         const { dataContainer, msg } = this.props;
@@ -44,6 +51,16 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
         this.setState({ rowsPerPage: event.target.value });
     }
 
+
+    isSelected = (id:any) => {
+         let  { selected } = this.state;
+        // // console.log(id)
+        // return true
+        //  return selected.indexOf(id) !== -1;
+        console.log(id)
+        return {id: true}
+    }
+
     render() {
         const { classes, dataContainer  } = this.props;
         const { title, list, loading} = dataContainer;
@@ -57,6 +74,9 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
                     list={list}
                     title={title}
                     loading={loading}
+                    selected={this.state.selected}
+                    labels={this.state.labels}
+                    handleSelected={this.isSelected}
                 />
             </div>
         )

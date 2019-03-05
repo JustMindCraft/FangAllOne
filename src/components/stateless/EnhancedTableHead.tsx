@@ -7,9 +7,11 @@ const rows = [
   { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
 ];
-
+interface IEnchancedTabHead {
+    labels: Array<any>;
+}
 const EnchancedTableHead = (props: any) => {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount } = props;
+  const { onSelectAllClick, numSelected, rowCount,labels } = props;
 
   return (
     <TableHead>
@@ -21,26 +23,14 @@ const EnchancedTableHead = (props: any) => {
             onChange={onSelectAllClick}
           />
         </TableCell>
-        {rows.map(
-          row => (
+        {labels.map(
+          (row:any,index:number) => (
             <TableCell
-              key={row.id}
-              align={row.numeric ? 'right' : 'left'}
+              key={row.index}
               padding={row.disablePadding ? 'none' : 'default'}
-              sortDirection={orderBy === row.id ? order : false}
             >
-              <Tooltip
-                title="Sort"
-                placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                enterDelay={300}
-              >
-                <TableSortLabel
-                  active={orderBy === row.id}
-                  direction={order}
-                >
-                  {row.label}
-                </TableSortLabel>
-              </Tooltip>
+            
+                  {row.name}
             </TableCell>
           )
         )}

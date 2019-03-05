@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
 import CircularUnderLoad from '../stateless/CircularUnderLoad';
+import EnhancedTableHead from '../stateless/EnhancedTableHead';
+import Checkbox from '@material-ui/core/Checkbox';
 const styles = createStyles({
     root: {
         width: '100%',
@@ -32,11 +34,14 @@ interface IApplicationAdminList {
     classes: any;
     handleChangePage: (event: any, page: number) => void;
     handleChangeRowsPerPage: (event: any) => void;
+    handleSelected: (event: any,id: boolean) =>  null;
     page: number;
-    rowsPerPage: number;
+    rowsPerPage: number
     title: string;
     loading: boolean;
     list: Array<any>;
+    selected: Array<any>;
+    labels: Array<any>;
 }
 interface IApplicationShow {
     id: string;
@@ -46,7 +51,7 @@ interface IApplicationShow {
     host: string;
 }
 const ApplicationAdminList = (props: IApplicationAdminList) => {
-    const { classes, title, list, loading } = props;
+    const { classes, title, list, loading, selected, labels, handleSelected} = props;
     return (
         <div>
             {
@@ -56,19 +61,25 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                             {title}
                         </Typography>
                         <Paper className={classes.root}>
-
+                            <div onClick={props.handleSelected}>123</div>
                             <Table className={classes.table}>
-                                <TableHead>
+                                <EnhancedTableHead numSelected={selected.length} labels={labels}/>
+
+                                {/* <TableHead>
                                     <TableRow>
                                         <TableCell>应用名称</TableCell>
                                         <TableCell align="right">应用AppId</TableCell>
                                         <TableCell align="right">应用Secrect</TableCell>
                                         <TableCell align="right">应用Host</TableCell>
                                     </TableRow>
-                                </TableHead>
+                                </TableHead> */}
                                 <TableBody>
                                     {list.map((row: IApplicationShow) => (
-                                        <TableRow key={row.id}>
+                                        <TableRow key={row.id}     role="checkbox" aria-checked={true}  tabIndex={-1}
+                                        selected={true}>
+                                        <TableCell padding="checkbox">
+                                           <Checkbox checked={props.handleSelected} />
+                                        </TableCell>
                                             <TableCell component="th" scope="row">
                                                 {row.name}
                                             </TableCell>

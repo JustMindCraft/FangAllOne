@@ -26,6 +26,7 @@ export class DataContainer {
     @observable sortDirection = 'DESC';//倒序还是逆序
     @observable sortColumn = "id";
     @observable condition = new Map();
+    @observable selected = [];
 
     @computed get list(){
         return this.dataSource.slice() as Array<any>;
@@ -48,6 +49,7 @@ export class DataContainer {
         
         return this.sourceName = sourceName;
     }
+
 
 
     @action getList = (optional:IQueryOptional={sort: ['id', 'DESC'], page: 1, pagesize: 25},  cb:Function) => {
