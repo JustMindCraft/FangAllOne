@@ -1,13 +1,14 @@
-import { observable, action } from "mobx";
-
+import { observable, action} from "mobx";
 export class DialogContainer {
-    @observable open = false;
+    @observable open = true;
 
-    @action handleClose = () => {
-        return this.open = false
+    @action.bound handleClose = () => {
+        console.log('为什么没更新')
+         this.open = false
+         console.log(this.open)
     }
 
-    @action handleClickOpen = () => {
+    @action.bound handleClickOpen = () => {
         console.log(this.open)
         return this.open = true
     }

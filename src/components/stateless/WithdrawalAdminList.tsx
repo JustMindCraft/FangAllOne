@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import CircularUnderLoad from '../stateless/CircularUnderLoad';
+import ResponsiveDialog from '../stateless/ResponsiveDialog';
 const styles = createStyles({
   root: {
     width: '100%',
@@ -50,14 +51,17 @@ interface IWithdrawalAdminList {
   title: string;
   loading: boolean;
   list: Array<any>;
+  open: boolean;
   handleClickOpen: () => void;
+  handleClose: () => void;
   
 }
 const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
-  const { classes,list,handleClickOpen } = props;
+  const { classes,list,handleClickOpen,open, handleClose} = props;
   console.log(handleClickOpen)
   return (
     <Paper className={classes.root}>
+    <ResponsiveDialog open={open} title={"测试"} handleClose={handleClose}/>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
