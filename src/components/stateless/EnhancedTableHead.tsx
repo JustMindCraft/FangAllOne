@@ -9,9 +9,12 @@ const rows = [
 ];
 interface IEnchancedTabHead {
     labels: Array<any>;
+    handleSelectAllClick: (event: any) => void;
+    numSelected: any;
+    rowCount: any;
 }
-const EnchancedTableHead = (props: any) => {
-  const { onSelectAllClick, numSelected, rowCount,labels } = props;
+const EnchancedTableHead = (props: IEnchancedTabHead) => {
+  const { handleSelectAllClick, numSelected, rowCount,labels } = props;
 
   return (
     <TableHead>
@@ -20,7 +23,7 @@ const EnchancedTableHead = (props: any) => {
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
-            onChange={onSelectAllClick}
+            onChange={(e:any)=>handleSelectAllClick(e)}
           />
         </TableCell>
         {labels.map(

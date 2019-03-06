@@ -117,7 +117,7 @@ class APITestWithMobx extends React.Component<IAPITestWithMobxProps> {
             {
                 loading? '加载中' :
                 <Table >
-                <EnchancedTableHead />
+                {/* <EnchancedTableHead /> */}
                     <TableBody>
                         
                         {list.map((row:IRoleShow) => (

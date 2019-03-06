@@ -27,9 +27,12 @@ export class DataContainer {
     @observable sortColumn = "id";
     @observable condition = new Map();
     @observable selected = [];
-
     @computed get list(){
         return this.dataSource.slice() as Array<any>;
+    }
+
+    @computed get pitchUp() {
+        return this.selected.slice() as Array<any>;
     }
 
     @computed get one(){
@@ -49,6 +52,41 @@ export class DataContainer {
         
         return this.sourceName = sourceName;
     }
+
+    @action isSelected = (id:never) => {
+        return this.selected.indexOf(id) !==-1;
+    }
+
+    @action handleSelectAllClick = (event:any) => {
+        if(event.target.checked){
+            console.log(1)
+            let selected:any = this.list.map((n:any)=>n.id);
+            this.selected = selected;
+        }else{
+            this.selected = [];
+        }
+    }
+
+    @action  handleClick = (event:any, id:never) => {
+        const  selected  = this.selected;
+        const selectedIndex = selected.indexOf(id);
+        let newSelected:any = [];
+        if (selectedIndex === -1) {
+          newSelected = newSelected.concat(selected, id);
+        } else if (selectedIndex === 0) {
+          newSelected = newSelected.concat(selected.slice(1));
+        } else if (selectedIndex === selected.length - 1) {
+          newSelected = newSelected.concat(selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+          newSelected = newSelected.concat(
+            selected.slice(0, selectedIndex),
+            selected.slice(selectedIndex + 1),
+          );
+        }
+        this.selected = newSelected
+      };
+
+  
 
 
 
