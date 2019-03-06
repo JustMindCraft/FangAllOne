@@ -174,8 +174,8 @@ export default [
     },
     options: {
         auth: false,
-        description: '根据ID获取单个产品的信息',
-        notes: '获取ID单个产品的信息',
+        description: '根据ID获取某个应用的的信息',
+        notes: '获取ID单个应用的信息',
         tags: ['api'], // ADD THIS TAG
         validate: {
              query: {
