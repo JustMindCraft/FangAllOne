@@ -1,9 +1,8 @@
 import React from 'react';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import HomeIcon from '@material-ui/icons/Home';
-import ExploreIcon from '@material-ui/icons/Explore';
 import { withRouter } from 'react-router';
+import { AppBar, Toolbar, Button } from '@material-ui/core';
+import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 
@@ -11,12 +10,30 @@ const PcProductBuyBar = (props:any ) => {
     const {history} = props;
     return (
         <React.Fragment>
-           <BottomNavigation
-            showLabels
-           >
-                    <BottomNavigationAction color="primary"  label="收藏" icon={<HomeIcon />} />
-                 <BottomNavigationAction onClick={(e:any)=>{history.push('/discover')}} label="立即购买" icon={<ExploreIcon />} />
-                 </BottomNavigation>
+          <AppBar style={
+              {
+                top: 'auto',
+                bottom: 300,
+                width: 500,
+                right: 50,
+                backgroundColor: 'white'
+              }
+          } position="fixed" color="secondary" >
+                <Toolbar>
+                <Button variant="outlined" color="secondary" style={
+                    {
+                        flex: 1
+                    }
+                }>
+                    <KeyboardVoiceIcon  />
+                    立即购买
+                </Button>
+                <Button variant="outlined" color="secondary" >
+                    <SaveIcon  />
+                    加入收藏
+                </Button>
+                </Toolbar>
+            </AppBar>
         </React.Fragment>
         
     )
