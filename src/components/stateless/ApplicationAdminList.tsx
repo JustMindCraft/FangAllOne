@@ -41,6 +41,9 @@ interface IApplicationAdminList {
     list: Array<any>;
     selected: Array<any>;
     labels: Array<any>;
+    isSelected: any;
+    handleClick: (event: any,id:any) => void;
+    handleSelectAllClick: (event: any) => void;
 }
 interface IApplicationShow {
     id: string;
@@ -50,7 +53,8 @@ interface IApplicationShow {
     host: string;
 }
 const ApplicationAdminList = (props: IApplicationAdminList) => {
-    const { classes, title, list, loading, selected, labels} = props;
+    const { classes, title, list, loading, selected, labels, isSelected, handleSelectAllClick,handleClick} = props;
+    console.log(isSelected('1'))
     return (
         <div>
             {
@@ -61,8 +65,7 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                         </Typography>
                         <Paper className={classes.root}>
                             <Table className={classes.table}>
-                                <EnhancedTableHead numSelected={selected.length} labels={labels}/>
-
+                                <EnhancedTableHead numSelected={selected.length} labels={labels} handleSelectAllClick={(e:any)=>handleSelectAllClick(e)} rowCount={list.length}/>
                                 {/* <TableHead>
                                     <TableRow>
                                         <TableCell>应用名称</TableCell>
@@ -72,11 +75,15 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                                     </TableRow>
                                 </TableHead> */}
                                 <TableBody>
-                                    {list.map((row: IApplicationShow) => (
-                                        <TableRow key={row.id}     role="checkbox" aria-checked={true}  tabIndex={-1}
-                                        selected={true}>
+                                    {list.map((row: IApplicationShow) => {
+                                        // const isSelected = this.isSelected(row.id);
+                                        return(
+                                        <TableRow key={row.id}     role="checkbox" aria-checked={isSelected()}  tabIndex={-1}
+                                        selected={isSelected()}
+                                        onClick={(event:any)=> handleClick(event,row.id)}
+                                        >
                                         <TableCell padding="checkbox">
-                                           <Checkbox checked={true} />
+                                           <Checkbox checked={isSelected(row.id)} />
                                         </TableCell>
                                             <TableCell component="th" scope="row">
                                                 {row.name}
@@ -93,7 +100,7 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                                     </Button>
                                 </TableCell> */}
                                         </TableRow>
-                                    ))}
+                                    )})}
                                 </TableBody>
                             </Table>
                             
