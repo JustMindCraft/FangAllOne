@@ -10,8 +10,12 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import { observer, inject } from 'mobx-react';
 import { constants } from 'http2';
+import { Link } from 'react-router-dom';
 import msg from '../../mobx/global/InformationMsg';
 import CircularProgress from '@material-ui/core/CircularProgress';
+const RegisterLink = (props:any) => <Link to="/dashboard/my_shop" {...props} />
+
+
 
 interface ProductsAdminWithMobxProps {
     store: any,
@@ -428,13 +432,13 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             <Divider />
             </List>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end',marginTop:'50px'}}>
-                <Button variant="contained" color="secondary"  style={{marginRight:'20px'}}>
+                <Button variant="contained" color="secondary" component={RegisterLink}   style={{marginRight:'20px'}}>
                 取消
             </Button>
 
 
 
-            <Button variant="contained" disabled={!store.allPassed} onClick={this.creatproduct} color="primary" >
+            <Button variant="contained" disabled={!store.allPassed} component={RegisterLink}  onClick={this.creatproduct} color="primary" >
                 确认
             </Button>
                 </div>

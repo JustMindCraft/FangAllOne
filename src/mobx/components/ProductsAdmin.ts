@@ -428,7 +428,54 @@ export class ProductsAdmin {
                         }
 
         console.log(productInfor);
-
+        
+         this.validMsg = {
+            name: '',
+            name_zh: '',
+            brief: '',
+            storage:'',
+            sales_volume:''
+        }
+    
+    
+        this.loading = false;
+        this.pageLoading = false;
+        this.productsList = [];
+        this.product = {}   
+        this.products = [] 
+    
+        this.name = '';
+        this.name_zh = '';
+        this.brief = '';
+        this.sales_volume = 0;
+        this.storage = 0
+    
+        this.namePassed = true;
+        this.name_zhPassed = true;
+        this.briefPassed = true;
+        this.storagePassed = true;
+    
+        this.images = [];
+        this.cover = [];
+        this.detailsImage= [];
+    
+        this.parameterCount= 0;
+        this.parameterName= [];
+        this.parameterValue= [];
+    
+        this.specificationsCount= 0;
+        this.specificationsName= [];
+        this.specificationsValue= [];
+    
+        this.agencyLevelPricesCount= 0;
+        this.agencyLevelPrices= [];
+    
+    
+        this.productClassName = '水果';
+        this.productClasses= ['水果','器具','其他'];
+        this.isTool = false
+        this.isAppointment = false
+        this.isRecommend = false
         
 
     }
