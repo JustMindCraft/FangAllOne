@@ -10,8 +10,12 @@ export default [
     handler: async (request, h) => {
         try {
           const { id } = request.params;
-          let product = await Product.findOne({
-            id:id
+          console.log(id);
+          
+          const product = await Product.findOne({
+            where: {
+              id
+            }
             }
           )
           return h.response(product).code(200);
@@ -30,6 +34,7 @@ export default [
              query: {
                  condition: Joi.string(),
                  optional: Joi.string(),
+                 token: Joi.string()
              }
         }
         
