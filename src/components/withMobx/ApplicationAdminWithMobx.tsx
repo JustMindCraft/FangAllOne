@@ -52,18 +52,19 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
     }
 
 
-    isSelected = (id:any) => {
-         let  { selected } = this.state;
-        // // console.log(id)
-        // return true
-        //  return selected.indexOf(id) !== -1;
-        console.log(id)
-        return {id: true}
-    }
+    // isSelected = (id:any) => {
+    //      let  { selected } = this.state;
+    //     // // console.log(id)
+    //     // return true
+    //     //  return selected.indexOf(id) !== -1;
+    //     console.log(id)
+    //     return {id: true}
+    // }
 
     render() {
         const { classes, dataContainer  } = this.props;
-        const { title, list, loading} = dataContainer;
+        const { title, list, loading, isSelected, selected,handleSelectAllClick,handleClick} = dataContainer;
+        console.log(isSelected)
         console.log(list)
         return (
             <div className={classes.root}>
@@ -74,8 +75,11 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
                     list={list}
                     title={title}
                     loading={loading}
-                    selected={this.state.selected}
+                    selected={selected}
                     labels={this.state.labels}
+                    isSelected={isSelected}
+                    handleSelectAllClick={handleSelectAllClick}
+                    handleClick={handleClick}
                 />
             </div>
         )
