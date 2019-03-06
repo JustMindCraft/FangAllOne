@@ -1,22 +1,26 @@
 import React from 'react';
-import { withWidth } from '@material-ui/core';
-import { isWidthUp } from '@material-ui/core/withWidth';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import HomeIcon from '@material-ui/icons/Home';
+import ExploreIcon from '@material-ui/icons/Explore';
+import { withRouter } from 'react-router';
+
+
 
 const PcProductBuyBar = (props:any ) => {
-    const isPc = isWidthUp('sm', props.width);
+    const {history} = props;
     return (
         <React.Fragment>
-            {
-                isPc && 
-                <div>
-                    购买
-                </div>
-               
-            }
+           <BottomNavigation
+            showLabels
+           >
+                    <BottomNavigationAction color="primary"  label="收藏" icon={<HomeIcon />} />
+                 <BottomNavigationAction onClick={(e:any)=>{history.push('/discover')}} label="立即购买" icon={<ExploreIcon />} />
+                 </BottomNavigation>
         </React.Fragment>
         
     )
 }
 
 
-export default withWidth(PcProductBuyBar as any) as any;
+export default withRouter(PcProductBuyBar);

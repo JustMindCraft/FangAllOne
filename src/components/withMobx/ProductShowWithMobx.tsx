@@ -4,6 +4,7 @@ import { Typography, withWidth } from '@material-ui/core';
 import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
 import PcProductBuyBar from '../stateless/PcProductBuyBar';
+import { isWidthUp } from '@material-ui/core/withWidth';
 
 
 interface IProductShowWithMobxProps{
@@ -26,6 +27,7 @@ class ProductShowWithMobx extends React.Component<IProductShowWithMobxProps> {
     render(){
         const { product, width } = this.props;
         const { cover, id, name, description } = product;
+        const isPc = isWidthUp('sm', width);
         return (
         <React.Fragment>
             <Carousel>
@@ -58,7 +60,11 @@ class ProductShowWithMobx extends React.Component<IProductShowWithMobxProps> {
                     {description}
                 </Typography>
             </div>
-            <PcProductBuyBar />
+            {
+                isPc && 
+                <PcProductBuyBar />
+               
+            }
             
         </React.Fragment>
         )
@@ -66,4 +72,4 @@ class ProductShowWithMobx extends React.Component<IProductShowWithMobxProps> {
     }
 }
 
-export default withRouter(ProductShowWithMobx as any) as any;
+export default  withWidth()(withRouter(ProductShowWithMobx as any)) as any;
