@@ -438,7 +438,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
 
 
 
-            <Button variant="contained" disabled={!store.allPassed} component={RegisterLink}  onClick={this.creatproduct} color="primary" >
+            <Button variant="contained" disabled={!store.allPassed}   onClick={this.creatproduct} color="primary" >
                 确认
             </Button>
                 </div>
