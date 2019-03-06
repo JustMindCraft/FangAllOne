@@ -10,6 +10,9 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import { observer, inject } from 'mobx-react';
 import { constants } from 'http2';
+import msg from '../../mobx/global/InformationMsg';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 interface ProductsAdminWithMobxProps {
     store: any,
 }
@@ -172,7 +175,10 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
     creatproduct=()=>{
         const {store} =this.props;
         console.log(store);
-        store.creatProduct()
+        store.creatProduct((m:string)=>{
+            
+            msg.show(m);
+        });
         
     }
 
@@ -344,7 +350,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         
         return (
             <div>
-                
+                {/* <CircularProgress  /> */}
                 <ProductsAdminForm 
                     handleInputChange={this.handleInputChange} 
                     handleInputChecked={this.handleInputChecked}     
@@ -360,6 +366,8 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                     nameZhPassed= {store.name_zhPassed}
                     validMsgBrief={store.validMsg.brief}
                     briefPassed= {store.briefPassed}
+                    validMsgStorage={store.validMsg.storage}
+                    storagePassed= {store.storagePassed}
                 />
                 <div style={{width:'100%',height:'100px'}}>
             </div>

@@ -7,7 +7,8 @@ export class ProductsAdmin {
         name: '',
         name_zh: '',
         brief: '',
-        storage:0
+        storage:'',
+        sales_volume:''
     }
 
 
@@ -64,11 +65,20 @@ export class ProductsAdmin {
             console.log(this.namePassed)
             return
         }else{
-            this.namePassed=true
-            this.validMsg.name ='商品名可用'
+            let re = new RegExp("^[a-zA-Z]+$");
+            if(re.test(value)){
+                this.namePassed=true
+                this.validMsg.name ='商品名可用'
+                 return this.name = value;
+
+            }
+            else{
+                this.namePassed=false
+                this.validMsg.name ='此处商品名只能为英文字符'
+            }
+            
             console.log(this.namePassed);
 
-            return this.name = value;
         }
         
 
@@ -132,6 +142,29 @@ export class ProductsAdmin {
 
     
     @action changeStorage(value:any){
+
+        if(value==''){
+            
+            this.storagePassed=false;
+            this.validMsg.storage = '商品库存不能为空'
+            console.log(this.storagePassed)
+            return
+        }else{
+            let re = new RegExp( "^[0-9]*$");
+            if(re.test(value)){
+                this.storagePassed=true
+            console.log(this.storagePassed);
+
+            return this.storage = value;
+            }
+            else{
+                this.storagePassed=false;
+            this.validMsg.storage = '商品库存只能为数子'
+            }
+            
+        }
+       
+        let re = new RegExp( "^[0-9]*$");
         console.log(value);
         return this.storage = value;
     }
@@ -323,8 +356,46 @@ export class ProductsAdmin {
         let isTool=this.isTool;
         let isAppointment=this.isAppointment;
         let isRecommend=this.isRecommend
+        if( name==''){
+            this.validMsg.name = '商品英文名不得为空'
+            this.namePassed=false
+            return cb('商品中文名不得为空!!')
+        }
 
-      
+        if( name_zh==''){
+            this.validMsg.name_zh = '商品中文名不得为空'
+            this.name_zhPassed=false
+            return cb('商品中文名不得为空!!')
+        }
+
+        if( brief==''){
+            this.validMsg.brief='商品简介不能为空'
+            this.briefPassed=false
+            return cb('商品简介不能为空!!')
+        }
+
+        if(parameterCount>0){
+            for(let i = 0;i<parameterCount;i++){
+                if(!parameterName[i]){
+                    return cb('参数名不得为空！！')
+                }
+                if(!parameterValue[i]){
+                    return cb('参数值不得为空！！')
+                }
+            }
+        }
+
+
+        if(specificationsCount>0){
+            for(let i = 0;i<specificationsCount;i++){
+                if(!specificationsName[i]){
+                    return cb('规格名不得为空！！')
+                }
+                if(!specificationsValue[i]){
+                    return cb('规格值不得为空！！')
+                }
+            }
+        }
 
         let parameters=[]
         for(let i = 0;i<parameterCount;i++){
@@ -357,7 +428,6 @@ export class ProductsAdmin {
                         }
 
         console.log(productInfor);
-        
 
         
 

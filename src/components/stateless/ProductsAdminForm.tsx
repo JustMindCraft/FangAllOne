@@ -37,6 +37,9 @@ interface ILoginFormProps {
   nameZhPassed:boolean;
   validMsgBrief:any;
   briefPassed:boolean;
+  validMsgStorage:any;
+  storagePassed:boolean;
+  
 }
 
 interface InputLabelProps {
@@ -138,6 +141,8 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
           <TextField
             id="outlined-email-input"
             label="商品库存"
+            error={!props.storagePassed}
+            helperText={props.validMsgStorage}
             type="username"
             name="storage"
             onChange={(event:any)=>props.handleInputChange(event, "storage")}
