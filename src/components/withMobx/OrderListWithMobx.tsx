@@ -1,12 +1,20 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { styles } from '../../css/common';
 import OrderListSearch from '../stateless/OrderListSearch';
 import OrderList from '../stateless/OrderList';
-import { observer } from 'mobx-react';
+import { observer,inject } from 'mobx-react';
+import dataContainer from '../../mobx/DataContainer';
+import classes from '*.module.scss';
 
 interface IOrdersListWithMobx {
     classes: any,
+    dataContainer: any,
+    msg: any;
 }
 
+@inject('msg')
+@inject('dataContainer')
 @observer
 class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     state = {
@@ -17,6 +25,26 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
         rowCount: 0,
         isSelected: false,
         data: [],
+        labels: [
+            { name: ''}
+        ]
+    }
+
+    componentDidMount() {
+        const { dataContainer, msg } = this.props;
+        const { sourceName, setSourceName, setTitle } = dataContainer;
+        setSourceName("apps");
+        this.getList();
+        setTitle('订单列表')
+    }
+
+    getList = () =>{
+        const { dataContainer, msg } = this.props;
+        const { getList } = dataContainer;
+        getList({sort: ['id', 'DESC'], page: 1, pagesize: 25}, (m:any)=>{
+            console.log(m)
+            msg.show(m);
+        })
     }
 
     handleDateChange = (date: any) => {
@@ -38,18 +66,12 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
         this.setState({ rowsPerPage:event.target.value})
     }
 
-    handleSelectAllClick = (event: any) => {
-        console.log(event)
-   
-    }
-
-    handleClick = (event: any, id: number ) =>{
-        console.log(event)
-    }
-
     render() {
+        const { title, list, loading, isSelected, selected, handleSelectAllClick, handleClick} = dataContainer;
+        console.log(isSelected)
+        console.log(list)
         return (
-            <div>
+            <div className={classes.root}>
                 <OrderListSearch 
                     handleDateChange={this.handleDateChange} 
                     handleTimeChange={this.handleTimeChange}
@@ -59,15 +81,20 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
                     handleChangeRowsPerPage={(e:any)=>this.handleChangeRowsPerPage(e)}
                     page={this.state.page}
                     rowsPerPage={this.state.rowsPerPage}
-                    handleSelectAllClick={this.handleSelectAllClick}
                     numSelected={this.state.numSelected}
                     rowCount={this.state.rowCount}
-                    handleClick={this.handleClick}
-                    isSelected={this.state.isSelected}
+                    handleClick={handleClick}
+                    handleSelectAllClick={handleSelectAllClick}
+                    isSelected={isSelected}
+                    selected={selected}
+                    list={list}
+                    title={title}
+                    loading={loading}
+                    labels={this.state.labels}
                 />
             </div>
         )
     }
 }
 
-export default OrderListWithMobx as any;
+export default withStyles(styles)(OrderListWithMobx) as any;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles, createStyles } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
@@ -20,12 +21,10 @@ const styles = createStyles({
     root: {
         width: '100%',
         overflow: 'auto',
-        margin: '20px'
+        margin: '20px',
+        backgroundColor: '#fff',
     },
     table: {
-
-    },
-    head: {
 
     },
     button: {
@@ -61,127 +60,138 @@ const data = [
 
 interface IOrderListProps {
     classes: any;
-    handleChangePage: (event: any, page: number) => void;
-    handleChangeRowsPerPage: (event: any) => void;
-    rowsPerPage: number;
-    page: number;
     numSelected: number;
     rowCount: number;
+    title: string;
+    loading: boolean;
+    labels:Array<any>;
+    list: Array<any>;
+    isSelected: any;
+    selected: Array<any>;
     handleSelectAllClick: (event: any) => void;
-    isSelected: boolean;
-    handleClick: (event: any, id: number) => void;
-    // history: any;
+    handleClick: (event: any, id: any) => void;
+    rowsPerPage: number;
+    page: number;
+    handleChangePage: (event: any, page: number) => void;
+    handleChangeRowsPerPage: (event: any) => void;
 }
 
 const OrderList = (props: IOrderListProps) => {
-    const { classes } = props;
+    const { classes, title, list, selected, labels, isSelected, handleClick, handleSelectAllClick  } = props;
+    console.log(isSelected('1'))
     return (
-        <Paper className={classes.root}>
             <div>
-                <Toolbar>
-                    <div className={classes.title}>
-                        {props.numSelected > 0 ? (
-                            <Typography color="inherit" variant="subtitle1">
-                                {props.numSelected} selected
-                            </Typography>
-                        ) : (
-                                <Typography variant="h6" id="tableTile">
-                                    订单列表
-                            </Typography>
-                            )}
+                <Typography variant='h5' component='h3'>
+                    {title}
+                </Typography>
+                <Paper className={classes.root}>
+                    <div>
+                        <Toolbar>
+                            <div className={classes.title}>
+                                {props.numSelected > 0 ? (
+                                    <Typography color="inherit" variant="subtitle1">
+                                        {props.numSelected} selected
+                                    </Typography>
+                                ) : (
+                                        <Typography variant="h6" id="tableTile">
+                                            订单列表
+                                    </Typography>
+                                    )}
+                            </div>
+                            <div className={classes.actions}>
+                                {props.numSelected > 0 ? (
+                                    <Tooltip title="Delete">
+                                        <IconButton aria-label="Delete">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                ) : (
+                                        <Tooltip title="Filter list">
+                                            <IconButton aria-label="Filter list">
+                                                <FilterListIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    )}
+                            </div>
+                        </Toolbar>
                     </div>
-                    <div className={classes.actions}>
-                        {props.numSelected > 0 ? (
-                            <Tooltip title="Delete">
-                                <IconButton aria-label="Delete">
-                                    <DeleteIcon />
-                                </IconButton>
-                            </Tooltip>
-                        ) : (
-                                <Tooltip title="Filter list">
-                                    <IconButton aria-label="Filter list">
-                                        <FilterListIcon />
-                                    </IconButton>
-                                </Tooltip>
-                            )}
-                    </div>
-                </Toolbar>
-            </div>
 
-            <Table className={classes.table}>
-                <TableHead className={classes.head}>
-                    <TableRow>
-                        <TableCell>
-                            <Checkbox
-                                checked={props.numSelected === props.rowCount}
-                                onChange={props.handleSelectAllClick}
-                            />
-                        </TableCell>
-                        {rows.map(
-                            row => (
-                                <TableCell key={row.id}>
-                                    {row.label}
+                    <Table className={classes.table}>
+                        <TableHead className={classes.head}>
+                            <TableRow>
+                                <TableCell>
+                                    <Checkbox
+                                        checked={props.numSelected === props.rowCount}
+                                        onChange={props.handleSelectAllClick}
+                                    />
                                 </TableCell>
-                            )
-                        )}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map(n => (
-                        // <TableRow 
-                        //     key={n.id}
-                        //     onClick={(key:any)=>props.handleClick(key)}
-                        //     role="checkbox"
-                        //     aria-checked={props.isSelected}
-                        //     selected={props.isSelected}
-                        //     tableIndex={-1}
-                        // >
-                        //     <TableCell padding="checkbox">
-                        //         <Checkbox cheacked={props.isSelected}/>
-                        <TableRow>
-                            <TableCell>
-                                <Checkbox />
-                            </TableCell>
-                            <TableCell align='right'>{n.orderNo}</TableCell>
-                            <TableCell align='right'>{n.orderTime}</TableCell>
-                            <TableCell align='right'>{n.amount}</TableCell>
-                            <TableCell align='right'>{n.payment}</TableCell>
-                            <TableCell align='right'>{n.payTime}</TableCell>
-                            <TableCell align='right'>{n.status}</TableCell>
-                            <TableCell>
-                                {/* <Button 
-                                    color="primary" 
-                                    className={classes.button}
-                                    onClick={()=>props.history.push('/dashboard/detail')}
-                                > */}
-                                <Button color="primary">
-                                    详情
-                                    </Button>
-                                <Button color="primary">
-                                    发货
-                                    </Button>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+                                {rows.map(
+                                    row => (
+                                        <TableCell key={row.id}>
+                                            {row.label}
+                                        </TableCell>
+                                    )
+                                )}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {data.map(n => (
+                                // <TableRow 
+                                //     key={n.id}
+                                //     onClick={(key:any)=>props.handleClick(key)}
+                                //     role="checkbox"
+                                //     aria-checked={props.isSelected}
+                                //     selected={props.isSelected}
+                                //     tableIndex={-1}
+                                // >
+                                //     <TableCell padding="checkbox">
+                                //         <Checkbox cheacked={props.isSelected}/>
+                                <TableRow>
+                                    <TableCell>
+                                        <Checkbox />
+                                    </TableCell>
+                                    <TableCell align='right'>{n.orderNo}</TableCell>
+                                    <TableCell align='right'>{n.orderTime}</TableCell>
+                                    <TableCell align='right'>{n.amount}</TableCell>
+                                    <TableCell align='right'>{n.payment}</TableCell>
+                                    <TableCell align='right'>{n.payTime}</TableCell>
+                                    <TableCell align='right'>{n.status}</TableCell>
+                                    <TableCell>
+                                        {/* <Button 
+                                            color="primary" 
+                                            className={classes.button}
+                                            onClick={()=>props.history.push('/dashboard/detail')}
+                                        > */}
+                                        <Button color="primary">
+                                            详情
+                                            </Button>
+                                        <Button color="primary">
+                                            发货
+                                            </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
 
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 50]}
-                component="div"
-                count={data.length}
-                rowsPerPage={props.rowsPerPage}
-                page={props.page}
-                backIconButtonProps={{
-                    'aria-label': 'Previous Page',
-                }}
-                nextIconButtonProps={{
-                    'aria-label': 'Next Page',
-                }}
-                onChangePage={props.handleChangePage}
-                onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
-            />
-        </Paper>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 50]}
+                        component="div"
+                        count={data.length}
+                        rowsPerPage={props.rowsPerPage}
+                        page={props.page}
+                        backIconButtonProps={{
+                            'aria-label': 'Previous Page',
+                        }}
+                        nextIconButtonProps={{
+                            'aria-label': 'Next Page',
+                        }}
+                        onChangePage={props.handleChangePage}
+                        onChangeRowsPerPage={(e: any) => props.handleChangeRowsPerPage(e)}
+                    />
+                </Paper>
+            </div>
+        
     )
 }
 
