@@ -180,6 +180,20 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
           </List>
 
           <FormGroup >
+
+          <FormControlLabel
+          label="商品是否免费"
+            
+          control={
+            <Switch
+              checked={isTool}
+              onChange={(event:any)=>props.handleInputChecked(event,'isTool')}
+              value="isTool"
+              color="primary"
+            />
+          }
+        />
+
         <FormControlLabel
           label="商品是否为工具类型"
             
