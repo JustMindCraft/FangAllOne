@@ -1,18 +1,20 @@
 import React from 'react';
 import RolesAdminWithMobx from '../../withMobx/RolesAdminWithMobx';
 import LayoutWithMobx from '../../withMobx/LayoutWithMobx';
-import rolesAdmin from '../../../mobx/components/RolesAdmin';
+import { Provider } from 'mobx-react';
+import dataContainer from '../../../mobx/DataContainer';
 
 
 class RolesAdminPage extends React.Component {
-    render (){
+    render() {
         return (
             <LayoutWithMobx>
-             <h1>角色管理</h1>
-             <RolesAdminWithMobx store={rolesAdmin}/>
+                <Provider dataContainer={dataContainer}>
+                    <RolesAdminWithMobx/>
+                </Provider>
             </LayoutWithMobx>
         )
-        
+
     }
 }
 

@@ -3,13 +3,10 @@ export class DialogContainer {
     @observable open = true;
 
     @action.bound handleClose = () => {
-        console.log('为什么没更新')
-         this.open = false
-         console.log(this.open)
+        return this.open = false
     }
 
     @action.bound handleClickOpen = () => {
-        console.log(this.open)
         return this.open = true
     }
 
