@@ -19,6 +19,7 @@ const RegisterLink = (props:any) => <Link to="/dashboard/my_shop" {...props} />
 
 interface ProductsAdminWithMobxProps {
     store: any,
+    redirectSuccess: Function,
 }
 interface IProductsAdminState{
     parameterName: any,
@@ -40,11 +41,9 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
     }
     componentWillReceiveProps(){
         const { store } = this.props;
-        // console.log(store.parameterCount);
     }
     handleInputChange = (event:any, key:string) => {
         const {store} = this.props;
-        // console.log(store);
         
         const value = event.target.value;
         switch (key) {
@@ -63,9 +62,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             case 'storage':
                 store.changeStorage(value);
                 break;
-
-
-                
             default:
                 break;
         }
@@ -97,9 +93,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
 
     handleSelect=(event:any)=>{
         const {store} = this.props;
-        // console.log(event.target.value)
         store.changeProductClassName(event.target.value)
-
     }
     handleChangeParameterName=(event:any,i:any)=>{
         const {store} = this.props
@@ -107,7 +101,6 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         const arr = new Array(store.parameterCount)
         arr[i]=value
         store.creatParameterName(i,value)
-       
     }
     handleChangeParameterValue=(event:any,i:any)=>{
         const {store} = this.props
@@ -141,72 +134,55 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
         store.creatAgencyLevelPrices(i,value)
     }
 
-
     addParameter=(event:any)=>{
         const {store} =this.props;
-        // console.log(store.parameter);
-        
-        // console.log('点击触发');
         store.addParameter();
-        // console.log(store.parameterCount);
-        
-        
     }
 
     
     addSpecifications=(event:any)=>{
         const {store} =this.props;
-        // console.log(store.specifications);
-        
-        // console.log('点击触发');
         store.addSpecifications();
-        // console.log(store.specificationsCount);
-        
-        
     }
 
     addAgencyLevelPrices=(event:any)=>{
         const {store} =this.props;
-        // console.log(store.agencyLevelPrices);
-        
-        // console.log('点击触发');
         store.addAgencyLevelPrices();
-        // console.log(store.agencyLevelPricesCount);
-        
-        
     }
 
     creatproduct=()=>{
         const {store} =this.props;
         console.log(store);
         store.creatProduct((m:string)=>{
-            
+            console.log(m);
+            if(m==='创建商品成功'){
+                this.props.redirectSuccess(true)
+            }
             msg.show(m);
         });
         
     }
 
+    cancel=()=>{
+        const {store} =this.props;
+        store.cancel()
+    }
+
     deleteSpecifications=(i:number)=>{
-        // console.log(i);
         const {store} =this.props;
         store.deleteSpecifications(i)
-        
     }
 
     
     deleteParameter=(i:number)=>{
-        // console.log(i);
         const {store} =this.props;
         store.deleteParameter(i)
-        
     }
 
     
     deleteAgencyLevelPrices=(i:number)=>{
-        // console.log(i);
         const {store} =this.props;
         store.deleteAgencyLevelPrices(i)
-        
     }
 
     render (){
@@ -432,7 +408,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
             <Divider />
             </List>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end',marginTop:'50px'}}>
-                <Button variant="contained" color="secondary" component={RegisterLink}   style={{marginRight:'20px'}}>
+                <Button variant="contained" color="secondary" component={RegisterLink}  onClick={this.cancel}  style={{marginRight:'20px'}}>
                 取消
             </Button>
 
