@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ApplicationAdminList from '../stateless/ApplicationAdminList';
 import { styles } from '../../css/common'
 import { observer, inject } from 'mobx-react';
-interface IApplicationAdminWithMobx {
+interface IApplicationAdminWithMobxProps {
     classes: any,
     dataContainer: any;
     msg: any;
@@ -12,31 +12,37 @@ interface IApplicationAdminWithMobx {
 @inject('msg')
 @inject('dataContainer')
 @observer
-class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx>{
+class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobxProps>{
     state = {
         page: 0,
         rowsPerPage: 5,
+        selected: [],
+        labels: [
+            { name: '应用名称' },
+            { name: '应用appId' },
+            { name: '应用Secrect' },
+            { name: '应用Host' }
+        ]
     }
-    componentDidMount(){
+    componentDidMount() {
         const { dataContainer, msg } = this.props;
         const { sourceName, setSourceName, setTitle } = dataContainer;
         setSourceName("apps");
         this.getList();
         setTitle('应用列表')
     }
-    getList = () =>{
+    getList = () => {
         const { dataContainer, msg } = this.props;
         const { getList } = dataContainer;
-        getList({sort: ['id', 'DESC'], page: 1, pagesize: 25}, (m:any)=>{
+        getList({ sort: ['id', 'DESC'], page: 1, pagesize: 25 }, (m: any) => {
             console.log(m)
             msg.show(m);
         })
     }
-    
+
     handleChangePage = (event: any, page: number) => {
         console.log(event)
         console.log(page)
-        // this.setState({ page });
     }
 
     handleChangeRowsPerPage = (event: any) => {
@@ -45,8 +51,9 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
     }
 
     render() {
-        const { classes, dataContainer  } = this.props;
-        const { title, list, loading} = dataContainer;
+        const { classes, dataContainer } = this.props;
+        const { title, list, loading, isSelected, selected, handleSelectAllClick, handleClick } = dataContainer;
+        console.log(isSelected)
         console.log(list)
         return (
             <div className={classes.root}>
@@ -57,6 +64,11 @@ class ApplicationAdminWithMobx extends React.Component<IApplicationAdminWithMobx
                     list={list}
                     title={title}
                     loading={loading}
+                    selected={selected}
+                    labels={this.state.labels}
+                    isSelected={isSelected}
+                    handleSelectAllClick={handleSelectAllClick}
+                    handleClick={handleClick}
                 />
             </div>
         )

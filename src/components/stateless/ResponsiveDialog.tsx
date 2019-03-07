@@ -5,23 +5,20 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import { observer, inject } from 'mobx-react';
 
 interface IResponsiveDialogProps {
-    classes: any;
-    fullScreen: any;
     title: string;
-    text: string;
     handleClose: (event: any) => void;
     open: boolean;
-
 }
 
 const ResponsiveDialog = (props: IResponsiveDialogProps) => {
+    console.log('Dialog')
+    console.log(props.open)
     return (
         <div>
             <Dialog
-                fullScreen={props.fullScreen}
                 open={props.open}
                 onClose={props.handleClose}
                 aria-labelledby="responsive-dialog-title"

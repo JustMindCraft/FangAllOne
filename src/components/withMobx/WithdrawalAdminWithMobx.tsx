@@ -8,14 +8,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import ResponsiveDialog from '../stateless/ResponsiveDialog';
 
 
 import { styles } from '../../css/common'
-interface IWithdrawalAdminWithMobx {
+interface IWithdrawalAdminWithMobxProps {
     value: number,
     classes: any,
     dataContainer: any;
+    dialogContainer: any;
     msg: any;
+    open: boolean;
 }
 
 const TabContainer = (props: any) => {
@@ -28,7 +31,9 @@ const TabContainer = (props: any) => {
 
 @inject('msg')
 @inject('dataContainer')
-class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
+@inject('dialogContainer')
+@observer
+class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobxProps>{
     state = {
         value: 1,
         page: 0,
@@ -69,9 +74,16 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
         // this.setState({ rowsPerPage: event.target.value });
     }
 
+
+    isSelected = () => {
+
+    }
+
     render() {
-        const { classes, dataContainer } = this.props;
+        const { classes, dataContainer, dialogContainer  } = this.props;
         const { title, list, loading, page, pagesize } = dataContainer;
+        const { handleClickOpen,open, handleClose } = dialogContainer;
+        console.log(handleClickOpen)
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -93,6 +105,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                             list={list}
                             title={title}
                             loading={loading}
+                            handleClickOpen={handleClickOpen}
+                            open={open}
+                            handleClose={handleClose}
                         />
                     </TabContainer>
                 }
@@ -108,6 +123,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                             list={list}
                             title={title}
                             loading={loading}
+                            handleClickOpen = {handleClickOpen}
+                            open={open}
+                            handleClose={handleClose}
                         />
                     </TabContainer>
                 }
@@ -123,6 +141,9 @@ class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
                             list={list}
                             title={title}
                             loading={loading}
+                            handleClickOpen = {handleClickOpen}
+                            open={open}
+                            handleClose={handleClose}
                         />
                     </TabContainer>
                 }

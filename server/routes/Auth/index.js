@@ -5,6 +5,7 @@ import config from '../../config';
 import Request from 'request-promise';
 import sha256 from 'sha256';
 import UserCache from '../../cache/UserCache';
+import MobileSMS from '../../cache/MobileSMS';
 const ENV = process.env.NODE_ENV;
 
 const querySchema = Joi.object({
@@ -57,7 +58,7 @@ export default [
   
             
             try {
-                let ref = await  Request({
+                const ref = await  Request({
                       url: uri,
                       method: 'POST',
                       headers: {
@@ -72,6 +73,7 @@ export default [
   
                         
                   });
+                await MobileSMS.insert({mobile, sms: sha256(num)});
   
                 return h.response(sha256(num)).code(200);
                 
