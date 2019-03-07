@@ -348,6 +348,7 @@ class ProductsAdminWithMobx extends React.Component<ProductsAdminWithMobxProps,I
                     briefPassed= {store.briefPassed}
                     validMsgStorage={store.validMsg.storage}
                     storagePassed= {store.storagePassed}
+                    store={store}
                 />
                 <div style={{width:'100%',height:'100px'}}>
             </div>

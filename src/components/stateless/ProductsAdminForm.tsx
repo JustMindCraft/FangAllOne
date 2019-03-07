@@ -39,7 +39,7 @@ interface ILoginFormProps {
   briefPassed:boolean;
   validMsgStorage:any;
   storagePassed:boolean;
-  
+  store:any
 }
 
 interface InputLabelProps {
@@ -70,6 +70,7 @@ const styles = createStyles({
 
 const ProductsAdminForm = (props:ILoginFormProps) =>  {
   const { classes,productClasses,productClassName,isTool,isRecommend,isAppointment } = props;
+  
   let productClass = new Array
   for(let i = 0;i<productClasses.length;i++){
     productClass.push(<MenuItem key={i} value={productClasses[i]}>{productClasses[i]}</MenuItem>)
@@ -109,6 +110,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             label="商品名称"
             type="username"
             name="name"
+            // value={props.store.name}
             margin="normal"
             variant="outlined"
             error={!props.namePassed}
@@ -121,6 +123,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             label="商品中文名称"
             type="username"
             name="name_zh"
+            // value={props.store.name_zh}
             error={!props.nameZhPassed}
             helperText={props.validMsgNameZh}
             onChange={(event:any)=>props.handleInputChange(event, "name_zh")}
@@ -132,6 +135,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             id="outlined-email-input"
             label="商品销量"
             type="username"
+            // value={props.store.sales_volume}
             name="sales_volume"
             onChange={(event:any)=>props.handleInputChange(event, "sales_volume")}
             margin="normal"
@@ -142,6 +146,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             id="outlined-email-input"
             label="商品库存"
             error={!props.storagePassed}
+            // value={props.store.storage}
             helperText={props.validMsgStorage}
             type="username"
             name="storage"
@@ -155,6 +160,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
             id="outlined-email-input"
             label="商品简介"
             type="username"
+            value={props.store.breif}
             error={!props.briefPassed}
             helperText={props.validMsgBrief}
             name="breif"
@@ -176,7 +182,7 @@ const ProductsAdminForm = (props:ILoginFormProps) =>  {
           <FormGroup >
         <FormControlLabel
           label="商品是否为工具类型"
-
+            
           control={
             <Switch
               checked={isTool}

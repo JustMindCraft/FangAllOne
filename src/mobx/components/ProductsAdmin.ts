@@ -481,6 +481,8 @@ export class ProductsAdmin {
                         }
 
         console.log(productInfor);
+
+        //这里写接口，请求api生成商品，并且返回结果进行下一步处理
         
          this.validMsg = {
             name: '',
