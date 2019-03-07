@@ -28,7 +28,7 @@ const EnchancedTableHead = (props: IEnchancedTabHead) => {
         </TableCell>
         {labels.map(
           (row:any,index:number) => (
-            <TableCell
+          <TableCell
               key={row.index}
               padding={row.disablePadding ? 'none' : 'default'}
             >

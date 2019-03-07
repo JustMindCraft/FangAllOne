@@ -3,10 +3,8 @@ import Table from '@material-ui/core/Table';
 import { withStyles, createStyles, } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
 import CircularUnderLoad from '../stateless/CircularUnderLoad';
@@ -54,7 +52,6 @@ interface IApplicationShow {
 }
 const ApplicationAdminList = (props: IApplicationAdminList) => {
     const { classes, title, list, loading, selected, labels, isSelected, handleSelectAllClick,handleClick} = props;
-    console.log(isSelected('1'))
     return (
         <div>
             {
@@ -66,17 +63,8 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                         <Paper className={classes.root}>
                             <Table className={classes.table}>
                                 <EnhancedTableHead numSelected={selected.length} labels={labels} handleSelectAllClick={(e:any)=>handleSelectAllClick(e)} rowCount={list.length}/>
-                                {/* <TableHead>
-                                    <TableRow>
-                                        <TableCell>应用名称</TableCell>
-                                        <TableCell align="right">应用AppId</TableCell>
-                                        <TableCell align="right">应用Secrect</TableCell>
-                                        <TableCell align="right">应用Host</TableCell>
-                                    </TableRow>
-                                </TableHead> */}
                                 <TableBody>
                                     {list.map((row: IApplicationShow) => {
-                                        // const isSelected = this.isSelected(row.id);
                                         return(
                                         <TableRow key={row.id}     role="checkbox" aria-checked={isSelected()}  tabIndex={-1}
                                         selected={isSelected()}
@@ -91,14 +79,6 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                                             <TableCell align="right">{row.appId}</TableCell>
                                             <TableCell align="right">{row.secrect}</TableCell>
                                             <TableCell align="right">{row.host}</TableCell>
-                                            {/* <TableCell align="right">
-                                    <Button variant="contained" color="primary" className={classes.button}>
-                                        {row.action}
-                                    </Button>
-                                    <Button variant="contained" color="primary" className={classes.button}>
-                                        {row.action}
-                                    </Button>
-                                </TableCell> */}
                                         </TableRow>
                                     )})}
                                 </TableBody>
