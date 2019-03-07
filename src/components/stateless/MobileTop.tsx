@@ -8,17 +8,25 @@ import { withRouter } from 'react-router';
 
 const MobileTop = (props: any) => {
 
-  // const { isLogined, username, fetching } = props.content;
-
-
-
+  const { match, history } = props;
+  
+  const isBack = () =>{
+    switch (match.path) {
+      case "/products/:id":
+        return true;
+      default: 
+        return false;
+    }
+  }
   return (
     <AppBar position="relative" style={{ width: '101%' }}>
 
       <Toolbar>
-        {props.isLogined && <IconButton color="inherit" aria-label="Open drawer" onClick={props.toggleDrawer('left', true)}>
+        {props.isLogined && (isBack() ? <span onClick={()=>{history.goBack()}}>《</span>　:
+          <IconButton color="inherit" aria-label="Open drawer" onClick={props.toggleDrawer('left', true)}>
           <MenuIcon />
-        </IconButton>}
+        </IconButton>
+        )}
         <Typography variant="h6" color="inherit" style={{ flexGrow: 1, textAlign: 'center' }}>
           {props.appName}
         </Typography>

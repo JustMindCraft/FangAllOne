@@ -151,6 +151,42 @@ export default [
           
       },
   },
+  {
+    method: 'GET',
+    path: '/apps/{id}',
+    handler: async (request, h) => {
+        try {
+          const { id } = request.params;
+          console.log(id);
+          
+          const product = await App.findOne({
+            where: {
+              id
+            }
+            }
+          )
+          return h.response(product).code(200);
+        } catch (error) {
+            console.error(error);
+            return h.response(error.original.toString()).code(203);
+        }
+        
+    },
+    options: {
+        auth: false,
+        description: '根据ID获取某个应用的的信息',
+        notes: '获取ID单个应用的信息',
+        tags: ['api'], // ADD THIS TAG
+        validate: {
+             query: {
+                 condition: Joi.string(),
+                 optional: Joi.string(),
+                 token: Joi.string()
+             }
+        }
+        
+    },
+  },
   //==============GET=============================
   //==============END OF GET=======================
 

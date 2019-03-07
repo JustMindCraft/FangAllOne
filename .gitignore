@@ -27,3 +27,4 @@ test.sqlite
 package-lock.json
 cachedb/*
 !cachedb/index.js
+yarn.lock

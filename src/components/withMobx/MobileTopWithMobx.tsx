@@ -17,7 +17,7 @@ class MobileTopWithMobx extends React.Component<IMobileTopWithMobxProp> {
         const { app, toggleDrawer, currentUser } = this.props;
 
         return (
-            <MobileTop isLogined={currentUser}  appName={app.name} toggleDrawer={toggleDrawer} />
+            <MobileTop  isLogined={currentUser}  appName={app.name} toggleDrawer={toggleDrawer} />
         )
     }
 }
