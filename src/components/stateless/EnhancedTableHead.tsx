@@ -1,19 +1,13 @@
 import React from 'react';
-import { TableHead, TableRow, TableCell, Checkbox, Tooltip, TableSortLabel } from '@material-ui/core';
-const rows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-];
-interface IEnchancedTabHead {
+import { TableHead, TableRow, TableCell, Checkbox } from '@material-ui/core';
+
+interface IEnchancedTabHeadProps {
     labels: Array<any>;
     handleSelectAllClick: (event: any) => void;
     numSelected: any;
     rowCount: any;
 }
-const EnchancedTableHead = (props: IEnchancedTabHead) => {
+const EnchancedTableHead = (props: IEnchancedTabHeadProps) => {
   const { handleSelectAllClick, numSelected, rowCount,labels } = props;
 
   return (
@@ -29,10 +23,9 @@ const EnchancedTableHead = (props: IEnchancedTabHead) => {
         {labels.map(
           (row:any,index:number) => (
           <TableCell
-              key={row.index}
+              key={index}
               padding={row.disablePadding ? 'none' : 'default'}
             >
-            
                   {row.name}
             </TableCell>
           )

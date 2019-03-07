@@ -12,7 +12,7 @@ import ResponsiveDialog from '../stateless/ResponsiveDialog';
 
 
 import { styles } from '../../css/common'
-interface IWithdrawalAdminWithMobx {
+interface IWithdrawalAdminWithMobxProps {
     value: number,
     classes: any,
     dataContainer: any;
@@ -33,7 +33,7 @@ const TabContainer = (props: any) => {
 @inject('dataContainer')
 @inject('dialogContainer')
 @observer
-class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobx>{
+class WithdrawalAdminWithMobx extends React.Component<IWithdrawalAdminWithMobxProps>{
     state = {
         value: 1,
         page: 0,

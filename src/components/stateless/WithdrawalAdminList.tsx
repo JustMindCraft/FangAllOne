@@ -39,10 +39,7 @@ const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作')
 ];
 
-interface IhandleClickOpen {
-  (): boolean;
-}
-interface IWithdrawalAdminList {
+interface IWithdrawalAdminListProps {
   classes: any;
   handleChangePage: (event: any, page: number) => void;
   handleChangeRowsPerPage: (event: any) => void;
@@ -56,7 +53,7 @@ interface IWithdrawalAdminList {
   handleClose: () => void;
   
 }
-const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
+const WithdrawalAdminList = (props: IWithdrawalAdminListProps) => {
   const { classes,list,handleClickOpen,open, handleClose} = props;
   console.log(handleClickOpen)
   return (

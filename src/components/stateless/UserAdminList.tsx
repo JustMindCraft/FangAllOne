@@ -25,7 +25,7 @@ const styles = createStyles({
   }
 });
 
-interface IUserAdminList {
+interface IUserAdminListProps {
   classes: any;
   handleChangePage: (event: any, page: number) => void;
   handleChangeRowsPerPage: (event: any) => void;
@@ -40,14 +40,14 @@ interface IUserAdminList {
   handleClick: (event: any, id: any) => void;
   handleSelectAllClick: (event: any) => void;
 }
-interface IUsersShow {
+interface IUsersShowProps {
   id: string;
   username: string;
   mobile: string;
   email: string;
 }
 
-const UserAdminList = (props: IUserAdminList) => {
+const UserAdminList = (props: IUserAdminListProps) => {
   const { classes, list, title, loading, selected, labels, isSelected, handleSelectAllClick, handleClick } = props;
   return (
     <div>
@@ -62,7 +62,7 @@ const UserAdminList = (props: IUserAdminList) => {
               <Table className={classes.table}>
                 <EnhancedTableHead numSelected={selected.length} labels={labels} handleSelectAllClick={(e: any) => handleSelectAllClick(e)} rowCount={list.length} />
                 <TableBody>
-                  {list.map((row: IUsersShow) => (
+                  {list.map((row: IUsersShowProps) => (
                     <TableRow key={row.id} role="checkbox" aria-checked={isSelected()} tabIndex={-1}
                     selected={isSelected()}
                     onClick={(event: any) => handleClick(event, row.id)}>

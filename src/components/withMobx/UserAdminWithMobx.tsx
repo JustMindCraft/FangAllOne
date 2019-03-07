@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { observer, inject } from 'mobx-react';
 
 import { styles } from '../../css/common'
-interface IUserAdminWithMobx{
+interface IUserAdminWithMobxProps{
     classes: any,
     dataContainer: any;
     msg: any;
@@ -12,7 +12,7 @@ interface IUserAdminWithMobx{
 @inject('msg')
 @inject('dataContainer')
 @observer
-class UserAdminWithMobx extends React.Component<IUserAdminWithMobx>{
+class UserAdminWithMobx extends React.Component<IUserAdminWithMobxProps>{
     state = {
         labels: [
             { name: '用户名'},
