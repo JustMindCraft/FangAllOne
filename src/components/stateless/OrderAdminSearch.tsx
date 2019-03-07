@@ -22,7 +22,7 @@ const styles = createStyles({
     }
 })
 
-interface IOrderListSearchProps {
+interface IOrderAdminSearchProps {
     classes: any;
     handleDateChange: (date: any) => void;
     handleTimeChange: (time: any) => void;
@@ -31,7 +31,7 @@ interface IOrderListSearchProps {
     // handleInputChange: (event: any, key: string) => void;
 }
 
-const OrderListSearch = (props:IOrderListSearchProps) => {
+const OrderAdminSearch = (props:IOrderAdminSearchProps) => {
     return (
         <div>
             <Grid container className={props.classes.root} spacing={16} justify="space-around">
@@ -100,4 +100,4 @@ const OrderListSearch = (props:IOrderListSearchProps) => {
     )
 }
 
-export default withStyles(styles)(OrderListSearch);
+export default withStyles(styles)(OrderAdminSearch);

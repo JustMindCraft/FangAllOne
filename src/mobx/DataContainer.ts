@@ -27,6 +27,7 @@ export class DataContainer {
     @observable sortColumn = "id";
     @observable condition = new Map();
     @observable selected = [];
+
     @computed get list(){
         return this.dataSource.slice() as Array<any>;
     }
@@ -54,11 +55,7 @@ export class DataContainer {
     }
 
     @action isSelected = (id:never) => {
-<<<<<<< HEAD
         return this.selected.indexOf(id) !== -1;
-=======
-        return this.selected.indexOf(id) !==-1;
->>>>>>> wwd
     }
 
     @action handleSelectAllClick = (event:any) => {
@@ -70,8 +67,6 @@ export class DataContainer {
             this.selected = [];
         }
     }
-<<<<<<< HEAD
-=======
 
     @action  handleClick = (event:any, id:never) => {
         const  selected  = this.selected;
@@ -90,30 +85,7 @@ export class DataContainer {
           );
         }
         this.selected = newSelected
-      };
-
-  
-
->>>>>>> wwd
-
-    @action  handleClick = (event:any, id:never) => {
-        const  selected  = this.selected;
-        const selectedIndex = selected.indexOf(id);
-        let newSelected:any = [];
-        if (selectedIndex === -1) {
-          newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-          newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-          newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-          newSelected = newSelected.concat(
-            selected.slice(0, selectedIndex),
-            selected.slice(selectedIndex + 1),
-          );
-        }
-        this.selected = newSelected
-      };
+      }
 
     @action getList = (optional:IQueryOptional={sort: ['id', 'DESC'], page: 1, pagesize: 25},  cb:Function) => {
         this.loading = true;

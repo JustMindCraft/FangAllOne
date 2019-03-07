@@ -1,23 +1,21 @@
 import React from 'react';
 import LayoutWithMobx from "../../withMobx/LayoutWithMobx";
-import OrderListWithMobx from '../../withMobx/OrderListWithMobx';
+import OrderAdminWithMobx from '../../withMobx/OrderAdminWithMobx';
 import orderListStore from '../../../mobx/components/OrderListStore'
 import pageStyles from '../pageStyle';
 import { IPageProps } from '../../../interfaces/components';
 import { withStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-
+import { Provider } from 'mobx-react';
+import dataContainer from '../../../mobx/DataContainer';
 
 class OrderAdminPage extends React.Component<IPageProps> {
 
-    render(){
-        const { classes } = this.props;
+    render() {
         return (
             <LayoutWithMobx>
-                <Typography variant='h4' gutterBottom className={classes.title} >
-                        订单管理
-                </Typography>
-                <OrderListWithMobx store={orderListStore}/>
+                <Provider dataContainer={dataContainer}>
+                    <OrderAdminWithMobx store={orderListStore}/>
+                </Provider>
             </LayoutWithMobx>
         )
     }

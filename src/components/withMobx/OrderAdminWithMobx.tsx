@@ -1,32 +1,34 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { styles } from '../../css/common';
-import OrderListSearch from '../stateless/OrderListSearch';
-import OrderList from '../stateless/OrderList';
+import OrderAdminSearch from '../stateless/OrderAdminSearch';
+import OrderAdminList from '../stateless/OrderAdminList';
 import { observer,inject } from 'mobx-react';
 import dataContainer from '../../mobx/DataContainer';
-import classes from '*.module.scss';
 
-interface IOrdersListWithMobx {
+interface IOrderAdminWithMobx {
     classes: any,
     dataContainer: any,
     msg: any;
 }
 
+
 @inject('msg')
 @inject('dataContainer')
 @observer
-class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
+class OrderAdminWithMobx extends React.Component<IOrderAdminWithMobx> {
     state = {
         rowsPerPage: 10,
         page: 0,
         selected: [],
-        numSelected: 0,
-        rowCount: 0,
-        isSelected: false,
-        data: [],
         labels: [
-            { name: ''}
+            { name: '订单号' },
+            { name: '下单时间' },
+            { name: '金额' },
+            { name: '支付方式' },
+            { name: '支付时间' },
+            { name: '状态' },
+            { name: '操作' },
         ]
     }
 
@@ -67,22 +69,21 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     }
 
     render() {
+        const { classes, dataContainer } = this.props;
         const { title, list, loading, isSelected, selected, handleSelectAllClick, handleClick} = dataContainer;
         console.log(isSelected)
         console.log(list)
         return (
             <div className={classes.root}>
-                <OrderListSearch 
+                <OrderAdminSearch 
                     handleDateChange={this.handleDateChange} 
                     handleTimeChange={this.handleTimeChange}
                 />
-                <OrderList
+                <OrderAdminList
                     handleChangePage={this.handleChangePage}
                     handleChangeRowsPerPage={(e:any)=>this.handleChangeRowsPerPage(e)}
                     page={this.state.page}
                     rowsPerPage={this.state.rowsPerPage}
-                    numSelected={this.state.numSelected}
-                    rowCount={this.state.rowCount}
                     handleClick={handleClick}
                     handleSelectAllClick={handleSelectAllClick}
                     isSelected={isSelected}
@@ -97,4 +98,4 @@ class OrderListWithMobx extends React.Component<IOrdersListWithMobx> {
     }
 }
 
-export default withStyles(styles)(OrderListWithMobx) as any;
+export default withStyles(styles)(OrderAdminWithMobx) as any;

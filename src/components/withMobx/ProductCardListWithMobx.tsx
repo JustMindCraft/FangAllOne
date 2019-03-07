@@ -8,8 +8,6 @@ interface IProductCardListWithMobxProps{
     history: any;
 }
 
-
-
 @inject('dataContainer')
 @observer
 class ProductCardListWithMobx extends 
