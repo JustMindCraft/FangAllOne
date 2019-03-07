@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import CircularUnderLoad from '../stateless/CircularUnderLoad';
+import ResponsiveDialog from '../stateless/ResponsiveDialog';
 const styles = createStyles({
   root: {
     width: '100%',
@@ -38,8 +39,7 @@ const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, '未打款', '操作')
 ];
 
-
-interface IWithdrawalAdminList {
+interface IWithdrawalAdminListProps {
   classes: any;
   handleChangePage: (event: any, page: number) => void;
   handleChangeRowsPerPage: (event: any) => void;
@@ -48,11 +48,17 @@ interface IWithdrawalAdminList {
   title: string;
   loading: boolean;
   list: Array<any>;
+  open: boolean;
+  handleClickOpen: () => void;
+  handleClose: () => void;
+  
 }
-const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
-  const { classes,list } = props;
+const WithdrawalAdminList = (props: IWithdrawalAdminListProps) => {
+  const { classes,list,handleClickOpen,open, handleClose} = props;
+  console.log(handleClickOpen)
   return (
     <Paper className={classes.root}>
+    <ResponsiveDialog open={open} title={"测试"} handleClose={handleClose}/>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
@@ -77,11 +83,11 @@ const WithdrawalAdminList = (props: IWithdrawalAdminList) => {
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.status}</TableCell>
               <TableCell align="right">
-                <Button variant="contained" color="primary" className={classes.button}>
-                  {row.action}
+                <Button variant="contained" color="primary" className={classes.button} onClick={props.handleClickOpen}>
+                打款
                 </Button>
                 <Button variant="contained" color="primary" className={classes.button}>
-                  {row.action}
+                撤销
                 </Button>
               </TableCell>
             </TableRow>

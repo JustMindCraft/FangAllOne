@@ -3,13 +3,13 @@ import Table from '@material-ui/core/Table';
 import { withStyles, createStyles, } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
 import CircularUnderLoad from '../stateless/CircularUnderLoad';
+import EnhancedTableHead from '../stateless/EnhancedTableHead';
+import Checkbox from '@material-ui/core/Checkbox';
 const styles = createStyles({
     root: {
         width: '100%',
@@ -33,10 +33,15 @@ interface IApplicationAdminList {
     handleChangePage: (event: any, page: number) => void;
     handleChangeRowsPerPage: (event: any) => void;
     page: number;
-    rowsPerPage: number;
+    rowsPerPage: number
     title: string;
     loading: boolean;
     list: Array<any>;
+    selected: Array<any>;
+    labels: Array<any>;
+    isSelected: any;
+    handleClick: (event: any,id:any) => void;
+    handleSelectAllClick: (event: any) => void;
 }
 interface IApplicationShow {
     id: string;
@@ -46,7 +51,7 @@ interface IApplicationShow {
     host: string;
 }
 const ApplicationAdminList = (props: IApplicationAdminList) => {
-    const { classes, title, list, loading } = props;
+    const { classes, title, list, loading, selected, labels, isSelected, handleSelectAllClick,handleClick} = props;
     return (
         <div>
             {
@@ -56,35 +61,26 @@ const ApplicationAdminList = (props: IApplicationAdminList) => {
                             {title}
                         </Typography>
                         <Paper className={classes.root}>
-
                             <Table className={classes.table}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>应用名称</TableCell>
-                                        <TableCell align="right">应用AppId</TableCell>
-                                        <TableCell align="right">应用Secrect</TableCell>
-                                        <TableCell align="right">应用Host</TableCell>
-                                    </TableRow>
-                                </TableHead>
+                                <EnhancedTableHead numSelected={selected.length} labels={labels} handleSelectAllClick={(e:any)=>handleSelectAllClick(e)} rowCount={list.length}/>
                                 <TableBody>
-                                    {list.map((row: IApplicationShow) => (
-                                        <TableRow key={row.id}>
+                                    {list.map((row: IApplicationShow) => {
+                                        return(
+                                        <TableRow key={row.id}     role="checkbox" aria-checked={isSelected()}  tabIndex={-1}
+                                        selected={isSelected()}
+                                        onClick={(event:any)=> handleClick(event,row.id)}
+                                        >
+                                        <TableCell padding="checkbox">
+                                           <Checkbox checked={isSelected(row.id)} />
+                                        </TableCell>
                                             <TableCell component="th" scope="row">
                                                 {row.name}
                                             </TableCell>
                                             <TableCell align="right">{row.appId}</TableCell>
                                             <TableCell align="right">{row.secrect}</TableCell>
                                             <TableCell align="right">{row.host}</TableCell>
-                                            {/* <TableCell align="right">
-                                    <Button variant="contained" color="primary" className={classes.button}>
-                                        {row.action}
-                                    </Button>
-                                    <Button variant="contained" color="primary" className={classes.button}>
-                                        {row.action}
-                                    </Button>
-                                </TableCell> */}
                                         </TableRow>
-                                    ))}
+                                    )})}
                                 </TableBody>
                             </Table>
                             

@@ -3,13 +3,14 @@ import Table from '@material-ui/core/Table';
 import { withStyles, createStyles, } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TablePagination from '@material-ui/core/TablePagination';
 import Typography from '@material-ui/core/Typography';
 import CircularUnderLoad from '../stateless/CircularUnderLoad';
+import EnhancedTableHead from '../stateless/EnhancedTableHead';
+import Checkbox from '@material-ui/core/Checkbox';
 const styles = createStyles({
   root: {
     width: '100%',
@@ -24,7 +25,7 @@ const styles = createStyles({
   }
 });
 
-interface IUserAdminList {
+interface IUserAdminListProps {
   classes: any;
   handleChangePage: (event: any, page: number) => void;
   handleChangeRowsPerPage: (event: any) => void;
@@ -33,16 +34,21 @@ interface IUserAdminList {
   title: string;
   loading: boolean;
   list: Array<any>;
+  selected: Array<any>;
+  labels: Array<any>;
+  isSelected: any;
+  handleClick: (event: any, id: any) => void;
+  handleSelectAllClick: (event: any) => void;
 }
-interface IUsersShow {
+interface IUsersShowProps {
   id: string;
   username: string;
   mobile: string;
   email: string;
 }
 
-const UserAdminList = (props: IUserAdminList) => {
-  const { classes, list, title, loading } = props;
+const UserAdminList = (props: IUserAdminListProps) => {
+  const { classes, list, title, loading, selected, labels, isSelected, handleSelectAllClick, handleClick } = props;
   return (
     <div>
       {
@@ -54,16 +60,15 @@ const UserAdminList = (props: IUserAdminList) => {
 
             <Paper className={classes.root}>
               <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>用户名</TableCell>
-                    <TableCell align="right">手机</TableCell>
-                    <TableCell align="right">邮箱</TableCell>
-                  </TableRow>
-                </TableHead>
+                <EnhancedTableHead numSelected={selected.length} labels={labels} handleSelectAllClick={(e: any) => handleSelectAllClick(e)} rowCount={list.length} />
                 <TableBody>
-                  {list.map((row: IUsersShow) => (
-                    <TableRow key={row.id}>
+                  {list.map((row: IUsersShowProps) => (
+                    <TableRow key={row.id} role="checkbox" aria-checked={isSelected()} tabIndex={-1}
+                    selected={isSelected()}
+                    onClick={(event: any) => handleClick(event, row.id)}>
+                     <TableCell padding="checkbox">
+                                                    <Checkbox checked={isSelected(row.id)} />
+                                                </TableCell>
                       <TableCell component="th" scope="row">
                         {row.username}
                       </TableCell>
