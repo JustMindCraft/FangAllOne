@@ -3,8 +3,10 @@ import { observable, computed, action } from "mobx";
 import { auth } from "../api";
 
 export  class AuthProvider {
+
     @observable logining = false;
     @observable regisering = false;
+    @observable smsFetching = false;
     
 
     @observable mobile = '';
@@ -15,6 +17,39 @@ export  class AuthProvider {
     @observable passwordRepeat = "";
     @observable roles = [];
     @observable permissions=[];
+    @observable loginModel = 'sms';//登录方式
+    @observable isCounting  = false;
+    @observable smsCountTimes = 60;
+    @observable counter:any;
+
+    //valid
+    @observable validing = false;//是否正在验证
+
+
+    @computed get usernameValid(){
+        return this.username && this.username!=="";
+    } 
+
+    @computed get smsValid(){
+        return this.sms && this.sms !== "";
+    }
+
+    @computed get mobileValid(){
+        return this.mobile && this.mobile !== "";
+    }
+
+    @computed get passwordValid(){
+        return this.password && this.password !== "";
+    }
+
+    @computed get loginValid(){
+        if(this.loginModel === "sms"){
+            return this.mobileValid && this.smsValid;
+        }
+        if(this.loginModel==="password"){
+            return this.usernameValid && this.passwordValid;
+        }
+    }
 
     @computed get passwordEqual(){
         return this.password === this.passwordRepeat;
@@ -40,6 +75,35 @@ export  class AuthProvider {
         this.password = "";
         this.roles = [];
         this.permissions = [];
+        this.loginModel = 'sms';
+        this.validing = false;
+    }
+
+    @action setLoginModel = (model: string) =>{
+        this.loginModel = model;
+    }
+    @action setUsername(username: string){
+        this.username = username;
+    }
+    @action setMobile(mobile:string){
+        this.mobile = mobile;
+    }
+    @action setEmail(email: string) {
+        this.email = email;
+    }
+    @action setPassword= (password: string) => {
+        this.password = password;
+    }
+    @action setPasswordRepeat = (passwordRepeat:string) => {
+        this.passwordRepeat = passwordRepeat;
+    }
+
+    @action setRoles(roles:Array<never>){
+        this.roles = roles;
+    }
+
+    @action setPermissions(permissions:Array<never>){
+        this.permissions = permissions;
     }
 
     @action logOut = ()=> {
@@ -77,6 +141,8 @@ export  class AuthProvider {
                
             });
     }
+
+    
 
     
 }
