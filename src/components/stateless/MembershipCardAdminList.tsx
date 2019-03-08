@@ -50,7 +50,7 @@ interface IMemberShipCardListShowProps {
     secrect: string;
     host: string;
 }
-const ApplicationAdminList = (props:IMemberShipCardListProps) => {
+const MemberShipCardAdminList = (props:IMemberShipCardListProps) => {
     const { classes, title, list, loading, selected, labels, isSelected, handleSelectAllClick, handleClick } = props;
     return (
         <div>
@@ -109,4 +109,4 @@ const ApplicationAdminList = (props:IMemberShipCardListProps) => {
 
 
 
-export default withStyles(styles)(ApplicationAdminList);
+export default withStyles(styles)(MemberShipCardAdminList);
