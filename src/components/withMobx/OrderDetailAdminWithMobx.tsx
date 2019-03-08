@@ -1,12 +1,14 @@
 import React from 'react';
-import OrderDetailForm from '../stateless/OrderDetailForm';
+import { withStyles } from '@material-ui/core/styles';
+import OrderDetailAdmin from '../stateless/OrderDetailAdmin';
+import { styles } from '../../css/common'
 
-interface IOrderDetailFormWithMobx {
+interface IOrderDetailAdminWithMobx {
     classes: any,
     
 }
 
-class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> {
+class OrderDetailAdminWithMobx extends React.Component<IOrderDetailAdminWithMobx> {
     state = {
         open: false,
         orderNo: '14b52f1b',
@@ -23,9 +25,10 @@ class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> 
     }
 
     render() {
+        const { classes } = this.props
         return (
-            <div>
-                <OrderDetailForm 
+            <div className={classes.root}>
+                <OrderDetailAdmin 
                     handleClickOpen={this.handleClickOpen}
                     handleClose={this.handleClose}
                     open={this.state.open}
@@ -38,4 +41,4 @@ class OrderDetailFormWithMobx extends React.Component<IOrderDetailFormWithMobx> 
     }
 }
 
-export default OrderDetailFormWithMobx as any;
+export default withStyles(styles)(OrderDetailAdminWithMobx) as any;

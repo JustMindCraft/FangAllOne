@@ -6,15 +6,9 @@ import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import TablePagination from '@material-ui/core/TablePagination';
 import Checkbox from '@material-ui/core/Checkbox';
-import Toolbar from '@material-ui/core/Toolbar';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import TablePagination from '@material-ui/core/TablePagination';
 import CircularUnderLoad from './CircularUnderLoad';
 import EnhancedTableHead from './EnhancedTableHead';
 
@@ -22,42 +16,16 @@ const styles = createStyles({
     root: {
         width: '100%',
         overflow: 'auto',
-        margin: '20px',
+        margin: '10px',
         backgroundColor: '#fff',
     },
     table: {
-
+        minWidth: 700,
     },
     button: {
         margin: '2px'
     }
 })
-
-// let id = 0;
-// function createdData(orderNo: any, orderTime: string, amount: any, payment: any, payTime: any, status: any) {
-//     id += 1;
-//     return { id, orderNo, orderTime, amount, payment, payTime, status }
-// }
-
-// const rows = [
-//     { id: 'orderNo', label: '订单号' },
-//     { id: 'orderTime', label: '下单时间' },
-//     { id: 'amount', label: '金额' },
-//     { id: 'payment', label: '支付方式' },
-//     { id: 'payTime', label: '支付时间' },
-//     { id: 'status', label: '订单状态' },
-//     { id: 'operatiom', label: '操作' },
-// ]
-
-// const data = [
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-//     createdData('46516351', '2019.02.12', '888', 'alipay', '2019.02.13', 'pending'),
-// ]
 
 interface IOrderAdminListProps {
     classes: any;
@@ -75,7 +43,7 @@ interface IOrderAdminListProps {
     handleChangeRowsPerPage: (event: any) => void;
 }
 
-interface IOrdersShow {
+interface IOrdersShowProps {
     id: string;
     orderNo: string;
     orderTime: string;
@@ -105,25 +73,8 @@ const OrderAdminList = (props: IOrderAdminListProps) => {
                                     handleSelectAllClick={(e:any) => handleSelectAllClick(e)}
                                     rowCount={list.length}
                                 />
-                                {/* <TableHead className={classes.head}>
-                                    <TableRow>
-                                        <TableCell>
-                                            <Checkbox
-                                                checked={props.numSelected === props.rowCount}
-                                                onChange={props.handleSelectAllClick}
-                                            />
-                                        </TableCell>
-                                        {rows.map(
-                                            row => (
-                                                <TableCell key={row.id}>
-                                                    {row.label}
-                                                </TableCell>
-                                            )
-                                        )}
-                                    </TableRow>
-                                </TableHead> */}
                                 <TableBody>
-                                    {list.map((row: IOrdersShow) => {
+                                    {list.map((row: IOrdersShowProps) => {
                                         return (
                                             <TableRow 
                                                 key={row.id}
@@ -133,6 +84,9 @@ const OrderAdminList = (props: IOrderAdminListProps) => {
                                                 selected={isSelected()}
                                                 tabIndex={-1}
                                             >
+                                                <TableCell padding='checkbox'>
+                                                    <Checkbox checked={isSelected(row.id)} />
+                                                </TableCell>
                                                 <TableCell align='right'>{row.orderNo}</TableCell>
                                                 <TableCell align='right'>{row.orderTime}</TableCell>
                                                 <TableCell align='right'>{row.amount}</TableCell>

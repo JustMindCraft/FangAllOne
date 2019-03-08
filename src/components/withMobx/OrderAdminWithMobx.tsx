@@ -4,14 +4,12 @@ import { styles } from '../../css/common';
 import OrderAdminSearch from '../stateless/OrderAdminSearch';
 import OrderAdminList from '../stateless/OrderAdminList';
 import { observer,inject } from 'mobx-react';
-import dataContainer from '../../mobx/DataContainer';
 
 interface IOrderAdminWithMobx {
     classes: any,
     dataContainer: any,
     msg: any;
 }
-
 
 @inject('msg')
 @inject('dataContainer')
