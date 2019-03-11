@@ -17,6 +17,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import CircularUnderLoad from './CircularUnderLoad';
+import { listenerCount } from 'cluster';
 
 const styles = createStyles({
     root: {
@@ -65,15 +66,25 @@ interface IOrderDetailProps {
     status: string;
     orderTime: string;
     loading: boolean;
+    userName: string;
+    userNo: string;
+    phoneNo: string;
+    address: string;
+    list: Array<any>;
+    labels:Array<any>;
 }
 
 interface IOrderProductShowProps {
     id: string;
-
+    productName: string;
+    productId: string;
+    price: string;
+    quantity: string;
+    amount: string;
 }
 
 const OrderDetailAdmin = (props: IOrderDetailProps) => {
-    const { classes, loading,  } = props;
+    const { classes, loading, orderNo, status, orderTime,   } = props;
     return (
         <div>
             {
@@ -81,10 +92,10 @@ const OrderDetailAdmin = (props: IOrderDetailProps) => {
                     <div>   
                         <Paper className={classes.root}>
                             <div className={classes.section}>
-                                <Typography variant='h6'>
+                                <Typography variant='h5'>
                                     订单:
                                 </Typography>
-                                <Grid container justify='center' alignItems='center'>
+                                <Grid container justify='space-around' alignItems='center'>
                                     <Grid item xs={4}>
                                         订单号:{props.orderNo}
                                     </Grid>
@@ -107,13 +118,13 @@ const OrderDetailAdmin = (props: IOrderDetailProps) => {
                                             <DialogTitle id='from-dialog-title'></DialogTitle>
                                             <DialogContent>
                                                 <DialogContentText>
-                                                    请填写快递信息
+                                                    请填写快递信息:
                                                 </DialogContentText>
                                                 <TextField
                                                     autoFocus
                                                     margin='dense'
-                                                    id='deliverNo'
-                                                    label='快递单号'
+                                                    id='deliver'
+                                                    label='快递'
                                                     type='email'
                                                     fullWidth
                                                 >
@@ -121,8 +132,8 @@ const OrderDetailAdmin = (props: IOrderDetailProps) => {
                                                 <TextField
                                                     autoFocus
                                                     margin='dense'
-                                                    id='deliver'
-                                                    label='快递'
+                                                    id='deliverNo'
+                                                    label='快递单号'
                                                     type='email'
                                                     fullWidth
                                                 >
@@ -142,29 +153,30 @@ const OrderDetailAdmin = (props: IOrderDetailProps) => {
                             </div>
                             <Divider variant='middle' />
                             <div className={classes.section}>
-                                <Typography variant='h6'>
+                                <Typography variant='h5'>
                                     用户信息：
                                 </Typography>
-                                <Grid container>
-                                    <Grid item>
-                                        用户姓名：张三
+                                <Grid container justify='space-around' alignItems='center'>
+                                    <Grid item xs={3}>
+                                        用户姓名：{props.userName}
                                     </Grid>
-                                    <Grid item>
-                                        用户ID:113213
+                                    <Grid item xs={3}>
+                                        用户ID: {props.userNo}
                                     </Grid>
-                                    <Grid item>
-                                        联系方式：10086
+                                    <Grid item xs={3}>
+                                        联系方式：{props.phoneNo}
                                     </Grid>
-                                    <Grid item>
-                                        地址：某个地方
+                                    <Grid item xs={3}>
+                                        地址：{props.address}
                                     </Grid>
                                 </Grid>
                             </div>
                             <Divider variant='middle' />
                             <div className={classes.section}>
-                                <Typography variant='h6'>
+                                <Typography variant='h5'>
                                     商品清单：
                                 </Typography>
+                                {listenerCount.map(())}
                                 <Table>
                                     <TableHead className={classes.head}>
                                         <TableRow>
