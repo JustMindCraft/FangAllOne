@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import OrderDetailAdmin from '../stateless/OrderDetailAdmin';
 import { styles } from '../../css/common'
+import dataContainer from '../../mobx/DataContainer';
 
 interface IOrderDetailAdminWithMobx {
     classes: any,
@@ -13,7 +14,17 @@ class OrderDetailAdminWithMobx extends React.Component<IOrderDetailAdminWithMobx
         open: false,
         orderNo: '14b52f1b',
         status: '待发货',
-        orderTime: '2019-03-16'
+        orderTime: '2019-03-16',
+        userName: '',
+        userId: '',
+        labels: [
+            {name: '商品名'},
+            {name: '商品编号'},
+            {name: '数量'},
+            {name: '单价'},
+            {name: '金额'},
+        ],
+
     }
 
     handleClickOpen = () => {
@@ -26,6 +37,7 @@ class OrderDetailAdminWithMobx extends React.Component<IOrderDetailAdminWithMobx
 
     render() {
         const { classes } = this.props
+        const { list, loading,} = dataContainer;
         return (
             <div className={classes.root}>
                 <OrderDetailAdmin 
@@ -35,6 +47,13 @@ class OrderDetailAdminWithMobx extends React.Component<IOrderDetailAdminWithMobx
                     orderNo={this.state.orderNo}
                     status={this.state.status}
                     orderTime={this.state.orderTime}
+                    list={list}
+                    loading={loading}
+                    labels={this.state.labels}
+                    userName
+                    userNo
+                    phoneNo
+                    address
                 />
             </div>
         )

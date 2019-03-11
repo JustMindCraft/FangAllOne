@@ -16,8 +16,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import DefaultTableHead from './DefaultTableHead';
 import CircularUnderLoad from './CircularUnderLoad';
-import { listenerCount } from 'cluster';
 
 const styles = createStyles({
     root: {
@@ -25,9 +25,6 @@ const styles = createStyles({
         margin: '10px',
         overflowX: 'auto',
         backgroundColor: '#fff',
-    },
-    section: {
-        margin: '20px'
     },
     table: {
         minWidth: '700px'
@@ -84,124 +81,117 @@ interface IOrderProductShowProps {
 }
 
 const OrderDetailAdmin = (props: IOrderDetailProps) => {
-    const { classes, loading, orderNo, status, orderTime,   } = props;
+    const { classes, loading, orderNo, status, orderTime, list, labels   } = props;
     return (
         <div>
             {
                 loading ? <CircularUnderLoad /> :
                     <div>   
                         <Paper className={classes.root}>
-                            <div className={classes.section}>
-                                <Typography variant='h5'>
-                                    订单:
-                                </Typography>
-                                <Grid container justify='space-around' alignItems='center'>
-                                    <Grid item xs={4}>
-                                        订单号:{props.orderNo}
-                                    </Grid>
-                                    <Grid item xs={4}>
-                                        订单状态:{props.status}
-                                    </Grid>
-                                    <Grid item xs={4}>
-                                        <Button 
-                                            color='primary' 
-                                            variant='outlined' 
-                                            onClick={props.handleClickOpen}
-                                        >
-                                            发货
-                                        </Button>
-                                        <Dialog
-                                            open={props.open}
-                                            onClose={props.handleClose}
-                                            aria-labelledby='form-dialog-title'
-                                        >
-                                            <DialogTitle id='from-dialog-title'></DialogTitle>
-                                            <DialogContent>
-                                                <DialogContentText>
-                                                    请填写快递信息:
-                                                </DialogContentText>
-                                                <TextField
-                                                    autoFocus
-                                                    margin='dense'
-                                                    id='deliver'
-                                                    label='快递'
-                                                    type='email'
-                                                    fullWidth
-                                                >
-                                                </TextField>
-                                                <TextField
-                                                    autoFocus
-                                                    margin='dense'
-                                                    id='deliverNo'
-                                                    label='快递单号'
-                                                    type='email'
-                                                    fullWidth
-                                                >
-                                                </TextField>
-                                            </DialogContent>
-                                            <DialogActions>
-                                                <Button onClick={props.handleClose} color='primary'>
-                                                    取消
-                                                </Button>
-                                                <Button onClick={props.handleClose} color='primary'>
-                                                    保存
-                                                </Button>
-                                            </DialogActions>
-                                        </Dialog>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <Divider variant='middle' />
-                            <div className={classes.section}>
-                                <Typography variant='h5'>
-                                    用户信息：
-                                </Typography>
-                                <Grid container justify='space-around' alignItems='center'>
-                                    <Grid item xs={3}>
-                                        用户姓名：{props.userName}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        用户ID: {props.userNo}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        联系方式：{props.phoneNo}
-                                    </Grid>
-                                    <Grid item xs={3}>
-                                        地址：{props.address}
+                            <Grid container spacing={16} justify='space-around'>
+                                <Grid item xs={12}>
+                                    <Typography variant='h5'>
+                                        订单:
+                                    </Typography>
+                                    <Grid container justify='space-around' alignItems='center'>
+                                        <Grid item xs={4}>
+                                            订单号:{props.orderNo}
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            订单状态:{props.status}
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            <Button 
+                                                color='primary' 
+                                                variant='outlined' 
+                                                onClick={props.handleClickOpen}
+                                            >
+                                                发货
+                                            </Button>
+                                            <Dialog
+                                                open={props.open}
+                                                onClose={props.handleClose}
+                                                aria-labelledby='form-dialog-title'
+                                            >
+                                                <DialogTitle id='from-dialog-title'></DialogTitle>
+                                                <DialogContent>
+                                                    <DialogContentText>
+                                                        请填写快递信息:
+                                                    </DialogContentText>
+                                                    <TextField
+                                                        autoFocus
+                                                        margin='dense'
+                                                        id='deliver'
+                                                        label='快递'
+                                                        type='email'
+                                                        fullWidth
+                                                    >
+                                                    </TextField>
+                                                    <TextField
+                                                        autoFocus
+                                                        margin='dense'
+                                                        id='deliverNo'
+                                                        label='快递单号'
+                                                        type='email'
+                                                        fullWidth
+                                                    >
+                                                    </TextField>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <Button onClick={props.handleClose} color='primary'>
+                                                        取消
+                                                    </Button>
+                                                    <Button onClick={props.handleClose} color='primary'>
+                                                        保存
+                                                    </Button>
+                                                </DialogActions>
+                                            </Dialog>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </div>
-                            <Divider variant='middle' />
-                            <div className={classes.section}>
-                                <Typography variant='h5'>
-                                    商品清单：
-                                </Typography>
-                                {listenerCount.map(())}
-                                <Table>
-                                    <TableHead className={classes.head}>
-                                        <TableRow>
-                                            {rows.map(
-                                                row => (
-                                                    <TableCell>
-                                                        {row.label}
-                                                    </TableCell>
+                                <Divider variant='middle' />
+                                <Grid item xs={12}>
+                                    <Typography variant='h5'>
+                                        用户信息：
+                                    </Typography>
+                                    <Grid container justify='space-around' alignItems='center'>
+                                        <Grid item xs={3}>
+                                            用户姓名：{props.userName}
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            用户ID: {props.userNo}
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            联系方式：{props.phoneNo}
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            地址：{props.address}
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <Divider variant='middle' />
+                                <Grid item xs={12}>
+                                    <Typography variant='h5'>
+                                        商品清单：
+                                    </Typography>
+                                    <Table>
+                                        <DefaultTableHead labels={labels}/>
+                                        <TableBody>
+                                            {list.map((row: IOrderProductShowProps) => {
+                                                return (
+                                                    <TableRow>
+                                                        <TableCell align='right'>{row.productId}</TableCell>
+                                                        <TableCell align='right'>{row.productName}</TableCell>
+                                                        <TableCell align='right'>{row.price}</TableCell>
+                                                        <TableCell align='right'>{row.quantity}</TableCell>
+                                                        <TableCell align='right'>{row.amount}</TableCell>
+                                                    </TableRow>
                                                 )
-                                            )}
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {data.map(n => (
-                                            <TableRow>
-                                                <TableCell align='right'>{n.productNo}</TableCell>
-                                                <TableCell align='right'>{n.productName}</TableCell>
-                                                <TableCell align='right'>{n.price}</TableCell>
-                                                <TableCell align='right'>{n.quantity}</TableCell>
-                                                <TableCell align='right'>{n.amount}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </div>
+                                            })}
+                                        </TableBody>
+                                    </Table>
+                                </Grid>
+                            </Grid>
                         </Paper>
                     </div>
             }
